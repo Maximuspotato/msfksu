@@ -1,0 +1,9 @@
+<xml xmlns:o="urn:schemas-microsoft-com:office:office">
+ <o:MainFile HRef="Book1.htm"/>
+ <o:File HRef="Book1_stylesheet.css"/>
+ <o:File HRef="Book1_tabstrip.htm"/>
+ <o:File HRef="Book1_sheet001.htm"/>
+ <o:File HRef="Book1_image001.png"/>
+ <o:File HRef="Book1_image002.png"/>
+ <o:File HRef="Book1_filelist.xml"/>
+</xml>
