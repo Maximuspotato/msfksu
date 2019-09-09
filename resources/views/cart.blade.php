@@ -23,7 +23,7 @@
                             </div><br> --}}
                             <div class="pull-right">
                                 <button class="btn rfq-butt"  data-toggle="modal" data-target="#irModal"><i class="glyphicon glyphicon-download"></i> IR FORM</button>
-                                <a href="{{URL('/exportUf')}}" class="btn rfq-butt"><i class="glyphicon glyphicon-download"></i> UF FILE</a>
+                                <a href="{{URL('/exportUf')}}" class="btn rfq-butt" data-toggle="popover" data-trigger="focus" title="Remember to save the file as XML 2003 for unifield importation!" data-placement="bottom" data-content=""><i class="glyphicon glyphicon-download"></i> UF FILE</a>
                                 <button class="btn rfq-butt" data-toggle="modal" data-target="#rfqModal"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="18"></i> RFQ TO KSU</button>
                             </div>
                         </div>

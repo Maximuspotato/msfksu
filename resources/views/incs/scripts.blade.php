@@ -120,6 +120,9 @@
     </script>
     <script>
       $(document).ready(function () {
+        $('.popover-dismiss').popover({
+            trigger: 'focus'
+        })
         //upload attachments
 
         //slideshow

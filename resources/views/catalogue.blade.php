@@ -180,7 +180,7 @@
                     </main>
                 </div>
                 <div class="pagination-wrapper ">
-                    {{$articles->links()}}
+                    {{ $articles->appends(request()->query())->links() }}
                     {{-- <ul class="pagination pagination-lg">
                         <li class="disabled"><a href="#">Previous</a></li>
                         <li class="active"><a href="#">1</a></li>
