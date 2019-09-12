@@ -6,7 +6,7 @@
                 <td style="width:30%"><img src="{{public_path()}}/assets/img/logo.png" alt=""></td>
                 <td style="width:60%;"><h1>INTERNAL REQUEST</h1></td>
                 <td><b>NR.:</b></td>
-                <td>{{$info['ref_no']}}</td>
+                <td></td>
             </tr>
         </tbody>
     </table>
@@ -30,7 +30,7 @@
             <td style="width:20%"><b>PURPOSE:</b></td>
             <td style="width:40%; word-wrap:break-word">{{$info['purpose']}}</td>
             <td style="width:20%"><b>DELIVER BEFORE:</b></td>
-            <td></td>
+            <td style="word-wrap:break-word">{{$info['rdd']}}</td>
         </tr>
     </tbody>
 </table>

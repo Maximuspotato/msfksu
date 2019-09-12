@@ -71,7 +71,7 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-3">
                             <div class="service-wrapper">
-                                <img src="{{URL('/')}}/assets/img/service-icon/new.png" alt="Service 1">
+                                <img src="{{URL('/')}}/assets/img/service-icon/megaphone.png" alt="Service 1">
                                 <h3>Latest items</h3>
                                 <a href="{{URL('/catalogue?det=New')}}" class="btn">See more</a>
                             </div>

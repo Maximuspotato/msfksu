@@ -9,14 +9,15 @@
                             MSF European Supply Centres
                             <div class="container">
                                 <ul>
-                                    <li><a href="https://www.msfsupply.be/">MSF Supply Brussels</a></li>
-                                    <li><a href="https://www.msflogistique.org/">MSF Logistique Bordeaux</a></li>
-                                    <li class="disabled"><a href="">MSF APU Amsterdam Procurement Unit</a></li>
+                                    <li><a href="https://www.msfsupply.be/" target="_blank">MSF Supply Brussels</a></li>
+                                    <li><a href="https://www.msflogistique.org/" target="_blank">MSF Logistique Bordeaux</a></li>
+                                    <li><a href="https://apps.powerapps.com/play/c91839ea-eb18-4b86-9ef2-0d1bc568a0f1?tenantId=4d9dd1af-83ce-4e9b-b090-b0543ccc2b31" target="_blank">MSF APU Amsterdam Procurement Unit</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="disabled"><a href="">Executive Supply Chain Committee</a></li>
-                        <li class=""><a href="https://www.msf.org/">MSF International</a></li>
+                        <li><a href="https://apps.powerapps.com/play/0e8f5ced-1eb3-463c-9703-cb7b829fe753?tenantId=4d9dd1af-83ce-4e9b-b090-b0543ccc2b31" target="_blank">Unidata catalogue</a></li>
+                        <li class="disabled" target="_blank"><a href="">Executive Supply Chain Committee</a></li>
+                        <li class=""><a href="https://www.msf.org/" target="_blank">MSF International</a></li>
                         <li><a href="{{URL('/tc')}}">KSU's Terms & Conditions</a></li>
                         {{-- <li class="disabled"><a href="">MSF OCA</a></li>
                         <li class="disabled"><a href="">MSF OCB</a></li>
