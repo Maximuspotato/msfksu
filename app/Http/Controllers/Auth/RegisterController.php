@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+ini_set('max_execution_time', 180);
+
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
