@@ -39,7 +39,7 @@
                         <br>
                         KSU HR Manager<br>
                         <a href="MSFOCB-KSU-Admin@brussels.msf.org">MSFOCB-KSU-Admin@brussels.msf.org</a><br>
-                        Cell +254 (0) 720 985 792<br>
+                        Cell +254 (0) 705 000 570<br>
                         <br>
                         KSU General Manager<br>
                         <a href="MSFOCB-KSU-Coord@brussels.msf.org">MSFOCB-KSU-Coord@brussels.msf.org</a><br>

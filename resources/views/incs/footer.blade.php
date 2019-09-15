@@ -32,11 +32,11 @@
                     <ul class="no-list-style footer-navigate-section">
                         <li><a href="{{URL('/')}}">Home</a></li>
                         <li><a href="{{URL('/about')}}">About</a></li>
-                        <li class="disabled"><a href="{{URL('/services')}}">Services</a></li>
+                        <li><a href="{{URL('/services')}}">Services</a></li>
                         <li><a href="{{URL('/catalogue')}}">Catalogue</a></li>
                         <li><a href="{{URL('/contacts')}}">Contacts</a></li>
-                        <li class="disabled"><a href="{{URL('/hr')}}">Human Resource</a></li>
-                        <li class="disabled"><a href="{{URL('/downloads')}}">Downloads</a></li>
+                        <li><a href="{{URL('/hr')}}">Careers</a></li>
+                        <li><a href="{{URL('/downloads')}}">Downloads</a></li>
                     </ul>
                 </div>
                 
@@ -60,7 +60,7 @@
                                 Cell +254 (0)<br>
                                 KSU HR Manager<br>
                                 <a href="MSFOCB-KSU-Admin@brussels.msf.org">MSFOCB-KSU-Admin@brussels.msf.org</a><br>
-                                Cell +254 (0) 720 985 792<br>
+                                Cell +254 (0) 705 000 570<br>
                                 KSU General Manager<br>
                                 <a href="MSFOCB-KSU-Coord@brussels.msf.org">MSFOCB-KSU-Coord@brussels.msf.org</a><br>
                                 Cell +254 (0) 722 509 964

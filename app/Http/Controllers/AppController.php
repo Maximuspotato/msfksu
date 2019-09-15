@@ -6,6 +6,7 @@ ini_set('max_execution_time', 180);
 
 use Mail;
 use Illuminate\Http\Request;
+use App\Exports\KsuUfExport;
 use App\Exports\CatalogExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
@@ -48,7 +49,13 @@ class AppController extends Controller
         return back();
     }
 
-    public function download(){
-        return Excel::download(new CatalogExport, 'Full Catalogue.xlsx');
+    public function download(Request $request){
+        $dwnld = $request->input('dwnld');
+        if ($dwnld == "full") {
+            return Excel::download(new CatalogExport, 'Full Catalogue.xlsx');
+        }
+        elseif ($dwnld == "ksu") {
+            return Excel::download(new KsuUfExport, 'KSU Catalogue.xlsx');
+        }
     }
 }

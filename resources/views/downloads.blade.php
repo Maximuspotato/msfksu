@@ -63,7 +63,19 @@
                             </div>
                             <div id="collapse21" class="accordion-body collapse">
                                 <div class="accordion-inner">
-                                    <p><a href="{{URL('/download')}}">Full catalogue.xlxs</a></p>
+                                    <p><a href="{{URL('/download?dwnld=full')}}">Full catalogue.xlxs</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse22">
+                                    Unifield supplier catalogue
+                                </a>
+                            </div>
+                            <div id="collapse22" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <p><a href="{{URL('/download?dwnld=ksu')}}">KSU catalogue.xlxs</a></p>
                                 </div>
                             </div>
                         </div>

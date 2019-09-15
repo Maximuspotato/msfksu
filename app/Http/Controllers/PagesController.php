@@ -32,6 +32,21 @@ class PagesController extends Controller
     }
 
     public function cart(){
+        if(!session()->has('rates')){
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, 'https://free.currconv.com/api/v7/convert?q=KES_USD,KES_EUR,KES_CHF&compact=ultra&apiKey=e1d068c795b62617f12a');
+            curl_setopt($ch, CURLOPT_POST, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            $response = curl_exec ($ch);
+            $err = curl_error($ch);  //if you need
+            curl_close ($ch);
+            $obj = json_decode($response, true);
+            session()->put('KES_USD', $obj['KES_USD']);
+            session()->put('KES_EUR', $obj['KES_EUR']);
+            session()->put('KES_CHF', $obj['KES_CHF']);
+            session()->put('rates', 'ok');
+        }
         $items = Cart::getContent();
         return view('cart')->with(['active' => '', 'items' => $items]);
     }

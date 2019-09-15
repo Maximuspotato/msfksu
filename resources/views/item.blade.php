@@ -76,101 +76,102 @@
                                 </tr>
                         </form>
                     </table>
+                    <div class="tabbable">
+                            <!-- Tabs -->
+                            <ul class="nav nav-tabs product-details-nav">
+                                <li class="active"><a href="#tab1" data-toggle="tab">Specification</a></li>
+                                <li><a href="#tab2" data-toggle="tab">Details</a></li>
+                            </ul>
+                            <!-- Tab Content (Full Description) -->
+                            <div class="tab-content product-detail-info">
+                                <div class="tab-pane active" id="tab1">
+                                    <table>
+                                        <tr>
+                                            <td>Article code</td>
+                                            <td>{{$article->article_code}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Price</td>
+                                            <td>
+                                                {{-- {{number_format($article->price,'2','.','')}}  --}}
+                                                @if (session()->get('currency') == 'usd')
+                                                    {{number_format($article->price*Session::get('KES_USD'),'2','.','')}} USD
+                                                @elseif(session()->get('currency') == 'eur')
+                                                    {{number_format($article->price*Session::get('KES_EUR'),'2','.','')}} EUR
+                                                @elseif(session()->get('currency') == 'chf')
+                                                    {{number_format($article->price*Session::get('KES_EUR'),'2','.','')}} CHF
+                                                @else
+                                                    {{$article->price}} KSH
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Price valid until</td>
+                                            <td>{{$article->valid}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Stock</td>
+                                            <td>{{$article->stock}}</td>
+                                        </tr>
+                                        @if ($article->stock == "No")
+                                            <tr>
+                                                <td>Lead time (RTS in KSU)</td>
+                                                <td>{{$article->lead_time}}</td>
+                                            </tr>
+                                        @endif
+                                        <tr>
+                                            <td>Unit</td>
+                                            @if (empty($article->sud))
+                                                <td>-</td>
+                                            @else
+                                                <td>{{$article->sud}}</td>
+                                            @endif
+                                        </tr>
+                                        <tr>
+                                            <td>Standard Unit of Distribution</td>
+                                            @if (empty($article->unit))
+                                                <td>-</td>
+                                            @else
+                                                <td>{{$article->unit}}</td>
+                                            @endif
+                                        </tr>
+                                        <tr>
+                                            <td>Weight</td>
+                                            @if (empty($article->weight))
+                                                <td>-</td>
+                                            @else
+                                                <td>{{$article->weight}}</td> 
+                                            @endif
+                                        </tr>
+                                        <tr>
+                                            <td>Volume</td>
+                                            @if (empty($article->volume))
+                                                <td>-</td>
+                                            @else
+                                                <td>{{$article->volume}}</td>
+                                            @endif
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="tab-pane" id="tab2">
+                                    <h4>Product Details</h4>
+                                    <p>
+                                        @if (empty($article->details))
+                                            No information available
+                                        @else
+                                            {!!$article->details!!}
+                                        @endif
+                                    </p>
+    
+                                </div>
+                            </div>
+                        </div>
                 </div>
                 <!-- End Product Summary & Options -->
                 
                 <!-- Full Description & Specification -->
                 <div class="col-sm-12">
-                    <div class="tabbable">
-                        <!-- Tabs -->
-                        <ul class="nav nav-tabs product-details-nav">
-                            <li class="active"><a href="#tab1" data-toggle="tab">Specification</a></li>
-                            <li><a href="#tab2" data-toggle="tab">Details</a></li>
-                        </ul>
-                        <!-- Tab Content (Full Description) -->
-                        <div class="tab-content product-detail-info">
-                            <div class="tab-pane active" id="tab1">
-                                <table>
-                                    <tr>
-                                        <td>Article code</td>
-                                        <td>{{$article->article_code}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Price</td>
-                                        <td>
-                                            {{-- {{number_format($article->price,'2','.','')}}  --}}
-                                            @if (session()->get('currency') == 'usd')
-                                                {{number_format($article->price*Session::get('KES_USD'),'2','.','')}} USD
-                                            @elseif(session()->get('currency') == 'eur')
-                                                {{number_format($article->price*Session::get('KES_EUR'),'2','.','')}} EUR
-                                            @elseif(session()->get('currency') == 'chf')
-                                                {{number_format($article->price*Session::get('KES_EUR'),'2','.','')}} CHF
-                                            @else
-                                                {{$article->price}} KSH
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Price valid until</td>
-                                        <td>{{$article->valid}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Stock</td>
-                                        <td>{{$article->stock}}</td>
-                                    </tr>
-                                    @if ($article->stock == "No")
-                                        <tr>
-                                            <td>Lead time (RTS in KSU)</td>
-                                            <td>{{$article->lead_time}}</td>
-                                        </tr>
-                                    @endif
-                                    <tr>
-                                        <td>Unit</td>
-                                        @if (empty($article->sud))
-                                            <td>-</td>
-                                        @else
-                                            <td>{{$article->sud}}</td>
-                                        @endif
-                                    </tr>
-                                    <tr>
-                                        <td>Standard Unit of Distribution</td>
-                                        @if (empty($article->unit))
-                                            <td>-</td>
-                                        @else
-                                            <td>{{$article->unit}}</td>
-                                        @endif
-                                    </tr>
-                                    <tr>
-                                        <td>Weight</td>
-                                        @if (empty($article->weight))
-                                            <td>-</td>
-                                        @else
-                                            <td>{{$article->weight}}</td> 
-                                        @endif
-                                    </tr>
-                                    <tr>
-                                        <td>Volume</td>
-                                        @if (empty($article->volume))
-                                            <td>-</td>
-                                        @else
-                                            <td>{{$article->volume}}</td>
-                                        @endif
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="tab-pane" id="tab2">
-                                <h4>Product Details</h4>
-                                <p>
-                                    @if (empty($article->details))
-                                        No information available
-                                    @else
-                                        {!!$article->details!!}
-                                    @endif
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
                 <!-- End Full Description & Specification -->
             </div>

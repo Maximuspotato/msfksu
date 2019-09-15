@@ -37,8 +37,8 @@
 </div><br>
 <div>
     <table style="width:100% table-layout:fixed; border-collapse: collapse;">
-        <td style="width:64.4%;"></td>
-        <td style="width:16.6%; border:0.5px solid black; text-align:center">Quantity</td>
+        <td style="width:64.45%;"></td>
+        <td style="width:15%; border:0.5px solid black; text-align:center">Quantity</td>
         <td style=""></td>
     </table>
 </div>

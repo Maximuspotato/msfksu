@@ -24,7 +24,9 @@
                             <div class="pull-right">
                                 <button class="btn rfq-butt"  data-toggle="modal" data-target="#irModal"><i class="glyphicon glyphicon-download"></i> IR FORM</button>
                                 <a href="{{URL('/exportUf')}}" class="btn rfq-butt" data-toggle="popover" data-trigger="focus" title="Remember to save the file as XML 2003 for unifield importation!" data-placement="bottom" data-content=""><i class="glyphicon glyphicon-download"></i> UF FILE</a>
-                                <button class="btn rfq-butt" data-toggle="modal" data-target="#rfqModal"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="18"></i> RFQ TO KSU</button>
+                                @if (!AUTH::guest())
+                                    <button class="btn rfq-butt" data-toggle="modal" data-target="#rfqModal"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="18"></i> RFQ TO KSU</button>
+                                @endif
                             </div>
                         </div>
                     </div> 
@@ -39,11 +41,11 @@
                                 @foreach ($items as $item)
                                     <tr>
                                         <!-- Shopping Cart Item Image -->
-                                        <td><a href="page-product-details.html"><img src="{{$item->attributes->pic}}" alt="Item Name" height="80"></a></td>
+                                        <td><a href="{{URL('/article')}}/{{$item->id}}"><img src="{{$item->attributes->pic}}" alt="Item Name" height="80"></a></td>
                                         <!-- Shopping Cart Item Description & Features -->
                                         <td>
-                                            <div class="cart-item-title"><a href="{{URL('/item')}}">{{$item->id}}</a></div>
-                                            <div class="cart-item-title"><a href="{{URL('/item')}}">{{$item->name}}</a></div>
+                                            <div class="cart-item-title"><a href="{{URL('/article')}}/{{$item->id}}">{{$item->id}}</a></div>
+                                            <div class="cart-item-title"><a href="{{URL('/article')}}/{{$item->id}}">{{$item->name}}</a></div>
                                         </td>
                                         <form id="update_form" action="{{URL('/update')}}" method="post">
                                             @csrf
@@ -117,13 +119,17 @@
                     <div class="col-md-12">
                         <!-- Action Buttons -->
                         <div class="pull-left">
-                            <a href="{{URL('/new-request')}}" class="btn"><i class="glyphicon glyphicon-plus-sign"></i> RFQ item not in catalogue</a>
+                            @if (!AUTH::guest())
+                                <a href="{{URL('/new-request')}}" class="btn"><i class="glyphicon glyphicon-plus-sign"></i> RFQ item not in catalogue</a>
+                            @endif
                         </div>
                         @if (count($items)>0)
                             <div class="pull-right">
                                 <button class="btn rfq-butt"  data-toggle="modal" data-target="#irModal"><i class="glyphicon glyphicon-download"></i> IR FORM</button>
                                 <a href="{{URL('/exportUf')}}" class="btn rfq-butt"><i class="glyphicon glyphicon-download"></i> UF FILE</a>
-                                <button class="btn rfq-butt" data-toggle="modal" data-target="#rfqModal"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="18"></i> RFQ TO KSU</button>
+                                @if (!AUTH::guest())
+                                    <button class="btn rfq-butt" data-toggle="modal" data-target="#rfqModal"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="18"></i> RFQ TO KSU</button>
+                                @endif
                             </div>
                         @endif
                     </div>

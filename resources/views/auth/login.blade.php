@@ -57,6 +57,7 @@
                                 </div>
                             </form>
                         </div>
+                        <a href="{{URL('/password/reset')}}">Forgot your password?</a>
                         <br>
                         <div class="pull-right">
                             Not a member <span><a href="{{URL('/register')}}" class="btn">Register Now</a></span>

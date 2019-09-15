@@ -144,7 +144,7 @@ class CartController extends Controller
         Mail::send('emails.rfq', ['items' => Cart::getContent(), 'data' => $data], function ($m) {
             //dd($path);
             $m->from(auth()->user()->email, 'KSU');
-            $m->to('MSFOCB-KSU-CustomerService@brussels.msf.org', 'lewis')->subject('Request for quotation');
+            $m->to('MSFOCB-KSU-CustomerService@brussels.msf.org', 'David')->subject('Request for quotation');
             $filename = 'rfq_'.time().'.xlsx';
             $m->attach(Excel::download(new RfqExport, $filename)->getFile(), ['as' => $filename]);
         });

@@ -891,9 +891,9 @@ span.color-red {
 .product-details h4 {
   margin-bottom: 20px;
 }
-.product-details h5 {
+/* .product-details h5 {
   margin-top: 20px;
-}
+} */
 .product-details .price {
   font-size: 1.4em;
   font-weight: 700;
@@ -2725,7 +2725,7 @@ span.color-red {
 .navbar-toggle{
   height: 50px;
   background: #efefef;
-  margin-left: 100px;
+  margin-left: 120px;
 }
 
 .icon-bar{
@@ -2781,7 +2781,7 @@ span.color-red {
 }
 
 .bg{
-  background-image: url(../img/homepage-slider/wh2.jpg);
+  /* background-image: url(../img/homepage-slider/wh2.jpg); */
   width: 100%;
   max-width: 1920px;
   color: white;
