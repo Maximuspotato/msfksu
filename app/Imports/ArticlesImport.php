@@ -21,34 +21,109 @@ class ArticlesImport implements ToModel, WithHeadingRow
         $group = substr($groupFam,0,1);
         $fam = substr($groupFam, 1, 3);
         $unicode = Unicode::where('group', $group)->where('family', $fam)->first();
-        
-        $links = explode(',', $row['pic']);
-        foreach ($links as $link) {
+
+        $det = $row['pic'];
+
+        if ($det == "") {
             $pic = new Pic;
             $pic->article_code = $row['article_code'];
-            if ($link == "") {
-                $pic->pic = "https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png";
-            } else {
-                $pic->pic = $link;
-            }
+            $pic->pic = "default";
             $pic->save();
+        } else {
+            if (strpos($det, "_") !== false) {
+                for($i = 1; $i < 3; $i++){
+                    $pic = new Pic;
+                    $pic->article_code = $row['article_code'];
+                    $pic->pic = str_replace("_", "", $row['pic'])."_".$i;
+                    $pic->save();
+                }
+            }
+            elseif (strpos($det, "__") !== false) {
+                for($i = 1; $i < 4; $i++){
+                    $pic = new Pic;
+                    $pic->article_code = $row['article_code'];
+                    $pic->pic = str_replace("__", "", $row['pic'])."_".$i;
+                    $pic->save();
+                }
+            } else {
+                $pic = new Pic;
+                $pic->article_code = $row['article_code'];
+                $pic->pic = $row['pic'];
+                $pic->save();
+            }
         }
+        
+        
+        // $links = explode(',', $row['pic']);
+        // foreach ($links as $link) {
+        //     $pic = new Pic;
+        //     $pic->article_code = $row['article_code'];
+        //     if ($link == "") {
+        //         $pic->pic = "https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png";
+        //     } else {
+        //         $pic->pic = $link;
+        //     }
+        //     $pic->save();
+        // }
+
+        if($row['category'] == null){
+            $category = "undefined";
+        }
+        else {
+            $category = $row['category'];
+        }
+
+        if($row['lead_time'] == null){
+            $lead_time = "undefined";
+        }
+        else {
+            $lead_time = $row['lead_time'];
+        }
+
+        if($row['price'] == null){
+            $price = 0;
+        }
+        else {
+            $price = $row['price'];
+        }
+
+        if($row['stock'] == null){
+            $stock = "undefined";
+        }
+        else {
+            $stock = $row['stock'];
+        }
+
+        if($row['valid'] == null){
+            $valid = "undefined";
+        }
+        else {
+            $valid = $row['valid'];
+        }
+
+        if($row['desc_eng'] == null){
+            $desc_eng = "undefined";
+        }
+        else {
+            $desc_eng = $row['desc_eng'];
+        }
+
 
         return new Article([
             'article_code' => $row['article_code'],
-            'category' => $row['category'],
+            'category' => $category,
             'group' => $unicode['group'],
             'family' => $unicode['family'],
             'fam_desc' => $unicode['desc'],
-            'price' => $row['price'],
-            'valid' => $row['valid'],
+            'price' => $price,
+            'valid' => $valid,
             'unit' => $row['unit'],
             'sud' => $row['sud'],
             'weight' => $row['weight'],
             'volume' => $row['volume'],
-            'stock' => $row['stock'],
-            'lead_time' => $row['lead_time'],
-            'desc_eng' => $row['desc_eng'],
+            'stock' => $stock,
+            'lead_time' => $lead_time,
+            'desc_eng' => $desc_eng,
             'desc_fra' => $row['desc_fra'],
             'desc_spa' => $row['desc_spa'],
             'details' => $row['details'],

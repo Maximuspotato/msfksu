@@ -19,7 +19,11 @@
                 <div class="col-sm-6">
                     <div class="product-image-large image">
                         @foreach ($article->pic as $pic)
-                            <a href="{{URL('/article')}}/{{$article->article_code}}"><img class="img-thumbnail zoom" src="{{$pic['pic']}}" data-magnify-src="{{$pic['pic']}}" alt="" ></a>
+                            @if ($pic['pic'] == "default")
+                                <a href="{{URL('/article')}}/{{$article->article_code}}"><img class="img-thumbnail zoom" src="{{URL('/')}}/assets/img/pics/default.png" data-magnify-src="{{URL('/')}}/assets/img/pics/default.png" alt="" ></a>
+                            @else
+                                <a href="{{URL('/article')}}/{{$article->article_code}}"><img class="img-thumbnail zoom" src="{{URL('/')}}/assets/img/pics/{{$pic['pic']}}.png" data-magnify-src="{{URL('/')}}/assets/img/pics/{{$pic['pic']}}.png" alt="" ></a>
+                            @endif
                         @endforeach
                     </div>
                 </div>
@@ -58,7 +62,7 @@
                                         <input type="hidden" name="article_code" value="{{$article->article_code}}">
                                         <input type="hidden" name="price" value="{{$article->price}}">
                                         <input type="hidden" name="name" value="{{$article->desc_eng}}">
-                                        <input type="hidden" name="pic" value="{{$article->pic->first()['pic']}}">
+                                        <input type="hidden" name="pic" value="{{URL('/')}}/assets/img/pics/{{$article->pic->first()['pic']}}.png">
                                         <input type="hidden" name="unit" value="{{$article->unit}}">
                                         <input type="hidden" name="lead_time" value="{{$article->lead_time}}">
                                         <input type="hidden" name="weight" value="{{$article->weight}}">
@@ -90,21 +94,23 @@
                                             <td>Article code</td>
                                             <td>{{$article->article_code}}</td>
                                         </tr>
-                                        <tr>
-                                            <td>Price</td>
-                                            <td>
-                                                {{-- {{number_format($article->price,'2','.','')}}  --}}
-                                                @if (session()->get('currency') == 'usd')
-                                                    {{number_format($article->price*Session::get('KES_USD'),'2','.','')}} USD
-                                                @elseif(session()->get('currency') == 'eur')
-                                                    {{number_format($article->price*Session::get('KES_EUR'),'2','.','')}} EUR
-                                                @elseif(session()->get('currency') == 'chf')
-                                                    {{number_format($article->price*Session::get('KES_EUR'),'2','.','')}} CHF
-                                                @else
-                                                    {{$article->price}} KSH
-                                                @endif
-                                            </td>
-                                        </tr>
+                                        @if (!AUTH::guest())
+                                            <tr>
+                                                <td>Price</td>
+                                                <td>
+                                                    {{-- {{number_format($article->price,'2','.','')}}  --}}
+                                                    @if (session()->get('currency') == 'usd')
+                                                        {{number_format($article->price*Session::get('KES_USD'),'2','.','')}} USD
+                                                    @elseif(session()->get('currency') == 'eur')
+                                                        {{number_format($article->price*Session::get('KES_EUR'),'2','.','')}} EUR
+                                                    @elseif(session()->get('currency') == 'chf')
+                                                        {{number_format($article->price*Session::get('KES_EUR'),'2','.','')}} CHF
+                                                    @else
+                                                        {{$article->price}} KSH
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endif
                                         <tr>
                                             <td>Price valid until</td>
                                             <td>{{$article->valid}}</td>

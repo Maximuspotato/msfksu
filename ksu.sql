@@ -1,273 +1,1583 @@
--- MySQL dump 10.13  Distrib 8.0.17, for Linux (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: ksu
--- ------------------------------------------------------
--- Server version	8.0.17
+-- Host: 127.0.0.1
+-- Generation Time: Sep 17, 2019 at 03:44 PM
+-- Server version: 10.3.16-MariaDB
+-- PHP Version: 7.3.7
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `ksu`
+--
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `articles`
 --
 
-DROP TABLE IF EXISTS `articles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `articles` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `article_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `group` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `family` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fam_desc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `article_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `group` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `family` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fam_desc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` float NOT NULL,
-  `valid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `unit` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sud` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `valid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sud` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `weight` float DEFAULT NULL,
   `volume` float DEFAULT NULL,
-  `stock` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lead_time` int(11) NOT NULL,
-  `desc_eng` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `desc_fra` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `desc_spa` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `details` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `stock` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lead_time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `desc_eng` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `desc_fra` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `desc_spa` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `details` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=216 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `articles`
 --
 
-LOCK TABLES `articles` WRITE;
-/*!40000 ALTER TABLE `articles` DISABLE KEYS */;
-INSERT INTO `articles` VALUES (4,'AFOOSUGA1--','Log','A','FOO','Food',25,'08/31/2019','kg','kg',1,1,'no',1,'SUGAR, 1 kg','SUCRE, 1 kg , morceaux',NULL,'Brand KABRAS or Munias','2019-08-15 05:49:39','2019-08-15 05:49:39'),(5,'AFOOZYN0017','Log','A','FOO','Food',185.86,'12/31/2019','box of 100 sachets','carton of 10 Boxes of 100',NULL,NULL,'yes',1,'TEA, 100 sachets, the box',NULL,NULL,'Ketepa Pride Tea Bags 100’s ','2019-08-15 05:49:39','2019-08-15 05:49:39'),(6,'AFOOZYN1089','Log','A','FOO','Food',206.98,'12/31/2019','pkt','Pkt of 500g',NULL,NULL,'yes',1,'BEVERAGE, tea leaves, 500g. Pkt',NULL,NULL,'Fahari ya Kenya 500gms','2019-08-15 05:49:39','2019-08-15 05:49:39'),(7,'ALIFZYN01328','Log','A','LIF','Team life',177.083,'12/31/2019','Pack of 12','pack of 12',NULL,NULL,'yes',1,'Scourer Super brite medium, 12 pcs',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(8,'ALIFZYN1002','Log','A','LIF','Team life',395.474,'12/31/2019','Jerrycan of 5 ltrs','Jerrycan of 5 ltrs',NULL,NULL,'yes',1,'DISINFECTANT, liquid, LAVIK, 5 lts, jerrycan',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(9,'ALIFZYN1006','Log','A','LIF','Team life',25.34,'12/31/2019','pack of ten','pack of ten',NULL,NULL,'yes',1,'MATCHES, (Zebra), pack of 10 boxes',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(10,'ALIFZYN1013','Log','A','LIF','Team life',198.53,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'BROOM, soft with broomstick, for indoor use',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(11,'ALIFZYN1014','Log','A','LIF','Team life',312.59,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'MOP HEAD, cotton, with stick',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(12,'ALIFZYN1017','Log','A','LIF','Team life',58.3333,'12/31/2019','pkt of 100','carton of 60 pckets',NULL,NULL,'yes',1,'SERVIETTE, paper, VELVEX, 100pces, pkg',NULL,NULL,'Velvex White Napkin Tissue','2019-08-15 05:49:39','2019-08-15 05:49:39'),(13,'ALIFZYN1019','Log','A','LIF','Team life',67.59,'12/31/2019','PCE','carton of 24 bars',NULL,NULL,'yes',1,'SOAP, 100g, luxury, pce',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(14,'ALIFZYN1021','Log','A','LIF','Team life',206.897,'12/31/2019','PCE','box of 6',NULL,NULL,'yes',1,'DISH WASHING PASTE, Axion, large, 800gr',NULL,NULL,'Safisha Dish Washing Paste Lemon 800G (1x6) ','2019-08-15 05:49:39','2019-08-15 05:49:39'),(15,'ALIFZYN1022','Log','A','LIF','Team life',80.4598,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'SCOURING POWDER, 1000gr',NULL,NULL,'Safisha Scouring Powder Lemon 1KG (1x6) ','2019-08-15 05:49:39','2019-08-15 05:49:39'),(16,'ALIFZYN1023','Log','A','LIF','Team life',211.2,'12/31/2019','Spray','Spray',NULL,NULL,'yes',1,'AIR-FRESHNER, aromatic, spray can, 250ml',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(17,'ALIFZYN1024','Log','A','LIF','Team life',802.59,'12/31/2019','jerrycan of 5 lts','jerrycan of 5 lts',5,5,'yes',1,'DISINFECTANT, breach, liquid, JIK, 5L, jerrycan',NULL,NULL,'Safisha Bleach Colour 5Ltrs','2019-08-15 05:49:39','2019-08-15 05:49:39'),(18,'ALIFZYN1025','Log','A','LIF','Team life',439.31,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'TOILET CLEANER, liquid, HARPIC, 1000ml',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(19,'ALIFZYN1026','Log','A','LIF','Team life',126.437,'12/31/2019','pkt of 4 pces','pkt of 4 pces',NULL,NULL,'yes',1,'SPONGE/SCOURER, (yellow/green), (Specify brand), 4pces, pkg',NULL,NULL,'Safisha Kitchen Cleaner 4\'s (1x18) ','2019-08-15 05:49:39','2019-08-15 05:49:39'),(20,'ALIFZYN1027','Log','A','LIF','Team life',177.93,'12/31/2019','pkt of 750g','pkt of 750g',NULL,NULL,'yes',1,'STEELWOOL, 750 g',NULL,NULL,'Safisha Steelwool 750G (1x18) ','2019-08-15 05:49:39','2019-08-15 05:49:39'),(21,'ALIFZYN1028','Log','A','LIF','Team life',464.66,'12/31/2019','Spray','Spray',NULL,NULL,'yes',1,'INSECT REPELLANT,(Mortein Doom), spray, indoor use, 300g/494',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(22,'ALIFZYN1029','Log','A','LIF','Team life',502.67,'12/31/2019','jerrycan of 5 lts','jerrycan of 5 lts',NULL,NULL,'yes',1,'DISH WASHING LIQUID, 5 lts, jerrycan',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(23,'ALIFZYN1030','Log','A','LIF','Team life',500,'12/31/2019','Jerrycan','Jerrycan',NULL,NULL,'yes',1,'SOAP, hand wash, 5 lts, jerrycan',NULL,NULL,'Velvex Liquid Hand Wash Soap - 5 Litre & 20 Litres','2019-08-15 05:49:39','2019-08-15 05:49:39'),(24,'ALIFZYN1032','Log','A','LIF','Team life',55.91,'12/31/2019','1 sponge','pack of 3 sponge',NULL,NULL,'yes',1,'SPONGE CLOTH, (spontex), per piece, assorted colors, pkg',NULL,NULL,'Safisha Sponge Jumbo Cloth 3\'s (1x24) (4025.86KES)','2019-08-15 05:49:39','2019-08-15 05:49:39'),(25,'ALIFZYN1033','Log','A','LIF','Team life',60.3448,'12/31/2019','pkt','pkt',NULL,NULL,'yes',1,'TOILET AIR FRESHNER, block, 190g, pkt',NULL,NULL,'Safisha Airfreshner Block Forest Berries 170G  (1x36)','2019-08-15 05:49:39','2019-08-15 05:49:39'),(26,'ALIFZYN1034','Log','A','LIF','Team life',80.26,'12/31/2019','PCE','unit',NULL,NULL,'yes',1,'CLOTH, for dusting, size 30 x 43 cm, cotton',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(27,'ALIFZYN1035','Log','A','LIF','Team life',60.3448,'12/31/2019','spray','spray',NULL,NULL,'yes',1,'GLASS CLEANER, spray for windows, 300ml',NULL,NULL,'Safisha Glass/Tiles/Window Cleaner Ocean 320ML (1x12)','2019-08-15 05:49:39','2019-08-15 05:49:39'),(28,'ALIFZYN1037','Log','A','LIF','Team life',1625,'12/31/2019','bale','bale of 12 packs',NULL,NULL,'yes',1,'HAND PAPER TOWEL, bale of 12 packs',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(29,'ALIFZYN1044','Log','A','LIF','Team life',70.4023,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'DISINFECTANT, balls for urinal, pack of 5pces',NULL,NULL,'Safisha Disinfectant Balls Colour 200G (1x12) ','2019-08-15 05:49:39','2019-08-15 05:49:39'),(30,'ALIFZYN1045','Log','A','LIF','Team life',71.81,'12/31/2019','PCE','unit',NULL,NULL,'yes',1,'BROOM, with broomstick, for outdoor use',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(31,'ALIFZYN1047','Log','A','LIF','Team life',295.69,'12/31/2019',NULL,'unit',NULL,NULL,'yes',1,'POLISH WOOD, for furniture, 300ml, can',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(32,'ALIFZYN1057','Log','A','LIF','Team life',2156,'12/31/2019','box','boxes of 25 soaps',NULL,NULL,'yes',1,'SOAP, 800 gr bar, box of 25 bars, for distribution (PANGA)',NULL,NULL,'PANGA LAUNDRY BAR SOAP WHITE & CLEAR  25 x 800g Carton','2019-08-15 05:49:39','2019-08-15 05:49:39'),(33,'ALIFZYN1060','Log','A','LIF','Team life',159.49,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'BUCKET, with mop sieve, plastic, standard size',NULL,NULL,'Mop bucket','2019-08-15 05:49:39','2019-08-15 05:49:39'),(34,'ALIFZYN1062','Log','A','LIF','Team life',844.83,'12/31/2019','bag of 3kg','bag of 3kg',NULL,NULL,'yes',1,'WASHING POWDER, 3 kg, hand washing (PERSIL POWERPEARLS)',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(35,'ALIFZYN1064','Log','A','LIF','Team life',2700,'12/31/2019','Pack of 6','Pack of 6',NULL,NULL,'yes',1,'HAND PAPER TOWEL,CENTRE PULL,midi 230mtrs,6 Rolls per Pack',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(36,'ALIFZYN1080','Log','A','LIF','Team life',175,'12/31/2019','pack of 2','carton of 24 pack of 2',NULL,NULL,'yes',1,'KITCHEN  HAND TOWEL, velvex, pack of 2',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(37,'ALIFZYN1081','Log','A','LIF','Team life',375.95,'12/31/2019','PCE','unit',NULL,NULL,'yes',1,'MULTI SURFACE CLEANER, Astonish',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(38,'ALIFZYN1083','Log','A','LIF','Team life',37.1169,'12/31/2019','PCE','Pack of 72 souring pad',NULL,NULL,'yes',1,'SCOURER SUPA BRITE, Medium',NULL,NULL,'Safisha Scouring Pad King Size 1\'s (1x72) ','2019-08-15 05:49:39','2019-08-15 05:49:39'),(39,'ALIFZYN1086','Log','A','LIF','Team life',252.6,'12/31/2019','bag','carton of 12 bag of 0.9 kg',NULL,NULL,'yes',1,'WASHING POWDER, 0.9 kg',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(40,'ALIFZYN1095','Log','A','LIF','Team life',29.57,'12/31/2019','PCE','carton of 72 bar',NULL,NULL,'yes',1,'SOAP, 175 g, bar',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(41,'ALIFZYN1097','Log','A','LIF','Team life',1685.43,'12/31/2019','bag of 4.5kg','carton of 4 bags of 4.5kg',NULL,NULL,'yes',1,'WASHING POWDER, 4.5 kg, machine wash (PERSIL POWERPEARLS)',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(42,'ALIFZYN1099','Log','A','LIF','Team life',620,'12/31/2019','roll','roll',NULL,NULL,'yes',1,'ALUMINIUM FOIL, silver, 45 cm x 60 cm, roll ( FAY)',NULL,NULL,'Velvex Aluminium Foil','2019-08-15 05:49:39','2019-08-15 05:49:39'),(43,'ALIFZYN1165','Log','A','LIF','Team life',840.6,'12/31/2019','PCE','unit',NULL,NULL,'yes',1,'LIQUID, STA SOFT, fabric softner, 5 litre, bottle',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(44,'ALIFZYN1172','Log','A','LIF','Team life',245,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'SOAP, HAND WASH, 500 ml',NULL,NULL,'Safisha Hand Wash Liquid Aloevera 500ML (1X12) ','2019-08-15 05:49:39','2019-08-15 05:49:39'),(45,'ALIFZYN1175','Log','A','LIF','Team life',107.759,'12/31/2019','bottle of 750 ml','bottle of 750 ml',NULL,NULL,'yes',1,'COLOUR BRIGHTENER, liquid, for clothes, JIK, bottle 750ml',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(46,'ALIFZYN1177','Log','A','LIF','Team life',86.2069,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'TOILET CLEANER, liquid, HARPIC, 500ml',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(47,'ALIFZYN1181','Log','A','LIF','Team life',1600,'12/31/2019','jerrycan of 20 litr','jerrycan of 20 litr',NULL,NULL,'yes',1,'DETERGENT, MUTLIPURPOSE LIQUID 20 LITRE (brand to specify)',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(48,'ALIFZYN1184','Log','A','LIF','Team life',54.1667,'12/31/2019','box','box',NULL,NULL,'yes',1,'TISSUE,2 PLY,80 PCS,THE BOX, VELVEX',NULL,NULL,'Velvex Premium White Embossed Facial Tissue','2019-08-15 05:49:39','2019-08-15 05:49:39'),(49,'ALIFZYN1185','Log','A','LIF','Team life',185.86,'12/31/2019','PCE','unit',NULL,NULL,'yes',1,'FABRIC SOFTENER, STA SOFT 750 MLS',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(50,'ALIFZYN1186','Log','A','LIF','Team life',137.931,'12/31/2019','pack','pack',NULL,NULL,'yes',1,'BLUE BUBBLE TOILET BOWL CLEANER & AIR FRESHNER,50G X 4',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(51,'ALIFZYN1208','Log','A','LIF','Team life',67.58,'12/31/2019','PCE','unit',NULL,NULL,'yes',1,'MAKUTI STICK BROOM',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(52,'ALIFZYN1218','Log','A','LIF','Team life',836.38,'12/31/2019','bag','carton of 4 bags of 3,5 kg',NULL,NULL,'yes',1,'Washing Powder OMO, bag of 3.5 kg',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(53,'ALSTSTOC4HW','Log','A','LST','Logistic stationery',9.28,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'STOCK CARD, hardback, A4, recto/verso, batch #, sheet',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(54,'ASTABINDL37B','Log','A','STA','Stationery',200,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'BINDER lever-arch, 310x290x75mm, black',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(55,'ASTABINDL37L','Log','A','STA','Stationery',200,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'BINDER lever-arch, 310x290x75mm, blue',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(56,'ASTAENVE1WA','Log','A','STA','Stationery',1.6,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'ENVELOPE, 110x220mm, 80g, white, self-adhesive',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(57,'ASTAENVE2KA','Log','A','STA','Stationery',1.7,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'ENVELOPE, 162x229mm, 90g, kraft, self-adhesive',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(58,'ASTAENVE3KA','Log','A','STA','Stationery',5.5,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'ENVELOPE, 229x324mm, 90g, kraft, self-adhesive',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(59,'ASTAERAS1R-','Log','A','STA','Stationery',28,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'ERASER, rubber, white','GOMME, caoutchouc, blanche','GOMA DE BORRAR, caucho, blanca','Pencil Eraser','2019-08-15 05:49:39','2019-08-15 05:49:39'),(60,'ASTAERASF--','Log','A','STA','Stationery',59,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'CORRECTION FLUID, white, btl',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(61,'ASTAFLIP1P5','Log','A','STA','Stationery',240,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'(flip chart) PAPER, 50 sheets',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(62,'ASTAFOLD14T','Log','A','STA','Stationery',5.6,'12/31/2019','PCE\n(pack of 100 pcs = 100 pcs)','pack of 100 pcs',NULL,NULL,'yes',1,'FOLDER punched, A4, transparent plastic, open at top','CHEMISE perforée, A4, transp. plastique ouverte en haut','FUNDA, A4, taladros, plástica, transparente, apertura sup.','CLEAR SHEET PROTECTORS / MULTI-PUNCH POCKETS (office point)','2019-08-15 05:49:39','2019-08-15 05:49:39'),(63,'ASTAFOLD24T','Log','A','STA','Stationery',22,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'FOLDER, A4, transparent plastic, open on 2 sides',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(64,'ASTAFOLDD41','Log','A','STA','Stationery',74,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'DIVIDERS, A4, 12 tabs','INTERCALAIRES, A4, 12 positions','SEPARADOR, A4, 12 pestañas','FILE DIVIDER','2019-08-15 05:49:39','2019-08-15 05:49:39'),(65,'ASTAGLUESL-','Log','A','STA','Stationery',148,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'GLUE stick, large','COLLE bâton, grand modèle','PEGAMENTO, en barra, gran modelo','Pritt','2019-08-15 05:49:39','2019-08-15 05:49:39'),(66,'ASTAPADP3--','Log','A','STA','Stationery',24,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'PAD, PAPER, yellow, self-adhesive (Post-it), 38 x 51 mm',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(67,'ASTAPADP7--','Log','A','STA','Stationery',46,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'PAD, PAPER, yellow, self-adhesive (Post-it), 76 x 127 mm',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(68,'ASTAPENB1B-','Log','A','STA','Stationery',12.5,'12/31/2019','PCE','Boxe of 50 pens',NULL,NULL,'yes',1,'BALL-POINT PEN, black',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(69,'ASTAPENB1L-','Log','A','STA','Stationery',12.5,'12/31/2019',NULL,'Boxe of 50 pens',NULL,NULL,'yes',1,'BALL-POINT PEN, blue',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(70,'ASTAPENB1R-','Log','A','STA','Stationery',12.5,'12/31/2019','PCE','Boxe of 50 pens',NULL,NULL,'yes',1,'BALL-POINT PEN, red',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(71,'ASTAPENC1HB','Log','A','STA','Stationery',32,'12/31/2019','PCE','boxe of 12 PCES',NULL,NULL,'yes',1,'PENCIL, lead, HB',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(72,'ASTAPENM1BE','Log','A','STA','Stationery',105,'12/31/2019','PCE','box of 10 PCES',NULL,NULL,'yes',1,'MARKER erasable, black',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(73,'ASTAPENM1GE','Log','A','STA','Stationery',105,'12/31/2019','PCE','box of 10 PCES',NULL,NULL,'yes',1,'MARKER erasable, green',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(74,'ASTAPENM1LE','Log','A','STA','Stationery',105,'12/31/2019','PCE','box of 10 PCES',NULL,NULL,'yes',1,'MARKER erasable, blue',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(75,'ASTAPENM1RE','Log','A','STA','Stationery',105,'12/31/2019','PCE','box of 10 PCES',NULL,NULL,'yes',1,'MARKER erasable, red',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(76,'ASTAPENM2BS','Log','A','STA','Stationery',86,'12/31/2019','PCE','box of 10 PCES',NULL,NULL,'yes',1,'MARKER permanent, fine point, black',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(77,'ASTAPENM2GS','Log','A','STA','Stationery',86,'12/31/2019','PCE','box of 10 PCES',NULL,NULL,'yes',1,'MARKER permanent, fine point, green',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(78,'ASTAPENM2LS','Log','A','STA','Stationery',86,'12/31/2019','PCE','box of 10 PCES',NULL,NULL,'yes',1,'MARKER permanent, fine point, blue',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(79,'ASTAPENM2RS','Log','A','STA','Stationery',86,'12/31/2019','PCE','box of 10 PCES',NULL,NULL,'yes',1,'MARKER permanent, fine point, red',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(80,'ASTAPENM3BB','Log','A','STA','Stationery',86,'12/31/2019','PCE','box of 10 PCES',NULL,NULL,'yes',1,'MARKER permanent, large chisel point, black',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(81,'ASTAPENM3BL','Log','A','STA','Stationery',86,'12/31/2019','PCE','box of 10 PCES',NULL,NULL,'yes',1,'MARKER, permanent, large, chisel point, blue',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(82,'ASTAPENM3GB','Log','A','STA','Stationery',86,'12/31/2019','PCE','box of 10 PCES',NULL,NULL,'yes',1,'MARKER permanent, large chisel point, green',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(83,'ASTAPENM3RB','Log','A','STA','Stationery',86,'12/31/2019','PCE','box of 10 PCES',NULL,NULL,'yes',1,'MARKER permanent, large chisel point, red',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(84,'ASTAPENM4FS','Log','A','STA','Stationery',200,'12/31/2019','pack of 4','pack of 4',NULL,NULL,'yes',1,'HIGHLIGHTER fluorescent, 4 colours, set',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(85,'ASTAPUNC1P-','Log','A','STA','Stationery',254,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'PAPER PUNCH, with guide','PERFOREUSE, avec instrument de mesure, pce','TALADRO, con guía de papel','Medium Punch','2019-08-15 05:49:39','2019-08-15 05:49:39'),(86,'ASTARING1K-','Log','A','STA','Stationery',30,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'KEY RING + label',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(87,'ASTARULE30-','Log','A','STA','Stationery',15,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'RULER, 30cm, transparent plastic','RULER, 30cm, plastique transparent','REGLA, 30 cm, plástico, transparente','quarterlyorder','2019-08-15 05:49:39','2019-08-15 05:49:39'),(88,'ASTASCISS7B','Log','A','STA','Stationery',110,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'SCISSORS, 17cm, blunt ends','CISEAUX, 17cm, bouts arrondis','TIJERAS, 17 cm, puntas redondas','rapesco','2019-08-15 05:49:39','2019-08-15 05:49:39'),(89,'ASTASTAP1M-','Log','A','STA','Stationery',215,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'STAPLER, medium 24/6-8, for 50 sheets','AGRAFEUSE, modèle moyen 24/6-8, pour 50 feuilles','GRAPADORA, modelo mediano, 24/6-8, para 50 hojas','Push Back Stapler','2019-08-15 05:49:39','2019-08-15 05:49:39'),(90,'ASTASTAPR--','Log','A','STA','Stationery',45,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'STAPLE REMOVER','ARRACHE-AGRAFES','QUITAGRAPAS','Staple Remover','2019-08-15 05:49:39','2019-08-15 05:49:39'),(91,'ASTAZYN1002','Log','A','STA','Stationery',160,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'COUNTER BOOK, Register, Hard Cover, A4 (Q2) approx. 200 PGS',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(92,'ASTAZYN1003','Log','A','STA','Stationery',70,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'COUNTER BOOK, Register, Hard cover, A5 (Q2) approx. 200 PGS',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(93,'ASTAZYN1006','Log','A','STA','Stationery',338,'12/31/2019','1 ream','Box of 5 reams',NULL,NULL,'yes',1,'PAPER, A4, white, 80g, for photocopy, 500 sheets, ream',NULL,NULL,'PHOTOCOPY PAPER A-ONE A4','2019-08-15 05:49:39','2019-08-15 05:49:39'),(94,'ASTAZYN1017','Log','A','STA','Stationery',15,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'PENCIL SHARPENER, 1 size',NULL,NULL,'Metal Sharpener','2019-08-15 05:49:39','2019-08-15 05:49:39'),(95,'ASTAZYN1046','Log','A','STA','Stationery',340,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'TRAY, plastic, 2 tiers, pce',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(96,'ASTAZYN1047','Log','A','STA','Stationery',90,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'DUSTER, for whiteboard, pce',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(97,'ASTAZYN1049','Log','A','STA','Stationery',47,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'NOTEBOOK, A4, ruled, Loose leaf pad, 100 pages',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(98,'ASTAZYN1050','Log','A','STA','Stationery',42,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'FILE, SPRING FILE, PVC, pce',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(99,'ASTAZYN1051','Log','A','STA','Stationery',28,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'FOLDER, soft plastic, A4, transparent front (quotation file)',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(100,'ASTAZYN1052','Log','A','STA','Stationery',22,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'ERASEER, rubber, red/blue. Pc',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(101,'ASTAZYN1075','Log','A','STA','Stationery',94,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'(medium stapler) STAPLES, 24/6, box of 5000 (No.16)',NULL,NULL,'Staple Pin','2019-08-15 05:49:39','2019-08-15 05:49:39'),(102,'ASTAZYN1085','Log','A','STA','Stationery',23,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'PAD, PAPER, yellow, self-adhesive (Post-it), 76 x 76 mm',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(103,'ASTAZYN1116','Log','A','STA','Stationery',285,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'COUNTER BOOK, Register, Hard Cover, A4 (Q4) approx. 400 PGS',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(104,'ASTAZYN1121','Log','A','STA','Stationery',75,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'NOTEBOOK, A5, ruled, shorthand, spiralbound, 100 pages',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(105,'CWATBEDNDPP32','Log','C','WAT','Water and sanitation',295,'43830','PCE','Bal of 50 mosquito nets',NULL,NULL,'yes',1,'MOSQUITO NET deltamethrin, PBO (Permanet 3.0) 2 person','MOUSTIQUAIRE insecticide longue durée, synth., 2 pers.',NULL,'VESTERGAARD PERMANET 3.0\nPermaNet® 3.0 is the first long-lasting insecticide-synergist combination bed net. It’s the optimal choice for areas where mosquitoes have developed resistance to the insecticides used in standard bed nets.\n\nInsecticide resistance has already been found in many countries. By 2012, 64 countries with ongoing malaria transmission reported resistance of malaria mosquitoes to at least one public health insecticide1. This poses a major threat to vector control programs.\n\nPermaNet® 3.0 has been developed to address the urgent need for tools with increased efficacy against insecticide resistant malaria vectors.  In October 2014, the World Health Organization\'s Vector Control Advisory Group published its annual report which included an evaluation of the supporting evidence for Vestegaard\'s product claim for PermaNet 3.0. The report noted that PermaNet 3.0 is a \"first in class\" and stated that \"The manufacturers have been very careful to make a relatively modest claim that can be supported by the combined evidence from multiple studies in many areas of pyrethroid resistance.\"\n\nLearn how insecticide resistance works by viewing this infographic. For a lighter look, view our insecticide resistance cartoon.\n\nAn animation shows pyrethroid resistance in mosquitoes and the action of PermaNet® 3.0.','2019-08-15 05:49:39','2019-08-15 05:49:39'),(106,'CWATZYN1028','Log','C','WAT','Water and sanitation',175,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'BASIN, plastic, 20 litres',NULL,NULL,'MILANIO 45 cm','2019-08-15 05:49:39','2019-08-15 05:49:39'),(107,'CWATZYN1093','Log','C','WAT','Water and sanitation',228.45,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'BUCKET STRONG Plastic 20litres + Cover (colour to specify)',NULL,NULL,'Color white','2019-08-15 05:49:39','2019-08-15 05:49:39'),(108,'PCOOUTENSST','Log','P','COO','Cooking equipment',42.1,'12/31/2019','PCE','Pack of 6 spoons',NULL,NULL,'yes',1,'TEASPOON, stainless steel, 5ml','CUILLERE A CAFE, acier inoxydable, 5ml','CUCHARILLA, de café, acero inox., 5ml',NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(109,'PCOOZYN1032','Log','P','COO','Cooking equipment',75.33,'12/31/2019','PCE','Pack of 6 spoons',NULL,NULL,'yes',1,'TABLE SPOON, stainless steel, 15ml',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(110,'PELEBATTA03','Log','P','ELE','Electricity',85,'12/31/2019','PCE','Pack of 4 batteries',NULL,NULL,'yes',1,'BATTERY dry cell alkaline (R03/AAA) 1.5V','PILE sèche alcaline (R03/AAA) 1,5V','PILA, seca, alcalina, 1.5 V, R6 (AAA)','DURACELL or ENERGIZER pack of 4 pieces','2019-08-15 05:49:39','2019-08-15 05:49:39'),(111,'PELEBATTA06','Log','P','ELE','Electricity',85,'12/31/2019','PCE','Pack of 4 batteries',NULL,NULL,'yes',1,'BATTERY dry cell alkaline (R6/AA) 1.5V','PILE sèche alcaline (R6/AA) 1,5V','PILA, seca, alcalina, 1,5 V, R6 (AA)','DURACELL or ENERGIZER pack of 4 pieces','2019-08-15 05:49:39','2019-08-15 05:49:39'),(112,'PHDWOILPM04','Log','P','HDW','Hardware',440,'12/31/2019','pce','can of 400ml',NULL,NULL,'yes',1,'PENETRATING OIL, 400ML, Multi-use SPRAY/TIN',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(113,'PHYGBAGR1HB7','Log','P','HYG','Hygiene',38.8,'12/31/2019','PCE','pack of 50 PCES',NULL,NULL,'yes',1,'REFUSE BAG, 100l, 70µm, black','SAC POUBELLE, 100l, 70μm, noir','BOLSA DE BASURA, 100 litros, negra, 70 micrones','Brand ASAMI','2019-08-15 05:49:39','2019-08-15 05:49:39'),(114,'PHYGBAGR70B6','Log','P','HYG','Hygiene',30.173,'12/31/2019','PCE','pack of 50 PCES',NULL,NULL,'yes',1,'REFUSE BAG, 70l, 60µm, black','SAC POUBELLE, 70l, 60μm, noir','BOLSA DE BASURA, 70 litros, negra, 70 micrones','Brand ASAMI','2019-08-15 05:49:39','2019-08-15 05:49:39'),(115,'PHYGBAGR70YI','Log','P','HYG','Hygiene',30.173,'12/31/2019','PCE','pack of 50 PCES',NULL,NULL,'yes',1,'REFUSE BAG, 70l, yellow, for infectious waste','SAC POUBELLE, 70l, jaune, pour déchets infectieux','BOLSA DE BASURA, desechos infecciosos, amarilla, 70 litros','Brand ASAMI','2019-08-15 05:49:39','2019-08-15 05:49:39'),(116,'PHYGBROOD--','Log','P','HYG','Hygiene',105.6,'12/31/2019','PCE','unit',NULL,NULL,'yes',1,'DUSTPAN + BRUSH','PELLE + BALAYETTE A POUSSIERES','PALA + escobilla',NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(117,'PHYGBRUSFS-','Log','P','HYG','Hygiene',299.91,'12/31/2019','PCE','unit',NULL,NULL,'yes',1,'SQUEEGEE, for floor + broomstick',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(118,'PHYGBRUSSW-','Log','P','HYG','Hygiene',71.81,'12/31/2019','PCE','unit',NULL,NULL,'yes',1,'BRUSH scrubbing, for washing-up','BROSSE à récurer, pour la vaisselle','CEPILLO PARA FREGAR, para la vajilla',NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(119,'PHYGGLOR1M-','Log','P','HYG','Hygiene',101.38,'12/31/2019','pair','pair',NULL,NULL,'yes',1,'GLOVES cleaning, rubber, size M, reusable, pair',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(120,'PHYGGLOVRLP','Log','P','HYG','Hygiene',101.38,'12/31/2019','pair','pair',NULL,NULL,'yes',1,'GLOVES cleaning, rubber, size L, reusable, pair','GANTS de ménage, caoutchouc, taille L, réutilisables, paire','GUANTES DE LIMPIEZA, caucho, reutilizable, par, grandes',NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(121,'PHYGPAPITR-','Log','P','HYG','Hygiene',23.71,'12/31/2019','roll','Bale of 40 rolls',NULL,NULL,'yes',1,'TOILET PAPER, roll','PAPIER TOILETTE, rouleau','PAPEL HIGIENICO, rollo','Velvex Premium Toilet Tissue – 10 Pack','2019-08-15 05:49:39','2019-08-15 05:49:39'),(122,'PHYGSOAPTLW','Log','P','HYG','Hygiene',131.79,'12/31/2019','PCE','bottle of 1 ltr',NULL,NULL,'yes',1,'WASHING-UP LIQUID, 1l, btl','LIQUIDE VAISSELLE, 1l, btl','LAVAVAJILLAS LIQUIDO, 1 litro',NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(123,'PHYGTOWEC07','Log','P','HYG','Hygiene',295.69,'12/31/2019','PCE','PCE',NULL,NULL,'yes',1,'TOWEL, small, 50 x 70cm, cotton, pce',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(124,'PHYGZYN1016','Log','P','HYG','Hygiene',216.667,'12/31/2019','roll','Bale of 12 rolls',NULL,NULL,'yes',1,'TOILET TISSUE, Jumbo size, 200 meters',NULL,NULL,'Jumbo Toilet Tissue','2019-08-15 05:49:39','2019-08-15 05:49:39'),(125,'PHYGZYN1017','Log','P','HYG','Hygiene',108.333,'12/31/2019','roll','Bale of 12 rolls',NULL,NULL,'yes',1,'TOILET TISSUE, Jumbo size, 100 meters',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(126,'PHYGZYN1018','Log','P','HYG','Hygiene',912.41,'12/31/2019','bag','bag of 10 kg',NULL,NULL,'yes',1,'WASHING POWDER, 10 kg, bag, IDP',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(127,'PSAFGLOVDOL','Log','P','SAF','Safety and protective equipment',325,'12/31/2019','Pair','Pair',NULL,NULL,'yes',1,'GLOVES heavy duty, rubber, long sleeves, pair','GANTS de travail, caoutchouc, manches longues, paire','GANTS DE TRAVAIL, caoutchouc, manches longues, la paire','502/18 - PROTECTA HEAVY WEIGHT BLACK/ORANGE  SMOOTH SURFACE GLOVES 18\" 280G\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(128,'PSAFGLOVHOS','Log','P','SAF','Safety and protective equipment',2500,'12/31/2019',NULL,'Pair',NULL,NULL,'yes',1,'GLOVES heat resistant (Sperian GBTK7065) max 450°C-15s, pair','GANTS anti-chaleur (Sperian GBTK7065) max 450°C-15s, paire','GANTS ANTI-CHALEUR (Sperian GBTK7065), +450° C, la paire','507/517146 - TUFFSAFE HOT MILL GLOVES NON-ASBESTOS ARAMID FIBRE\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(129,'PSAFGLOVN10','Log','P','SAF','Safety and protective equipment',200,'12/31/2019','Pair','Pair',NULL,NULL,'yes',1,'GLOVES protective, nitrile, size 10, reusable, pair','GANTS protection, nitrile, taille 10, réutilisables, paire','GUANTES DE PROTECCION, nitrilo, reutilizables, par, 10','505/492 - ULTRANITRIL FLOCKLINED GREEN NITRILE GLOVE EN374-3 AJKOPT\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(130,'PSAFOVERLO-','Log','P','SAF','Safety and protective equipment',850,'12/31/2019','pce',NULL,NULL,NULL,'yes',1,'OVERALL, light cotton, one size','COMBINAISON, coton léger, taille unique','MONO DE TRABAJO, algodón, talla unica','901/11 - OVERALLS, LONG SLEEVES TETREX OR POLYCOTTON AVIS\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(131,'PSAFOVERMLM','Log','P','SAF','Safety and protective equipment',850,'12/31/2019','pce','unit',NULL,NULL,'yes',1,'OVERALL mechanics, size M/L','COMBINAISON bleu de travail, taille M/L','COMBINAISON, bleu de travail, taille M/L','901/11 - OVERALLS, LONG SLEEVES TETREX OR POLYCOTTON AVIS\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(132,'PSAFOVERMXL','Log','P','SAF','Safety and protective equipment',850,'12/31/2019','pce','unit',NULL,NULL,'yes',1,'OVERALL mechanics, size XL','COMBINAISON bleu de travail, taille XL','COMBINAISON, bleu de travail, taille XL','901/11 - OVERALLS, LONG SLEEVES TETREX OR POLYCOTTON AVIS\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(133,'PSAFOVERMXX','Log','P','SAF','Safety and protective equipment',850,'12/31/2019','PCE',NULL,NULL,NULL,'yes',1,'OVERALL mechanics, size XXL','COMBINAISON bleu de travail, taille XXL','COMBINAISON, bleu de travail, taille XXL','901/11 - OVERALLS, LONG SLEEVES TETREX OR POLYCOTTON AVIS \nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(134,'PSAFZYN0003','Log','P','SAF','Safety and protective equipment',8,'12/31/2019','pce','box of 50',NULL,NULL,'yes',1,'MASK, paper, dust protection, disposable, pce (inter code : ALIFMASKD01)',NULL,NULL,'401/2 - TAIWAN DUST MASK DISPOSABLE YELLOW BOX HEAVY - Minimum of 50 per box\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(135,'SDRECOTW5R-','MED','S','DRE','Dressings',252.25,'12/31/2019','roll','bale of 12 roll of 500g',NULL,NULL,'yes',1,'COTTON WOOL, hydrophilic, roll, 500 g','COTON hydrophile, rouleau, 500 g','ALGODON hidrófilo, rollo, 500 g','Brand : Velvex, cotton wool-500g','2019-08-15 05:49:39','2019-08-15 05:49:39'),(136,'TVECCOOLC1-','Log','T','VEC','Vehicle consumables',332.408,'12/31/2019','pce','Can of 1 ltr',NULL,NULL,'yes',1,'COOLANT-ANTIFREEZE cooling system, 1l, can','REFROIDISSEMENT-ANTIGEL circuit de refroidis., 1l, bidon','ADITIVO ANTICONGELANTE, circuito refrigeración, 1l, bidon',NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(137,'TVECFLUIB4H','Log','T','VEC','Vehicle consumables',408.3,'12/31/2019','can','can 1/2 litre',NULL,NULL,'yes',1,'BRAKE FLUID, 0.5l, DOT4 or DOT3, can ',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(138,'TVECFLUITD1','Log','T','VEC','Vehicle consumables',641.394,'12/31/2019','can','can',NULL,NULL,'yes',1,'HYDRAULIC TRANSMISSION FLUID (Dexron II or III) 1l, can ',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(139,'TVECOILE542H','Log','T','VEC','Vehicle consumables',58447.7,'12/31/2019','drum','drum of 200 litr',NULL,NULL,'yes',1,'ENGINE OIL 15W40 API SJ/CF, 200l, petrol / diesel, drum','HUILE MOTEUR 15W40 API SJ/CF, 200l, essence/diesel, fût','ACEITE MOTOR, 15W40, gasol. Y diesel API SJ/CF-4, 200l, bid.','RUBIA TIR 7400 15W40 DRUM 208 L','2019-08-15 05:49:39','2019-08-15 05:49:39'),(140,'TVECOILG8905','Log','T','VEC','Vehicle consumables',1437.22,'12/31/2019','Can','carton of 4 cans of 5 litres',NULL,NULL,'yes',1,'TRANSMISSION OIL, 5l, EP 80W90 GL5, can','HUILE TRANSMISSION, 5l, EP 80W90 GL5, bidon','ACEITE TRANSMISION, EP 80W90, GL-5, 5l, lata','TRANSMISSION TM 80W90 CARTON 4x5 L','2019-08-15 05:49:39','2019-08-15 05:49:39'),(141,'TVECOILG892H','Log','T','VEC','Vehicle consumables',53824,'12/31/2019','drum','drum of 200 litr',NULL,NULL,'yes',1,'TRANSMISSION OIL, 200l, EP 80W90 GL5, drum','HUILE TRANSMISSION, 200l, EP 80W90 GL5, fût','ACEITE TRANSMISION, EP 80W90, GL-5, 200l, bidon','TRANSMISSION TM 80W90 DRUM 208 L','2019-08-15 05:49:39','2019-08-15 05:49:39'),(142,'TVECZYN1015','Log','T','VEC','Vehicle consumables',0,'12/31/2019','drum','drum of 20 litr',NULL,NULL,'yes',1,'OIL, ENGINE, 15W40, petrol & diesel API SJ/CF-4, 20 l, drum',NULL,NULL,'RUBIA TIR 7400 15W40 PAIL 20 L','2019-08-15 05:49:39','2019-08-15 05:49:39'),(143,'TVECZYN1028','Log','T','VEC','Vehicle consumables',1571.84,'12/31/2019','can of 3 kg','can of 3 kg',NULL,NULL,'yes',1,' GREASE , LITHIUM	 for bearin 3kg tin GADUS V220 AC 3',NULL,NULL,NULL,'2019-08-15 05:49:39','2019-08-15 05:49:39'),(144,'YTOY04234-68010','Log','Y','TOY','Toyota spare parts',1584.08,'12/31/2019','pce','unit',NULL,NULL,'yes',1,'(HZJ78/79) PRE-FILTER fuel','(HZJ/78/79) PREFILTRE à gasoil','ELEMENT PRE FILTRE A GASOIL, HZJ78/79','BEIRUT MOTORS FZE','2019-08-15 05:49:39','2019-08-15 05:49:39'),(145,'YTOY04465-60340','Log','Y','TOY','Toyota spare parts',9832.19,'12/31/2019','pce','unit',NULL,NULL,'yes',1,'(HZJ78/79) PAD disc brake, FR, set','(HZJ78/79) PLAQUETTES frein de disque, AV, set','JEU de PLAQUETTE de frein AV à disque, HZJ78/79','BEIRUT MOTORS FZE','2019-08-15 05:49:39','2019-08-15 05:49:39'),(146,'YTOY17801-61030','Log','Y','TOY','Toyota spare parts',4570.86,'12/31/2019','pce','unit',NULL,NULL,'yes',1,'(HZJ78/79) AIR FILTER element, dry, washable','(HZJ78/79) FILTRE A AIR élément, sec lavable','ELEMENTO DEPURADOR DE AIRE SECO LAVBLE PZ/HZ','BEIRUT MOTORS FZE','2019-08-15 05:49:39','2019-08-15 05:49:39'),(147,'YTOY23390-51070','Log','Y','TOY','Toyota spare parts',2769.12,'12/31/2019','pce','unit',NULL,NULL,'yes',1,'(HZJ78/79 Mk2) FUEL FILTER decanter element','(HZJ78/79 Mk2) ELEMENT DE FILTRE décanteur de gasoil','ELEMENT de FILTRE DECANTEUR GASOIL, HZJ78/79 Mk2','BEIRUT MOTORS FZE','2019-08-15 05:49:39','2019-08-15 05:49:39'),(148,'YTOY48702-60050','Log','Y','TOY','Toyota spare parts',2055.68,'12/31/2019','pce','unit',NULL,NULL,'yes',1,'(HZJ78/79/80) BUSH lower arm, axle FR','(HZJ78/79/80) SILENT BLOC bras inférieur au pont AV','SILENT-BLOC, bras inférieur au pont AV, HZJ78/79','BEIRUT MOTORS FZE','2019-08-15 05:49:39','2019-08-15 05:49:39'),(149,'YTOY90311-62001','Log','Y','TOY','Toyota spare parts',1160.85,'12/31/2019','pce','unit',NULL,NULL,'yes',1,'(HZJ78/79) OIL SEAL wheel hub, FR & RR','(HZJ78/79) JOINT SPI moyeu de roue, AV & AR','JOINT SPI, moyeu de roue AV & ARR, HZJ78/79','BEIRUT MOTORS FZE','2019-08-15 05:49:39','2019-08-15 05:49:39'),(150,'YTOY90368-45087','Log','Y','TOY','Toyota spare parts',2962.6,'12/31/2019','pce','unit',NULL,NULL,'yes',1,'(HZJ78/79) OUTER BEARING wheel hub FR & RR','(HZJ78/79) ROULEMENT EXTERIEUR moyeu de roue AV & AR','ROULEMENT EXTERIEUR, moyeu de roue AV & ARR, HZJ78/79','BEIRUT MOTORS FZE','2019-08-15 05:49:39','2019-08-15 05:49:39'),(151,'YTOY90368-49084','Log','Y','TOY','Toyota spare parts',3615.58,'12/31/2019','pce','unit',NULL,NULL,'yes',1,'(HZJ78/79) INNER BEARING wheel hub FR & RR','(HZJ78/79) ROULEMENT INTERIEUR moyeu de roue AV & AR','ROULEMENT INTERIEUR, moyeu de roue AV & ARR, HZJ78/79','BEIRUT MOTORS FZE','2019-08-15 05:49:39','2019-08-15 05:49:39'),(152,'YTOY90915-30002-8T','Log','Y','TOY','Toyota spare parts',1489.76,'12/31/2019','pce','unit',NULL,NULL,'yes',1,'OIL FILTER element, for HZJ78/79, pce','FILTRE À HUILE element, pour HZJ78/79, pce','FILTRE à huile, HZJ78/79','BEIRUT MOTORS FZE','2019-08-15 05:49:39','2019-08-15 05:49:39'),(153,'AFURZYN0062','Log','A','FUR','Furniture',20000,'43830','PCE',NULL,NULL,NULL,'No',1,'SHELVES, GALVANIZED, ± 200X50x250, (LxWxH), 120kg',NULL,NULL,'Shelves installed in Masisi project pharmacie with positive feedback','2019-08-15 05:49:39','2019-08-15 05:49:39'),(154,'PSAFGLOVDO-','Log','P','SAF','Safety and protective equipment',350,'43880','Pair','Pair',NULL,NULL,'no',1,'GLOVES heavy duty, leather protection, pair','GANTS de travail, avec protection en cuir, paire',NULL,'501/10I - AMERICAN SAFETY GREY SPLIT LEATHER GLOVES 10\" CUFF 18\" LONG\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(155,'PSAFGLOVLX-','Log','P','SAF','Safety and protective equipment',900,'43880','Pair','Pair',NULL,NULL,'no',1,'GLOVES, leather, size XL, lined, pair','GANTS, cuir, taille XL, fourrés, paire',NULL,'501/1106 - AMERICAN SAFETY YELLOW FULL GRAIN DRIVERS GLOVES RED LINING SNUGFIT\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(156,'PSAFGLOVDOL','Log','P','SAF','Safety and protective equipment',325,'12/31/2019','Pair','Pair',NULL,NULL,'yes',1,'GLOVES heavy duty, rubber, long sleeves, pair','GANTS de travail, caoutchouc, manches longues, paire','GANTS DE TRAVAIL, caoutchouc, manches longues, la paire','502/18 - PROTECTA HEAVY WEIGHT BLACK/ORANGE  SMOOTH SURFACE GLOVES 18\" 280G\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(157,'PSAFGLOVCO-','Log','P','SAF','Safety and protective equipment',1320,'43880','Pair','Pair',NULL,NULL,'no',1,'GLOVES, CHEMICAL RESISTANT, long sleeves, pair','GANTS de protection chimique, manches longues, paire',NULL,'502/298 - MAPA INDUSTRIAL BLUE CHLORINATED RUBBER GLOVES 42cm\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(158,'PSAFGLOVM09','Log','P','SAF','Safety and protective equipment',900,'43880','Pair','Pair',NULL,NULL,'no',1,'GLOVES mechanics, synthetic, size 9, pair','GANTS de mécanicien, synthétique, taille 9, paire',NULL,'504/ACG507A - AMERICAN SAFETY HEAVY DUTY MECHANICAL GLOVES - RUBBER/LEATHER PALM\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(159,'PSAFGLOVM10','Log','P','SAF','Safety and protective equipment',900,'43880','Pair','Pair',NULL,NULL,'no',1,'GLOVES mechanics, synthetic, size 10, pair','GANTS de mécanicien, synthétique, taille 10, paire',NULL,'504/ACG507A - AMERICAN SAFETY HEAVY DUTY MECHANICAL GLOVES - RUBBER/LEATHER PALM\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(160,'PSAFGLOVM11','Log','P','SAF','Safety and protective equipment',900,'43880','Pair','Pair',NULL,NULL,'no',1,'GLOVES mechanics, synthetic, size 11, pair','GANTS de mécanicien, synthétique, taille 11, paire',NULL,'504/ACG507A - AMERICAN SAFETY HEAVY DUTY MECHANICAL GLOVES - RUBBER/LEATHER PALM\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(161,'PSAFGLOVN07','Log','P','SAF','Safety and protective equipment',200,'43880','Pair','Pair',NULL,NULL,'no',1,'GLOVES protective, nitrile, size 7, reusable, pair','GANTS protection, nitrile, taille 7, réutilisables, paire',NULL,'505/492 - ULTRANITRIL FLOCKLINED GREEN NITRILE GLOVE EN374-3 AJKOPT\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(162,'PSAFGLOVN08','Log','P','SAF','Safety and protective equipment',200,'43880','Pair','Pair',NULL,NULL,'no',1,'GLOVES protective, nitrile, size 8, reusable, pair','GANTS protection, nitrile, taille 8, réutilisables, paire',NULL,'505/492 - ULTRANITRIL FLOCKLINED GREEN NITRILE GLOVE EN374-3 AJKOPT\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(163,'PSAFGLOVN10','Log','P','SAF','Safety and protective equipment',200,'12/31/2019','Pair','Pair',NULL,NULL,'yes',1,'GLOVES protective, nitrile, size 10, reusable, pair','GANTS protection, nitrile, taille 10, réutilisables, paire','GUANTES DE PROTECCION, nitrilo, reutilizables, par, 10','505/492 - ULTRANITRIL FLOCKLINED GREEN NITRILE GLOVE EN374-3 AJKOPT\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(164,'PSAFGLOVHOS','Log','P','SAF','Safety and protective equipment',2500,'12/31/2019','Pair','Pair',NULL,NULL,'yes',1,'GLOVES heat resistant (Sperian GBTK7065) max 450°C-15s, pair','GANTS anti-chaleur (Sperian GBTK7065) max 450°C-15s, paire','GANTS ANTI-CHALEUR (Sperian GBTK7065), +450° C, la paire','507/517146 - TUFFSAFE HOT MILL GLOVES NON-ASBESTOS ARAMID FIBRE\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(165,'PSAFGLOV510','Log','P','SAF','Safety and protective equipment',2750,'43880','Pair','Pair',NULL,NULL,'no',1,'GLOVES insulated, size 10, class 00, 500V, pair','GANTS isolés, taille 10, classe 00, 500V, paire',NULL,'509/JS10132 - ELECTRO SAVIOUR ELECTRICAL INSULATING LATEX GLOVES 355MM 1100V ISI TYPE 2\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(166,'PSAFBOOTP39','Log','P','SAF','Safety and protective equipment',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'SAFETY BOOTS, PVC, size 39, protective tip, pair','BOTTES DE SECURITÉ, PVC, taille 39, embout protection, paire',NULL,'801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-12\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(167,'ALIFBOOL37-','Log','A','LIF','Team life',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, leather, lined, pair, size 37','BOTTES, cuir, fourrées, paire, taille 37',NULL,'801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-12\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(168,'PSAFBOOTP40','Log','P','SAF','Safety and protective equipment',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'SAFETY BOOTS, PVC, size 40, protective tip, pair','BOTTES DE SECURITÉ, PVC, taille 40, embout protection, paire',NULL,'801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-13\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(169,'ALIFBOOL38-','Log','A','LIF','Team life',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, leather, lined, pair, size 38','BOTTES, cuir, fourrées, paire, taille 38',NULL,'801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-13\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(170,'PSAFBOOTP41','Log','P','SAF','Safety and protective equipment',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'SAFETY BOOTS, PVC, size 41, protective tip, pair','BOTTES DE SECURITÉ, PVC, taille 41, embout protection, paire',NULL,'801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-14\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(171,'PSAFBOOTP42','Log','P','SAF','Safety and protective equipment',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'SAFETY BOOTS, PVC, size 42, protective tip, pair','BOTTES DE SECURITÉ, PVC, taille 42, embout protection, paire',NULL,'801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-15\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(172,'ALIFBOOL40-','Log','A','LIF','Team life',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, leather, lined, pair, size 40',NULL,NULL,'801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-15\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(173,'PSAFBOOTP43','Log','P','SAF','Safety and protective equipment',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'SAFETY BOOTS, PVC, size 43, protective tip, pair','BOTTES DE SECURITÉ, PVC, taille 43, embout protection, paire',NULL,'801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-16\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(174,'ALIFBOOL41-','Log','A','LIF','Team life',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, leather, lined, pair, size 41','BOTTES, cuir, fourrées, paire, taille 41',NULL,'801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-16\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(175,'PSAFBOOTP44','Log','P','SAF','Safety and protective equipment',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'SAFETY BOOTS, PVC, size 44, protective tip, pair','BOTTES DE SECURITÉ, PVC, taille 44, embout protection, paire',NULL,'801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-17\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(176,'ALIFBOOL42-','Log','A','LIF','Team life',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, leather, lined, pair, size 42','BOTTES, cuir, fourrées, paire, taille 42',NULL,'801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-17\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(177,'ALIFBOOL43-','Log','A','LIF','Team life',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, leather, lined, pair, size 43','BOTTES, cuir, fourrées, paire, taille 43',NULL,'801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-18\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(178,'ALIFBOOL44-','Log','A','LIF','Team life',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, leather, lined, pair, size 44','BOTTES, cuir, fourrées, paire, taille 44',NULL,'801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-19\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(179,'ALIFBOOL45-','Log','A','LIF','Team life',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, leather, lined, pair, size 45','BOTTES, cuir, fourrées, paire, taille 45',NULL,'801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-20\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(180,'PSAFSHOEP38','Log','P','SAF','Safety and protective equipment',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'SAFETY SHOES, size 38, protective tip, pair','CHAUSSURES DE SECURITE, taille 38, embout métal, la paire',NULL,'802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-12\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(181,'PSAFSHOEP39','Log','P','SAF','Safety and protective equipment',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'SAFETY SHOES, size 39, protective tip, pair','CHAUSSURES DE SECURITE, taille 39, embout métal, la paire',NULL,'802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-13\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(182,'PSAFSHOEP40','Log','P','SAF','Safety and protective equipment',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'SAFETY SHOES, size 40, protective tip, pair','CHAUSSURES DE SECURITE, taille 40, embout métal, la paire',NULL,'802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-14\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(183,'PSAFSHOEP41','Log','P','SAF','Safety and protective equipment',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'SAFETY SHOES, size 41, protective tip, pair','CHAUSSURES DE SECURITE, taille 41, embout métal, la paire',NULL,'802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-15\nBrand : Protecta\nDescription:\nPROTECTA SHOE. Quality Buffalo print leather uppers with padded collars. 4 Eyelet lace system. EN20345 S3 Sizes 4 - 13 UNISEX\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(184,'PSAFSHOEP42','Log','P','SAF','Safety and protective equipment',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'SAFETY SHOES, size 42, protective tip, pair','CHAUSSURES DE SECURITE, taille 42, embout métal, la paire',NULL,'802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-16\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(185,'PSAFSHOEP43','Log','P','SAF','Safety and protective equipment',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'SAFETY SHOES, size 43, protective tip, pair','CHAUSSURES DE SECURITE, taille 43, embout métal, la paire',NULL,'802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-17\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(186,'PSAFSHOEP44','Log','P','SAF','Safety and protective equipment',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'SAFETY SHOES, size 44, protective tip, pair','CHAUSSURES DE SECURITE, taille 44, embout métal, la paire',NULL,'802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-18\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(187,'PSAFSHOEP45','Log','P','SAF','Safety and protective equipment',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'SAFETY SHOES, size 45, protective tip, pair','CHAUSSURES DE SECURITE, taille 45, embout métal, la paire',NULL,'802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-19\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(188,'PSAFSHOEP46','Log','P','SAF','Safety and protective equipment',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'SAFETY SHOES, size 46, protective tip, pair','CHAUSSURES DE SECURITE, taille 46, embout métal, la paire',NULL,'802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-20\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(189,'PHYGBOOTR37','Log','P','HYG','Hygiene',480,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, rubber, size, 37 pair','BOTTES, caoutchouc, taille 37, paire',NULL,'806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-11\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(190,'PHYGBOOTR38','Log','P','HYG','Hygiene',480,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, rubber, size, 38 pair',NULL,NULL,'806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-12\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(191,'PHYGBOOTR39','Log','P','HYG','Hygiene',480,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, rubber, size, 39 pair','BOTTES, caoutchouc, taille 39, paire',NULL,'806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-13\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(192,'PHYGBOOTR40','Log','P','HYG','Hygiene',480,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, rubber, size, 40 pair','BOTTES, caoutchouc, taille 40, paire',NULL,'806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-14\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(193,'PHYGBOOTR41','Log','P','HYG','Hygiene',480,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, rubber, size, 41 pair','BOTTES, caoutchouc, taille 41, paire',NULL,'806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-15\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(194,'PHYGBOOTR42','Log','P','HYG','Hygiene',480,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, rubber, size, 42 pair','BOTTES, caoutchouc, taille 42, paire',NULL,'806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-16\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(195,'PHYGBOOTR43','Log','P','HYG','Hygiene',480,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, rubber, size, 43 pair','BOTTES, caoutchouc, taille 43, paire',NULL,'806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-17\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(196,'PHYGBOOTR44','Log','P','HYG','Hygiene',480,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, rubber, size, 44 pair','BOTTES, caoutchouc, taille 44, paire',NULL,'806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-18\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(197,'PHYGBOOTR45','Log','P','HYG','Hygiene',480,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, rubber, size, 45 pair','BOTTES, caoutchouc, taille 45, paire',NULL,'806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-19\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(198,'PSAFOVERMXX','Log','P','SAF','Safety and protective equipment',850,'12/31/2019','PCE',NULL,NULL,NULL,'yes',1,'OVERALL mechanics, size XXL','COMBINAISON bleu de travail, taille XXL','COMBINAISON, bleu de travail, taille XXL','901/11 - OVERALLS, LONG SLEEVES TETREX OR POLYCOTTON AVIS \nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(199,'PSAFOVERMMS','Log','P','SAF','Safety and protective equipment',850,'43880','PCE',NULL,NULL,NULL,'no',1,'OVERALL mechanics, size S/M','COMBINAISON bleu de travail, taille S/M',NULL,'901/11 - OVERALLS, LONG SLEEVES TETREX OR POLYCOTTON AVIS\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(200,'PSAFOVERMO-','Log','P','SAF','Safety and protective equipment',850,'43880','PCE',NULL,NULL,NULL,'no',1,'OVERALL, for mechanics, one size',NULL,NULL,'901/11 - OVERALLS, LONG SLEEVES TETREX OR POLYCOTTON AVIS\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(201,'PSAFOVERLO-','Log','P','SAF','Safety and protective equipment',850,'12/31/2019','pce',NULL,NULL,NULL,'yes',1,'OVERALL, light cotton, one size','COMBINAISON, coton léger, taille unique','MONO DE TRABAJO, algodón, talla unica','901/11 - OVERALLS, LONG SLEEVES TETREX OR POLYCOTTON AVIS\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(202,'PSAFOVERMLM','Log','P','SAF','Safety and protective equipment',850,'12/31/2019','pce','unit',NULL,NULL,'yes',1,'OVERALL mechanics, size M/L','COMBINAISON bleu de travail, taille M/L','COMBINAISON, bleu de travail, taille M/L','901/11 - OVERALLS, LONG SLEEVES TETREX OR POLYCOTTON AVIS\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(203,'PSAFOVERMXL','Log','P','SAF','Safety and protective equipment',850,'12/31/2019','pce','unit',NULL,NULL,'yes',1,'OVERALL mechanics, size XL','COMBINAISON bleu de travail, taille XL','COMBINAISON, bleu de travail, taille XL','901/11 - OVERALLS, LONG SLEEVES TETREX OR POLYCOTTON AVIS\nwww.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(204,'PSAFOVERMLM-','Log','P','SAF','Safety and protective equipment',3200,'43880','PCE',NULL,NULL,NULL,'no',1,'OVERALL mechanics, size M/L, Cotton  with reflective strips','COMBINAISON bleu de travail, taille M/L',NULL,'901/D592 - PRIME CAPTAIN 100% COTTON COVERALLS WITH REFLECTIVE TAPE 300gsm EN340 EN471\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(205,'PSAFOVERMMS-','Log','P','SAF','Safety and protective equipment',3200,'43880','PCE',NULL,NULL,NULL,'no',1,'OVERALL mechanics, size S/M, Cotton  with reflective strips','COMBINAISON bleu de travail, taille S/M',NULL,'901/D592 - PRIME CAPTAIN 100% COTTON COVERALLS WITH REFLECTIVE TAPE 300gsm EN340 EN472\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(206,'PSAFOVERMXX-','Log','P','SAF','Safety and protective equipment',3200,'43880','PCE',NULL,NULL,NULL,'no',1,'OVERALL mechanics, size XXL, Cotton with reflective strips','COMBINAISON bleu de travail, taille XXL',NULL,'901/D592 - PRIME CAPTAIN 100% COTTON COVERALLS WITH REFLECTIVE TAPE 300gsm EN340 EN474\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(207,'PSAFRAINJLL','Log','P','SAF','Safety and protective equipment',850,'43880','PCE',NULL,NULL,NULL,'no',1,'RAIN JACKET, Lightweight, size L','VESTE IMPERMEABLE légère, taille L',NULL,'903/21 - RAINSUIT/ SPRAYER SUIT PVC YELLOW WELDED SEAM. TEAR RESISTANT - Two piece suit\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(208,'PSAFRAINJLM','Log','P','SAF','Safety and protective equipment',850,'43880','PCE',NULL,NULL,NULL,'no',1,'RAIN JACKET, Lightweight, size M','VESTE IMPERMEABLE légère, taille M',NULL,'903/21 - RAINSUIT/ SPRAYER SUIT PVC YELLOW WELDED SEAM. TEAR RESISTANT - Two piece suit\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(209,'PSAFRAINJXL','Log','P','SAF','Safety and protective equipment',850,'43880','PCE',NULL,NULL,NULL,'no',1,'RAIN JACKET, Lightweight, size XL',NULL,NULL,'903/21 - RAINSUIT/ SPRAYER SUIT PVC YELLOW WELDED SEAM. TEAR RESISTANT - Two piece suit\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(210,'PSAFFIREPPW','Log','P','SAF','Safety and protective equipment',4500,'43880','PCE','PCE',NULL,NULL,'no',1,'FIRE EXTINGUISHER polyvalent powder, 9kg, for warehouse','EXTINCTEUR poudre, 9kg, pour entrepôt',NULL,'9Kg DRY POWDER FIRE EXTINGUISHER\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(211,'PSAFFIREAF6','Log','P','SAF','Safety and protective equipment',4500,'43880','PCE','PCE',NULL,NULL,'no',1,'FIRE EXTINGUISHER, Class AB, foam (water+additive), 6kg','EXTINCTEUR classe AB, à mousse (eau+additif), 6kg',NULL,'9LTR FOAM FIRE EXTINGUISHER\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(212,'PSAFBLAN12-','Log','P','SAF','Safety and protective equipment',2750,'43880',NULL,NULL,NULL,NULL,'no',1,'FIRE BLANKET, 120x180 CM','COUVERTURE ANTI-FEU, 120x180cm',NULL,'FIRE BLANKET 120cm x 120cm\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(213,'PSAFALARSD-','Log','P','SAF','Safety and protective equipment',2500,'43880','PCE','PCE',NULL,NULL,'no',1,'SMOKE DETECTOR','DETECTEUR DE FUMEE',NULL,'SMOKE DETECTOR BATTERY OPERATED\nMore specs and details : www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(214,'ALIFBOOL39-','Log','A','LIF','Team life',2250,'43880','Pair','Pair',NULL,NULL,'no',1,'BOOTS, leather, lined, pair, size 39','BOTTES, cuir, fourrées, paire, taille 39',NULL,'www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39'),(215,'PSAFMASKRF3','Log','P','SAF','Safety and protective equipment',550,'12/31/2019','PCE','Packed in 5\'s.',NULL,NULL,'yes',1,'RESPIRATOR FFP3, disposable',NULL,NULL,'www.specialisedhardwares.com','2019-08-15 05:49:39','2019-08-15 05:49:39');
-/*!40000 ALTER TABLE `articles` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `articles` (`id`, `article_code`, `category`, `group`, `family`, `fam_desc`, `price`, `valid`, `unit`, `sud`, `weight`, `volume`, `stock`, `lead_time`, `desc_eng`, `desc_fra`, `desc_spa`, `details`, `created_at`, `updated_at`) VALUES
+(1, 'PELELIGFL7S12', 'Log', 'P', 'ELE', 'Electricity', 1608.75, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'LANTERN rechargeable & solar, 7W/12-230V, waterproof', 'LATERNE rechargable & solaire, 7W, 12/230V, étanche', 'LPARA PORT. RECARGABLE, estanca, 7W, 12V/200V/solar', 'Brand : SOLLATEK\niGlow One, Solar LED Lantern :\n    Main lamp has 2 brightness settings\n    Secondary reading lamp with adjustable angle\n    Micro USB port for mobile phone charging\n    Dual way charging (by solar panel and charging unit through USB)\n    5 in 1 mobile charging cable provided\nSpecification :\n    1.4W Solar Panel Poly-crystalline\n    3.7V/2200mAh Li-ion Battery\n    0.45W/50lm Reading Light\n    0.9W/110lm Main Light – High Setting 0.45W/50lm Main Light – Low Setting\n    14hrs charge for reading light\n    7hrs charge for lantern at brightest setting, 14hrs charge at lowest setting\n    Battery fully charged from solar after 10hrs\n\n\n', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(2, 'CSHENETS80-', 'Log', 'C', 'SHE', 'Shelter', 26000, '31/12/2019', 'PCE', 'PCE', 227, 869, 'No', '1', 'SHADE NET, 80%, 4X50M, ROLL', 'FILET A OMBRE, 80%, 4x50m, rouleau', 'RED con SOMBRA 80%, 4 m x 50 m, rollo', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(3, 'AFURCHAIRO-', 'Log', 'A', 'FUR', 'Furniture', 26000, '31/12/2019', 'PCE', 'PCE', 25, 200, 'No', 'undefined', 'CHAIR, Office, adjustable height, wheeled', 'CHAISE de bureau, hauteur réglable, sur roulettes', 'SILLA, oficina, ajustable altura, con ruedas', 'Tune High Back Chair', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(4, 'PPACZYN1002', 'Log', 'P', 'PAC', 'Packing and handling', 102.9, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'BOX, CARTON, 5 plies, (L X W X H in mm) 400 x 300 x 300, wit', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(5, 'PPACZYN1004', 'Log', 'P', 'PAC', 'Packing and handling', 142.78, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'BOX, CARTON, 5 plies, (L X W X H in mm) 500 x 400 x 300, wit', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(6, 'PPACZYN1011', 'Log', 'P', 'PAC', 'Packing and handling', 161.78, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'BOX, CARTON, 5 plies, (L X W X H) 500 x 400 x 400mm', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(7, 'TTYR16RA23F20', 'undefined', 'T', 'TYR', 'Tyre', 0, '31/12/2019', 'PCE', 'PCE', 22.2, 137.302, 'No', 'undefined', 'TYRE profile all terrain, 235/85R16, 120Q', 'PNEU profil mixte, 235/85R16, 120Q', 'NEUMATICO, BF GOODRICH ALL TERRAIN, 235/85 R16, 120Q', 'Contact us for quotation according with brand', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(8, 'ADAPPHONSS5', 'Log', 'A', 'DAP', 'Data processing', 17864, '31/08/2019', 'PCE', 'PCE', 0.5, NULL, 'No', 'undefined', 'MOBILE PHONE (Samsung A30) ', 'TELEPHONE PORTABLE (Samsung A30) ', 'TELEPHONE PORTABLE (Samsung A30) ', 'Samsung Galaxy A30 - 64GB Rom - 4GB Ram, 4000mAh, Dual SIM 4G -Black\n\nKey Features:\n    Octa-Core 1.8GHz\n    4GB Ram + 64GB Rom\n    FingerPrint Sensor\n    Dual SIM 4G\n    6.4\" FullHD+\n    Android 9\nWhat\'s in the Box:\n    Samsung Galaxy A30 Smartphone\n    Fast Charger + Cable\n    Earphone\n    Silicone Case\n    Manual\nSpecifications of Galaxy A30 - 64GB Rom - 4GB Ram, 4000mAh, Dual SIM 4G -Black\nSKU:SA948EL171WPZNAFAMZ\nWeight (kg) : 0.5\nDisplay Size (in):6.4\nRAM:4\nMemory Size (GB):64\nProcessor: ARM\nCamera:  16.0\nOperating System: Android\nProduct warranty:24 Months Warranty\nConnectivity:2G,3G,4G\nScreen Technology:SAMOLED', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(9, 'CWATPUMSSGFSB', 'Log', 'C', 'WAT', 'Water and sanitation', 44800, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', '(Grundfos SQF Solar) SWITCH BOX IO 101 (96475074)', NULL, NULL, 'Grundfos SQF  IO 101-115V Switch Box\n\nThe IO 101 is designed specifically for solar-powered SQFlex systems. The IO 101 enables the connection of a back-up generator in case of insufficient solar energy. The switching between solar power and generator must be made manually. In case the generator is stopped manually or runs out of fuel, the IO 101 will automatically change over to the solar panels. The IO 101 functions as a connection box joining all necessary cables.\n\nGeneral Specifications:-\nUnit converter:-\n  IO 101 115 VAC Part# SQFlex 96481502,\n  IO 101 230 VAC Part# SQFlex 96475074.\nTechnical data:-\n  DC: Max. 225 V, PE,\n  AC: Max. 265 V, 50/60 Hz, PE.\nThe internal relay in the IO 101 has the following rated voltage:-\n  115 V –15%/+10%, 50/60 Hz, PE.\n101', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(10, 'AOFFLABEDLT10', 'Log', 'A', 'OFF', 'Office equipment', 262.79, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', '(Dymo LetraTag) TAPE, plastic, 12mmx4m, roll', '(Dymo LetraTag) RUBAN, plast., 12mmx4m, roul.', '(etiquetadora Dymo LetraTAG) CINTA, plástico, 12 mm', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(11, 'AOFFLABEDL-', 'Log', 'A', 'OFF', 'Office equipment', 5900, '31/12/2019', 'PCE', 'PCE', 0.379, 2.516, 'No', '1', 'LABEL MAKER (Dymo LetraTag) 12mm labels', 'ETIQUETEUSE (Dymo LetraTag) étiquettes 12mm', 'ETIQUETADORA (Dymo LetraTAG) etiquetas 12 mm', 'DYMO LabelManager® 160\nOptional power supply (sold separately)\nCreation of DYMO D1 labels with widths of 6 mm, 9 mm, 12 mm and in several colors\nEdit text easily with one-touch fast formatting keys - bold, italics, vertical, underline, boxed\nType text quickly on the computer-style (QWERTY) keyboard\nCreate labels with 6 font sizes, 8 text styles, 4 boxes plus underline, and 228 symbols and clip-art images\n36% fewer steps in order to create a label relative to the competition*\nExtend the battery life thanks to the automatic shut-off\n1-Year Limited Warranty', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(12, 'YTOY08826-00080', 'Log', 'Y', 'TOY', 'Toyota spare parts', 2960.1, '31/12/2019', 'PCE', 'PCE', 0.146, 0, 'No', 'undefined', '(oil engine seal) GASKET PASTE black, tube', '(étanchéité huile moteur) PATE A JOINT noir, tube', 'PATE A JOINT d\'étanchéité souple, tout support', 'Land Cruiser', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(13, 'YTOY13568-59175', 'Log', 'Y', 'TOY', 'Toyota spare parts', 3534.3, '31/12/2019', 'PCE', 'PCE', 0.169, 1.617, 'No', 'undefined', 'Timing belt,HILUX LAN15/25&HIACE LH202,replacing 13568-59106', 'Timing belt,HILUX LAN15/25&HIACE LH202,replacing 13568-59106', 'Timing belt,HILUX LAN15/25&HIACE LH202,replacing 13568-59106', 'Hilux', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(14, 'YTOY17801-61030', 'Log', 'Y', 'TOY', 'Toyota spare parts', 4570.86, '12/31/2019', 'pce', 'unit', 0.666, 7.26, 'Yes', '1', '(HZJ78/79) AIR FILTER element, dry, washable', '(HZJ78/79) FILTRE A AIR élément, sec lavable', 'ELEMENTO DEPURADOR DE AIRE SECO LAVBLE PZ/HZ', 'BEIRUT MOTORS FZE', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(15, 'YTOY23300-30202', 'Log', 'Y', 'TOY', 'Toyota spare parts', 6751.8, '31/12/2019', 'PCE', 'PCE', 0.13, 1, 'No', 'undefined', '(Hiace LH202) FUEL FILTER decanter element', '(Hiace LH202) FILTRE DECANTEUR element', 'ENSEMBLE FILTRE CARBURANT 2KDFTV', 'Hiace', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(16, 'YTOY23390-0L041', 'Log', 'Y', 'TOY', 'Toyota spare parts', 2257.2, '31/12/2019', 'PCE', 'PCE', 0.125, 1.21, 'No', 'undefined', '(Hiace LH202) FUEL FILTER decanter element', '(KUN/LAN15/25 LH202) ELEMENT DE FILTRE decant. gasoil', 'Fuel filter decantor element, HILUX KUN&LAN15/25&HIACE LH202', 'Hilux', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(17, 'YTOY23390-51070', 'Log', 'Y', 'TOY', 'Toyota spare parts', 2769.12, '12/31/2019', 'pce', 'unit', 0.145, 0.968, 'Yes', '1', '(HZJ78/79 Mk2) FUEL FILTER decanter element', '(HZJ78/79 Mk2) ELEMENT DE FILTRE décanteur de gasoil', 'ELEMENT de FILTRE DECANTEUR GASOIL, HZJ78/79 Mk2', 'BEIRUT MOTORS FZE', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(18, 'ALIFZYN1002', 'Log', 'A', 'LIF', 'Team life', 395.474, '12/31/2019', 'Jerrycan of 5 ltrs', 'Jerrycan of 5 ltrs', NULL, NULL, 'Yes', '1', 'DISINFECTANT, liquid, LAVIK, 5 lts, jerrycan', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(19, 'ALIFZYN1017', 'Log', 'A', 'LIF', 'Team life', 58.3333, '12/31/2019', 'pkt of 100', 'carton of 60 pckets', NULL, NULL, 'Yes', '1', 'SERVIETTE, paper, VELVEX, 100pces, pkg', NULL, NULL, 'Velvex White Napkin Tissue', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(20, 'ALIFZYN1021', 'Log', 'A', 'LIF', 'Team life', 206.897, '12/31/2019', 'PCE', 'box of 6', NULL, NULL, 'Yes', '1', 'DISH WASHING PASTE, Axion, large, 800gr', NULL, NULL, 'Safisha Dish Washing Paste Lemon 800G (1x6) ', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(21, 'ALIFZYN1022', 'Log', 'A', 'LIF', 'Team life', 80.4598, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'SCOURING POWDER, 1000gr', NULL, NULL, 'Safisha Scouring Powder Lemon 1KG (1x6) ', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(22, 'ALIFZYN1024', 'Log', 'A', 'LIF', 'Team life', 802.59, '12/31/2019', 'jerrycan of 5 lts', 'jerrycan of 5 lts', 5, 5, 'Yes', '1', 'DISINFECTANT, breach, liquid, JIK, 5L, jerrycan', NULL, NULL, 'Safisha Bleach Colour 5Ltrs', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(23, 'ALIFZYN1026', 'Log', 'A', 'LIF', 'Team life', 126.437, '12/31/2019', 'pkt of 4 pces', 'pkt of 4 pces', NULL, NULL, 'Yes', '1', 'SPONGE/SCOURER, (yellow/green), (Specify brand), 4pces, pkg', NULL, NULL, 'Safisha Kitchen Cleaner 4\'s (1x18) ', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(24, 'ALIFZYN1027', 'Log', 'A', 'LIF', 'Team life', 177.93, '12/31/2019', 'pkt of 750g', 'pkt of 750g', NULL, NULL, 'Yes', '1', 'STEELWOOL, 750 g', NULL, NULL, 'Safisha Steelwool 750G (1x18) ', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(25, 'ALIFZYN1030', 'Log', 'A', 'LIF', 'Team life', 500, '12/31/2019', 'Jerrycan', 'Jerrycan', NULL, NULL, 'Yes', '1', 'SOAP, hand wash, 5 lts, jerrycan', NULL, NULL, 'Velvex Liquid Hand Wash Soap - 5 Litre & 20 Litres', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(26, 'ALIFZYN1032', 'Log', 'A', 'LIF', 'Team life', 55.91, '12/31/2019', '1 sponge', 'pack of 3 sponge', NULL, NULL, 'Yes', '1', 'SPONGE CLOTH, (spontex), per piece, assorted colors, pkg', NULL, NULL, 'Safisha Sponge Jumbo Cloth 3\'s (1x24) (4025.86KES)', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(27, 'ALIFZYN1033', 'Log', 'A', 'LIF', 'Team life', 60.3448, '12/31/2019', 'pkt', 'pkt', NULL, NULL, 'Yes', '1', 'TOILET AIR FRESHNER, block, 190g, pkt', NULL, NULL, 'Safisha Airfreshner Block Forest Berries 170G  (1x36)', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(28, 'ALIFZYN1035', 'Log', 'A', 'LIF', 'Team life', 60.3448, '12/31/2019', 'spray', 'spray', NULL, NULL, 'Yes', '1', 'GLASS CLEANER, spray for windows, 300ml', NULL, NULL, 'Safisha Glass/Tiles/Window Cleaner Ocean 320ML (1x12)', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(29, 'ALIFZYN1037', 'Log', 'A', 'LIF', 'Team life', 1625, '12/31/2019', 'bale', 'bale of 12 packs', NULL, NULL, 'Yes', '1', 'HAND PAPER TOWEL, bale of 12 packs', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(30, 'ALIFZYN1044', 'Log', 'A', 'LIF', 'Team life', 70.4023, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'DISINFECTANT, balls for urinal, pack of 5pces', NULL, NULL, 'Safisha Disinfectant Balls Colour 200G (1x12) ', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(31, 'ALIFZYN1064', 'Log', 'A', 'LIF', 'Team life', 2700, '12/31/2019', 'Pack of 6', 'Pack of 6', NULL, NULL, 'Yes', '1', 'HAND PAPER TOWEL,CENTRE PULL,midi 230mtrs,6 Rolls per Pack', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(32, 'ALIFZYN1080', 'Log', 'A', 'LIF', 'Team life', 175, '12/31/2019', 'pack of 2', 'carton of 24 pack of 2', NULL, NULL, 'Yes', '1', 'KITCHEN  HAND TOWEL, velvex, pack of 2', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(33, 'ALIFZYN1083', 'Log', 'A', 'LIF', 'Team life', 37.1169, '12/31/2019', 'PCE', 'Pack of 72 souring pad', NULL, NULL, 'Yes', '1', 'SCOURER SUPA BRITE, Medium', NULL, NULL, 'Safisha Scouring Pad King Size 1\'s (1x72) ', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(34, 'ALIFZYN1099', 'Log', 'A', 'LIF', 'Team life', 620, '12/31/2019', 'roll', 'roll', NULL, NULL, 'Yes', '1', 'ALUMINIUM FOIL, silver, 45 cm x 60 cm, roll ( FAY)', NULL, NULL, 'Velvex Aluminium Foil', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(35, 'ALIFZYN1165', 'Log', 'A', 'LIF', 'Team life', 840.6, '12/31/2019', 'PCE', 'unit', NULL, NULL, 'Yes', '1', 'LIQUID, STA SOFT, fabric softner, 5 litre, bottle', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(36, 'ALIFZYN1175', 'Log', 'A', 'LIF', 'Team life', 107.759, '12/31/2019', 'bottle of 750 ml', 'bottle of 750 ml', NULL, NULL, 'Yes', '1', 'COLOUR BRIGHTENER, liquid, for clothes, JIK, bottle 750ml', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(37, 'ALIFZYN1177', 'Log', 'A', 'LIF', 'Team life', 86.2069, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'TOILET CLEANER, liquid, HARPIC, 500ml', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(38, 'ALIFZYN1181', 'Log', 'A', 'LIF', 'Team life', 1600, '12/31/2019', 'jerrycan of 20 litr', 'jerrycan of 20 litr', NULL, NULL, 'Yes', '1', 'DETERGENT, MUTLIPURPOSE LIQUID 20 LITRE (brand to specify)', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(39, 'ALIFZYN1184', 'Log', 'A', 'LIF', 'Team life', 54.1667, '12/31/2019', 'box', 'box', NULL, NULL, 'Yes', '1', 'TISSUE,2 PLY,80 PCS,THE BOX, VELVEX', NULL, NULL, 'Velvex Premium White Embossed Facial Tissue', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(40, 'ALIFZYN1186', 'Log', 'A', 'LIF', 'Team life', 137.931, '12/31/2019', 'pack', 'pack', NULL, NULL, 'Yes', '1', 'BLUE BUBBLE TOILET BOWL CLEANER & AIR FRESHNER,50G X 4', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(41, 'ALSTSTOC4HW', 'Log', 'A', 'LST', 'Logistic stationery', 9.28, '12/31/2019', 'PCE', 'PCE', 0.01008, 0.0126, 'Yes', '1', 'STOCK CARD, hardback, A4, recto/verso, batch #, sheet', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(42, 'ASTAZYN1006', 'Log', 'A', 'STA', 'Stationery', 338, '12/31/2019', '1 ream', 'Box of 5 reams', NULL, NULL, 'Yes', '1', 'PAPER, A4, white, 80g, for photocopy, 500 sheets, ream', NULL, NULL, 'PHOTOCOPY PAPER A-ONE A4', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(43, 'PELEBATTA03', 'Log', 'P', 'ELE', 'Electricity', 85, '12/31/2019', 'PCE', 'Pack of 4 batteries', 0.0121082, 0.00529, 'Yes', '1', 'BATTERY dry cell alkaline (R03/AAA) 1.5V', 'PILE sèche alcaline (R03/AAA) 1,5V', 'PILA, seca, alcalina, 1.5 V, R6 (AAA)', 'DURACELL or ENERGIZER pack of 4 pieces', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(44, 'PELEBATTA06', 'Log', 'P', 'ELE', 'Electricity', 85, '12/31/2019', 'PCE', 'Pack of 4 batteries', 0.0253415, 0.0266665, 'Yes', '1', 'BATTERY dry cell alkaline (R6/AA) 1.5V', 'PILE sèche alcaline (R6/AA) 1,5V', 'PILA, seca, alcalina, 1,5 V, R6 (AA)', 'DURACELL or ENERGIZER pack of 4 pieces', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(45, 'PHDWOILPM04', 'Log', 'P', 'HDW', 'Hardware', 440, '12/31/2019', 'pce', 'can of 400ml', NULL, NULL, 'Yes', '1', 'PENETRATING OIL, 400ML, Multi-use SPRAY/TIN', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(46, 'PHYGPAPITR-', 'Log', 'P', 'HYG', 'Hygiene', 23.71, '12/31/2019', 'roll', 'Bale of 40 rolls', 0.189444, 1.77778, 'Yes', '1', 'TOILET PAPER, roll', 'PAPIER TOILETTE, rouleau', 'PAPEL HIGIENICO, rollo', 'Velvex Premium Toilet Tissue – 10 Pack', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(47, 'PHYGZYN1016', 'Log', 'P', 'HYG', 'Hygiene', 216.667, '12/31/2019', 'roll', 'Bale of 12 rolls', NULL, NULL, 'Yes', '1', 'TOILET TISSUE, Jumbo size, 200 meters', NULL, NULL, 'Jumbo Toilet Tissue', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(48, 'PHYGZYN1017', 'Log', 'P', 'HYG', 'Hygiene', 108.333, '12/31/2019', 'roll', 'Bale of 12 rolls', NULL, NULL, 'Yes', '1', 'TOILET TISSUE, Jumbo size, 100 meters', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(49, 'SDRECOTW5R-', 'Med', 'S', 'DRE', 'Dressings', 252.25, '12/31/2019', 'roll', 'bale of 12 roll of 500g', 0.54, 2.8101, 'Yes', '1', 'COTTON WOOL, hydrophilic, roll, 500 g', 'COTON hydrophile, rouleau, 500 g', 'ALGODON hidrófilo, rollo, 500 g', 'Brand : Velvex, cotton wool-500g', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(50, 'TVECCOOLC1-', 'Log', 'T', 'VEC', 'Vehicle consumables', 332.408, '12/31/2019', 'pce', 'Can of 1 ltr', 0.0975, 0.138417, 'Yes', '1', 'COOLANT-ANTIFREEZE cooling system, 1l, can', 'REFROIDISSEMENT-ANTIGEL circuit de refroidis., 1l, bidon', 'ADITIVO ANTICONGELANTE, circuito refrigeración, 1l, bidon', 'Brand : TOTAL', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(51, 'TVECFLUIB4H', 'Log', 'T', 'VEC', 'Vehicle consumables', 408.3, '12/31/2019', 'can', 'can 1/2 litre', 0.6025, 0.8, 'Yes', '1', 'BRAKE FLUID, 0.5l, DOT4 or DOT3, can ', 'LIQUIDE DE FREIN, 0,5l, DOT4 ou DOT3, bidon', 'LIQUIDO DE FRENOS, J1703E/ DOT3, 0.5 l, lata', 'Brand : TOTAL', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(52, 'TVECFLUITD1', 'Log', 'T', 'VEC', 'Vehicle consumables', 641.394, '12/31/2019', 'can', 'can', 0.991667, 2.06267, 'Yes', '1', 'HYDRAULIC TRANSMISSION FLUID (Dexron II or III) 1l, can ', 'HUILE TRANSMISSION HYDRAULIQUE (Dexron II ou III) 1l, bidon', 'ACEITE DE TRASMISION HIDRAULICA, Dextron, 1 l, lata', 'Brand : TOTAL', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(53, 'TVECOILE542H', 'Log', 'T', 'VEC', 'Vehicle consumables', 58447.7, '12/31/2019', 'drum', 'drum of 200 litr', NULL, NULL, 'Yes', '1', 'ENGINE OIL 15W40 API SJ/CF, 200l, petrol / diesel, drum', 'HUILE MOTEUR 15W40 API SJ/CF, 200l, essence/diesel, fût', 'ACEITE MOTOR, 15W40, gasol. Y diesel API SJ/CF-4, 200l, bid.', 'Brand : TOTAL\nRUBIA TIR 7400 15W40 DRUM 208 L', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(54, 'TVECOILG8905', 'Log', 'T', 'VEC', 'Vehicle consumables', 1437.22, '12/31/2019', 'Can', 'carton of 4 cans of 5 litres', 5, 0, 'Yes', '1', 'TRANSMISSION OIL, 5l, EP 80W90 GL5, can', 'HUILE TRANSMISSION, 5l, EP 80W90 GL5, bidon', 'ACEITE TRANSMISION, EP 80W90, GL-5, 5l, lata', 'Brand : TOTAL\nTRANSMISSION TM 80W90 CARTON 4x5 L', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(55, 'TVECOILG892H', 'Log', 'T', 'VEC', 'Vehicle consumables', 53824, '12/31/2019', 'drum', 'drum of 200 litr', 198, 266, 'Yes', '1', 'TRANSMISSION OIL, 200l, EP 80W90 GL5, drum', 'HUILE TRANSMISSION, 200l, EP 80W90 GL5, fût', 'ACEITE TRANSMISION, EP 80W90, GL-5, 200l, bidon', 'Brand : TOTAL\nTRANSMISSION TM 80W90 DRUM 208 L', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(56, 'TVECZYN1015', 'Log', 'T', 'VEC', 'Vehicle consumables', 0, '12/31/2019', 'drum', 'drum of 20 litr', NULL, NULL, 'Yes', '1', 'OIL, ENGINE, 15W40, petrol & diesel API SJ/CF-4, 20 l, drum', NULL, NULL, 'Brand : TOTAL\nRUBIA TIR 7400 15W40 PAIL 20 L', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(57, 'TVECZYN1028', 'Log', 'T', 'VEC', 'Vehicle consumables', 1571.84, '12/31/2019', 'can of 3 kg', 'can of 3 kg', NULL, NULL, 'Yes', '1', ' GREASE , LITHIUM	 for bearin 3kg tin GADUS V220 AC 3', NULL, NULL, 'Brand : TOTAL', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(58, 'CWATBEDNDPP32', 'Log', 'C', 'WAT', 'Water and sanitation', 295, '31/12/2019', 'PCE', 'Bal of 50 mosquito nets', NULL, NULL, 'Yes', 'undefined', 'MOSQUITO NET deltamethrin, PBO (Permanet 3.0) 2 person', 'MOUSTIQUAIRE insecticide longue durée, synth., 2 pers.', NULL, 'VESTERGAARD PERMANET 3.0\nPermaNet® 3.0 is the first long-lasting insecticide-synergist combination bed net. It’s the optimal choice for areas where mosquitoes have developed resistance to the insecticides used in standard bed nets.\n\nInsecticide resistance has already been found in many countries. By 2012, 64 countries with ongoing malaria transmission reported resistance of malaria mosquitoes to at least one public health insecticide1. This poses a major threat to vector control programs.\n\nPermaNet® 3.0 has been developed to address the urgent need for tools with increased efficacy against insecticide resistant malaria vectors.  In October 2014, the World Health Organization\'s Vector Control Advisory Group published its annual report which included an evaluation of the supporting evidence for Vestegaard\'s product claim for PermaNet 3.0. The report noted that PermaNet 3.0 is a \"first in class\" and stated that \"The manufacturers have been very careful to make a relatively modest claim that can be supported by the combined evidence from multiple studies in many areas of pyrethroid resistance.\"\n\nLearn how insecticide resistance works by viewing this infographic. For a lighter look, view our insecticide resistance cartoon.\n\nAn animation shows pyrethroid resistance in mosquitoes and the action of PermaNet® 3.0.', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(59, 'PSAFMASKRF3', 'Log', 'P', 'SAF', 'Safety and protective equipment', 530, '12/31/2019', 'PCE', 'Packed in 5\'s.', 0.0138889, 0.0694444, 'Yes', '1', 'RESPIRATOR FFP3, disposable', 'MASQUE DE PROTECTION RESPIRATOIRE FFP3, jetable', 'MASQUE DE PROTECTION RESPIRATOIRE FFP3, jetable', 'www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(60, 'PSAFHARH1Y-', 'Log', 'P', 'SAF', 'Safety and protective equipment', 575, '28/02/2020', 'PCE', NULL, 0.55, 7.5, 'No', '1', 'HARD HAT, yellow', 'CASQUE DE CHANTIER, jaune', NULL, 'Safety Helmet Ff European Ventilated Polyslip Harness\nBrand: JSP\nDescription:\nFF EUROPEAN. A flat-front helmet with closable ventilation ports on both sides. Polyslip harness complete with sweatband. Conformity: EN397\ncode: 101/AHL040', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(61, 'PSAFHARNFA-', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2000, '28/02/2020', 'PCE', NULL, NULL, NULL, 'No', '1', 'HARNESS, FALL ARREST', 'HARNAIS, ANTI-CHUTE', NULL, 'Full Body Harness C-w Rope & Hook\nBrand: Schuller\nDescription:\nFull body harness - waist belt, shoulder and thigh straps with rope and hook\ncode: 704/2\n', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(62, 'CBUIBRICF60', 'Log', 'C', 'BUI', 'Building', 320, '31/12/2019', 'PCE', NULL, 5.7381, 6.17143, 'No', '1', 'FIREBRICK high density, 60%, AI203', 'BRIQUE REFRACTAIRE haute densité, 60%, AI203', NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(63, 'CBUICEMEF25', 'Log', 'C', 'BUI', 'Building', 1750, '31/12/2019', 'bag of 25 kg', NULL, 27, 64, 'No', '1', 'FIRE CEMENT PRE-MIX (Surebond 50DAE) bag of 25kg', 'MELANGE MORTIER REFRACTAIRE (Surebond 50DAE) sac de 25kg', NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(64, 'CSHETENM72-', 'Log', 'C', 'SHE', 'Shelter', 212850, '31/12/2019', 'PCE', NULL, NULL, NULL, 'No', '3', 'TENT multipurpose, 72m², 12x6m + bag', NULL, NULL, 'UNICEF standard', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(65, 'CSHEPLASWS4', 'Log', 'C', 'SHE', 'Shelter', 2005, '03/03/2010', 'PCE', NULL, 4.48, 17.28, 'undefined', '1', 'PLASTIC SHEETING, 4x6m, white/white, 6 bands, sheet', 'BACHE PLASTIQUE, 4x6m, blanc/blanc, 6 bandes, feuille', 'PLASTIC SHEETING, bl.co/bl.co, 6 bandas, hoja, 4 x 6 m', 'Type  Polyethylene (HDPE)\nCoated Type  PE Laminated, LDPE Coated\nSize  4x6 m and 4x5 m\nColor  White\nMaterial  Plastic, Polypropylene, HDPE', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(66, 'CSHETENM45-', 'Log', 'C', 'SHE', 'Shelter', 122760, 'undefined', 'PCE', NULL, 199, 724.5, 'No', '3', 'TENT multipurpose, 45m², 6x7.5m + bag', 'TENTE polyvalente, 45m², 6x7,5m + sac', 'TENTE POLYVALENTE, 45 m², 6 x 7,5 m + sac', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(67, 'CSHEPLASWR4', 'Log', 'C', 'SHE', 'Shelter', 17200, '31/12/2019', 'PCE', NULL, 43.5145, 134.619, 'undefined', 'undefined', 'PLASTIC SHEETING, 4x60m, white/white, 6 bands, roll', 'BACHE PLASTIQUE, 4x60m, blanc/blanc, 6 bandes, rouleau', 'PLASTIC SHEETING, bl.co/bl.co, 6 bandas, rol, 4 x 60 m', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(68, 'PTOOMEASL08', 'Log', 'P', 'TOO', 'Tools', 16476, '31/12/2019', 'PCE', 'PCE', 0.2, 1, 'No', '1', 'LASER, TELEMETER, HAND HELD(BOSCH GLM80) 50MM-80M', '(rail R60) TELEMETRE LASER de poche (Bosch GLM80) 50mm-80m', 'TÉLÉMÈTRE LASER modèle de poche', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(69, 'ALIFSLEEP3', 'Log', 'A', 'LIF', 'Team life', 7155.17, '31/12/2019', 'PCE', 'PCE', 1.2, 11, 'No', '1', 'SLEEPING BAG, 3 TO 8 C, LIGHTWEIGHT + PROTECTIVE BAG. SET', 'SAC DE COUCHAGE, 3 à 8 C°, leger + sac de protection, jeu', 'SAC DE COUCHAGE, 3 à 8 C°, léger + sac de protection', 'TREK500 5°light trekking sleeping bag - yellow\nOur passionate trekking designers have created this sleeping bag to sleep comfortable in temperatures above or equal to 5°C.\n \nMore specs and details  : \nhttps://www.decathlon.co.ke/p/8503640_500-5-trekking-sleeping-bag-light-yellow.html#scroll_div\n\n        On all of our sleeping bags, we display the comfort temperatures tested by an independent laboratory (AITEX) according to European standard NF ISO 23537 - 2017. The temperature rating is the lower limit at which the user is generally in thermal equilibrium and feels neither too cold nor too hot in a relaxed pose (for a standard woman and in normal conditions of use). Choose your sleeping bag according to the latter.\n        Limit temperature:temperature at which the user huddled up in the sleeping bag is generally in thermal equilibrium and feels neither too cold nor too hot (defined for a standard man under normal conditions of use).\n        A sleeping bag does not generate warmth but retains the warmth produced by the body. If you feel tired and cold and slip into a cold and damp sleeping bag, you are likely to feel cold, however good it is! These temperatures therefore depend on the person\'s resistance to the cold (bulk, fatigue, etc.), their equipment (mattress that insulates from the cold, etc.), their clothing (naked, underwear, etc.) and the weather conditions (humidity, wind, etc.).\n        Dress simply (just one layer of clothing is enough). Keep your head, hands and feet warm: hats, gloves, socks, hand or feet warmers, rubdown, etc. A bottle full of hot water can be used as a hot water bottle (as long as it will not open accidentally!) Contract your muscles (70% of the energy consumed is transformed into heat). However you should do this without moving as this can cause draughts of cold air. Use a liner sheet, ideally made of silk, to optimise the warmth inside your sleeping bag.\n        \"Generous\" mummy shape: wide at the shoulders and more narrow at the feet to optimise thermal insulation (no heat loss) and compact size, while retaining some freedom of movement. Width at shoulder height 76.5 cm and at feet height 32 cm in size L. Ergonomic hood with drawcord. Two side zips with double sliders, lined with a flap (sausage-shaped) made of insulating wadding (thermal bridges) and side openings.\n        Size M 1105 g, user up to 1.70m in height. Folded dimensions: Ø 38 x 17 cm. Volume 10 L. Size L 1200 g, user between 1.70m and 1.85m. Folded dimensions: Ø 38 x 18.5 cm. Volume 11 L. Size L 1290 g, user between 1.85m and 2m. Folded dimensions: Ø 40 x 19.5 cm. Volume 12.5 L. Try out your sleeping bag before buying it in order to get the right size for your comfort.\n        This sleeping bag is guaranteed for a period of 5 years from the date of sale indicated on the receipt. The product covered by the warranty will be repaired or exchanged free of charge. The warranty covers the defects of your sleeping bag apart from those resulting from normal wear and tear and improper use. This special 5-year warranty will only be granted upon presentation of the product and sales receipt.', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(70, 'ALIFMATT1I-', 'Log', 'A', 'LIF', 'Team life', 2544, '31/12/2019', 'PCE', 'PCE', 1.1, 11.8, 'No', '1', 'MATTRESS camping, 185x48x1cm, insulating', 'MATELAS camping, 185x48x1cm, isolant', 'COLCHÓN, aislante, 185 x 48 x 1 cm', 'SELF-INFLATING CAMPING MATTRESS _PIPE_ 60 CM WIDE\nReference: 8363045\nCategory : Self-inflating mattress For : 1 person Weight : 1100 g Dimensions (cm) : 195 x 60 x 2.5 Folded size : Ø 21 x 34 cm / 11.8 L Size available. : L and XL\nMore specs and details  : \nhttps://www.decathlon.co.ke/p/8363045_forclaz-400-xl-self-inflating-camping-mattress-pipe-1-pers.html#/113-200-xl', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(71, 'PELEMEASMF-', 'Log', 'P', 'ELE', 'Electricity', 87240.7, '31/12/2019', 'PCE', 'PCE', 1.5, 2, 'No', '1', 'MULTIMETER (Fluke 1587) ', 'MULTIMETRE (Fluke 1587) ', 'MULTIMETRE TESTEUR D\'ISOLEMENT FLUKE 1587', 'Fluke 1587 Insulation Multimeter, LCD Display, 2 Gigaohms Insulation Resistance, Up to 1000V Insulation Test Voltage \n     Manual- and auto-ranging digital insulation multimeter measures insulation resistance, current, voltage, capacitance, frequency, resistance, and temperature, and performs diode tests for testing line insulation on motors, generators, cables, and switch gear\n    True RMS meter provides accurate readings when measuring linear or nonlinear loads where the current or voltage has an undistorted or distorted waveform\n    Insulation test voltages of 50, 100, 250, 500, and 1000V and insulation measurement range of 0.01 megohms to 2 gigohms\n    Low-pass filter blocks unwanted voltages when measuring AC voltage and AC frequency to provide accurate measurements on inverters and variable-frequency motor drives\n    Ingress Protection certified IP40; European Conformity (CE) marking; UL 61010-1; ANSI/ISA S82.01-2004; CAN/CSA C22.2 No. 1010.1:2004; IEC safety standards 61010-1:1002 and 61010.1-04, IEC61557-1; IEC61557-2; and IEC/EN 61010-1, 2nd edition for Category III installations up to 1000V and Category IV installations up to 600V, and Pollution Degree 2\n    Insulation test voltages 50 volts; 100 volts; 250 volts; 500 volts; 1,000 volts\n    Live circuit detection prevents insulation test if voltage of more than 30 volts is detected\n\n    Auto-discharge of capacitive voltage for added user protection\n    AC/DC voltage, DC milliVolts, AC/DC milliamps, resistance, continuity\n    Testing for capacitance, diode, temperature, min/max, and frequency\n\n', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(72, 'PELEZYN1183', 'Log', 'P', 'ELE', 'Electricity', 10344.8, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'BATTERY (AMARON),  12 V, starter, dry charged, N80R Hi-Way', NULL, NULL, 'Validated brand by MSF OCG techincal referent', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(73, 'PELEBREAS10', 'Log', 'P', 'ELE', 'Electricity', 230, '31/08/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'BREAKER, CIRCUIT, single pole, 220/380V, for DIN rail, 10 A', 'COUPE-CIRCUIT, unipolaire, 220/380V, pour rail DIN, 10 A', NULL, 'Available in SCHNEIDER, Legrand, Hager.\nConsult us for more details', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(74, 'PELEBREAS20', 'Log', 'P', 'ELE', 'Electricity', 230, '31/08/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'BREAKER, CIRCUIT, single pole, 220/380V, for DIN rail, 20 A', 'COUPE-CIRCUIT, unipolaire, 220/380V, pour rail DIN, 20 A', NULL, 'Available in SCHNEIDER, Legrand, Hager.\nConsult us for more details', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(75, 'PELEMMCB1B16M', 'Log', 'P', 'ELE', 'Electricity', 230, '31/08/2019', 'PCE', 'PCE', 0.125, 0.133, 'No', 'undefined', 'CIRCUIT BREAKER MCB B-curve, 16A/Icu 6kA, 1P, modular', NULL, NULL, 'Available in SCHNEIDER, Legrand, Hager.\nConsult us for more details', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(76, 'PELEMMCB2B06M', 'Log', 'P', 'ELE', 'Electricity', 280, '31/08/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'CIRCUIT BREAKER MCB B-CURVE, 6A/ICU 6KA, 2P, MODULAR', NULL, NULL, 'Available in SCHNEIDER, Legrand, Hager.\nConsult us for more details', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(77, 'PELEMMCB2B10M', 'Log', 'P', 'ELE', 'Electricity', 280, '31/08/2019', 'PCE', 'PCE', 0.25, 0.27, 'No', 'undefined', 'CIRCUIT BREAKER MCB B-curve, 10A/Icu 6kA, 2P, modular', 'DISJONCTEUR MCB courbe B, 10A/Icu 6kA, 2P, modulaire', NULL, 'Available in SCHNEIDER, Legrand, Hager.\nConsult us for more details', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(78, 'PELEMMCB2B20M', 'Log', 'P', 'ELE', 'Electricity', 280, '31/08/2019', 'PCE', 'PCE', 0.25, 0.27, 'No', 'undefined', 'CIRCUIT BREAKER MCB B-curve, 20A/Icu 6kA, 2P, modular', 'DISJONCTEUR MCB courbe B, 20A/Icu 6kA, 2P, modulaire', NULL, 'Available in SCHNEIDER, Legrand, Hager.\nConsult us for more details', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(79, 'PELEMMCB2B32M', 'Log', 'P', 'ELE', 'Electricity', 280, '31/08/2019', 'PCE', 'PCE', 0.25, 0.27, 'No', 'undefined', 'CIRCUIT BREAKER MCB B-curve, 32A/Icu 6kA, 2P, modular', 'DISJONCTEUR MCB courbe B, 32A/Icu 6kA, 2P, modulaire', NULL, 'Available in SCHNEIDER, Legrand, Hager.\nConsult us for more details', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(80, 'PELEMMCB3B32M', 'Log', 'P', 'ELE', 'Electricity', 1100, '31/08/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'CIRCUIT BREAKER MCB B-CURVE, 32A/ICU, 6KA, 3P, MODULAR', NULL, NULL, 'Available in SCHNEIDER, Legrand, Hager.\nConsult us for more details', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(81, 'PELEMMCB3B50M', 'Log', 'P', 'ELE', 'Electricity', 1250, '31/08/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'CIRCUIT BREAKER MCB B-CURVE, 50A/ICU 6KA, 3P, MODULAR', NULL, NULL, 'Available in SCHNEIDER, Legrand, Hager.\nConsult us for more details', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(82, 'PELEMMCB4B32M', 'Log', 'P', 'ELE', 'Electricity', 1750, '31/08/2019', 'PCE', 'PCE', 0.5, 0.535, 'No', 'undefined', 'CIRCUIT BREAKER MCB B-curve, 32A/Icu 6kA, 4P, modular', 'DISJONCTEUR MCB courbe B, 32A/Icu 6kA, 4P, modulaire', NULL, 'Available in SCHNEIDER, Legrand, Hager.\nConsult us for more details', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(83, 'PELEZYN0055', 'Log', 'P', 'ELE', 'Electricity', 2405, 'undefined', NULL, NULL, NULL, NULL, 'undefined', 'undefined', 'CABLE, EXTENSION, 3m, 6 outlets (16 A+earth) tripplite,EUR p', NULL, NULL, 'Protect It! 230V 6-Universal Outlet Surge Protector, 1.8M Cord, British Plug, 750 Joules\n    6 universal outlets\n    1.8 m power cord with British plug\n    750 joule rating\n    Lighted on/off switch with integrated circuit breaker\n\n    This product is covered by a Lifetime Limited Warranty ', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(84, 'CWATZYN1228', 'Log', 'C', 'WAT', 'Water and sanitation', 5800, '31/08/2019', NULL, 'PCE', NULL, NULL, 'No', 'undefined', 'ELECTRIC WATER, PUMP 0.5HP, PEDROLLO', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(85, 'KCAMZYN0004', 'Log', 'K', 'CAM', 'Camp kits', 4660.85, '31/12/2019', NULL, 'PCE', NULL, NULL, 'No', 'undefined', 'NFI KIT, Type 1, MSF Std,\' made in Kenya\', pc', NULL, NULL, 'NFI FAMILY KIT\n18 items included 60l bucket', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(86, 'AFOOSUGA1--', 'Log', 'A', 'FOO', 'Food', 25, '08/31/2019', 'kg', 'kg', 1, 1, 'No', '1', 'SUGAR, 1 kg', 'SUCRE, 1 kg , morceaux', NULL, 'Brand KABRAS or Munias', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(87, 'AFOOZYN0017', 'Log', 'A', 'FOO', 'Food', 185.86, '12/31/2019', 'box of 100 sachets', 'carton of 10 Boxes of 100', NULL, NULL, 'Yes', '1', 'TEA, 100 sachets, the box', NULL, NULL, 'Ketepa Pride Tea Bags 100’s ', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(88, 'AFOOZYN1089', 'Log', 'A', 'FOO', 'Food', 206.98, '12/31/2019', 'pkt', 'Pkt of 500g', NULL, NULL, 'Yes', '1', 'BEVERAGE, tea leaves, 500g. Pkt', NULL, NULL, 'Fahari ya Kenya 500gms', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(89, 'ALIFZYN1006', 'Log', 'A', 'LIF', 'Team life', 25.34, '12/31/2019', 'pack of ten', 'pack of ten', NULL, NULL, 'Yes', '1', 'MATCHES, (Zebra), pack of 10 boxes', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(90, 'ALIFZYN1013', 'Log', 'A', 'LIF', 'Team life', 198.53, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'BROOM, soft with broomstick, for indoor use', NULL, NULL, 'Brand: Tepee', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(91, 'ALIFZYN1014', 'Log', 'A', 'LIF', 'Team life', 312.59, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'MOP HEAD, cotton, with stick', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(92, 'ALIFZYN1019', 'Log', 'A', 'LIF', 'Team life', 67.59, '12/31/2019', 'PCE', 'carton of 24 bars', NULL, NULL, 'Yes', '1', 'SOAP, 100g, luxury, pce', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(93, 'ALIFZYN1023', 'Log', 'A', 'LIF', 'Team life', 211.2, '12/31/2019', 'Spray', 'Spray', NULL, NULL, 'Yes', '1', 'AIR-FRESHNER, aromatic, spray can, 250ml', NULL, NULL, 'Brand: Glade', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(94, 'ALIFZYN1025', 'Log', 'A', 'LIF', 'Team life', 439.31, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'TOILET CLEANER, liquid, HARPIC, 1000ml', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(95, 'ALIFZYN1028', 'Log', 'A', 'LIF', 'Team life', 464.66, '12/31/2019', 'Spray', 'Spray', NULL, NULL, 'Yes', '1', 'INSECT REPELLANT,(Mortein Doom), spray, indoor use, 300g/494', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(96, 'ALIFZYN1029', 'Log', 'A', 'LIF', 'Team life', 502.67, '12/31/2019', 'jerrycan of 5 lts', 'jerrycan of 5 lts', NULL, NULL, 'Yes', '1', 'DISH WASHING LIQUID, 5 lts, jerrycan', NULL, NULL, 'Brand: Pride Lemon', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(97, 'ALIFZYN1034', 'Log', 'A', 'LIF', 'Team life', 80.26, '12/31/2019', 'PCE', 'unit', NULL, NULL, 'Yes', '1', 'CLOTH, for dusting, size 30 x 43 cm, cotton', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(98, 'ALIFZYN1047', 'Log', 'A', 'LIF', 'Team life', 295.69, '12/31/2019', NULL, 'unit', NULL, NULL, 'Yes', '1', 'POLISH WOOD, for furniture, 300ml, can', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(99, 'ALIFZYN1057', 'Log', 'A', 'LIF', 'Team life', 2156, '12/31/2019', 'box', 'boxes of 25 soaps', NULL, NULL, 'Yes', '1', 'SOAP, 800 gr bar, box of 25 bars, for distribution (PANGA)', NULL, NULL, 'PANGA LAUNDRY BAR SOAP WHITE & CLEAR  25 x 800g Carton', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(100, 'ALIFZYN1060', 'Log', 'A', 'LIF', 'Team life', 159.49, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'BUCKET, with mop sieve, plastic, standard size', NULL, NULL, 'Mop bucket', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(101, 'ALIFZYN1062', 'Log', 'A', 'LIF', 'Team life', 844.83, '12/31/2019', 'bag of 3kg', 'bag of 3kg', NULL, NULL, 'Yes', '1', 'WASHING POWDER, 3 kg, hand washing (PERSIL POWERPEARLS)', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(102, 'ALIFZYN1081', 'Log', 'A', 'LIF', 'Team life', 375.95, '12/31/2019', 'PCE', 'unit', NULL, NULL, 'Yes', '1', 'MULTI SURFACE CLEANER, Astonish', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(103, 'ALIFZYN1086', 'Log', 'A', 'LIF', 'Team life', 252.6, '12/31/2019', 'bag', 'carton of 12 bag of 0.9 kg', NULL, NULL, 'Yes', '1', 'WASHING POWDER, 0.9 kg', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(104, 'ALIFZYN1095', 'Log', 'A', 'LIF', 'Team life', 29.57, '12/31/2019', 'PCE', 'carton of 72 bar', NULL, NULL, 'Yes', '1', 'SOAP, 175 g, bar', NULL, NULL, 'Brand: USHINDI', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(105, 'ALIFZYN1097', 'Log', 'A', 'LIF', 'Team life', 1685.43, '12/31/2019', 'bag of 4.5kg', 'carton of 4 bags of 4.5kg', NULL, NULL, 'Yes', '1', 'WASHING POWDER, 4.5 kg, machine wash (PERSIL POWERPEARLS)', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(106, 'ALIFZYN1172', 'Log', 'A', 'LIF', 'Team life', 245, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'SOAP, HAND WASH, 500 ml', NULL, NULL, 'Brand FARMASI', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(107, 'ALIFZYN1185', 'Log', 'A', 'LIF', 'Team life', 185.86, '12/31/2019', 'PCE', 'unit', NULL, NULL, 'Yes', '1', 'FABRIC SOFTENER, STA SOFT 750 MLS', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(108, 'ALIFZYN1208', 'Log', 'A', 'LIF', 'Team life', 67.58, '12/31/2019', 'PCE', 'unit', NULL, NULL, 'Yes', '1', 'MAKUTI STICK BROOM', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(109, 'ALIFZYN1218', 'Log', 'A', 'LIF', 'Team life', 836.38, '12/31/2019', 'bag', 'carton of 4 bags of 3,5 kg', NULL, NULL, 'Yes', '1', 'Washing Powder OMO, bag of 3.5 kg', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(110, 'ASTABINDL37B', 'Log', 'A', 'STA', 'Stationery', 200, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'BINDER lever-arch, 310x290x75mm, black', 'CLASSEUR à levier, 310x290x75mm, noir', 'ARCHIVADOR DE PALANCA, 310 x 290 mm, lomo 75 mm, negro', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(111, 'ASTABINDL37L', 'Log', 'A', 'STA', 'Stationery', 200, '12/31/2019', 'PCE', 'PCE', 0.455, 3.685, 'Yes', '1', 'BINDER lever-arch, 310x290x75mm, blue', 'CLASSEUR à levier, 310x290x75mm, bleu', 'ARCHIVADOR DE PALANCA, 310 x 290 mm, lomo 75 mm, azul', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(112, 'ASTAENVE1WA', 'Log', 'A', 'STA', 'Stationery', 1.6, '12/31/2019', 'PCE', 'PCE', 0.005, 0.014628, 'Yes', '1', 'ENVELOPE, 110x220mm, 80g, white, self-adhesive', 'ENVELOPPE, 100x220mm, 80g, blanche, autocollante', 'SOBRE, 110 x 220 mm, blanco, cierre autoadhesivo, 80 g', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(113, 'ASTAENVE2KA', 'Log', 'A', 'STA', 'Stationery', 1.7, '12/31/2019', 'PCE', 'PCE', 0.008, 0.023256, 'Yes', '1', 'ENVELOPE, 162x229mm, 90g, kraft, self-adhesive', 'ENVELOPPE, 162x229mm, 90g, kraft, autocollante', 'SOBRE, 162 x 229 mm, kraft, cierre autoadhesivo, 90 g', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(114, 'ASTAENVE3KA', 'Log', 'A', 'STA', 'Stationery', 5.5, '12/31/2019', 'PCE', 'PCE', 0.015, 0.0444, 'Yes', '1', 'ENVELOPE, 229x324mm, 90g, kraft, self-adhesive', 'ENVELOPPE, 229x324mm, 90g, kraft, autocollante', 'SOBRE, 229 x 324 mm, kraft, cierre autoadhesivo, 90 g', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(115, 'ASTAERAS1R-', 'Log', 'A', 'STA', 'Stationery', 28, '12/31/2019', 'PCE', 'PCE', 0.0269, 0.032, 'Yes', '1', 'ERASER, rubber, white', 'GOMME, caoutchouc, blanche', 'GOMA DE BORRAR, caucho, blanca', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(116, 'ASTAERASF--', 'Log', 'A', 'STA', 'Stationery', 59, '12/31/2019', 'PCE', 'PCE', 0.04, 0.063, 'Yes', '1', 'CORRECTION FLUID, white, btl', 'CORRECTEUR LIQUIDE, blanc, btl', 'CORRECTOR LíQUIDO, blanco', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(117, 'ASTAFLIP1P5', 'Log', 'A', 'STA', 'Stationery', 240, '12/31/2019', 'PCE', 'PCE', 1.6, 2.59935, 'Yes', '1', '(flip chart) PAPER, 50 sheets', '(tableau a feuilles) PAPIER, 50 feuilles', '(pizarra tripode) PAPEL, 50 hojas', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(118, 'ASTAFOLD14T', 'Log', 'A', 'STA', 'Stationery', 5.6, '12/31/2019', 'PCE\n(pack of 100 pcs = 100 pcs)', 'pack of 100 pcs', 0.00472941, 0.0188235, 'Yes', '1', 'FOLDER punched, A4, transparent plastic, open at top', 'CHEMISE perforée, A4, transp. plastique ouverte en haut', 'FUNDA, A4, taladros, plástica, transparente, apertura sup.', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(119, 'ASTAFOLD24T', 'Log', 'A', 'STA', 'Stationery', 22, '12/31/2019', 'PCE', 'PCE', 0.006725, 0.0156, 'Yes', '1', 'FOLDER, A4, transparent plastic, open on 2 sides', 'CHEMISE, A4, transparent plastique, ouverte s. 2 côtés', 'FUNDA, A4, plástica, transparente, apertura 2 lados', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(120, 'ASTAFOLDD41', 'Log', 'A', 'STA', 'Stationery', 74, '12/31/2019', 'PCE', 'PCE', 0.1945, 0.16, 'Yes', '1', 'DIVIDERS, A4, 12 tabs', 'INTERCALAIRES, A4, 12 positions', 'SEPARADOR, A4, 12 pestañas', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(121, 'ASTAGLUESL-', 'Log', 'A', 'STA', 'Stationery', 148, '12/31/2019', 'PCE', 'PCE', 0.065625, 0.2, 'Yes', '1', 'GLUE stick, large', 'COLLE bâton, grand modèle', 'PEGAMENTO, en barra, gran modelo', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(122, 'ASTAPADP3--', 'Log', 'A', 'STA', 'Stationery', 24, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'PAD, PAPER, yellow, self-adhesive (Post-it), 38 x 51 mm', 'BLOC DE PAPIER, jaune, autocollant (Post-it), 38 x 51 mm', 'BLOC PAPEL, amarillo, adhesivo (Post-it), 38 x 51 mm', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(123, 'YTOY31250-0K205', 'Log', 'Y', 'TOY', 'Toyota spare parts', 9999, '31/12/2019', 'PCE', 'PCE', 2.145, 0, 'No', '1', '(LH202) CLUTCH DISK', '(Hilux KUN15/25) DISQUE D\'EMBRAYAGE, OØ 260mm', 'Clutch disc (OD=260), HILUX KUN15/25', 'Hilux', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(124, 'YTOY31250-0K205', 'Log', 'Y', 'TOY', 'Toyota spare parts', 9999, '31/12/2019', 'PCE', 'PCE', 2.145, 0, 'No', '4', '(LH202) CLUTCH DISK', '(Hilux KUN15/25) DISQUE D\'EMBRAYAGE, OØ 260mm', 'Clutch disc (OD=260), HILUX KUN15/25', 'Hiace', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(125, 'ASTAPADP7--', 'Log', 'A', 'STA', 'Stationery', 46, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'PAD, PAPER, yellow, self-adhesive (Post-it), 76 x 127 mm', 'BLOC DE PAPIER, jaune, autocollant (Post-it), 76 x 127 mm', 'BLOC PAPEL, amarillo, adhesivo (Post-it), 76 x 127 mm', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(126, 'ASTAPENB1B-', 'Log', 'A', 'STA', 'Stationery', 12.5, '12/31/2019', 'PCE', 'Boxe of 50 pens', 0.0064, 0.0256, 'Yes', '1', 'BALL-POINT PEN, black', 'STYLO A BILLE, noir', 'BOLIGRAFO, negro', 'BIC Cristal', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(127, 'ASTAPENB1L-', 'Log', 'A', 'STA', 'Stationery', 12.5, '12/31/2019', NULL, 'Boxe of 50 pens', 0.00752, 0.0256, 'Yes', '1', 'BALL-POINT PEN, blue', 'STYLO A BILLE, bleu', 'BOLIGRAFO, azul', 'BIC Cristal', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(128, 'ASTAPENB1R-', 'Log', 'A', 'STA', 'Stationery', 12.5, '12/31/2019', 'PCE', 'Boxe of 50 pens', 0.00752, 0.0256, 'Yes', '1', 'BALL-POINT PEN, red', 'STYLO A BILLE, rouge', 'BOLIGRAFO, rojo', 'BIC Cristal', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(129, 'ASTAPENC1HB', 'Log', 'A', 'STA', 'Stationery', 32, '12/31/2019', 'PCE', 'boxe of 12 PCES', 0.00575, 0.0266667, 'Yes', '1', 'PENCIL, lead, HB', 'CRAYON, plomb, HB', 'LAPIZ, de grafito, HB', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(130, 'ASTAPENM1BE', 'Log', 'A', 'STA', 'Stationery', 105, '12/31/2019', 'PCE', 'box of 10 PCES', 0.0158333, 0.0592593, 'Yes', '1', 'MARKER erasable, black', 'MARQUER TABLEAU BLANC effaçable, noir', 'MARCADOR, no permanente, negro', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(131, 'ASTAPENM1GE', 'Log', 'A', 'STA', 'Stationery', 105, '12/31/2019', 'PCE', 'box of 10 PCES', 0.0158333, 0.0592593, 'Yes', '1', 'MARKER erasable, green', 'MARQUER TABLEAU BLANC effaçable, vert', 'MARCADOR, no permanente, verde', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(132, 'ASTAPENM1LE', 'Log', 'A', 'STA', 'Stationery', 105, '12/31/2019', 'PCE', 'box of 10 PCES', 0.0118333, 0.0592593, 'Yes', '1', 'MARKER erasable, blue', 'MARQUER TABLEAU BLANC effaçable, bleu', 'MARCADOR, no permanente, azul', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(133, 'ASTAPENM1RE', 'Log', 'A', 'STA', 'Stationery', 105, '12/31/2019', 'PCE', 'box of 10 PCES', 0.0155417, 0.05625, 'Yes', '1', 'MARKER erasable, red', 'MARQUER TABLEAU BLANC effaçable, rouge', 'MARCADOR, no permanente, rojo', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(134, 'ASTAPENM2BS', 'Log', 'A', 'STA', 'Stationery', 86, '12/31/2019', 'PCE', 'box of 10 PCES', 0.01125, 0.044444, 'Yes', '1', 'MARKER permanent, fine point, black', 'MARKER indélébile, pointe fine, noir', 'MARCADOR, permanente, punta fina, negro', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(135, 'ASTAPENM2GS', 'Log', 'A', 'STA', 'Stationery', 86, '12/31/2019', 'PCE', 'box of 10 PCES', 0.000833333, 0.00216667, 'Yes', '1', 'MARKER permanent, fine point, green', 'MARKER indélébile, pointe fine, vert', 'MARCADOR, permanente, punta fina, verde', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(136, 'ASTAPENM2LS', 'Log', 'A', 'STA', 'Stationery', 86, '12/31/2019', 'PCE', 'box of 10 PCES', 0.000833333, 0.00216667, 'Yes', '1', 'MARKER permanent, fine point, blue', 'MARKER indélébile, pointe fine, bleu', 'MARCADOR, permanente, punta fina, azul', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(137, 'ASTAPENM2RS', 'Log', 'A', 'STA', 'Stationery', 86, '12/31/2019', 'PCE', 'box of 10 PCES', 0.010494, 0.041667, 'Yes', '1', 'MARKER permanent, fine point, red', 'MARKER indélébile, pointe fine, rouge', 'MARCADOR, permanente, punta fina, rojo', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(138, 'ASTAPENM3BB', 'Log', 'A', 'STA', 'Stationery', 86, '12/31/2019', 'PCE', 'box of 10 PCES', 0.001444, 0.177778, 'Yes', '1', 'MARKER permanent, large chisel point, black', 'MARKER indélébile, pointe biseautée, noir', 'MARCADOR, permanente, grande, punta biselada, negro', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(139, 'ASTAPENM3BL', 'Log', 'A', 'STA', 'Stationery', 86, '12/31/2019', 'PCE', 'box of 10 PCES', NULL, NULL, 'Yes', '1', 'MARKER, permanent, large, chisel point, blue', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(140, 'ASTAPENM3GB', 'Log', 'A', 'STA', 'Stationery', 86, '12/31/2019', 'PCE', 'box of 10 PCES', 0.047054, 0.095238, 'Yes', '1', 'MARKER permanent, large chisel point, green', 'MARKER indélébile, pointe biseautée, vert', 'MARCADOR, permanente, grande, punta biselada, verde', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21');
+INSERT INTO `articles` (`id`, `article_code`, `category`, `group`, `family`, `fam_desc`, `price`, `valid`, `unit`, `sud`, `weight`, `volume`, `stock`, `lead_time`, `desc_eng`, `desc_fra`, `desc_spa`, `details`, `created_at`, `updated_at`) VALUES
+(141, 'ASTAPENM3RB', 'Log', 'A', 'STA', 'Stationery', 86, '12/31/2019', 'PCE', 'box of 10 PCES', 0.042167, 0.177778, 'Yes', '1', 'MARKER permanent, large chisel point, red', 'MARKER indélébile, pointe biseautée, rouge', 'MARCADOR, permanente, grande, punta biselada, rojo', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(142, 'ASTAPENM4FS', 'Log', 'A', 'STA', 'Stationery', 200, '12/31/2019', 'pack of 4', 'pack of 4', 0.1, 0.24, 'Yes', '1', 'HIGHLIGHTER fluorescent, 4 colours, set', 'SURLIGNEUR fluorescent, 4 couleurs, jeu', 'MARCADOR, fluorescente, juego 4 colores', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(143, 'ASTAPUNC1P-', 'Log', 'A', 'STA', 'Stationery', 254, '12/31/2019', 'PCE', 'PCE', 0.446, 1.28, 'Yes', '1', 'PAPER PUNCH, with guide', 'PERFOREUSE, avec instrument de mesure, pce', 'TALADRO, con guía de papel', 'Medium Punch', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(144, 'ASTARING1K-', 'Log', 'A', 'STA', 'Stationery', 30, '12/31/2019', 'PCE', 'PCE', 0.0045, 0.0135, 'Yes', '1', 'KEY RING + label', 'PORTE-CLES + étiquette', 'LLAVERO, con etiqueta', '#N/A', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(145, 'ASTARULE30-', 'Log', 'A', 'STA', 'Stationery', 15, '12/31/2019', 'PCE', 'PCE', 0.02525, 0.060605, 'Yes', '1', 'RULER, 30cm, transparent plastic', 'RULER, 30cm, plastique transparent', 'REGLA, 30 cm, plástico, transparente', 'quarterlyorder', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(146, 'ASTASCISS7B', 'Log', 'A', 'STA', 'Stationery', 110, '12/31/2019', 'PCE', 'PCE', 0.003208, 0.016241, 'Yes', '1', 'SCISSORS, 17cm, blunt ends', 'CISEAUX, 17cm, bouts arrondis', 'TIJERAS, 17 cm, puntas redondas', 'rapesco', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(147, 'ASTASTAP1M-', 'Log', 'A', 'STA', 'Stationery', 215, '12/31/2019', 'PCE', 'PCE', 0.37425, 0.4329, 'Yes', '1', 'STAPLER, medium 24/6-8, for 50 sheets', 'AGRAFEUSE, modèle moyen 24/6-8, pour 50 feuilles', 'GRAPADORA, modelo mediano, 24/6-8, para 50 hojas', 'Push Back Stapler', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(148, 'ASTASTAPR--', 'Log', 'A', 'STA', 'Stationery', 45, '12/31/2019', 'PCE', 'PCE', 0.0336, 0.128, 'Yes', '1', 'STAPLE REMOVER', 'ARRACHE-AGRAFES', 'QUITAGRAPAS', 'Staple Remover', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(149, 'ASTAZYN1002', 'Log', 'A', 'STA', 'Stationery', 160, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'COUNTER BOOK, Register, Hard Cover, A4 (Q2) approx. 200 PGS', NULL, NULL, '#N/A', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(150, 'ASTAZYN1003', 'Log', 'A', 'STA', 'Stationery', 70, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'COUNTER BOOK, Register, Hard cover, A5 (Q2) approx. 200 PGS', NULL, NULL, '#N/A', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(151, 'ASTAZYN1017', 'Log', 'A', 'STA', 'Stationery', 15, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'PENCIL SHARPENER, 1 size', NULL, NULL, 'Metal Sharpener', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(152, 'ASTAZYN1046', 'Log', 'A', 'STA', 'Stationery', 340, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'TRAY, plastic, 2 tiers, pce', NULL, NULL, '#N/A', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(153, 'ASTAZYN1047', 'Log', 'A', 'STA', 'Stationery', 90, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'DUSTER, for whiteboard, pce', NULL, NULL, '#N/A', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(154, 'ASTAZYN1049', 'Log', 'A', 'STA', 'Stationery', 47, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'NOTEBOOK, A4, ruled, Loose leaf pad, 100 pages', NULL, NULL, '#N/A', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(155, 'ASTAZYN1050', 'Log', 'A', 'STA', 'Stationery', 42, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'FILE, SPRING FILE, PVC, pce', NULL, NULL, '#N/A', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(156, 'ASTAZYN1051', 'Log', 'A', 'STA', 'Stationery', 28, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'FOLDER, soft plastic, A4, transparent front (quotation file)', NULL, NULL, '#N/A', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(157, 'ASTAZYN1052', 'Log', 'A', 'STA', 'Stationery', 22, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'ERASEER, rubber, red/blue. Pc', NULL, NULL, '#N/A', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(158, 'ASTAZYN1075', 'Log', 'A', 'STA', 'Stationery', 94, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', '(medium stapler) STAPLES, 24/6, box of 5000 (No.16)', NULL, NULL, 'Staple Pin', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(159, 'ASTAZYN1085', 'Log', 'A', 'STA', 'Stationery', 23, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'PAD, PAPER, yellow, self-adhesive (Post-it), 76 x 76 mm', NULL, NULL, '#N/A', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(160, 'ASTAZYN1116', 'Log', 'A', 'STA', 'Stationery', 285, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'COUNTER BOOK, Register, Hard Cover, A4 (Q4) approx. 400 PGS', NULL, NULL, '#N/A', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(161, 'ASTAZYN1121', 'Log', 'A', 'STA', 'Stationery', 75, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'NOTEBOOK, A5, ruled, shorthand, spiralbound, 100 pages', NULL, NULL, '#N/A', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(162, 'CWATZYN1028', 'Log', 'C', 'WAT', 'Water and sanitation', 175, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'BASIN, plastic, 20 litres', NULL, NULL, 'MILANIO 45 cm, 5 colors available', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(163, 'CWATZYN1093', 'Log', 'C', 'WAT', 'Water and sanitation', 228.45, '12/31/2019', 'PCE', 'PCE', NULL, NULL, 'Yes', '1', 'BUCKET STRONG Plastic 20litres + Cover (colour to specify)', NULL, NULL, 'Color white', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(164, 'PCOOUTENSST', 'Log', 'P', 'COO', 'Cooking equipment', 42.1, '12/31/2019', 'PCE', 'Pack of 6 spoons', 0.0164, 0.008812, 'Yes', '1', 'TEASPOON, stainless steel, 5ml', 'CUILLERE A CAFE, acier inoxydable, 5ml', 'CUCHARILLA, de café, acero inox., 5ml', '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(165, 'PCOOUTENSSS', 'Log', 'P', 'COO', 'Cooking equipment', 75.33, '12/31/2019', 'PCE', 'Pack of 6 spoons', 0.0418, 0.064, 'Yes', '1', 'SOUP SPOON, stainless steel, 15ml', 'CUILLERE A SOUPE, acier inoxydable, 15ml', 'CUILLERE, a soupe, acier inoxydable, 15 ml', '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(166, 'PHYGBROOD--', 'Log', 'P', 'HYG', 'Hygiene', 105.6, '12/31/2019', 'PCE', 'unit', 0.24, 4.7817, 'Yes', '1', 'DUSTPAN + BRUSH', 'PELLE + BALAYETTE A POUSSIERES', 'PALA + escobilla', '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(167, 'PHYGBRUSFS-', 'Log', 'P', 'HYG', 'Hygiene', 299.91, '12/31/2019', 'PCE', 'unit', NULL, NULL, 'Yes', '1', 'SQUEEGEE, for floor + broomstick', 'RACLETTE, pour sol + manche', 'RASPADOR PARA SUELOS, con palo', '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(168, 'PHYGBRUSSW-', 'Log', 'P', 'HYG', 'Hygiene', 71.81, '12/31/2019', 'PCE', 'unit', 0.06, 0.2, 'Yes', '1', 'BRUSH scrubbing, for washing-up', 'BROSSE à récurer, pour la vaisselle', 'CEPILLO PARA FREGAR, para la vajilla', '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(169, 'PHYGGLOR1M-', 'Log', 'P', 'HYG', 'Hygiene', 101.38, '12/31/2019', 'pair', 'pair', NULL, NULL, 'Yes', '1', 'GLOVES cleaning, rubber, size M, reusable, pair', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(170, 'PHYGGLOVRLP', 'Log', 'P', 'HYG', 'Hygiene', 101.38, '12/31/2019', 'pair', 'pair', 0.069792, 0.227208, 'Yes', '1', 'GLOVES cleaning, rubber, size L, reusable, pair', 'GANTS de ménage, caoutchouc, taille L, réutilisables, paire', 'GUANTES DE LIMPIEZA, caucho, reutilizable, par, grandes', '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(171, 'PHYGSOAPTLW', 'Log', 'P', 'HYG', 'Hygiene', 131.79, '12/31/2019', 'PCE', 'bottle of 1 ltr', 1.115, 2.14293, 'Yes', '1', 'WASHING-UP LIQUID, 1l, btl', 'LIQUIDE VAISSELLE, 1l, btl', 'LAVAVAJILLAS LIQUIDO, 1 litro', 'Brand: Pride Lemon', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(172, 'PHYGTOWEC07', 'Log', 'P', 'HYG', 'Hygiene', 295.69, '12/31/2019', 'PCE', 'PCE', 0.144667, 0.91, 'Yes', '1', 'TOWEL, small, 50 x 70cm, cotton, pce', 'SERVIETTE, coton, 70x50cm', 'TOALLA, 50 x 70 cm, 100% algodón', '#N/A', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(173, 'PHYGZYN1018', 'Log', 'P', 'HYG', 'Hygiene', 912.41, '12/31/2019', 'bag', 'bag of 10 kg', NULL, NULL, 'Yes', '1', 'WASHING POWDER, 10 kg, bag, IDP', NULL, NULL, '0', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(174, 'PSAFTAPEB52', 'Log', 'P', 'SAF', 'Safety and protective equipment', 750, '19/02/2020', 'PCE', 'PCE', 1.251, 2.84335, 'No', '1', 'TAPE BOUNDARY MARKING, 500m, white/orange, fluorescent, roll', 'RUBAN DE BALISAGE, 500m, blanc/orange, fluorescent, rouleau', NULL, '1202/5RW - AMERICAN SAFETY HI-VIS CAUTION TAPE RED/WHITE 70mm X 500m\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(175, 'PSAFCROWN1R', 'Log', 'P', 'SAF', 'Safety and protective equipment', 4000, '19/02/2020', 'Roll', 'Roll', 5.87, 42, 'No', '1', 'BOUNDARY NET, 1x50m, roll', 'FILET DE BALISAGE, 1x50m, rouleau', NULL, '1204/HDF000\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(176, 'PSAFGOGGP1-', 'Log', 'P', 'SAF', 'Safety and protective equipment', 275, '19/02/2020', 'PCE', NULL, NULL, NULL, 'No', '1', 'OCULAR GLASSES protective, against projections', 'LUNETTES OCCULAIRES de protéction, contre projections', NULL, '301/ASA748 - SPECTACLES SPORTY MODERN DESIGN M9700 CLEAR/DARK\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(177, 'PSAFGOGGDO-', 'Log', 'P', 'SAF', 'Safety and protective equipment', 260, '19/02/2020', 'PCE', NULL, 0.06, 0.5, 'No', '1', 'GLASSES protective, dust proof', 'LUNETTES de protection, antipoussiere', NULL, '302/AGC021 - JSP GOGGLES CLEAR INDIRECT VENT ANTIMIST MARTCARE\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(178, 'PSAFGOGGW1D', 'Log', 'P', 'SAF', 'Safety and protective equipment', 30, '19/02/2020', 'PCE', NULL, 0.05, 0.0605, 'No', '1', '(welding mask) DARK GLASS, 105x50mm', '(masque de soudure) VERRE FUME, 105x50mm', NULL, '308/SDWGN - SPARE GLASS DARK DIN 11 108 mm x 80 mm - Minimum of 10 per packet\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(179, 'PSAFZYN0003', 'Log', 'P', 'SAF', 'Safety and protective equipment', 7.75, '12/31/2019', 'pce', 'box of 50\'s', NULL, NULL, 'Yes', '1', 'MASK, paper, dust protection, disposable, pce (inter code : ALIFMASKD01)', NULL, NULL, '401/2 - TAIWAN DUST MASK DISPOSABLE YELLOW BOX HEAVY - Minimum of 50 per box\nwww.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(180, 'PSAFMASKRF1', 'Log', 'P', 'SAF', 'Safety and protective equipment', 85, '19/02/2020', 'PCE', 'Packed in 5\'s.', 0.0165, 0.1932, 'No', '1', 'RESPIRATOR FFP1, disposable', 'MASQUE DE PROTECTION RESPIRATOIRE FFP1, jetable', NULL, '401/BEJ110 - JSP DUST/MIST RESPIRATOR FFP1 JSP111 - Minimum of 20 per packet\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(181, 'PSAFGOGGW1-', 'Log', 'P', 'SAF', 'Safety and protective equipment', 300, '19/02/2020', 'PCE', NULL, 0.42, 10.106, 'No', '1', 'PROTECTION MASK, for welding', 'MASQUE DE PROTECTION, pour souder', NULL, '401/BEK150 - JSP WELDING RESPIRATOR FFP2  JSP 123 - Minimum of 20 per packet', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(182, 'ALIFZYN01328', 'Log', 'A', 'LIF', 'Team life', 177.083, '12/31/2019', 'Pack of 12', 'pack of 12', NULL, NULL, 'Yes', '1', 'Scourer Super brite medium, 12 pcs', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(183, 'PSAFMASKGE-', 'Log', 'P', 'SAF', 'Safety and protective equipment', 17500, '19/02/2020', 'PCE', NULL, 0.876667, 16.38, 'No', '1', 'GAS MASK (Pluto - Artelli) + EN 148-1 connection', NULL, NULL, '405/5511680 - SCOTT FULL FACE MASK SARI CANNISTER TYPE c/w 406/5042799 - CANNISTER COMBINED ABEK2P3\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(184, 'ALIFZYN1045', 'Log', 'A', 'LIF', 'Team life', 71.81, '12/31/2019', 'PCE', 'unit', NULL, NULL, 'Yes', '1', 'BROOM, with broomstick, for outdoor use', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(185, 'AFURZYN0062', 'Log', 'A', 'FUR', 'Furniture', 20000, '31/12/2019', 'PCE', NULL, NULL, NULL, 'No', '1', 'SHELVES, GALVANIZED, ± 200X50x250, (LxWxH), 120kg', NULL, NULL, 'Shelves installed in Masisi project pharmacie with positive feedback', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(186, 'PSAFGLOVDO-', 'Log', 'P', 'SAF', 'Safety and protective equipment', 350, '19/02/2020', 'Pair', 'Pair', 0.119505, 0.417307, 'No', '1', 'GLOVES heavy duty, leather protection, pair', 'GANTS de travail, avec protection en cuir, paire', NULL, '501/10I - AMERICAN SAFETY GREY SPLIT LEATHER GLOVES 10\" CUFF 18\" LONG\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(187, 'PSAFGLOVLX-', 'Log', 'P', 'SAF', 'Safety and protective equipment', 900, '19/02/2020', 'Pair', 'Pair', 0.2078, 0.64, 'No', '1', 'GLOVES, leather, size XL, lined, pair', 'GANTS, cuir, taille XL, fourrés, paire', NULL, '501/1106 - AMERICAN SAFETY YELLOW FULL GRAIN DRIVERS GLOVES RED LINING SNUGFIT\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(188, 'PSAFGLOVDOL', 'Log', 'P', 'SAF', 'Safety and protective equipment', 325, '12/31/2019', 'Pair', 'Pair', 0.001, 0.001, 'Yes', '1', 'GLOVES heavy duty, rubber, long sleeves, pair', 'GANTS de travail, caoutchouc, manches longues, paire', 'GANTS DE TRAVAIL, caoutchouc, manches longues, la paire', '502/18 - PROTECTA HEAVY WEIGHT BLACK/ORANGE  SMOOTH SURFACE GLOVES 18\" 280G\nwww.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(189, 'PSAFGLOVCO-', 'Log', 'P', 'SAF', 'Safety and protective equipment', 1320, '19/02/2020', 'Pair', 'Pair', 0.085167, 0.22185, 'No', '1', 'GLOVES, CHEMICAL RESISTANT, long sleeves, pair', 'GANTS de protection chimique, manches longues, paire', NULL, '502/298 - MAPA INDUSTRIAL BLUE CHLORINATED RUBBER GLOVES 42cm\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(190, 'PSAFGLOVM09', 'Log', 'P', 'SAF', 'Safety and protective equipment', 900, '19/02/2020', 'Pair', 'Pair', 0.1, 0.5, 'No', '1', 'GLOVES mechanics, synthetic, size 9, pair', 'GANTS de mécanicien, synthétique, taille 9, paire', NULL, '504/ACG507A - AMERICAN SAFETY HEAVY DUTY MECHANICAL GLOVES - RUBBER/LEATHER PALM\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(191, 'PSAFGLOVM10', 'Log', 'P', 'SAF', 'Safety and protective equipment', 900, '19/02/2020', 'Pair', 'Pair', 0.1, 0.5, 'No', '1', 'GLOVES mechanics, synthetic, size 10, pair', 'GANTS de mécanicien, synthétique, taille 10, paire', NULL, '504/ACG507A - AMERICAN SAFETY HEAVY DUTY MECHANICAL GLOVES - RUBBER/LEATHER PALM\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(192, 'PSAFGLOVM11', 'Log', 'P', 'SAF', 'Safety and protective equipment', 900, '19/02/2020', 'Pair', 'Pair', 0.1, 0.5, 'No', '1', 'GLOVES mechanics, synthetic, size 11, pair', 'GANTS de mécanicien, synthétique, taille 11, paire', NULL, '504/ACG507A - AMERICAN SAFETY HEAVY DUTY MECHANICAL GLOVES - RUBBER/LEATHER PALM\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(193, 'PSAFGLOVN07', 'Log', 'P', 'SAF', 'Safety and protective equipment', 200, '19/02/2020', 'Pair', 'Pair', 0.095833, 0.422222, 'No', '1', 'GLOVES protective, nitrile, size 7, reusable, pair', 'GANTS protection, nitrile, taille 7, réutilisables, paire', NULL, '505/492 - ULTRANITRIL FLOCKLINED GREEN NITRILE GLOVE EN374-3 AJKOPT\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(194, 'PSAFGLOVN08', 'Log', 'P', 'SAF', 'Safety and protective equipment', 200, '19/02/2020', 'Pair', 'Pair', 0.099306, 0.444444, 'No', '1', 'GLOVES protective, nitrile, size 8, reusable, pair', 'GANTS protection, nitrile, taille 8, réutilisables, paire', NULL, '505/492 - ULTRANITRIL FLOCKLINED GREEN NITRILE GLOVE EN374-3 AJKOPT\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(195, 'PSAFGLOVN10', 'Log', 'P', 'SAF', 'Safety and protective equipment', 200, '12/31/2019', 'Pair', 'Pair', 0.10937, 0.459414, 'Yes', '1', 'GLOVES protective, nitrile, size 10, reusable, pair', 'GANTS protection, nitrile, taille 10, réutilisables, paire', 'GUANTES DE PROTECCION, nitrilo, reutilizables, par, 10', '505/492 - ULTRANITRIL FLOCKLINED GREEN NITRILE GLOVE EN374-3 AJKOPT\nwww.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(196, 'PSAFGLOVHOS', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2500, '12/31/2019', 'Pair', 'Pair', 0.442, 2.4, 'Yes', '1', 'GLOVES heat resistant (Sperian GBTK7065) max 450°C-15s, pair', 'GANTS anti-chaleur (Sperian GBTK7065) max 450°C-15s, paire', 'GANTS ANTI-CHALEUR (Sperian GBTK7065), +450° C, la paire', '507/517146 - TUFFSAFE HOT MILL GLOVES NON-ASBESTOS ARAMID FIBRE\nwww.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(197, 'PSAFGLOV510', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2750, '19/02/2020', 'Pair', 'Pair', 0.4, 0.5, 'No', '1', 'GLOVES insulated, size 10, class 00, 500V, pair', 'GANTS isolés, taille 10, classe 00, 500V, paire', NULL, '509/JS10132 - ELECTRO SAVIOUR ELECTRICAL INSULATING LATEX GLOVES 355MM 1100V ISI TYPE 2\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(198, 'ALIFBOOL37-', 'Log', 'A', 'LIF', 'Team life', 2250, '19/02/2020', 'Pair', 'Pair', NULL, NULL, 'No', '1', 'BOOTS, leather, lined, pair, size 37', 'BOTTES, cuir, fourrées, paire, taille 37', NULL, '801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-12\nwww.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(199, 'ALIFBOOL38-', 'Log', 'A', 'LIF', 'Team life', 2250, '19/02/2020', 'Pair', 'Pair', NULL, NULL, 'No', '1', 'BOOTS, leather, lined, pair, size 38', 'BOTTES, cuir, fourrées, paire, taille 38', NULL, '801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-13\nwww.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(200, 'PSAFBOOTP39', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2250, '19/02/2020', 'Pair', 'Pair', 2.5, 12, 'No', '1', 'SAFETY BOOTS, PVC, size 39, protective tip, pair', 'BOTTES DE SECURITÉ, PVC, taille 39, embout protection, paire', NULL, '801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-12\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(201, 'ALIFBOOL40-', 'Log', 'A', 'LIF', 'Team life', 2250, '19/02/2020', 'Pair', 'Pair', NULL, NULL, 'No', '1', 'BOOTS, leather, lined, pair, size 40', NULL, NULL, '801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-15\nwww.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(202, 'ALIFBOOL41-', 'Log', 'A', 'LIF', 'Team life', 2250, '19/02/2020', 'Pair', 'Pair', NULL, NULL, 'No', '1', 'BOOTS, leather, lined, pair, size 41', 'BOTTES, cuir, fourrées, paire, taille 41', NULL, '801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-16\nwww.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(203, 'ALIFBOOL42-', 'Log', 'A', 'LIF', 'Team life', 2250, '19/02/2020', 'Pair', 'Pair', NULL, NULL, 'No', '1', 'BOOTS, leather, lined, pair, size 42', 'BOTTES, cuir, fourrées, paire, taille 42', NULL, '801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-17\nwww.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(204, 'ALIFBOOL43-', 'Log', 'A', 'LIF', 'Team life', 2250, '19/02/2020', 'Pair', 'Pair', NULL, NULL, 'No', '1', 'BOOTS, leather, lined, pair, size 43', 'BOTTES, cuir, fourrées, paire, taille 43', NULL, '801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-18\nwww.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(205, 'ALIFBOOL44-', 'Log', 'A', 'LIF', 'Team life', 2250, '19/02/2020', 'Pair', 'Pair', NULL, NULL, 'No', '1', 'BOOTS, leather, lined, pair, size 44', 'BOTTES, cuir, fourrées, paire, taille 44', NULL, '801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-19\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(206, 'ALIFBOOL45-', 'Log', 'A', 'LIF', 'Team life', 2250, '19/02/2020', 'Pair', 'Pair', NULL, NULL, 'No', '1', 'BOOTS, leather, lined, pair, size 45', 'BOTTES, cuir, fourrées, paire, taille 45', NULL, '801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-20\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(207, 'PSAFBOOTP40', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2250, '19/02/2020', 'Pair', 'Pair', 2.5, 12, 'No', '1', 'SAFETY BOOTS, PVC, size 40, protective tip, pair', 'BOTTES DE SECURITÉ, PVC, taille 40, embout protection, paire', NULL, '801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-13\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(208, 'PSAFBOOTP41', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2250, '19/02/2020', 'Pair', 'Pair', 2.5, 12, 'No', '1', 'SAFETY BOOTS, PVC, size 41, protective tip, pair', 'BOTTES DE SECURITÉ, PVC, taille 41, embout protection, paire', NULL, '801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-14\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(209, 'PSAFBOOTP42', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2250, '19/02/2020', 'Pair', 'Pair', 2.80643, 9.57505, 'No', '1', 'SAFETY BOOTS, PVC, size 42, protective tip, pair', 'BOTTES DE SECURITÉ, PVC, taille 42, embout protection, paire', NULL, '801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-15\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(210, 'PSAFBOOTP43', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2250, '19/02/2020', 'Pair', 'Pair', 2.5, 12, 'No', '1', 'SAFETY BOOTS, PVC, size 43, protective tip, pair', 'BOTTES DE SECURITÉ, PVC, taille 43, embout protection, paire', NULL, '801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-16\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(211, 'PSAFBOOTP44', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2250, '19/02/2020', 'Pair', 'Pair', 2.94526, 10.7173, 'No', '1', 'SAFETY BOOTS, PVC, size 44, protective tip, pair', 'BOTTES DE SECURITÉ, PVC, taille 44, embout protection, paire', NULL, '801/1991S3 - PROTECTA BOOT. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-17\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(212, 'PSAFSHOEP38', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2250, '19/02/2020', 'Pair', 'Pair', NULL, NULL, 'No', '1', 'SAFETY SHOES, size 38, protective tip, pair', 'CHAUSSURES DE SECURITE, taille 38, embout métal, la paire', NULL, '802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-12\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(213, 'PSAFSHOEP39', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2250, '19/02/2020', 'Pair', 'Pair', 2, 6, 'No', '1', 'SAFETY SHOES, size 39, protective tip, pair', 'CHAUSSURES DE SECURITE, taille 39, embout métal, la paire', NULL, '802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-13\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(214, 'PSAFSHOEP40', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2250, '19/02/2020', 'Pair', 'Pair', 2, 6, 'No', '1', 'SAFETY SHOES, size 40, protective tip, pair', 'CHAUSSURES DE SECURITE, taille 40, embout métal, la paire', NULL, '802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-14\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(215, 'PSAFSHOEP41', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2250, '19/02/2020', 'Pair', 'Pair', 2, 6, 'No', '1', 'SAFETY SHOES, size 41, protective tip, pair', 'CHAUSSURES DE SECURITE, taille 41, embout métal, la paire', NULL, '802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-15\nBrand : Protecta\nDescription:\nPROTECTA SHOE. Quality Buffalo print leather uppers with padded collars. 4 Eyelet lace system. EN20345 S3 Sizes 4 - 13 UNISEX\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(216, 'PSAFSHOEP42', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2250, '19/02/2020', 'Pair', 'Pair', 2, 6, 'No', '1', 'SAFETY SHOES, size 42, protective tip, pair', 'CHAUSSURES DE SECURITE, taille 42, embout métal, la paire', NULL, '802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-16\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(217, 'PSAFSHOEP43', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2250, '19/02/2020', 'Pair', 'Pair', 2, 6, 'No', '1', 'SAFETY SHOES, size 43, protective tip, pair', 'CHAUSSURES DE SECURITE, taille 43, embout métal, la paire', NULL, '802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-17\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(218, 'PSAFSHOEP44', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2250, '19/02/2020', 'Pair', 'Pair', 2, 6, 'No', '1', 'SAFETY SHOES, size 44, protective tip, pair', 'CHAUSSURES DE SECURITE, taille 44, embout métal, la paire', NULL, '802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-18\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(219, 'PSAFSHOEP45', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2250, '19/02/2020', 'Pair', 'Pair', 2, 6, 'No', '1', 'SAFETY SHOES, size 45, protective tip, pair', 'CHAUSSURES DE SECURITE, taille 45, embout métal, la paire', NULL, '802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-19\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(220, 'PSAFSHOEP46', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2250, '19/02/2020', 'Pair', 'Pair', 2, 6, 'No', '1', 'SAFETY SHOES, size 46, protective tip, pair', 'CHAUSSURES DE SECURITE, taille 46, embout métal, la paire', NULL, '802/1991S3 - PROTECTA SHOE. PADDED COLLAR, WATER RESISTANT, STEEL MIDSOLE.  EN20345 S3 SIZE 4-20\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(221, 'PHYGBOOTR37', 'Log', 'P', 'HYG', 'Hygiene', 480, '19/02/2020', 'Pair', 'Pair', 1.75625, 8, 'No', '1', 'BOOTS, rubber, size, 37 pair', 'BOTTES, caoutchouc, taille 37, paire', NULL, '806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-11\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(222, 'PHYGBOOTR38', 'Log', 'P', 'HYG', 'Hygiene', 480, '19/02/2020', 'Pair', 'Pair', NULL, NULL, 'No', '1', 'BOOTS, rubber, size, 38 pair', NULL, NULL, '806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-12\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(223, 'PHYGBOOTR39', 'Log', 'P', 'HYG', 'Hygiene', 480, '19/02/2020', 'Pair', 'Pair', 1.5625, 7.605, 'No', '1', 'BOOTS, rubber, size, 39 pair', 'BOTTES, caoutchouc, taille 39, paire', NULL, '806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-13\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(224, 'PHYGBOOTR40', 'Log', 'P', 'HYG', 'Hygiene', 480, '19/02/2020', 'Pair', 'Pair', NULL, NULL, 'No', '1', 'BOOTS, rubber, size, 40 pair', 'BOTTES, caoutchouc, taille 40, paire', NULL, '806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-14\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(225, 'PHYGBOOTR41', 'Log', 'P', 'HYG', 'Hygiene', 480, '19/02/2020', 'Pair', 'Pair', 2.24375, 8, 'No', '1', 'BOOTS, rubber, size, 41 pair', 'BOTTES, caoutchouc, taille 41, paire', NULL, '806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-15\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(226, 'PHYGBOOTR42', 'Log', 'P', 'HYG', 'Hygiene', 480, '19/02/2020', 'Pair', 'Pair', 1.725, 7.995, 'No', '1', 'BOOTS, rubber, size, 42 pair', 'BOTTES, caoutchouc, taille 42, paire', NULL, '806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-16\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(227, 'PHYGBOOTR43', 'Log', 'P', 'HYG', 'Hygiene', 480, '19/02/2020', 'Pair', 'Pair', 1.8, 8.2, 'No', '1', 'BOOTS, rubber, size, 43 pair', 'BOTTES, caoutchouc, taille 43, paire', NULL, '806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-17\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(228, 'PHYGBOOTR44', 'Log', 'P', 'HYG', 'Hygiene', 480, '19/02/2020', 'Pair', 'Pair', 1.84375, 7.995, 'No', '1', 'BOOTS, rubber, size, 44 pair', 'BOTTES, caoutchouc, taille 44, paire', NULL, '806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-18\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(229, 'PHYGBOOTR45', 'Log', 'P', 'HYG', 'Hygiene', 480, '19/02/2020', 'Pair', 'Pair', 2.12, 29.48, 'No', '1', 'BOOTS, rubber, size, 45 pair', 'BOTTES, caoutchouc, taille 45, paire', NULL, '806/RMI - RAINMAN INDUSTRIAL BLACK PVC GUMBOOT SIZE 6-19\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(230, 'PSAFOVERMXX', 'Log', 'P', 'SAF', 'Safety and protective equipment', 850, '12/31/2019', 'PCE', NULL, 1, 4, 'Yes', '1', 'OVERALL mechanics, size XXL', 'COMBINAISON bleu de travail, taille XXL', 'COMBINAISON, bleu de travail, taille XXL', '901/11 - OVERALLS, LONG SLEEVES TETREX OR POLYCOTTON AVIS \nwww.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(231, 'PSAFOVERMMS', 'Log', 'P', 'SAF', 'Safety and protective equipment', 850, '19/02/2020', 'PCE', NULL, 1, 4, 'No', '1', 'OVERALL mechanics, size S/M', 'COMBINAISON bleu de travail, taille S/M', NULL, '901/11 - OVERALLS, LONG SLEEVES TETREX OR POLYCOTTON AVIS\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(232, 'PSAFOVERMO-', 'Log', 'P', 'SAF', 'Safety and protective equipment', 850, '19/02/2020', 'PCE', NULL, NULL, NULL, 'No', '1', 'OVERALL, for mechanics, one size', NULL, NULL, '901/11 - OVERALLS, LONG SLEEVES TETREX OR POLYCOTTON AVIS\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(233, 'PSAFOVERLO-', 'Log', 'P', 'SAF', 'Safety and protective equipment', 850, '12/31/2019', 'pce', NULL, NULL, NULL, 'Yes', '1', 'OVERALL, light cotton, one size', 'COMBINAISON, coton léger, taille unique', 'MONO DE TRABAJO, algodón, talla unica', '901/11 - OVERALLS, LONG SLEEVES TETREX OR POLYCOTTON AVIS\nwww.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(234, 'PSAFOVERMLM', 'Log', 'P', 'SAF', 'Safety and protective equipment', 850, '12/31/2019', 'pce', 'unit', 1.02, 3.48, 'Yes', '1', 'OVERALL mechanics, size M/L', 'COMBINAISON bleu de travail, taille M/L', 'COMBINAISON, bleu de travail, taille M/L', '901/11 - OVERALLS, LONG SLEEVES TETREX OR POLYCOTTON AVIS\nwww.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(235, 'PSAFOVERMXL', 'Log', 'P', 'SAF', 'Safety and protective equipment', 850, '12/31/2019', 'pce', 'unit', 1.06752, 5.20274, 'Yes', '1', 'OVERALL mechanics, size XL', 'COMBINAISON bleu de travail, taille XL', 'COMBINAISON, bleu de travail, taille XL', '901/11 - OVERALLS, LONG SLEEVES TETREX OR POLYCOTTON AVIS\nwww.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(236, 'PSAFOVERMLM-', 'Log', 'P', 'SAF', 'Safety and protective equipment', 3200, '19/02/2020', 'PCE', NULL, NULL, NULL, 'No', '1', 'OVERALL mechanics, size M/L, Cotton  with reflective strips', 'COMBINAISON bleu de travail, taille M/L', NULL, '901/D592 - PRIME CAPTAIN 100% COTTON COVERALLS WITH REFLECTIVE TAPE 300gsm EN340 EN471\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(237, 'PSAFOVERMMS-', 'Log', 'P', 'SAF', 'Safety and protective equipment', 3200, '19/02/2020', 'PCE', NULL, NULL, NULL, 'No', '1', 'OVERALL mechanics, size S/M, Cotton  with reflective strips', 'COMBINAISON bleu de travail, taille S/M', NULL, '901/D592 - PRIME CAPTAIN 100% COTTON COVERALLS WITH REFLECTIVE TAPE 300gsm EN340 EN472\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(238, 'PSAFOVERMXX-', 'Log', 'P', 'SAF', 'Safety and protective equipment', 3200, '19/02/2020', 'PCE', NULL, NULL, NULL, 'No', '1', 'OVERALL mechanics, size XXL, Cotton with reflective strips', 'COMBINAISON bleu de travail, taille XXL', NULL, '901/D592 - PRIME CAPTAIN 100% COTTON COVERALLS WITH REFLECTIVE TAPE 300gsm EN340 EN474\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(239, 'PSAFRAINJLL', 'Log', 'P', 'SAF', 'Safety and protective equipment', 850, '19/02/2020', 'PCE', NULL, 1.2, 10, 'No', '1', 'RAIN JACKET, Lightweight, size L', 'VESTE IMPERMEABLE légère, taille L', NULL, '903/21 - RAINSUIT/ SPRAYER SUIT PVC YELLOW WELDED SEAM. TEAR RESISTANT - Two piece suit\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(240, 'PSAFRAINJLM', 'Log', 'P', 'SAF', 'Safety and protective equipment', 850, '19/02/2020', 'PCE', NULL, 1.2, 10, 'No', '1', 'RAIN JACKET, Lightweight, size M', 'VESTE IMPERMEABLE légère, taille M', NULL, '903/21 - RAINSUIT/ SPRAYER SUIT PVC YELLOW WELDED SEAM. TEAR RESISTANT - Two piece suit\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(241, 'PSAFRAINJXL', 'Log', 'P', 'SAF', 'Safety and protective equipment', 850, '19/02/2020', 'PCE', NULL, NULL, NULL, 'No', '1', 'RAIN JACKET, Lightweight, size XL', NULL, NULL, '903/21 - RAINSUIT/ SPRAYER SUIT PVC YELLOW WELDED SEAM. TEAR RESISTANT - Two piece suit\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(242, 'PSAFFIREPPW', 'Log', 'P', 'SAF', 'Safety and protective equipment', 4500, '19/02/2020', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'FIRE EXTINGUISHER polyvalent powder, 9kg, for warehouse', 'EXTINCTEUR poudre, 9kg, pour entrepôt', NULL, '9Kg DRY POWDER FIRE EXTINGUISHER\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(243, 'PSAFFIREAF6', 'Log', 'P', 'SAF', 'Safety and protective equipment', 4500, '19/02/2020', 'PCE', 'PCE', 14.6, 60.3488, 'No', '1', 'FIRE EXTINGUISHER, Class AB, foam (water+additive), 6kg', 'EXTINCTEUR classe AB, à mousse (eau+additif), 6kg', NULL, '9LTR FOAM FIRE EXTINGUISHER\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(244, 'PSAFBLAN12-', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2750, '19/02/2020', NULL, NULL, 1.2725, 2.44924, 'No', '1', 'FIRE BLANKET, 120x180 CM', 'COUVERTURE ANTI-FEU, 120x180cm', NULL, 'FIRE BLANKET 120cm x 120cm\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(245, 'PSAFALARSD-', 'Log', 'P', 'SAF', 'Safety and protective equipment', 2500, '19/02/2020', 'PCE', 'PCE', 0.12, 1.696, 'No', '1', 'SMOKE DETECTOR', 'DETECTEUR DE FUMEE', NULL, 'SMOKE DETECTOR BATTERY OPERATED\nMore specs and details : www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(246, 'ALIFBOOL39-', 'Log', 'A', 'LIF', 'Team life', 2250, '19/02/2020', 'Pair', 'Pair', NULL, NULL, 'No', '1', 'BOOTS, leather, lined, pair, size 39', 'BOTTES, cuir, fourrées, paire, taille 39', NULL, 'www.specialisedhardwares.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(247, 'CWATPUMES74', 'Log', 'C', 'WAT', 'Water and sanitation', 0, '31/12/2019', 'PCE', 'PCE', 21, 91.39, 'No', '1', 'SUBMERSIBLE PUMP (Grundfos SQ7-40) 230V', 'POMPE SUBMERSIBLE (Grundfos SQ7-40) 230V', 'POMPE SUBMERSIBLE GRUNDFOS SQ 7-40 1x230V', 'Grundfos SQ7-40\nMore specs : https://product-selection.grundfos.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(248, 'CWATPUMES31', 'Log', 'C', 'WAT', 'Water and sanitation', 0, '31/12/2019', 'PCE', 'PCE', 39.8, 183.6, 'No', '1', 'SUBMERSIBLE PUMP (Grundfos SQ3-105) 230V', 'POMPE SUBMERSIBLE (Grundfos SQ3-105) 230V', 'POMPE ELECTRIQUE SUBMERSIBLE GRUNDFOS SQ 3-105, 230V', 'Grundfos SQ3-105\nMore specs : https://product-selection.grundfos.com', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(249, 'CWATPUMES23', 'Log', 'C', 'WAT', 'Water and sanitation', 0, '31/12/2019', 'PCE', 'PCE', 14.2, 113, 'No', '1', 'SUBMERSIBLE PUMP (Grundfos SQ2-35) 230V', 'POMPE SUBMERSIBLE (Grundfos SQ2-35) 230V', 'POMPE SUBMERSIBLE ELECTRIQUE GRUNDFOS SQ 2-35', 'Grundfos SQ2-35\nMore specs : https://product-selection.grundfos.com/product-detail.product-detail.html?custid=GMA&productnumber=96524423&qcid=618771118', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(250, 'ADAPNETWF--', 'Log', 'A', 'DAP', 'Data processing', 20685, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'FIREWALL/ROUTER', 'PARE-FEU/ROUTEUR', 'CORTA-FUEGO / ROUTER', 'VigorAP 902\nManaged PoE Wireless AP\nManaged 802.11ac Business-class Wireless Access Point\n\n    Business-class wireless access point\n    802.11ac (866mbps) & 802.11n (300mbps)\n    Simultaneous dual-band (2.4/5Ghz)\n    Support for 5Ghz Extended Channels (100-140)\n    Gigabit Ethernet Switch (4+1 Ports)\n    Centrally managed or standalone operation\n    Central Management supports mobility, load-balancing, monitoring, status, upgrade and configuration\n    Local temperature monitoring/logging\n    (Optional thermometer accessory required)\n    Can be powered by supplied PSU or standard 802.3af PoE (Power-over-Ethernet)\n    WPA2 Wireless Encryption\n    Repeater/Bridge/Access Point & WDS\n    Time-Scheduled Operation\n    Bandwidth management per SSID\n    802.1q VLAN Tagging\n    Client Isolation & Multiple SSIDs\n    MAC Address Filtering\n    Radius / WPA & 802.1x User Authentication\n    Built-in Site Surveyor\n    Wall Mountable', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(251, 'CWATZBE1453', 'Log', 'C', 'WAT', 'Water and sanitation', 50500, '31/12/2019', 'PCE', 'PCE', 5, 50, 'No', '1', 'NIVEAU AUTOMATIQUE (Nikon AC-2S)', 'NIVEAU AUTOMATIQUE (Nikon AC-2S)', NULL, 'BOSCH GOL 32D Professional', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(252, 'PTOOCLEATC-', 'Log', 'P', 'TOO', 'Tools', 0, '31/12/2019', 'PCE', 'PCE', 76.6, 547, 'No', '1', 'HIGH PRESSURE CLEANER (Karcher HD801B) combustion engine', 'NETTOYEUR HAUTE PRESSION (Karcher HD801B) moteur thermique', 'NETTOYEUR HAUTE PRESSION A EAU FROIDE à moteur thermique', ' HD 6/15 G Classic\nEasy to service and mobile: the HD 6/15 G. With combustion engine, intelligent accessories concept and robust crankshaft pump. Ideal for construction and agriculture. Water flow: 600 l/h.', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(253, 'ADAPZYN1044', 'Log', 'A', 'DAP', 'Data processing', 6200, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', '(printer HP M201DW /M225DW) TONER CARTRIDGE BLACK CF283A 83A', NULL, NULL, 'HP 83A Black Original LaserJet Toner Cartridge, CF283A\n    Reliable, Original HP cartridge\n    Standard size, when you need just one\n    ~1,500 pages', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(254, 'ADAPZYN1079', 'Log', 'A', 'DAP', 'Data processing', 8000, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', '(Kyocera ECOSYS M2040dn) Toner Cartridge TK-1170, black, pce', NULL, NULL, 'Kyocera, Toner Cartridge TK-1170, black', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(255, 'ADAPZYN1087', 'Log', 'A', 'DAP', 'Data processing', 0, 'undefined', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'HP 26x Laserjet Cartridge', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(256, 'ASTAZYN1092', 'Log', 'A', 'STA', 'Stationery', 0, 'undefined', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', '(Printer HP Deskjet 2515) CARTRIDGE INK, black 650', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(257, 'ADAPZYN1019', 'Log', 'A', 'DAP', 'Data processing', 0, 'undefined', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', '( printer laser HP P1606 ) CARTRIDGE BLACK CE 278 A', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(258, 'EHOEZYN0020', 'Med', 'E', 'HOE', 'Hospital equipment', 11637.9, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'Hospital curtains, hanging on rail, L shape curtain', NULL, NULL, 'currently ordered by OCB South Soudan (Maban) and OCG Kenya (Likoni)', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(259, 'EHOEZYN0014', 'Med', 'E', 'HOE', 'Hospital equipment', 5862.07, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'TROLLEY,STAINLESS STEEL,for food,on wheels + handle', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(260, 'EHOESTAI2--', 'Med', 'E', 'HOE', 'Hospital equipment', 25000, '31/12/2019', 'PCE', 'PCE', 4.41, 16.065, 'No', 'undefined', 'STAND, INFUSION, 2 hooks, on castors', 'POTENCE A PERFUSION, 2 crochets, sur roulettes', 'PORTA SUEROS, 2 ganchos, con ruedas', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(261, 'EHOESCRE4--', 'Med', 'E', 'HOE', 'Hospital equipment', 28140, '31/12/2019', 'PCE', 'PCE', 14, 144, 'No', 'undefined', 'BEDSIDE SCREEN, FOLDABLE,WASHABLE,WHEELS,180CM,4 PANELS', 'Paravent, nettoyable, sur roulettes 4 panneaux', 'Paravent, nettoyable, sur roulettes 4 panneaux', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(262, 'EHOECHAR1--', 'Med', 'E', 'HOE', 'Hospital equipment', 21000, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'RECLINING CHAIR, (Nemo), mechanical', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(263, 'EHOEZYN0023', 'Med', 'E', 'HOE', 'Hospital equipment', 4310.34, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'BABY COT (Baby bed) with mattress', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(264, 'EHOEMATT1--', 'Med', 'E', 'HOE', 'Hospital equipment', 13793.1, '31/12/2019', 'PCE', 'PCE', 6, 270, 'No', '1', 'MATTRESS, 80 x 190 cm, density 20 kg, PVC cover + zip', 'MATELAS, 80 x 190 cm, densité 20 kg, housse PVC + fermeture', 'COLCHON, 80 x 190 cm, densidad 20 kg, funda PVC + cremallera', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(265, 'EHOEZYN0016', 'Med', 'E', 'HOE', 'Hospital equipment', 29000, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'CABINET, Hospital Bedside, plastic with drawer and cupboard', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(266, 'EHOEZYN0019', 'Med', 'E', 'HOE', 'Hospital equipment', 15500, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'Separation curtain, plastic, hanging on ceiling, with rail', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(267, 'SDDCBAGP06-', 'Med', 'S', 'DDC', 'Drug dispensing & compounding ', 0.924, '31/12/2019', 'PCE', 'PCE', 0.0007115, 0.0022533, 'No', 'undefined', 'BAG, plastic, for drugs, 5 x 10 cm', 'SACHET, plastique, pour médicaments, 6 x 8 cm', 'BOLSA, plástico, para medicamentos, 6 x 8 cm', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(268, 'SDREPADM1--', 'Med', 'S', 'DRE', 'Dressings', 6.86, '31/12/2019', 'PCE', 'Pack of 10 pads', 0.00555556, 0.00277778, 'No', 'undefined', 'PAD, MENSTRUAL, maternity use, non sterile', 'SERVIETTE MENSTRUELLE, usage maternité, non stérile', 'COMPRESA MENSTRUAL, uso maternidad, no estéril', 'Maternity pads\nBrand Specification\n    High absorbent filler\n    Back barrier to prevent leakage\n    Non-woven cover to reduce irritation\n    Locally manufactured for local needs\nMEDICOT brand\nCurently used by OCG in Kenya mission\n', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(269, 'SMSUTHER1D-', 'Med', 'S', 'MSU', 'Small medical supplies', 0, '31/12/2019', 'PCE', 'PCE', 0.0323, 0.0976752, 'No', '1', 'THERMOMETER, ELECTRONIC', 'THERMOMETRE, ELECTRONIQUE, précision 0,1º C + étui', 'TERMOMETRO ELECTRONICO, precisión 0,1°C + estuche', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(270, 'SINSCONT5C-', 'Med', 'S', 'INS', 'Injection supplies', 0, '31/12/2019', 'PCE', 'PCE', 0.3648, 0.7788, 'No', '1', 'CONTAINER, needles/syringes, 5 l, cardboard for incineration', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(271, 'SMSUBLAN1--', 'Med', 'S', 'MSU', 'Small medical supplies', 0, '31/12/2019', 'PCE', 'PCE', 0.065226, 0.142172, 'No', 'undefined', 'BLANKET, SURVIVAL, 220 x 140 cm, thickness 12 microns ', 'COUVERTURE DE SURVIE, 220 x 140 cm, épaisseur 12 microns', 'MANTA DE SUPERVIVENCIA, 220 x 140 cm, espesor 12 micras', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(272, 'ELINCLOG45-', 'Med', 'E', 'LIN', 'Linen and protection clothing', 2068.97, '31/12/2019', 'Pair', 'Pair', 1.1025, 11.5068, 'No', 'undefined', 'CLOGS, operating theatre, polyuretane, washable, pair 44-45', 'SABOTS, salle d\'opération, polyuréthane,lavables,paire 44-45', 'ZUECOS, quirófano, poliuretano, lavables, par 44-45', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(273, 'ELINCLOG43-', 'Med', 'E', 'LIN', 'Linen and protection clothing', 2068.97, '31/12/2019', 'Pair', 'Pair', 1.0225, 11.5068, 'No', 'undefined', 'CLOGS, operating theatre, polyuretane, washable, pair 42-43', 'SABOTS, salle d\'opération, polyuréthane,lavables,paire 42-43', 'ZUECOS, quirófano, poliuretano, lavables, par 42-43', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(274, 'ELINCLOG39-', 'Med', 'E', 'LIN', 'Linen and protection clothing', 2068.97, '31/12/2019', 'Pair', 'Pair', 0.851949, 11.6969, 'No', 'undefined', 'CLOGS, operating theatre, polyuretane, washable, pair 38-39', 'SABOTS, salle d\'opération, polyuréthane,lavables,paire 38-39', 'ZUECOS, quirófano, poliuretano, lavables, par 38-39', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(275, 'ELINCLOG41-', 'Med', 'E', 'LIN', 'Linen and protection clothing', 2068.97, '31/12/2019', 'Pair', 'Pair', 0.92375, 11.5538, 'No', 'undefined', 'CLOGS, operating theatre, polyuretane, washable, pair 40-41', 'SABOTS, salle d\'opération, polyuréthane,lavables,paire 40-41', 'ZUECOS, quirófano, poliuretano, lavables, par 40-41', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(276, 'ELINZYN1014', 'Med', 'E', 'LIN', 'Linen and protection clothing', 720, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'DUST COAT, medical, size XL, precise color', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(277, 'ELINZYN1011', 'Med', 'E', 'LIN', 'Linen and protection clothing', 720, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'DUST COAT, medical, size S, precise color', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(278, 'ELINZYN1001', 'Med', 'E', 'LIN', 'Linen and protection clothing', 720, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'DUST COAT, medical, size L, precise color', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(279, 'ELINZYN1002', 'Med', 'E', 'LIN', 'Linen and protection clothing', 720, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'DUST COAT, medical, size M, precise color', NULL, NULL, NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(280, 'EEMDLEXE2--', 'Med', 'E', 'EMD', 'Electro mechanical medical dev', 12758.6, '31/12/2019', 'PCE', 'PCE', 7.39, 85.68, 'No', 'undefined', 'EXAMINATION LIGHT (LID medical), mobile, 230 V', 'LAMPE D\'ECLAIRAGE, EXAMEN (LID medical), mobile, 230 V', 'LAMPARA DE EXAMINACION (LID medical), movíl', NULL, '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(281, 'PELEUPSD02-', 'Log', 'P', 'ELE', 'Electricity', 60677.1, '31/12/2019', 'PCE', 'PCE', 25.3, 66.198, 'No', 'undefined', 'UPS on-line double conversion, 2000VA, 230VAC, 50Hz', 'ASI on-line double conversion, 2000VA, 230VAC, 50Hz', 'ONDULEUR-UPS, ON-LINE DOUBLE CONVERSION, 2000VA 230V 50Hz', 'Brand DELTA, RT series 2KVA : 606.78 USD\nBrand DELTA, 2KVA GAIA SERIES DELTA UP-Part Number: GES202R200035 ==> 1103.88 USD\nBrand delta, 2KVA Nseries : 452.67 USD', '2019-09-17 09:48:21', '2019-09-17 09:48:21');
+INSERT INTO `articles` (`id`, `article_code`, `category`, `group`, `family`, `fam_desc`, `price`, `valid`, `unit`, `sud`, `weight`, `volume`, `stock`, `lead_time`, `desc_eng`, `desc_fra`, `desc_spa`, `details`, `created_at`, `updated_at`) VALUES
+(282, 'PELEKSUINNOV01', 'Log', 'P', 'ELE', 'Electricity', 165000, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'GOAL ZERO YETI 1250W SOLAR GENERATOR\n', NULL, NULL, 'GOAL ZERO YETI 1250W SOLAR GENERATOR\nThe above solar generator comes complete with:1No. Goal Zero Yeti 1250 Solar Generator\n4No. Boulder 60 Solar Panels - to get total 240W\n1No. Fabric carrying case for panels\n1No. Roll cart\nhttps://www.goalzero.com/shop/power-stations/goal-zero-yeti-1250-portable-power-station/', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(283, 'PELEKSUINNOV02', 'Log', 'P', 'ELE', 'Electricity', 67500, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'GOAL ZERO EXTREME 350W POWER KIT SOLAR GENERATOR', NULL, NULL, 'GOAL ZERO EXTREME 350W POWER KIT\nGoal Zero Yeti 1250 Solar Generator Kit includes:\n1) 1 x Goal Zero Yeti 1250 Solar Generator\n2) 2 x Boulder 30 Solar Panels\n3) 1 x Fabric Carrying Case for Panels\n4) 1 x Roll Cart\nGoal Zero Extreme 350 power kit includes:\n1) Extreme 350 Battery Pack\n2) Extreme UI Universal Inverter\n3) Boulder 30 Solar Panel\n4) AC Charger\nhttps://www.goalzero.com/shop/power-stations/goal-zero-yeti-1250-portable-power-station/', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(284, 'PELEUPSD01X', 'Log', 'P', 'ELE', 'Electricity', 42000, '31/12/2019', 'PCE', 'PCE', 16.6, 66.198, 'No', 'undefined', 'UPS on-line double conversion, 1000VA, 230VAC, 50Hz', 'ASI on-line double conversion, 1000VA, 230VAC, 50Hz', 'ONDULEUR-UPS, ON-LINE DOUBLE CONVERSION, 1000VA 230VAC 50Hz', 'Brand : Schneider\nSMT1000I\nAPC Smart-UPS 1000VA LCD 230V\n', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(285, 'PELEBATTS201S', 'Log', 'P', 'ELE', 'Electricity', 36486, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'BATTERY stationary, 12V/200Ah, sealed', 'BATTERIE stationnaire, 12V/120Ah, sealed, pour solar/radio', 'BATERIA, 12 V, fijo, sol.radio, empotrada, 120Ah', 'brand : GASTON\nAGM and Gel\nRange batteries uses the advanced GEL design which combines the best\nfeatures of AGM and GEL construction into one battery line, and the\npurity fumed silica to form sulfuric acid thixotropic Gel and fills to the\nbatteries with vacuum to ensure the fully penetration of electrolyte\nthrough seperators and plates pastes.\nThis range battery are designed to meet the requirement of frequent\ncyclic and high temperature application such as boardband, PVs etc.', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(286, 'PPACINOVKSU1', 'Log', 'P', 'PAC', 'Packing and handling', 318.5, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'STORAGE TRAYS, plastic, H150xW175xL580mm', 'BAC DE STOCKAGE, plastique, H150xW175xL580mm', NULL, 'Pack Size: 5 PCS\nH150xW175xL580\n    AVAILABLE COLOURS\n    Black\n    Kenpoly Blue\n    Purple\n    Green\n    Yellow\n    Medium Blue\n    Red', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(287, 'PPACINOVKSU2', 'Log', 'P', 'PAC', 'Packing and handling', 444.92, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'STORAGE TRAYS, Plastic, H150xW310xL570mm', 'BAC DE STOCKAGE, plastique, H150xW310xL570mm', NULL, 'Storage Rack No. 3\nPack Size: 5 PCS\nH150xW310xL570\n    AVAILABLE COLOURS\n    Black\n    Kenpoly Blue\n    Purple\n    Green\n    Yellow\n    Medium Blue\n    Red', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(288, 'ADAPPHONKSU1', 'Log', 'A', 'DAP', 'Data processing', 56343, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'SMARTPHONE, Samsung Galaxy A80', NULL, NULL, 'Samsung Galaxy A80\nhttps://www.samsung.com/global/galaxy/galaxy-a80/', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(289, 'TVECZYN1259', 'Log', 'T', 'VEC', 'Vehicle consumables', 3960000, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', 'TRACTEUR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', NULL, 'Brand MASSEY FERGUSSON\nUsed by OCB South Soudan in Pibor and Maban procect', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(290, 'YCATZYN0001', 'Log', 'Y', 'CAT', 'Catepillar Spare parts', 2285.68, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'LC1514N, CAT fuel filter( CA7W2327 ).', NULL, NULL, 'GENERATOR CAT SPARES', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(291, 'YCATZYN0002', 'Log', 'Y', 'CAT', 'Catepillar Spare parts', 3495.91, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'LC1514N, CAT oil filter ( CA4671181 ).', NULL, NULL, 'GENERATOR CAT SPARES', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(292, 'YCATZYN0003', 'Log', 'Y', 'CAT', 'Catepillar Spare parts', 1541.93, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'CAT EL FUEL FILTER (276-1806)', NULL, NULL, 'GENERATOR CAT SPARES', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(293, 'YCATZYN0004', 'Log', 'Y', 'CAT', 'Catepillar Spare parts', 4281.13, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'AIR PRIM FILTER (267-6398)', NULL, NULL, 'GENERATOR CAT SPARES', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(294, 'YCATZYN0005', 'Log', 'Y', 'CAT', 'Catepillar Spare parts', 9099.6, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'BELT SET DE33 (3S-8447)', NULL, NULL, 'GENERATOR CAT SPARES', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(295, 'YCATZYN0006', 'Log', 'Y', 'CAT', 'Catepillar Spare parts', 2420.44, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'CAT FUEL SEPARATOR (1R-1803)', NULL, NULL, 'GENERATOR CAT SPARES', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(296, 'YCATZYN0007', 'Log', 'Y', 'CAT', 'Catepillar Spare parts', 3073.5, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'CAT FUEL SEPARATOR (1R-1804)', NULL, NULL, 'GENERATOR CAT SPARES', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(297, 'YCATZYN0008', 'Log', 'Y', 'CAT', 'Catepillar Spare parts', 5937.08, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'LC1514N, CAT air filter (CA1232367).', NULL, NULL, 'GENERATOR CAT SPARES', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(298, 'YCATZYN0009', 'Log', 'Y', 'CAT', 'Catepillar Spare parts', 1562.67, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'CAT FUEL SEPARATOR 441-5111', NULL, NULL, 'GENERATOR CAT SPARES', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(299, 'YCATZYN0010', 'Log', 'Y', 'CAT', 'Catepillar Spare parts', 5454.88, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'BELT SET DE50 (128-5250)', NULL, NULL, 'GENERATOR CAT SPARES', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(300, 'TVECZYN1280', 'Log', 'T', 'VEC', 'Vehicle consumables', 47762.4, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, BRAKE PRESSURE VALVE 417860M1', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(301, 'TVECZYN1281', 'Log', 'T', 'VEC', 'Vehicle consumables', 13724.8, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, HEADLIGHT ASSY RHD 427893M91', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(302, 'TVECZYN1260', 'Log', 'T', 'VEC', 'Vehicle consumables', 13724.8, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, HEADLIGHT ASSY LHD 4278939M91', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(303, 'TVECZYN1261', 'Log', 'T', 'VEC', 'Vehicle consumables', 4008.8, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, HEAD LIGHT MOULDING LHD 4281292M2', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(304, 'TVECZYN1262', 'Log', 'T', 'VEC', 'Vehicle consumables', 4008.8, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, HEAD LIGHT MOULDING RHD 42812292M2', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(305, 'TVECZYN1263', 'Log', 'T', 'VEC', 'Vehicle consumables', 761.6, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, TRIM LHS 4281292M1', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(306, 'TVECZYN1264', 'Log', 'T', 'VEC', 'Vehicle consumables', 761.6, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, TRIM RHS 4281357M1', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(307, 'TVECZYN1265', 'Log', 'T', 'VEC', 'Vehicle consumables', 45.6, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, SCREWS LHS 4284819M1', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(308, 'TVECZYN1266', 'Log', 'T', 'VEC', 'Vehicle consumables', 45.6, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, SCREWS RHS 4284819M1', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(309, 'TVECZYN1268', 'Log', 'T', 'VEC', 'Vehicle consumables', 6844, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, REAR SIGNAN LIGHT LHS 6313878M91', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(310, 'TVECZYN1269', 'Log', 'T', 'VEC', 'Vehicle consumables', 6844, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, REAR SIGNAN LIGHT RHS 6313878M91', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(311, 'TVECZYN1270', 'Log', 'T', 'VEC', 'Vehicle consumables', 7298.4, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, BRAKE LIGHT LHS 6233239M91', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(312, 'TVECZYN1271', 'Log', 'T', 'VEC', 'Vehicle consumables', 7298.4, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, BRAKE LIGHT RHS 6233239M91', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(313, 'TVECZYN1272', 'Log', 'T', 'VEC', 'Vehicle consumables', 20454.4, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, BRAKE SLAVE CYLINDER LHS 6312240M91', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(314, 'TVECZYN1273', 'Log', 'T', 'VEC', 'Vehicle consumables', 9357.6, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, BRAKE LINE LHS 6285261M92', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(315, 'TVECZYN1274', 'Log', 'T', 'VEC', 'Vehicle consumables', 4005.6, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, BLEEDING NIPPLE 3187874M1', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(316, 'TVECZYN1275', 'Log', 'T', 'VEC', 'Vehicle consumables', 7761.6, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, FRONT INDICATOR LAMP LHS 1678580M91', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(317, 'TVECZYN1276', 'Log', 'T', 'VEC', 'Vehicle consumables', 7761.6, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, FRONT INDICATOR LAMP RHS 1678580M91', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(318, 'TVECZYN1277', 'Log', 'T', 'VEC', 'Vehicle consumables', 55202.4, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MF, STEERING ARM ASSY + RUBBER PROTECTION LHS 041064R1', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(319, 'TVECZYN1278', 'Log', 'T', 'VEC', 'Vehicle consumables', 55202.4, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MF, STEERING ARM ASSY + RUBBER PROTECTION RHS 041064R1', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(320, 'TVECZYN1279', 'Log', 'T', 'VEC', 'Vehicle consumables', 4400, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'MASSEY FERGUSON, FRONT AXLE SEAL 040922R1', NULL, NULL, 'MASSEY FERGUSON spares for TRACTOR, MASSEY FERGUSON MF4708-4, B2HP, 4X4', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(321, 'PLIGZYN1047', 'Log', 'P', 'LIG', 'Lighting', 6000, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'SOLAR GARDEN LIGHT, FREE STANDING, 400 LUMEN', NULL, NULL, 'Solar garden lamp for security light in Maban compound (OCB South Soudan)', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(322, 'YHON52400-KRH-781', 'Log', 'Y', 'HON', 'Honda spare parts', 23608.6, '31/12/2019', 'PCE', 'PCE', 4.6, 7.92, 'No', '2', '(XL125L) SHOCK ABSORBER ASSY, rear, PCE', '(XL125L) AMORTISSEUR COMPLET, arriere, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(323, 'YHON40530-KRH-781', 'Log', 'Y', 'HON', 'Honda spare parts', 4501.06, '31/12/2019', 'PCE', 'PCE', 1, 0, 'No', '2', '(XL125LK) DRIVE CHAIN, PCE', '(XL125LK) CHAINE transmission, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(324, 'YHON06430-GB5-K20', 'Log', 'Y', 'HON', 'Honda spare parts', 2273.07, '31/12/2019', 'PCE', 'PCE', 0.1, 0.1, 'No', '2', '(XL125L)SHOE SET front brake,PCE', '(XL125L) KIT GARNITURE frein avant, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(325, 'YHON31500-GFC-782', 'Log', 'Y', 'HON', 'Honda spare parts', 8997.83, '31/12/2019', 'PCE', 'PCE', 1.004, 0, 'No', '2', '(XL125L) BATTERY YTX4L-BS(Yuasa), 12V, PCE', '(XL125L) BATTERIE ytx4l-bs (yuasa), 12V, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(326, 'YHON41201-KRH-780', 'Log', 'Y', 'HON', 'Honda spare parts', 1650.6, '31/12/2019', 'PCE', 'PCE', 1, 0, 'No', '2', '(XL125LK) SPROCKET, rear, PCE', '(XL125LK) PIGNON, arr, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(327, 'YHON31916-KRM-841', 'Log', 'Y', 'HON', 'Honda spare parts', 1249.22, '31/12/2019', 'PCE', 'PCE', 0.08, 0.036, 'No', '2', '(XL125LK) SPARK PLUG ngk cpr8ea-9, PCE', '(XL125LK) BOUGIE D\'ALLUMAGE ngk cpr8ea-9, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(328, 'YHON23801-KWF-940', 'Log', 'Y', 'HON', 'Honda spare parts', 543.05, '31/12/2019', 'PCE', 'PCE', 0.11, 0.04225, 'No', '2', '(XL125LK) SPROCKET DRIVE, 16T, FRONT, PCE', '(XL125LK) PIGNON sortie boite de vitesses, 16D, av, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(329, 'YHON91053-MAY-003', 'Log', 'Y', 'HON', 'Honda spare parts', 705.6, '31/12/2019', 'PCE', 'PCE', 0.1, 0.1, 'No', '2', '(XL125L) BEARING wheel rear,6303U, PCE', '(XL125L) ROULEMENT roue arriere, 6303U, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(330, 'YHON96140-63010-10', 'Log', 'Y', 'HON', 'Honda spare parts', 308.97, '31/12/2019', 'PCE', 'PCE', 0.1, 0.1, 'No', '2', '(XL125S) BEARING wheel, 6301U,FRONT, PCE', NULL, NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(331, 'YHON34901-KPN-B01', 'Log', 'Y', 'HON', 'Honda spare parts', 1232.05, '31/12/2019', 'PCE', 'PCE', 0.1, 0.1, 'No', '2', '(XL125L) BULB headlight, 12V 35/35W, PCE', '(XL125L) AMPOULE phare, 12V 35/35W, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(332, 'YHON22870-KRH-780', 'Log', 'Y', 'HON', 'Honda spare parts', 528.02, '31/12/2019', 'PCE', 'PCE', 0.22, 0.125, 'No', '2', '(XL125L) CABLE clutch, PCE', '(XL125L) CABLE d\'embrayage, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(333, 'YHON17910-KRH-780', 'Log', 'Y', 'HON', 'Honda spare parts', 942.28, '31/12/2019', 'PCE', 'PCE', 0.1, 0.1, 'No', '2', '(XL125L) CABLE accelerator,PCE', '(XL125L) CABLE d\'accelerateur, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(334, 'YHON17211-KRH-780', 'Log', 'Y', 'HON', 'Honda spare parts', 298.35, '31/12/2019', 'PCE', 'PCE', 1, 0, 'No', '2', '(XL125LK) FILTER air, PCE', '(XL125LK) FILTRE a air, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(335, 'YHON38110-KRH-901', 'Log', 'Y', 'HON', 'Honda spare parts', 892.76, '31/12/2019', 'PCE', 'PCE', 0.1, 0.1, 'No', '2', '(XL125L) HORN ASSY, 12V, PCE', '(XL125L) KAXON, 12V, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(336, 'YHON53178-KRH-900', 'Log', 'Y', 'HON', 'Honda spare parts', 356.31, '31/12/2019', 'PCE', 'PCE', 0.07, 0.07875, 'No', '2', '(XL125L) LEVER HANDLE, lh, PCE', '(XL125L) LEVIER DE COMMANDE, gauche, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(337, 'YHON96140-63030-10', 'Log', 'Y', 'HON', 'Honda spare parts', 671.62, '31/12/2019', 'PCE', 'PCE', 0.1, 0.1, 'No', '2', '(XL125L) BEARING wheel rear,6302UU,PCE', NULL, NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(338, 'YHON40530-KRH-781', 'Log', 'Y', 'HON', 'Honda spare parts', 4501.06, '31/12/2019', 'PCE', 'PCE', 1, 0, 'No', '2', '(XL125LK) DRIVE CHAIN, PCE', '(XL125LK) CHAINE transmission, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(339, 'YHON91053-MAY-003', 'Log', 'Y', 'HON', 'Honda spare parts', 705.6, '31/12/2019', 'PCE', 'PCE', 0.1, 0.1, 'No', '2', '(XL125L) BEARING wheel rear,6303U, PCE', '(XL125L) ROULEMENT roue arriere, 6303U, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(340, 'YHON53178-KRH-900', 'Log', 'Y', 'HON', 'Honda spare parts', 356.31, '31/12/2019', 'PCE', 'PCE', 0.07, 0.07875, 'No', '2', '(XL125L) LEVER HANDLE, lh, PCE', '(XL125L) LEVIER DE COMMANDE, gauche, pce', NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(341, 'YHON45010-KRH-780ZA', 'Log', 'Y', 'HON', 'Honda spare parts', 8695.97, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '2', 'PANEL SUB*NH364M', NULL, NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(342, 'YHON91256-KK3-840', 'Log', 'Y', 'HON', 'Honda spare parts', 86.99, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '2', 'O RING 12X1.5', NULL, NULL, 'Honda spares for HONDA motorbike XL125', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(343, 'PELECHIN22250', 'Log', 'P', 'ELE', 'Electricity', 229977, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '3', 'CHARGER-INVERTER (Victron Multiplus) 24/230V 120A 5KVA', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(344, 'PELEZYN1289', 'Log', 'P', 'ELE', 'Electricity', 3168, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'MC4 TOOL', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(345, 'PELEZYN1288', 'Log', 'P', 'ELE', 'Electricity', 19800, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'ROOF MOUNT FRAMES FOR SOLAR INSTALLATION', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(346, 'PELEZYN1287', 'Log', 'P', 'ELE', 'Electricity', 4455, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'SOLAR BOX FOR MOUNTING OF BMV MONITOR', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(347, 'PELEZYN1286', 'Log', 'P', 'ELE', 'Electricity', 16632, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'SOLAR BATTERY MONITOR', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(348, 'PELEZYN1285', 'Log', 'P', 'ELE', 'Electricity', 3405.6, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'MEGA FUSE HOLDER', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(349, 'PELEZYN1284', 'Log', 'P', 'ELE', 'Electricity', 3168, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'MEGA FUSE', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(350, 'PELEZYN1283', 'Log', 'P', 'ELE', 'Electricity', 24502.5, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'SOLAR PV DISCONNECT', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(351, 'PELEZYN1282', 'Log', 'P', 'ELE', 'Electricity', 1386, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'BATTERY CABLE, 35mm², PER METER', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(352, 'PELEZYN1262', 'Log', 'P', 'ELE', 'Electricity', 91.08, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', '4MM SINGLE FLER CABLE-BLACK', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(353, 'PELEZYN1255', 'Log', 'P', 'ELE', 'Electricity', 1485, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', '7FT EARTH RODS (DIN)', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(354, 'PELESOLARMMFP-', 'Log', 'P', 'ELE', 'Electricity', 475.2, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'CONNECTOR MC4, MALE + FEMALE, PAIR.', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(355, 'PELEZYN1221', 'Log', 'P', 'ELE', 'Electricity', 74052, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'SOLAR CHARGER CONTROLLER 12V/30A', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(356, 'PLIGZYN1034', 'Log', 'P', 'LIG', 'Lighting', 10692, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'SOLAR PANEL, 85w', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(357, 'PELEZYN1138', 'Log', 'P', 'ELE', 'Electricity', 99, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'CABLE LUGS, 6MM', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(358, 'PELEZYN1070', 'Log', 'P', 'ELE', 'Electricity', 1584, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'MINI TRUNKING,plastic white,pcs.', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(359, 'PELEZYN1057', 'Log', 'P', 'ELE', 'Electricity', 693, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'CABLE ZIP TIES,BLACK ( 100 UD PACKE 200MM LENGTH )', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(360, 'PELEZYN1056', 'Log', 'P', 'ELE', 'Electricity', 108.9, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'CABLE,EARTH,1 conductor,16mm2,Green / Yellow RLX', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(361, 'PELEZYN1055', 'Log', 'P', 'ELE', 'Electricity', 228.69, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'CABLE,FLEXIBLE,3 X 10MM,OUT DOOR USE ( PER METER )', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(362, 'PELEBATT6V', 'Log', 'P', 'ELE', 'Electricity', 40788, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'BATTERY stationary, 6V/120Ah, sealed, for solar/radio', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(363, 'PELEZYN1043', 'Log', 'P', 'ELE', 'Electricity', 99, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'CABLE LUGS, 50MM', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(364, 'PELECONDF16', 'Log', 'P', 'ELE', 'Electricity', 1485, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'CONDUIT, CABLE, flexible, 16 mm, PVC, per metre', 'GAINE DE CABLE, flexible, 16 mm, PVC, le métre', 'FUNDA DE CABLE, flexible, 16 mm, PVC, el metro', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(365, 'ASTASTAM2MA', 'Log', 'A', 'STA', 'Stationery', 2500, '31/12/2019', 'PCE', 'PCE', 0.2, 1.06667, 'No', '1', 'STAMP MSF, rubber, self-inking, red', 'TAMPON MSF, caoutchouc, auto-encreur, rouge', 'SELLO, MSF, entintaje automático, rojo', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(366, 'PPACTAPEM--', 'Log', 'P', 'PAC', 'Packing and handling', 170, '31/12/2019', 'PCE', 'PCE', 0.168889, 0.606222, 'No', '1', 'TAPE adhesive, PVC, MSF, roll', 'RUBAN adhésif, PVC, MSF, rouleau', 'CINTA adhesiva, MSF, PVC, (rollo)', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(367, 'ADAPPRITZZ3', 'undefined', 'A', 'DAP', 'Data processing', 188000, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'MODULE IMPRIMANTE BADGE ZEBRA ZXP SERIE 3, pour 2000 impres. ', 'THERMAL PRINTER (Zebra ZXP3) USB, DUAL PRINT for badge CR-80', 'IMPRIMANTE TERMIQUE (Zebra ZXP series 3) USB, pour CR-80', 'ID printer : Zebra Printer ZC300\n\nCamera :\nLogitech HD Pro Webcam C920-11,000KES\n\nSoftware : To choose\n• S/W,ZEBRA CARDSTUDIO,CLASSIC -17,200.00KES\n• S/W,ZEBRA CARDSTUDIO,STANDARD-51,500.00KES\n• S/W,ZEBRA CARDSTUDIO,PROF-125,850.00KES\n• S/W,ZEBRA CARDSTUDIO,ENTERPISE-97,250.00KES\n\nConsumable : white PVC Cards and cartridges:\n• Zebra white PVC cards, 30 mil (500 cards)-50,000.00 KES\n• Ribbon, Color-YMCKOK, 200 Images, ZC300, EMEA-10,500.00 KES\n• Ribbon, Color-YMCKO, 200 Images, ZC100/ZC300-8,200.00KES\n• Ribbon, Mono -Black, 2000 Images, ZC100/ZC300-5,000.00KES\n• Ribbon, Mono -Black, 1500 Images, ZC100/ZC300-3,500.00KES\n• Ribbon, Mono -Red, 1500 Images, ZC100/ZC300-5,300.00KES\n• Ribbon, Mono -Blue, 1500 Images, ZC100/ZC300-5,300.00KES\n\n', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(368, 'AFURZYN0070', 'Log', 'A', 'FUR', 'Furniture', 19500, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'CHAIR, 4 SEATER METAL LINK CHAIR WITHOUT PADDING', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(369, 'PPAIZYN0008', 'Log', 'P', 'PAI', 'Paint', 46500, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'EPOXY, PAINT, 20LITRE', NULL, NULL, 'Technical DataTankguard Storage\nProduct description\nTankguard Storage is a two-component, high solid phenolic epoxy coating with high resistance to a wide range\nof chemicals and solvents.\nRecommended use : \nCorrosion protection for the internal lining of steel storage tanks being resistant to a wide range of chemicals\nincluding, but not limited to, crude oil and aromatic and aliphatic solvents and others.\nFilm thickness and spreading rate\nMinimum Maximum Typical\nFilm thickness, dry (μm) 100 200 125\nFilm thickness, wet (μm) 160 320 200\nTheoretical spreading rate (m²/l) 6,3 3,2 5\nPhysical properties\nColour Light grey, Light Red, Red\nSolids (vol %)* 63 ± 2\nFlash point 28ºC ± 2 (Setaflash)\nVOC 2,5 lbs/gal (300 gms/ltr) USA-EPA Method 24\n310 gms/ltr UK-PG6/23(97). Appendix 3\nGloss Flat\nWater resistance Very good\nSolvent resistance Excellent\nChemical resistance Excellent\nFlexibility Fair\n*Measured according to ISO 3233:1998 (E)\nSurface preparation\nAll surfaces should be clean, dry and free from contamination. The surface should be assessed and treated in\naccordance with ISO 8504.\nBare steel\nCleanliness: Blast cleaning to min. Sa 2 ½ (ISO 8501 1:2007). Roughness: using abrasives suitable to achieve\nGrade\nMedium G (50 - 85 μm, Ry5) (ISO 8503-2).\nOther surfaces\nThe coating may be used on other substrates.\n', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(370, 'PPACINOVKSU2', 'Log', 'P', 'PAC', 'Packing and handling', 0, '31/12/2019', 'PCE', 'Pack of 5 boxes', NULL, NULL, 'No', '1', 'Plastic box, H150xW310xL570', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(371, 'PPACINOVKSU1', 'Log', 'P', 'PAC', 'Packing and handling', 0, '31/12/2019', 'PCE', 'Pack of 5 boxes', NULL, NULL, 'No', '1', 'Plastic box, H150xW175xL180', NULL, NULL, NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(372, 'NFOSRUTFPEP92', 'Med', 'N', 'FOS', 'Specialized food', 29.403, '31/12/2019', 'PCE', 'Box of 50 sachets', 0.0986667, 0.1463, 'No', '1', 'RUTF, peanut paste, 92 g', 'RUTF, pâte d\'arachide, 92 g', 'RUTF, pasta cacahete, 92 g', 'Therapeutic food in paste form, intended for patients suffering from severe acute malnutrition during rehabilitation phase in therapeutic feeding centres or as outpatients.\n\nThe nutritional specifications of the Ready to Use Therapeutic Food (RUTF) are close to the therapeutic milk ones (except its higher iron content).\n\nExemple: Plumpy’nut®, eeZeepaste, Imunut, Valid Nutrition, Dutasi, Nutty Butta...', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(373, 'NFOSRUTFCEB51', 'Med', 'N', 'FOS', 'Specialized food', 241.263, '31/12/2019', 'PCE', 'PCE', 0.5625, 0.757969, 'No', '1', 'RUTF (BP100), cereal biscuit, 510 g (= 9 barres)', 'RUTF (BP100), biscuit céréales, 510 g (= 9 barres)', 'RUTF (BP100), galleta de cereales, 510 g (= 9 barras)', 'Therapeutic food in biscuit form, intended for patients suffering from severe acute malnutrition during rehabilitation phase in therapeutic feeding centres or as outpatients.\nThe nutritional specifications of the Ready to Use Therapeutic Food (RUTF) are close to the therapeutic milk ones (except its higher iron content).\nExemple: BP-100', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(374, 'AOFFCALCSB-', 'Log', 'A', 'OFF', 'Office equipment', 975, '31/12/2019', 'PCE', 'PCE', 0.141917, 0.8, 'No', '1', 'CALCULATOR, solar or battery-powered', 'CALCULATRICE, solaire ou à piles', 'CALCULADORA, solar o con baterías', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(375, 'PPACREEL01-', 'Log', 'P', 'PAC', 'Packing and handling', 690, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'REEL, for adhesive tape', 'DEROULEUR, pour ruban adhesif', 'DESENROLLADOR, para tape adhesivo', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(376, 'YTOY43211-60111', 'Log', 'Y', 'TOY', 'Toyota spare parts', 10939.5, '31/12/2019', 'PCE', 'PCE', 4.569, 7.0875, 'No', '4', '(HZJ78/79) STEERING KNUCKLE RH', '(HZJ78/79) FUSEE D\'ESSIEU DR', 'CARTER de FUSEE D\'ESSIEU DROIT HZJ78/79', 'Land Cruiser', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(377, 'YTOY43401-60081', 'Log', 'Y', 'TOY', 'Toyota spare parts', 11602.8, '31/12/2019', 'PCE', 'PCE', 2.387, 3.5887, 'No', '4', '(HZJ78/79) SPINDLE streering knuckle, FR', '(HZJ78/79) FUSEE d\'essieu, AV', 'FUSEE d\'essieu AV, HZJ78/79', 'Land Cruiser', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(378, 'YTOY43502-69086', 'Log', 'Y', 'TOY', 'Toyota spare parts', 9325.8, '31/12/2019', 'PCE', 'PCE', 6.143, 5.5125, 'No', '4', 'Front wheel hub for LC ', '(HZJ78/79) ENSEMBLE MOYEU essieu avant GA&DR', 'SOUS-ENS. MOYEU, ESSIEU AV DRT/GCH 78/79', 'Land Cruiser', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(379, 'YTOY45100-60600-B0', 'Log', 'Y', 'TOY', 'Toyota spare parts', 25443, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '4', 'Steering wheel', NULL, NULL, 'Land Cruiser', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(380, 'YTOY46410-60830', 'Log', 'Y', 'TOY', 'Toyota spare parts', 3752.1, '31/12/2019', 'PCE', 'PCE', 1.3, 5.9805, 'No', '4', '(HZJ78) CABLE parking brake, RHDrive', '(HZJ78) CABLE frein à main, RHDrive', 'CABLE de frein à main, HZJ78 RHD', 'Land Cruiser', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(381, 'YTOY46410-60850', 'Log', 'Y', 'TOY', 'Toyota spare parts', 2920.5, '31/12/2019', 'PCE', 'PCE', 1.5, 8.9216, 'No', '4', '(HZJ79) CABLE parking brake, RHDrive', '(HZJ79) CABLE frein à main, RHDrive', 'CABLE de frein à main, HZJ79 RHD', 'Land Cruiser', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(382, 'YTOY48702-60050', 'Log', 'Y', 'TOY', 'Toyota spare parts', 2055.68, '12/31/2019', 'pce', 'unit', 0.346, 0.162, 'Yes', '1', '(HZJ78/79/80) BUSH lower arm, axle FR', '(HZJ78/79/80) SILENT BLOC bras inférieur au pont AV', 'SILENT-BLOC, bras inférieur au pont AV, HZJ78/79', 'BEIRUT MOTORS FZE', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(383, 'YTOY62211-60090', 'Log', 'Y', 'TOY', 'Toyota spare parts', 4138.2, '31/12/2019', 'PCE', 'PCE', 2, 2.025, 'No', '4', 'GLASS, QUARTER WINDOW, REAR RH', 'GLACE LATERALE COULISSANTE AV D HZJ 7# t:4mm teinté', 'GLACE LATERALE COULISSANTE AV D HZJ 7# t:4mm teinté', 'Land Cruiser', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(384, 'YTOY62213-60010', 'Log', 'Y', 'TOY', 'Toyota spare parts', 4138.2, '31/12/2019', 'PCE', 'PCE', 2, 2.025, 'No', '4', 'GLASS, QUARTER WINDOW, REAR LH', 'GLACE COULISSANTE LATERALE ARRIERE DROITE PZ/HZ75', 'GLACE COULISSANTE LATERALE ARRIERE DROITE PZ/HZ75', 'Land Cruiser', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(385, 'YTOY62223-60010', 'Log', 'Y', 'TOY', 'Toyota spare parts', 4138.2, '31/12/2019', 'PCE', 'PCE', 2, 2.025, 'No', '4', '(HZJ78) REAR SIDE GLASS for front left side windows', 'GLACE COULISSANTE LATERALE ARRIERE GAUCHE PZ/HZ75', 'GLACE COULISSANTE LATERALE ARRIERE GAUCHE PZ/HZ75', 'Land Cruiser', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(386, 'YTOY69810-90K01', 'Log', 'Y', 'TOY', 'Toyota spare parts', 3732.3, '31/12/2019', 'PCE', 'PCE', 0.9, 1.2, 'No', '4', 'Door regulator RHS for Mark2', '(HZJ78/79) MANIVELLE LEVE-GLACE porte avec vent.,AV, DR', 'MECANISME LEVE VITRE, porte AV D. avec déflecteur HZJ78/79', 'Land Cruiser', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(387, 'YTOY86520-12610', 'Log', 'Y', 'TOY', 'Toyota spare parts', 2702.7, '31/12/2019', 'PCE', 'PCE', 0.207, 0.432, 'No', '4', '(HZJ78/79) HORN ASSY low pitched', '(HZJ78/79) AVERTISSEUR grave', 'AVERTISSEUR grave, HZJ78/79', 'Land Cruiser', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(388, 'YTOY90311-41009', 'Log', 'Y', 'TOY', 'Toyota spare parts', 693, '31/12/2019', 'PCE', 'PCE', 0.047, 0.0872, 'No', '4', 'FR differencial  oil seal for Mark 2', '(HZJ78/79 après 2002/02) JOINT SPI nez de pont, AV&AR', 'JOINT SPI, ponts AV & ARR, HZJ78/79 après 02/2002', 'Land Cruiser', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(389, 'YTOY90311-62001', 'Log', 'Y', 'TOY', 'Toyota spare parts', 1160.85, '12/31/2019', 'pce', 'unit', 0.064, 0.0723, 'Yes', '1', '(HZJ78/79) OIL SEAL wheel hub, FR & RR', '(HZJ78/79) JOINT SPI moyeu de roue, AV & AR', 'JOINT SPI, moyeu de roue AV & ARR, HZJ78/79', 'BEIRUT MOTORS FZE', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(390, 'YTOY90368-45087', 'Log', 'Y', 'TOY', 'Toyota spare parts', 2962.6, '12/31/2019', 'pce', 'unit', 0.316, 0.16, 'Yes', '1', '(HZJ78/79) OUTER BEARING wheel hub FR & RR', '(HZJ78/79) ROULEMENT EXTERIEUR moyeu de roue AV & AR', 'ROULEMENT EXTERIEUR, moyeu de roue AV & ARR, HZJ78/79', 'BEIRUT MOTORS FZE', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(391, 'YTOY90368-49084', 'Log', 'Y', 'TOY', 'Toyota spare parts', 3615.58, '12/31/2019', 'pce', 'unit', 0.441, 0.1806, 'Yes', '1', '(HZJ78/79) INNER BEARING wheel hub FR & RR', '(HZJ78/79) ROULEMENT INTERIEUR moyeu de roue AV & AR', 'ROULEMENT INTERIEUR, moyeu de roue AV & ARR, HZJ78/79', 'BEIRUT MOTORS FZE', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(392, 'YTOY90385-13009', 'Log', 'Y', 'TOY', 'Toyota spare parts', 89.1, '31/12/2019', 'PCE', 'PCE', 0.015, 0.0225, 'No', '4', '(HZJ78/79) CUSHION END stabilizer bar, FR', '(HZJ78/79) SILENT BLOC D\'EXTREMITE barre stabil., AV', NULL, 'Land Cruiser', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(393, 'YTOY04311-60100', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 1438.71, '31/12/2019', 'PCE', 'PCE', 0.104, 0.4301, 'No', '4', 'REPAIR KIT clutch master cylinder, HZJ78/79 Mk1', '(HZJ78/79 Mk1) RECHANGES maître cylindre d\'embrayage, jeu', 'Kit maître cylindre emb. ss servo-assistance HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(394, 'YTOY04479-60070', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 4056.51, '31/12/2019', 'PCE', 'PCE', 0.075, 0.336, 'No', '4', 'CALIPER REPAIR KIT disc brake, FR, for one vehicle, HZJ78/79', '(HZJ78/79) REPARATION D\'ETRIER frein à disque, AV, jeu', 'KIT REPARATION d\'étrier de frein AV, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(395, 'YTOY04493-60300', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 3991.6, '31/12/2019', 'PCE', 'PCE', 0.185, 0.2888, 'No', '4', 'REPAIR KIT master cylinder, brake, HZJ78/79', '(HZJ78/79) REPAR. DE MAITRE CYLINDRE frein à disque, AV, set', 'KIT REPARATION MAITRE CYL. De frein, HZJ 78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(396, 'YTOY04906-35130', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 757.215, '31/12/2019', 'PCE', 'PCE', 0.042, 0.192, 'No', '4', 'CUP KIT brake cylinder, RR, HZJ78/79', '(HZJ78/79) COUPELLES cylindre de frein, AR, jeu', 'COPA CILINDRO DE FRENO TRASERO (con disco de freno frontal)', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(397, 'YTOY09114-60032', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 951.927, '31/12/2019', 'PCE', 'PCE', 0.62, 0.2312, 'No', '4', 'SST HANDLE extension, HZJ78/79', '(HZJ78/79) RALLONGE de cric', 'RALLONGE de cric, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(398, 'YTOY09115-35040', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 1417.07, '31/12/2019', 'PCE', 'PCE', 0.73, 0.3333, 'No', '4', 'SST HANDLE jack, HZJ78/79', '(HZJ78/79) TIGE DE MANCHE de cric', 'TIGE DE MANCHE de cric, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(399, 'YTOY09115-60040', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 605.772, '31/12/2019', 'PCE', 'PCE', 0.37, 0.1836, 'No', '4', 'SST SWIVEL HANDLE jack, HZJ78/79', '(HZJ78/79) LEVIER DE MANCHE de cric', 'LEVIER DE MANCHE de cric, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(400, 'YTOY13505-17020', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 6209.16, '31/12/2019', 'PCE', 'PCE', 0.408, 0.4617, 'No', '4', 'IDLER ASSY timing belt, HZJ7#', '(HZJ78/79 après 98/05) POULIE TENDEUR courroie distribution', 'POULIE DE TENDEUR de courroie de distribution, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(401, 'YTOY13540-17011', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 2877.42, '31/12/2019', 'PCE', 'PCE', 0.159, 0.3325, 'No', '4', 'TENSIONER ASSY timing belt, HZJ78/79 1998/05<', '(HZJ78/79 après 98/05) POULIE TENDEUR courroie distribution', 'PISTON DE TENDEUR de courroie de distribution, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(402, 'YTOY17801-61030', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 4088.96, '31/12/2019', 'PCE', 'PCE', 0.666, 7.26, 'No', '4', 'AIR FILTER ELEMENT, dry, washable, HZJ78/79', '(HZJ78/79) FILTRE A AIR élément, sec lavable', 'ELEMENTO DEPURADOR DE AIRE SECO LAVBLE PZ/HZ', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(403, 'YTOY19850-17020', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 1752.41, '31/12/2019', 'PCE', 'PCE', 0.031, 0.022, 'No', '4', 'GLOW PLUG, 11-12V, HZJ78/79', '(HZJ78/79) BOUGIE DE PRECHAUFFAGE, 11-12V', 'BOUGIE de PRECHAUFFAGE, (11 V-12 V), HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(404, 'YTOY23344-54010', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 97.3562, '31/12/2019', 'PCE', 'PCE', 0.003, 0.0002, 'No', '4', 'GASKET drain plug, fuel filter, HZJ78/79', '(HZJ78/79) JOINT vis purge, filtre decanteur', 'JOINT VIS PURGE FILTRE DECANTEUR HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(405, 'YTOY23388-64470', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 259.616, '31/12/2019', 'PCE', 'PCE', 0.004, 0.0132, 'No', '4', 'PLUG DRAIN fuel filter, HZJ78/79', '(HZJ78/79) VIS DE PURGE filtre décanteur gasoil', 'VIS DE PURGE DE FILTRE DECANTEUR GASOIL HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(406, 'YTOY27700-50030', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 7550.51, '31/12/2019', 'PCE', 'PCE', 0.091, 0.2214, 'No', '4', 'REGULATOR generator, HZJ7# Mk1 2007/01-2010/03', '(HZJ78/79) REGULATEUR d\'alternateur', 'REGULATEUR d\'alternateur', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(407, 'YTOY28601-17020', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 3277.66, '31/12/2019', 'PCE', 'PCE', 0.08, 0.234, 'No', '4', 'RELAY glow plug, HZJ78/79', '(HZJ78/79) RELAIS SECONDAIRE bougie préchauffage', 'RELAI bougie préchauffage, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(408, 'YTOY31230-60200', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 3818.52, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '4', 'BEARING clutch release, for HZJ78/79, set', 'ROULEMENT d\'embrayage, pr HZJ78/79, pce', 'Butée d\'embrayage, HZJ 78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(409, 'YTOY41231-60030', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 757.215, '31/12/2019', 'PCE', 'PCE', 0.16, 0.4035, 'No', '4', 'SPACER differential bearing, RR, HZJ78/79 Mk1', '(HZJ78/79 Mk1) ENTRETOISE palier de differentiel, AR', 'ENTRETOISE de palier de differentiel ARR, HZJ78/79, Mk1', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(410, 'YTOY42323-60030', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 64.9041, '31/12/2019', 'PCE', 'PCE', 0.004, 0.002, 'No', '4', 'WASHER wheel hub, conical, HZJ78/79', '(HZJ78/79) RONDELLE moyeu de roue conique AV&AR', 'RONDELLE conique, moyeu de roue AV & ARR, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(411, 'YTOY42419-60011', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 86.5388, '31/12/2019', 'PCE', 'PCE', 0.005, 0.0025, 'No', '4', 'SCREW lock nut, axle bearing , RR, HZJ78/79', '(HZJ78/79) VIS blocage roulement d\'essieu AR', 'VIS de blocage d\'écrou, moyeu ARR, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(412, 'YTOY43204-60032', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 1384.62, '31/12/2019', 'PCE', 'PCE', 0.231, 0.5415, 'No', '4', 'GASKET SET steering knuckle, FR, HZJ78/79', '(HZJ78/79) JOINTS pivot de direction, jeu', 'POCHETTE DE JOINT, pivot de direction, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(413, 'YTOY43512-60141', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 10244, '31/12/2019', 'PCE', 'PCE', 9.05, 9.384, 'No', '4', 'BRAKE DISC, FR, HZJ78/79', '(HZJ78/79) DISQUE DE FREIN AV', 'DISQUE DE FREIN AV, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(414, 'YTOY45044-69145', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 3677.9, '31/12/2019', 'PCE', 'PCE', 1.047, 1.0243, 'No', '4', 'TIE ROD steering, ajustable, right, HZJ7# LHD', '(HZJ78/79) TIGE RELAIS direction droite, RHDrive', 'TIGE RELAI direction, extrémité droite, pour LHD HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(415, 'YTOY45045-69075', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 3115.4, '31/12/2019', 'PCE', 'PCE', 0.704, 0.504, 'No', '4', 'TIE ROD steering, ajustable, left, HZJ7# LHD/RHD', '(HZJ78/79) TIGE RELAIS direction gauche', 'TIGE RELAI direction, extrémité Gauche, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(416, 'YTOY45046-29456', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 2282.46, '31/12/2019', 'PCE', 'PCE', 0.502, 0.522, 'No', '4', 'TIE ROD ASSY end, KDH/LH202', 'ROTULE de DIRECTION   LH202', 'ROTULE de DIRECTION   LH202', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(417, 'YTOY45046-69135', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 2725.97, '31/12/2019', 'PCE', 'PCE', 0.496, 0.364, 'No', '4', 'END SUB-ASSY tie rod, left, HZJ7# LHD/RHD', '(HZJ78/79) ROTULE DIRECTION fixe, RHD & LHD', 'ROTULE DIRECTION fixe, Droit pr LHD, Gauche pr RHD, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(418, 'YTOY45047-69085', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 2725.97, '31/12/2019', 'PCE', 'PCE', 0.496, 0.35, 'No', '4', 'END SUB-ASSY tie rod, right, HZJ7# LHD/RHD', '(HZJ78/79) ROTULE DIRECTION fixe, RHD & LHD', 'ROTULE DIRECTION fixe, Gauche pr LHD, Droit pr RHD, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(419, 'YTOY45458-60010', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 1319.72, '31/12/2019', 'PCE', 'PCE', 0.018, 0.0962, 'No', '4', 'SEAL DUST steering link, left, HZJ78/79', '(HZJ78/79) JOINT CACHE POUSSIERE rotule, réglable LHDrive', 'CACHE POUSSIERE rotule, réglable gauche, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(420, 'YTOY46410-60840', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 3018.04, '31/12/2019', 'PCE', 'PCE', 1.319, 7.1222, 'No', '4', 'CABLE parking brake, HZJ78 LHD', '(HZJ78) CABLE frein à main, LHDrive', 'CABLE de frein à main, HZJ78 LHD', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(421, 'YTOY46410-60860', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 3245.21, '31/12/2019', 'PCE', 'PCE', 1.536, 7.238, 'No', '4', 'CABLE parking brake, HZJ79 LHD', '(HZJ79) CABLE frein à main, LHDrive', 'CABLE de frein à main, HZJ79 LHD', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(422, 'YTOY47547-60030', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 216.347, '31/12/2019', 'PCE', 'PCE', 0.018, 0.0043, 'No', '4', 'BLEEDER disk brake calliper, FR, HZJ78/79', '(HZJ78/79) VIS DE PURGE etrier de frein à disque, AV', 'VIS de purge d\'étrier, frein AV, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(423, 'YTOY47550-60120', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 4132.23, '31/12/2019', 'PCE', 'PCE', 0.531, 0.4275, 'No', '4', 'BRAKE CYLINDER, RR, HZJ78/79', '(HZJ78/79) CYLINDRE DE FREIN AR', 'CYLINDRE DE FREIN, roue Arrière, HZ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(424, 'YTOY47731-14110', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 876.205, '31/12/2019', 'PCE', 'PCE', 0.193, 0.1925, 'No', '4', 'PISTON brake calliper, FR, HZJ78/79', '(HZJ78/79) PISTON ETRIER frein à disque, avant', 'PISTON frein AV à disque, Toyota', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(425, 'YTOY48061-60050', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 1644.24, '31/12/2019', 'PCE', 'PCE', 0.318, 0.1815, 'No', '4', 'BUSH leading arm, HZJ78/79', '(HZJ78/79) SILENT BLOC bras inférieur au châssis', 'SILENT-BLOC de bras inférieur au châssis, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(426, 'YTOY48706-60030', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 1103.37, '31/12/2019', 'PCE', 'PCE', 0.232, 0.08, 'No', '4', 'BUSH Panhard rod, FR, HZJ78/79 RHD', '(HZJ78/79) SILENT BLOC barre panhard, AV, DR, latéral', 'SILENT-BLOC barre Panhard, RHD, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(427, 'YTOY48706-60070', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 703.128, '31/12/2019', 'PCE', 'PCE', 0.175, 0.07, 'No', '4', 'BUSH Panhard rod, FR, HZJ78/79 LHD/RHD', '(HZJ78/79) SILENT BLOC barre panhard, AV, GA, latéral', 'SILENT-BLOC barre Panhard, LHD, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(428, 'YTOY48802-60120', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 4207.95, '31/12/2019', 'PCE', 'PCE', 0.482, 0.5248, 'No', '4', 'LINK stabilizer bar, FR, HZJ78/79', '(HZJ78/79) ROTULE barre stabilisatrice, AV', 'ROTULE de barre stabilisatrice AV, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(429, 'YTOY48815-26020', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 400.242, '31/12/2019', 'PCE', 'PCE', 0.045, 0.0864, 'No', '4', 'BUSH stabilizer bar, no.1, RR, HZJ78/79', '(HZJ78/79) SILENT BLOC barre stabilisatrice, AR', 'SILENT-BLOC central, barre stabilisatrice ARR, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(430, 'YTOY48815-60170', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 400.242, '31/12/2019', 'PCE', 'PCE', 0.031, 0.0826, 'No', '4', 'BUSH stabilizer bar, FR, HZJ78/79', '(HZJ78/79) SILENT BLOC barre stabilisatrice, AV', 'SILENT-BLOC central, barre stabilisatrice AV, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(431, 'YTOY53285-60090', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 5213.96, '31/12/2019', 'PCE', 'PCE', 0.78, 20.47, 'No', '4', 'DUCT cool air intake, no.2 horizon, HZJ78/79 Mk2', '(HZJ78/79 Mk2) CONDUITE admission d\'air nº2, horizon', 'CONDUITE admission d\'air n°2 horizontal, HZJ78/79 Mk2', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(432, 'YTOY53299-60190', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 4067.32, '31/12/2019', 'PCE', 'PCE', 0.51, 6.72, 'No', '4', 'DUCT cool air intake, vertical, HZJ78/79 Mk2', '(HZJ78/79 Mk2) CONDUITE admission d\'air, verticale', 'CONDUITE d\'admission d\'air verticale, HZJ78/79 Mk2', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(433, 'YTOY84312-32010', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 411.059, '31/12/2019', 'PCE', 'PCE', 0.004, 0.0011, 'No', '4', 'PIN horn contact, HZJ7# >2009', '(HZJ78/79) DOIGT DE CONTACT avertisseur sonore', 'DOIGT DE CONTACT d\'avertisseur sonore, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(434, 'YTOY85222-60062', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 1557.7, '31/12/2019', 'PCE', 'PCE', 0.109, 0.3236, 'No', '4', 'WIPER BLADE, FR, left, HZJ7#', '(HZJ78/79) BALAI D\'ESSUIE complet, jeu', 'BALAI d\'essuie-glace complet, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(435, 'YTOY86510-12420', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 2953.14, '31/12/2019', 'PCE', 'PCE', 0.21, 0.432, 'No', '4', 'HORN ASSY high pitched, HZJ7#', '(HZJ78/79) AVERTISSEUR aigu', 'AVERTISSEUR aigu, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(436, 'YTOY86520-12610', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 2953.14, '31/12/2019', 'PCE', 'PCE', 0.207, 0.432, 'No', '4', 'HORN ASSY low pitched, HZJ7#', '(HZJ78/79) AVERTISSEUR grave', 'AVERTISSEUR grave, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(437, 'YTOY90113-10003', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 43.2694, '31/12/2019', 'PCE', 'PCE', 0.011, 0.004, 'No', '4', 'COUNTERSUNK SCREW brake drum, RR, HZJ7#', '(HZJ78/79) VIS tambours de frein, tête fraisée, AR', 'VIS TETE FRAISEE, tambours de frein ARR, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22');
+INSERT INTO `articles` (`id`, `article_code`, `category`, `group`, `family`, `fam_desc`, `price`, `valid`, `unit`, `sud`, `weight`, `volume`, `stock`, `lead_time`, `desc_eng`, `desc_fra`, `desc_spa`, `details`, `created_at`, `updated_at`) VALUES
+(438, 'YTOY90117-14002', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 1352.17, '31/12/2019', 'PCE', 'PCE', 0.6, 0.3465, 'No', '4', 'U-BOLT spring 8 leaves, 210mm, RR, HZJ7#', '(HZJ78/79) ETRIER EN U paquet 8 lames, AR, 210mm', 'CAVALIER ARR pour paquet 8 lames, L= 210 mm, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(439, 'YTOY90341-18006', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 183.895, '31/12/2019', 'PCE', 'PCE', 0.031, 0.0157, 'No', '4', 'FILLER PLUG transmission, HZJ78/79 KUN/LAN LN202', '(PZ-HZJ78/79) BOUCHON NIVEAU ponts, BV & transmission', 'BOUCHON NIVEAU, ponts, BV et transmission, Toyota', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(440, 'YTOY90366-20003', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 1417.07, '31/12/2019', 'PCE', 'PCE', 0.18, 0.0845, 'No', '4', 'BEARING steering knuckle arm, HZJ78/79', '(HZJ78/79) ROULEMENT pivot direction', 'ROULEMENT pivot de direction, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(441, 'YTOY90366-50054', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 2325.73, '31/12/2019', 'PCE', 'PCE', 0.375, 0.128, 'No', '4', '(HZJ78/79) BEARING differential case, RR', '(HZJ78/79) BEARING carter de differentiel, AR', 'ROULEMENT, carter de differentiel ARR, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(442, 'YTOY90368-49084', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 3234.39, '31/12/2019', 'PCE', 'PCE', 0.441, 0.1806, 'No', '4', 'BEARING INNER wheel hub, FR&RR, HZJ7#', '(HZJ78/79) ROULEMENT INTERIEUR moyeu de roue AV & AR', 'ROULEMENT INTERIEUR, moyeu de roue AV & ARR, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(443, 'YTOY90381-35001', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 389.425, '31/12/2019', 'PCE', 'PCE', 0.042, 0.0242, 'No', '4', 'BUSH steering knuckle, brass, FR, HZJ78/79', '(HZJ78/79) MANCHON fusée d\'essieu', 'MANCHON, pour fusée d\'essieu, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(444, 'YTOY90385-11021', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 86.5388, '31/12/2019', 'PCE', 'PCE', 0.009, 0.0156, 'No', '4', 'BUSH outer, stabilizer bar, RR, HZJ7#', '(HZJ78/79) SILENT BLOC D\'EXTREMITE barre stabil., AR', 'SILENT-BLOC d\'extrémité, barre stabilisatrice ARR, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(445, 'YTOY90385-13009', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 97.3562, '31/12/2019', 'PCE', 'PCE', 0.015, 0.0225, 'No', '4', 'BUSH outer, stabilizer bar, FR, HZJ7#', '(HZJ78/79) SILENT BLOC D\'EXTREMITE barre stabil., AV', 'SILENT-BLOC d\'extrémité, barre stabilisatrice AV, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(446, 'YTOY90385-18021', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 237.982, '31/12/2019', 'PCE', 'PCE', 0.063, 0.125, 'No', '4', 'BUSH lower shackle, RR, HZJ78/79', '(HZJ78/79) SILENT BLOC inférieur lames jumelles, AR', 'SILENT-BLOC inférieur lames ARR, jumelles, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(447, 'YTOY90385-18022', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 237.982, '31/12/2019', 'PCE', 'PCE', 0.068, 0.165, 'No', '4', 'BUSH upper shackle, RR, HZJ78/79', '(HZJ78/79) SILENT BLOC supérieur lamer jumelles, AR', 'SILENT-BLOC supérieur lames ARR, jumelles, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(448, 'YTOY90385-19003', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 151.443, '31/12/2019', 'PCE', 'PCE', 0.014, 0.031, 'No', '4', 'BUSH shock absorber, RR, HZJ78/79', '(HZJ78/79) SILENT BLOC armortisseur, AR', 'SILENT BLOC, amortisseur ARR, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(449, 'YTOY90541-09006', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 97.3562, '31/12/2019', 'PCE', 'PCE', 0.003, 0.02, 'No', '4', 'BUMPER CUSHION door, FR, HZJ7#', '(HZJ78/79) SILENT BLOC DE BUTEE porte, AV, DR & GA', 'CTC BUTEE de porte AV Droite & Gauche, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(450, 'YTOY90560-10044', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 118.991, '31/12/2019', 'PCE', 'PCE', 0.019, 0.0091, 'No', '4', 'SPACER stabilizer bar end, FR, HZJ7#', '(HZJ78/79) ENTRETOISE extrémité barre stabilisatrice, AV', 'ENTRETOISE extrémité barre stabilisatrice AV, HZJ 78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(451, 'YTOY90916-02452', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 2715.16, '31/12/2019', 'PCE', 'PCE', 0.174, 1.056, 'No', '4', 'V-BELT fan & alternator, HZJ7#', '(PZ-HZJ78/79) COURROIE ventilateur & alternateur, pair', 'COURROIE VENTILATEUR et ALTERNATEUR, paire, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(452, 'YTOY99332-11260-8T', 'undefined', 'Y', 'TOY', 'Toyota spare parts', 789.667, '31/12/2019', 'PCE', 'PCE', 0.152, 10.85, 'No', '4', 'V-BELT airconditioner, 1260mm, HZJ7# Mk2', '(HZJ78/79) COURROIE TRAPEZOIDALE comp. refroidisseur, 1260mm', 'COURROIE, V (comp. climatiseur), L 1260 mm, HZJ78/79', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(453, 'YTOY04234-68010', 'Log', 'Y', 'TOY', 'Toyota spare parts', 1584.08, '12/31/2019', 'pce', 'unit', 0.171, 0.9839, 'Yes', '1', '(HZJ78/79) PRE-FILTER fuel', '(HZJ/78/79) PREFILTRE à gasoil', 'ELEMENT PRE FILTRE A GASOIL, HZJ78/79', 'BEIRUT MOTORS FZE', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(454, 'YTOY04465-60340', 'Log', 'Y', 'TOY', 'Toyota spare parts', 9832.19, '12/31/2019', 'pce', 'unit', 2.123, 1.0733, 'Yes', '1', '(HZJ78/79) PAD disc brake, FR, set', '(HZJ78/79) PLAQUETTES frein de disque, AV, set', 'JEU de PLAQUETTE de frein AV à disque, HZJ78/79', 'BEIRUT MOTORS FZE', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(455, 'YTOY90915-30002-8T', 'Log', 'Y', 'TOY', 'Toyota spare parts', 1489.76, '12/31/2019', 'pce', 'unit', 0.779, 1.3671, 'Yes', '1', 'OIL FILTER element, for HZJ78/79, pce', 'FILTRE À HUILE element, pour HZJ78/79, pce', 'FILTRE à huile, HZJ78/79', 'BEIRUT MOTORS FZE', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(456, 'PCOMMOBP01-', 'Log', 'P', 'COM', 'Communication', 1600, '31/12/2019', 'PCE', 'PCE', 0.0702, 13.5, 'No', '1', 'MOBILE PHONE', 'TELEPHONE PORTABLE', 'TELEPHONE PORTABLE', 'Nokia 106 (2018) - 1.8\" -Dual Sim , Dark Grey \nKEY FEATURES :\nDual Sim\nsleek design\n4 MB RAM, 4 MB inbuilt\n800 mAh Battery\n1.8 inches, 120 x 160 px Display\nFM Radio\nover 15.7 hours Talk time\nWHAT\'S IN THE BOX:\nNokia 106 (2018) - 1.8\" - Dual Sim - Dark Grey\ncharger\nmanual\nSPECIFICATIONS OF 106 (2018) - 1.8\" -DUAL SIM , DARK GREY\nSKU NO891EL0PMPL3NAFAMZ\nSize (L x W x H cm): 4.38 x 1.95 x 0.57\nWeight (kg): 0.0702\nMain material -\nRAM: 4\nMemory Size (GB): 4\nProcessor: n/a\n\n', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(457, 'ALIFZPINGPONG', 'Log', 'A', 'LIF', 'Team life', 69900, '31/12/2019', 'PCE', 'PCE', 71, NULL, 'No', '1', 'TENNIS TABLE', 'Table de Ping-pong ', NULL, 'DECATHLON : PPT 900 FREE TABLE TENNIS TABLE\nMore information : https://www.decathlon.co.ke/p/8351296_table-tennis-table-Nairobi.html#our_promise_banner\nFOLDABLE: YES\nLOCATION OF PRACTICE: OUTDOORS\nBOUNCE (tabletop nature): ++ (5 mm melamine)\nSTABILITY: With adjustable feet and 4 brakes\nMOVING COMFORT: Big wheels\nFREQUENCY: INTENSIVE\nLEVEL OF PRACTICE: ADVANCED\nSPACE OF PRACTICE: Standard space >15m²\nWarranty10 Years\n\nTechnical Information:\nWeight: 71 kg. Table dim. when unfolded: 274 x 164 x 76 cm (without net) (L x W x H). Table dim. when folded: 85 x 164 x 167 cm. Box dimensions: 144 x 163 x 14 cm.\nEach tabletop has four automatic locking points so that it can be locked in the open or closed position (it can be folded up for playing alone). 1 centralised handle locks/unlocks each tabletop in 5 seconds.\nThis table has four 50mm-diameter legs whose height can be adjusted (50mm) to work on any type of terrain. The 4 brakes let you lock the wheels for more stability.\nThe four 25 cm wheels let you easily move your table over any type of ground, even very uneven ground.\nEasily play and store your table: its melamine tabletops and rust-proof metal frame let you store it indoors and out.\nThe two 5mm melamine tabletops fixed onto the 55x15mm galvanised steel rim provide improved bounce quality for your rallies against your opponents.\nThe table is equipped with storage for 4 bats and 4 balls (located on each side).\nThe 10-year warranty covers defects (other than scratches, rust, and discolouration) on the table, except for those resulting from normal wear and abnormal use conditions. It will only be granted upon presentation of a sales receipt. Under this warranty, we will exchange the defective parts or table tennis table. The commercial warranty does not exclude the legal warranties applicable to each country. https://support.decathlon.fr/tdtservicetables-warranty-tp_22052', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(458, 'PHYGTROLCC-', 'Log', 'P', 'HYG', 'Hygiene', 12000, '31/12/2019', 'PCE', 'PCE', 17.46, 179.564, 'No', '1', 'CLEANING TROLLEY fully equipped', 'CHARIOT DE NETTOYAGE tout équipé', 'CARRO DE LIMPIEZA, todo equipado', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(459, 'PCOMTKSUXX1', 'Log', 'P', 'COM', 'Communication', 68000, '31/12/2019', 'PCE', 'PCE', 0.82, NULL, 'No', '1', 'ROUTER SATELLITE, Evolution X1 Series', NULL, NULL, 'Satellite Router : Evolution X1 Series\nModels X1, X1-Ku/C, X1-HSO\n', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(460, 'PELESECULIGHT70W', 'Log', 'P', 'ELE', 'Electricity', 79995, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '2', 'SOLAR SECURITY LIGHT, Li Battery, 70W', NULL, NULL, 'Brand PBOX\n70W PV,30W LED 5000K, 346WH Li-Battery\nwww.pboxlighting.com', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(461, 'PELESECULIGHT35W', 'Log', 'P', 'ELE', 'Electricity', 49995, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '2', 'SOLAR SECURITY LIGHT, Li Battery, 35W', NULL, NULL, '35W PV,15W LED 5000K, 192WH Li-Battery', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(462, 'PCOLSOLEVKSU', 'Log', 'P', 'COL', 'Cold chain', 114600, '31/12/2019', 'PCE', 'PCE', 70, 670, 'No', '1', 'SOLAR FRIDGE / REFRIGERATOR ', 'REFRIGERATEUR solaire', 'FRIGORIFICO, SolarChill', 'Brand: PHOCOS\nTHIS FRIDGE IS NOT FOR MEDICAL USE or COLD CHAIN\nSolar panel and batteries not included\nThis fridge can come as a solar kit with rrelated items bellow:\n- 2 * Amerisolar 150W AS-6P18-150 (solar panels)\n- 1* BlueSolar PWM-Pro Charge Controller 12/24V-20A\n- 1* TROJAN SAGM 12v 205Ah Solar Battery\n- 1* MC4 solar Connectors Male\n- 1* MC4 solar Connectors Female\n- 7* 4mm DC Cable for Solar Installation\n- 8* 10mm Single Core\n- 4* Solar Cable Lugs-16mm\n', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(463, 'PPACTRUCH20', 'Log', 'P', 'PAC', 'Packing and handling', 33000, '31/12/2019', 'PCE', 'PCE', 59.5, 1076, 'No', '1', 'PALLET TRUCK manual, 2000kg 90/200mm', 'TRANSPALETTE manuel, 2000kg 90/200mm', 'CARRETILLA TRANSPALETA A MANO, 2000kg,90/200mm', NULL, '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(464, 'ALIFWASM1T-', 'Log', 'A', 'LIF', 'Team life', 48189, '31/12/2019', 'PCE', 'PCE', 62, NULL, 'No', '1', 'WASHING MACHINE, for team', 'LAVE-LINGE, pour équipe', 'LAVADORA, para equipo', 'Brand: SAMSUNG WW70J4213\n- FRONT LOAD\n- Washing Capacity (kg): 7 kg\n- Panel Display: LED\n- Noise Level (Wash): 58 dB\n- Noise Level (Spin): 73 dB\n- Spin Speed: 1200\n- Gross Weight: 62 kg\n- Width x Height x Depth (mm): 600 x 850 x 630\n\nMore Specs: https://www.samsung.com/hk_en/washing-machines/front-loader-ww70j4213iw/\n', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(465, 'TBOAENGI40L', 'Log', 'T', 'BOA', 'Boat and boat accessories', 388000, '31/12/2019', 'PCE', 'PCE', 62, NULL, 'No', '2', 'ENGINE, OUTBOARD, Yamaha 40 HP, HMOL, long propeller shaft', 'MOTEUR HORS BORD, Yamaha 40 CV, HMOL, arbre long', 'MOTOR FUERA BORDA, Yamaha 40 CV, HMOL, largo eje de cola', 'Brand: Yamaha\nEngine E40XMHL Yamaha Outboard Manual Start\nEngine comes with the following accessories:\n-Fuel Tank & Fuel Line\n-Tool Kit, Spare Spark', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(466, 'TXYAMISC-228', 'Log', 'T', 'XYA', 'Spare parts Yamaha', 21115, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'HB (Yamaha 6H4) PROP. 3x10-3/4\"x16\"-g (P/N 663-45949-01-EL)', 'HB (Yamaha 6H4) HELICE 3x10-3/4\"x16\"-g (P/N 663-45949-01-EL)', 'HB (Yamaha 6H4) HELICE 3x10-3/4\"x16\"-g (P/N 663-45949-01-EL)', 'Brand: Yamaha\nPropeller (3x11-1/8)\n', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(467, 'TXYAMISC-242', 'Log', 'T', 'XYA', 'Spare parts Yamaha', 577, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', 'undefined', 'HB (Yamaha 6H4) PLUG, SPARK, NGK B8HS-10 (P/N 94702-00247)', 'HB (Yamaha 6H4) PLUG, SPARK, NGK B8HS-10 (P/N 94702-00247)', 'HB (Yamaha 6H4) PLUG, SPARK, NGK B8HS-10 (P/N 94702-00247)', 'Spark Plug B7HS NGK YG054', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(468, 'TBOATKSUXX1', 'Log', 'T', 'BOA', 'Boat and boat accessories', 76450, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '2', 'BOAT', 'BATEAU', NULL, 'BOAT: YAMAHA W-23SA\nMore specs : https://www.captainandyskenya.com/boatbuilder/showboat/boat/126?application=Transport\n\nSPECIFICATIONS:\nLOA 7.06 M.\nBEAM 1.71 M\nDEPTH MID SHIP 0.64 M\nDRAFT 0.22 M\nWEIGHT 295 KGS.\nPAYLOAD 1000 KGS\nAPPLICATIONS:\nTILLER HANDLE USE FOR TRANSPORTING GOODS & PEOPLE (WITH BENCH SEATS)\nCENTRE CONSOLE FITTED STEERING FOR FISHING, SKIING & GENERAL\nLEISURE USE.\n“STABILITY & RELIABILITY ARE MAJOR FEATURES OF THIS RANGE OF BOATS. WHETHER FOR FISHING, OFF SHORE WORK, DIVING OR TRANSPORTATION, THESE STURDY BOATS ARE UNMATCHED IN\nPERFORMANCE. DESIGNED TO MASTER THE ROUGHEST OF WATERS, THE YAMAHA W-SERIES BOATS HAVE BEEN PROVING THEIR STRENGTH & DURABILTY FOR DECADES.”\nSTANDARD EQUIPMENT: \nMOORING HARDWARE\nPOLYVINYL GUNWALE\nTRANSOM PAD\nSTERN SEAT\nDRAIN PLUG\nOPTIONAL EQUIPMENT:\nREMOVABLE FLOOR BOARDS\nFOLDING BIMINI SUNSHADE OR FIXED ALUMINIUM FRAME SUNSHADE OR\nT TOP\nBOW STORAGE\nBOW RAILS & SPRAY / SPLASH COVER\nCENTER CONSOLE\nBENCH SEATS\nANCHOR HATCH\nS / STEEL BOW & STERN EYES\nNAVIGATION LIGHTS\nMARINE COMPASS\nGPS\nRADIO & AERIAL\nLIFE JACKETS & LIFE RING\nFIRST AID KIT\nFIRE EXTINGUISHER & FIRE BLANKET\nANCHOR, CHAIN & ROPE PACKAGE\nRECOMMENDED POWER:\n1 X 40 HP YAMAHA OUTBOARD ENGINE OR\n1 X 55 HP (TILLER HANDLE) YAMAHA OUTBOARD ENGINE OR\n1 X 60 HP YAMAHA OUTBOARD ENGINE OR\n1 X 75 HP (TILLER HANDLE) YAMAHA OUTBOARD ENGINE OR\n1 X 85 HP YAMAHA OUTBOARD ENGINE OR\n1 X 40 HP 4 STROKE (TILLER HANDLE) YAMAHA OUTBOARD ENGINE OR\n1 X 50 HP 4 STROKE YAMAHA OUTBOARD ENGINE OR\n1 X 70 HP 4 STROKE YAMAHA OUTBOARD ENGINE', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(469, 'TVECOILET302', 'Log', 'T', 'VEC', 'Vehicle consumables', 2763, '31/12/2019', '1 can of 4 ltr', '1 can of 4 ltr', 1, 1, 'No', '1', 'Engin oil, 2 stroke, hors-bord', 'HUILE MOTEUR, 2 TEMPS, hors-bord', NULL, 'YAMALUBE, OUTBOARD 2 stroke Motor oil', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(470, 'TBOAENGIY84L', 'Log', 'T', 'BOA', 'Boat and boat accessories', 77900, '31/12/2019', 'PCE', 'PCE', NULL, NULL, 'No', '1', 'MOTEUR HORS-BORD (Yamaha F80) 80CV, 4 temps, arbre long', 'MOTEUR HORS-BORD (Yamaha F80) 80CV, 4 temps, arbre long', NULL, 'YAMAHA ENDURO 85AETL', '2019-09-17 09:48:22', '2019-09-17 09:48:22');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `donations`
 --
 
-DROP TABLE IF EXISTS `donations`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `donations` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `article_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `group` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `family` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fam_desc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `article_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `group` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `family` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fam_desc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` float NOT NULL,
-  `valid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `unit` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `valid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `weight` float DEFAULT NULL,
   `volume` float DEFAULT NULL,
-  `stock` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `stock` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lead_time` int(11) NOT NULL,
-  `desc_eng` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `desc_fra` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `desc_spa` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `details` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `desc_eng` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `desc_fra` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `desc_spa` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `details` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `articles_article_code_unique` (`article_code`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `donations`
---
-
-LOCK TABLES `donations` WRITE;
-/*!40000 ALTER TABLE `donations` DISABLE KEYS */;
-/*!40000 ALTER TABLE `donations` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `migrations`
 --
 
-DROP TABLE IF EXISTS `migrations`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `migrations` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
 --
 
-LOCK TABLES `migrations` WRITE;
-/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (7,'2014_10_12_000000_create_users_table',1),(8,'2014_10_12_100000_create_password_resets_table',1),(9,'2019_06_17_070344_create_articles_table',2),(10,'2019_06_17_114127_create_unicodes_table',3),(11,'2019_06_20_071002_drop_table_articles',4),(12,'2019_06_20_071442_create_articles_table',5),(13,'2019_06_20_080022_drop_table_articles',6),(14,'2019_06_20_080140_create_articles_table',7),(15,'2019_06_25_045929_create_pics_table',8),(16,'2019_07_09_050834_add_fam_desc_column_to_articles_table',9),(17,'2019_07_19_053430_add_donate_column_to_articles_table',10),(18,'2019_08_14_121405_add_sud_column_to_articles_table',11),(19,'2019_08_18_062223_create_populars_table',12),(20,'2019_08_24_093923_drop_users_table',13),(21,'2019_08_24_094345_create_users_table',14),(22,'2019_08_27_035510_create_users_table',15),(23,'2019_08_28_094320_add_email_verified_at_to_users_table',16);
-/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(7, '2014_10_12_000000_create_users_table', 1),
+(8, '2014_10_12_100000_create_password_resets_table', 1),
+(9, '2019_06_17_070344_create_articles_table', 2),
+(10, '2019_06_17_114127_create_unicodes_table', 3),
+(11, '2019_06_20_071002_drop_table_articles', 4),
+(12, '2019_06_20_071442_create_articles_table', 5),
+(13, '2019_06_20_080022_drop_table_articles', 6),
+(14, '2019_06_20_080140_create_articles_table', 7),
+(15, '2019_06_25_045929_create_pics_table', 8),
+(16, '2019_07_09_050834_add_fam_desc_column_to_articles_table', 9),
+(17, '2019_07_19_053430_add_donate_column_to_articles_table', 10),
+(18, '2019_08_14_121405_add_sud_column_to_articles_table', 11),
+(19, '2019_08_18_062223_create_populars_table', 12),
+(20, '2019_08_24_093923_drop_users_table', 13),
+(21, '2019_08_24_094345_create_users_table', 14),
+(22, '2019_08_27_035510_create_users_table', 15),
+(23, '2019_08_28_094320_add_email_verified_at_to_users_table', 16),
+(24, '2019_09_16_120645_add_category_to_users_table', 17);
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `password_resets`
 --
 
-DROP TABLE IF EXISTS `password_resets`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `password_resets` (
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  KEY `password_resets_email_index` (`email`)
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `password_resets`
---
-
-LOCK TABLES `password_resets` WRITE;
-/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
-/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `pics`
 --
 
-DROP TABLE IF EXISTS `pics`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pics` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `article_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pic` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `article_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pic` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=218 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `pics`
 --
 
-LOCK TABLES `pics` WRITE;
-/*!40000 ALTER TABLE `pics` DISABLE KEYS */;
-INSERT INTO `pics` VALUES (5,'AFOOSUGA1--','https://res.cloudinary.com/ksucatalog/image/upload/v1565681253/media/suge_eldq8m.jpg','2019-08-15 05:49:39','2019-08-15 05:49:39'),(6,'AFOOZYN0017','https://res.cloudinary.com/ksucatalog/image/upload/v1565681244/media/image29_ltsc6o.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(7,'AFOOZYN1089','https://res.cloudinary.com/ksucatalog/image/upload/v1565681245/media/image30_otenjk.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(8,'ALIFZYN01328','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(9,'ALIFZYN1002','https://res.cloudinary.com/ksucatalog/image/upload/v1565681245/media/image34_wvfg1t.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(10,'ALIFZYN1006','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(11,'ALIFZYN1013','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(12,'ALIFZYN1014','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(13,'ALIFZYN1017','https://res.cloudinary.com/ksucatalog/image/upload/v1565681243/media/image22_w1konc.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(14,'ALIFZYN1019','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(15,'ALIFZYN1021','https://res.cloudinary.com/ksucatalog/image/upload/v1565681245/media/image32_aky5bi.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(16,'ALIFZYN1022','https://res.cloudinary.com/ksucatalog/image/upload/v1565681245/media/image31_cgaosf.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(17,'ALIFZYN1023','https://res.cloudinary.com/ksucatalog/image/upload/v1565681249/media/image57_zxedzw.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(18,'ALIFZYN1024','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(19,'ALIFZYN1025','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(20,'ALIFZYN1026','https://res.cloudinary.com/ksucatalog/image/upload/v1565681246/media/image38_wnqfhl.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(21,'ALIFZYN1027','https://res.cloudinary.com/ksucatalog/image/upload/v1565681245/media/image37_fpdegd.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(22,'ALIFZYN1028','https://res.cloudinary.com/ksucatalog/image/upload/v1565681248/media/image56_vii5d7.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(23,'ALIFZYN1029','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(24,'ALIFZYN1030','https://res.cloudinary.com/ksucatalog/image/upload/v1565681243/media/image24_nxuy77.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(25,'ALIFZYN1032','https://res.cloudinary.com/ksucatalog/image/upload/v1565681246/media/image41_vmofdc.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(26,'ALIFZYN1033','https://res.cloudinary.com/ksucatalog/image/upload/v1565681247/media/image51_ikiaek.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(27,'ALIFZYN1034','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(28,'ALIFZYN1035','https://res.cloudinary.com/ksucatalog/image/upload/v1565681245/media/image36_ug1upk.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(29,'ALIFZYN1037','https://res.cloudinary.com/ksucatalog/image/upload/v1565681244/media/image25_rmpcyl.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(30,'ALIFZYN1044','https://res.cloudinary.com/ksucatalog/image/upload/v1565681246/media/image39_lejexu.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(31,'ALIFZYN1045','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(32,'ALIFZYN1047','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(33,'ALIFZYN1057','https://res.cloudinary.com/ksucatalog/image/upload/v1565681243/media/image20_nhdwc0.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(34,'ALIFZYN1060','https://res.cloudinary.com/ksucatalog/image/upload/v1565681246/media/image45_o3nkjd.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(35,'ALIFZYN1062','https://res.cloudinary.com/ksucatalog/image/upload/v1565681247/media/image46_yip7ez.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(36,'ALIFZYN1064','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(37,'ALIFZYN1080','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(38,'ALIFZYN1081','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(39,'ALIFZYN1083','https://res.cloudinary.com/ksucatalog/image/upload/v1565681248/media/image52_sk41fz.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(40,'ALIFZYN1086','https://res.cloudinary.com/ksucatalog/image/upload/v1565681248/media/image55_imxama.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(41,'ALIFZYN1095','https://res.cloudinary.com/ksucatalog/image/upload/v1565681248/media/image58_tzrfjs.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(42,'ALIFZYN1097','https://res.cloudinary.com/ksucatalog/image/upload/v1565681247/media/image50_mwelwx.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(43,'ALIFZYN1099','https://res.cloudinary.com/ksucatalog/image/upload/v1565681248/media/image54_eiyfhl.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(44,'ALIFZYN1165','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(45,'ALIFZYN1172','https://res.cloudinary.com/ksucatalog/image/upload/v1565681246/media/image42_g32pyf.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(46,'ALIFZYN1175','https://res.cloudinary.com/ksucatalog/image/upload/v1565681245/media/image33_ldkolp.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(47,'ALIFZYN1177','https://res.cloudinary.com/ksucatalog/image/upload/v1565681245/media/image35_uwe30g.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(48,'ALIFZYN1181','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(49,'ALIFZYN1184','https://res.cloudinary.com/ksucatalog/image/upload/v1565681244/media/image26_o8vjlc.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(50,'ALIFZYN1185','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(51,'ALIFZYN1186','https://res.cloudinary.com/ksucatalog/image/upload/v1565681247/media/image40_jhomgo.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(52,'ALIFZYN1208','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(53,'ALIFZYN1218','https://res.cloudinary.com/ksucatalog/image/upload/v1565681249/media/image60_pw49xj.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(54,'ALSTSTOC4HW','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(55,'ASTABINDL37B','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(56,'ASTABINDL37L','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(57,'ASTAENVE1WA','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(58,'ASTAENVE2KA','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(59,'ASTAENVE3KA','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(60,'ASTAERAS1R-','https://res.cloudinary.com/ksucatalog/image/upload/v1565681244/media/image3_ehrawa.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(61,'ASTAERASF--','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(62,'ASTAFLIP1P5','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(63,'ASTAFOLD14T','https://res.cloudinary.com/ksucatalog/image/upload/v1565681243/media/image15_rmbunx.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(64,'ASTAFOLD24T','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(65,'ASTAFOLDD41','https://res.cloudinary.com/ksucatalog/image/upload/v1565681243/media/image16_qeaobm.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(66,'ASTAGLUESL-','https://res.cloudinary.com/ksucatalog/image/upload/v1565681246/media/image4_v0lbgo.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(67,'ASTAPADP3--','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(68,'ASTAPADP7--','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(69,'ASTAPENB1B-','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(70,'ASTAPENB1L-','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(71,'ASTAPENB1R-','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(72,'ASTAPENC1HB','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(73,'ASTAPENM1BE','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(74,'ASTAPENM1GE','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(75,'ASTAPENM1LE','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(76,'ASTAPENM1RE','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(77,'ASTAPENM2BS','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(78,'ASTAPENM2GS','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(79,'ASTAPENM2LS','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(80,'ASTAPENM2RS','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(81,'ASTAPENM3BB','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(82,'ASTAPENM3BL','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(83,'ASTAPENM3GB','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(84,'ASTAPENM3RB','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(85,'ASTAPENM4FS','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(86,'ASTAPUNC1P-','https://res.cloudinary.com/ksucatalog/image/upload/v1565681250/media/image6_f5vevv.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(87,'ASTARING1K-','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(88,'ASTARULE30-','https://res.cloudinary.com/ksucatalog/image/upload/v1565681250/media/image7_k2xmzi.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(89,'ASTASCISS7B','https://res.cloudinary.com/ksucatalog/image/upload/v1565681252/media/image8_d0nzp4.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(90,'ASTASTAP1M-','https://res.cloudinary.com/ksucatalog/image/upload/v1565681242/media/image11_fze9di.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(91,'ASTASTAPR--','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(92,'ASTAZYN1002','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(93,'ASTAZYN1003','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(94,'ASTAZYN1006','https://res.cloudinary.com/ksucatalog/image/upload/v1565681242/media/image19_jeyiri.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(95,'ASTAZYN1017','https://res.cloudinary.com/ksucatalog/image/upload/v1565681253/media/image9_afgd6x.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(96,'ASTAZYN1046','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(97,'ASTAZYN1047','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(98,'ASTAZYN1049','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(99,'ASTAZYN1050','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(100,'ASTAZYN1051','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(101,'ASTAZYN1052','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(102,'ASTAZYN1075','https://res.cloudinary.com/ksucatalog/image/upload/v1565681243/media/image13_v5kh0n.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(103,'ASTAZYN1085','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(104,'ASTAZYN1116','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(105,'ASTAZYN1121','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(106,'CWATBEDNDPP32','https://res.cloudinary.com/ksucatalog/image/upload/v1565681251/media/image76_zvkygw.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(107,'CWATZYN1028','https://res.cloudinary.com/ksucatalog/image/upload/v1565681246/media/image44_obnmys.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(108,'CWATZYN1093','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(109,'PCOOUTENSST','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(110,'PCOOZYN1032','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(111,'PELEBATTA03','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(112,'PELEBATTA06','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(113,'PHDWOILPM04','https://res.cloudinary.com/ksucatalog/image/upload/v1565681250/media/image69_zpc5n1.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(114,'PHYGBAGR1HB7','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(115,'PHYGBAGR70B6','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(116,'PHYGBAGR70YI','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(117,'PHYGBROOD--','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(118,'PHYGBRUSFS-','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(119,'PHYGBRUSSW-','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(120,'PHYGGLOR1M-','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(121,'PHYGGLOVRLP','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(122,'PHYGPAPITR-','https://res.cloudinary.com/ksucatalog/image/upload/v1565681244/media/image21_n0bho3.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(123,'PHYGSOAPTLW','https://res.cloudinary.com/ksucatalog/image/upload/v1565681248/media/image59_fobbar.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(124,'PHYGTOWEC07','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(125,'PHYGZYN1016','https://res.cloudinary.com/ksucatalog/image/upload/v1565681243/media/image23_hcwvgo.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(126,'PHYGZYN1017','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(127,'PHYGZYN1018','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(128,'PSAFGLOVDOL','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(129,'PSAFGLOVHOS','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(130,'PSAFGLOVN10','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(131,'PSAFOVERLO-','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(132,'PSAFOVERMLM','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(133,'PSAFOVERMXL','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(134,'PSAFOVERMXX','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(135,'PSAFZYN0003','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(136,'SDRECOTW5R-','https://res.cloudinary.com/ksucatalog/image/upload/v1565681250/media/image66_gh8f4j.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(137,'TVECCOOLC1-','https://res.cloudinary.com/ksucatalog/image/upload/v1565681250/media/image70_jfhxmv.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(138,'TVECFLUIB4H','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(139,'TVECFLUITD1','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(140,'TVECOILE542H','https://res.cloudinary.com/ksucatalog/image/upload/v1565681249/media/image64_gutzej.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(141,'TVECOILG8905','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(142,'TVECOILG892H','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(143,'TVECZYN1015','https://res.cloudinary.com/ksucatalog/image/upload/v1565681249/media/image63_vjnkrz.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(144,'TVECZYN1028','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(145,'YTOY04234-68010','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(146,'YTOY04465-60340','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(147,'YTOY17801-61030','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(148,'YTOY23390-51070','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(149,'YTOY48702-60050','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(150,'YTOY90311-62001','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(151,'YTOY90368-45087','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(152,'YTOY90368-49084','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(153,'YTOY90915-30002-8T','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(154,'AFURZYN0062','https://res.cloudinary.com/ksucatalog/image/upload/v1565851729/media/AFURZYN0062_picture_1_wl9xv5.jpg','2019-08-15 05:49:39','2019-08-15 05:49:39'),(155,'AFURZYN0062','https://res.cloudinary.com/ksucatalog/image/upload/v1565851731/media/AFURZYN0062_picture_2_l0wg3x.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(156,'PSAFGLOVDO-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851732/media/PSAFGLOVDO-_wv1ggo.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(157,'PSAFGLOVLX-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851733/media/PSAFGLOVLX-_gnjdkp.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(158,'PSAFGLOVDOL','https://res.cloudinary.com/ksucatalog/image/upload/v1565851733/media/PSAFGLOVDOL_xurcuq.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(159,'PSAFGLOVCO-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851732/media/PSAFGLOVCO-_xambjy.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(160,'PSAFGLOVM09','https://res.cloudinary.com/ksucatalog/image/upload/v1565851733/media/PSAFGLOVM09_c6mgsd.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(161,'PSAFGLOVM10','https://res.cloudinary.com/ksucatalog/image/upload/v1565851733/media/PSAFGLOVM10_nwcs0y.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(162,'PSAFGLOVM11','https://res.cloudinary.com/ksucatalog/image/upload/v1565851733/media/PSAFGLOVM11_o5rxrl.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(163,'PSAFGLOVN07','https://res.cloudinary.com/ksucatalog/image/upload/v1565851733/media/PSAFGLOVN07_dm22hy.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(164,'PSAFGLOVN08','https://res.cloudinary.com/ksucatalog/image/upload/v1565851734/media/PSAFGLOVN08_o47d5q.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(165,'PSAFGLOVN10','https://res.cloudinary.com/ksucatalog/image/upload/v1565851734/media/PSAFGLOVN10_dehqjo.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(166,'PSAFGLOVHOS','https://res.cloudinary.com/ksucatalog/image/upload/v1565851733/media/PSAFGLOVHOS_ofabzi.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(167,'PSAFGLOV510','https://res.cloudinary.com/ksucatalog/image/upload/v1565851732/media/PSAFGLOV510_zq55mp.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(168,'PSAFBOOTP39','https://res.cloudinary.com/ksucatalog/image/upload/v1565851730/media/ALIFBOOL43-_lwggqk.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(169,'ALIFBOOL37-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851729/media/ALIFBOOL37-_um2zv1.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(170,'PSAFBOOTP40','https://res.cloudinary.com/ksucatalog/image/upload/v1565851730/media/ALIFBOOL43-_lwggqk.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(171,'ALIFBOOL38-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851730/media/ALIFBOOL38-_piqkvw.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(172,'PSAFBOOTP41','https://res.cloudinary.com/ksucatalog/image/upload/v1565851730/media/ALIFBOOL43-_lwggqk.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(173,'PSAFBOOTP42','https://res.cloudinary.com/ksucatalog/image/upload/v1565851730/media/ALIFBOOL43-_lwggqk.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(174,'ALIFBOOL40-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851729/media/ALIFBOOL40-_hswkr0.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(175,'PSAFBOOTP43','https://res.cloudinary.com/ksucatalog/image/upload/v1565851730/media/ALIFBOOL43-_lwggqk.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(176,'ALIFBOOL41-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851730/media/ALIFBOOL41-_ndyoiy.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(177,'PSAFBOOTP44','https://res.cloudinary.com/ksucatalog/image/upload/v1565851730/media/ALIFBOOL43-_lwggqk.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(178,'ALIFBOOL42-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851730/media/ALIFBOOL42-_aozfgm.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(179,'ALIFBOOL43-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851730/media/ALIFBOOL43-_lwggqk.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(180,'ALIFBOOL44-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851730/media/ALIFBOOL44-_hd8s8x.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(181,'ALIFBOOL45-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851731/media/ALIFBOOL45-_y6ueus.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(182,'PSAFSHOEP38','https://res.cloudinary.com/ksucatalog/image/upload/v1565851736/media/PSAFSHOEP38_xd26na.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(183,'PSAFSHOEP39','https://res.cloudinary.com/ksucatalog/image/upload/v1565851735/media/PSAFSHOEP39_evgwgs.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(184,'PSAFSHOEP40','https://res.cloudinary.com/ksucatalog/image/upload/v1565851736/media/PSAFSHOEP40_lgotxo.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(185,'PSAFSHOEP41','https://res.cloudinary.com/ksucatalog/image/upload/v1565851736/media/PSAFSHOEP41_urwent.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(186,'PSAFSHOEP42','https://res.cloudinary.com/ksucatalog/image/upload/v1565851736/media/PSAFSHOEP42_mbzzii.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(187,'PSAFSHOEP43','https://res.cloudinary.com/ksucatalog/image/upload/v1565851736/media/PSAFSHOEP43_hhkm8d.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(188,'PSAFSHOEP44','https://res.cloudinary.com/ksucatalog/image/upload/v1565851736/media/PSAFSHOEP44_bqqvwe.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(189,'PSAFSHOEP45','https://res.cloudinary.com/ksucatalog/image/upload/v1565851736/media/PSAFSHOEP45_d3kges.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(190,'PSAFSHOEP46','https://res.cloudinary.com/ksucatalog/image/upload/v1565851736/media/PSAFSHOEP46_rrlk1k.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(191,'PHYGBOOTR37','https://res.cloudinary.com/ksucatalog/image/upload/v1565851731/media/PHYGBOOTR37_phxym5.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(192,'PHYGBOOTR38','https://res.cloudinary.com/ksucatalog/image/upload/v1565851731/media/PHYGBOOTR38_oc7sjy.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(193,'PHYGBOOTR39','https://res.cloudinary.com/ksucatalog/image/upload/v1565851731/media/PHYGBOOTR39_kqmxcn.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(194,'PHYGBOOTR40','https://res.cloudinary.com/ksucatalog/image/upload/v1565851731/media/PHYGBOOTR40_fgjqul.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(195,'PHYGBOOTR41','https://res.cloudinary.com/ksucatalog/image/upload/v1565851731/media/PHYGBOOTR41_tilxhq.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(196,'PHYGBOOTR42','https://res.cloudinary.com/ksucatalog/image/upload/v1565851731/media/PHYGBOOTR42_c7zqjd.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(197,'PHYGBOOTR43','https://res.cloudinary.com/ksucatalog/image/upload/v1565851732/media/PHYGBOOTR43_fcktlm.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(198,'PHYGBOOTR44','https://res.cloudinary.com/ksucatalog/image/upload/v1565851732/media/PHYGBOOTR44_eewpdk.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(199,'PHYGBOOTR45','https://res.cloudinary.com/ksucatalog/image/upload/v1565851732/media/PHYGBOOTR44_eewpdk.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(200,'PSAFOVERMXX','https://res.cloudinary.com/ksucatalog/image/upload/v1565851735/media/PSAFOVERMXX_lvxdw9.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(201,'PSAFOVERMMS','https://res.cloudinary.com/ksucatalog/image/upload/v1565851735/media/PSAFOVERMMS_bmyofw.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(202,'PSAFOVERMO-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851735/media/PSAFOVERMO-_qa3ize.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(203,'PSAFOVERLO-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851734/media/PSAFOVERLO-_mawqli.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(204,'PSAFOVERMLM','https://res.cloudinary.com/ksucatalog/image/upload/v1565851734/media/PSAFOVERMLM_b7pdfg.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(205,'PSAFOVERMXL','https://res.cloudinary.com/ksucatalog/image/upload/v1565851735/media/PSAFOVERMXL_f7hbdx.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(206,'PSAFOVERMLM-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851735/media/PSAFOVERMLM-_uy1kml.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(207,'PSAFOVERMMS-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851735/media/PSAFOVERMMS-_caorwg.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(208,'PSAFOVERMXX-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851735/media/PSAFOVERMXX-_jfkny6.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(209,'PSAFRAINJLL','https://res.cloudinary.com/ksucatalog/image/upload/v1565851735/media/PSAFRAINJLL_fcz1se.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(210,'PSAFRAINJLM','https://res.cloudinary.com/ksucatalog/image/upload/v1565851735/media/PSAFRAINJLM_f7etqx.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(211,'PSAFRAINJXL','https://res.cloudinary.com/ksucatalog/image/upload/v1565851736/media/PSAFRAINJXL_sfbveo.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(212,'PSAFFIREPPW','https://res.cloudinary.com/ksucatalog/image/upload/v1565851732/media/PSAFFIREPPW_ljv6mg.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(213,'PSAFFIREAF6','https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(214,'PSAFBLAN12-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851732/media/PSAFBLAN12-_su4dgb.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(215,'PSAFALARSD-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851732/media/PSAFALARSD-_bn3nkc.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(216,'ALIFBOOL39-','https://res.cloudinary.com/ksucatalog/image/upload/v1565851729/media/ALIFBOOL39-_zerhsn.png','2019-08-15 05:49:39','2019-08-15 05:49:39'),(217,'PSAFMASKRF3','https://res.cloudinary.com/ksucatalog/image/upload/v1565851734/media/PSAFMASKRF3_tztajy.png','2019-08-15 05:49:39','2019-08-15 05:49:39');
-/*!40000 ALTER TABLE `pics` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `pics` (`id`, `article_code`, `pic`, `created_at`, `updated_at`) VALUES
+(8, 'PELELIGFL7S12', 'PELELIGFL7S12', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(9, 'CSHENETS80-', 'CSHENETS80-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(10, 'AFURCHAIRO-', 'AFURCHAIRO-_1', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(11, 'AFURCHAIRO-', 'AFURCHAIRO-_2', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(12, 'PPACZYN1002', 'PPACZYN1002', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(13, 'PPACZYN1004', 'PPACZYN1002', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(14, 'PPACZYN1011', 'PPACZYN1002', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(15, 'TTYR16RA23F20', 'TTYR16RA23F20', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(16, 'ADAPPHONSS5', 'ADAPPHONSS5', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(17, 'CWATPUMSSGFSB', 'CWATPUMSSGFSB', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(18, 'AOFFLABEDLT10', 'AOFFLABEDLT10', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(19, 'AOFFLABEDL-', 'AOFFLABEDL-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(20, 'YTOY08826-00080', 'Toyota spares', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(21, 'YTOY13568-59175', 'Toyota spares', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(22, 'YTOY17801-61030', 'Toyota spares', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(23, 'YTOY23300-30202', 'Toyota spares', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(24, 'YTOY23390-0L041', 'Toyota spares', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(25, 'YTOY23390-51070', 'Toyota spares', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(26, 'ALIFZYN1002', 'Safisha logo', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(27, 'ALIFZYN1017', 'VELVEX LOGO', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(28, 'ALIFZYN1021', 'Safisha logo', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(29, 'ALIFZYN1022', 'Safisha logo', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(30, 'ALIFZYN1024', 'Safisha logo', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(31, 'ALIFZYN1026', 'Safisha logo', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(32, 'ALIFZYN1027', 'Safisha logo', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(33, 'ALIFZYN1030', 'VELVEX LOGO', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(34, 'ALIFZYN1032', 'Safisha logo', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(35, 'ALIFZYN1033', 'Safisha logo', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(36, 'ALIFZYN1035', 'Safisha logo', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(37, 'ALIFZYN1037', 'VELVEX LOGO', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(38, 'ALIFZYN1044', 'Safisha logo', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(39, 'ALIFZYN1064', 'VELVEX LOGO', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(40, 'ALIFZYN1080', 'ALIFZYN1080', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(41, 'ALIFZYN1083', 'Safisha logo', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(42, 'ALIFZYN1099', 'VELVEX LOGO', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(43, 'ALIFZYN1165', 'ALIFZYN1165', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(44, 'ALIFZYN1175', 'Safisha logo', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(45, 'ALIFZYN1177', 'Safisha logo', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(46, 'ALIFZYN1181', 'VELVEX LOGO', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(47, 'ALIFZYN1184', 'VELVEX LOGO', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(48, 'ALIFZYN1186', 'Safisha logo', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(49, 'ALSTSTOC4HW', 'ALSTSTOC4HW', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(50, 'ASTAZYN1006', 'VELVEX LOGO', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(51, 'PELEBATTA03', 'PELEBATTA03', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(52, 'PELEBATTA06', 'PELEBATTA06', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(53, 'PHDWOILPM04', 'PHDWOILPM04', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(54, 'PHYGPAPITR-', 'PHYGPAPITR-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(55, 'PHYGZYN1016', 'VELVEX LOGO', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(56, 'PHYGZYN1017', 'VELVEX LOGO', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(57, 'SDRECOTW5R-', 'VELVEX LOGO', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(58, 'TVECCOOLC1-', 'TVECCOOLC1-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(59, 'TVECFLUIB4H', 'TVECCOOLC1-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(60, 'TVECFLUITD1', 'TVECCOOLC1-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(61, 'TVECOILE542H', 'TVECOILE542H', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(62, 'TVECOILG8905', 'TVECOILG8905', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(63, 'TVECOILG892H', 'TVECOILG8905', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(64, 'TVECZYN1015', 'TVECOILE542H', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(65, 'TVECZYN1028', 'TVECCOOLC1-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(66, 'CWATBEDNDPP32', 'CWATBEDNDPP32', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(67, 'PSAFMASKRF3', 'PSAFMASKRF3', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(68, 'PSAFHARH1Y-', 'PSAFHARH1Y-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(69, 'PSAFHARNFA-', 'PSAFHARNFA-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(70, 'CBUIBRICF60', 'CBUIBRICF60', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(71, 'CBUICEMEF25', 'CBUICEMEF25', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(72, 'CSHETENM72-', 'CSHETENM72-_1', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(73, 'CSHETENM72-', 'CSHETENM72-_2', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(74, 'CSHEPLASWS4', 'CSHEPLASWS4', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(75, 'CSHETENM45-', 'CSHETENM45-_1', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(76, 'CSHETENM45-', 'CSHETENM45-_2', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(77, 'CSHEPLASWR4', 'CSHEPLASWS4', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(78, 'PTOOMEASL08', 'PTOOMEASL08', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(79, 'ALIFSLEEP3', 'ALIFSLEEP3', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(80, 'ALIFMATT1I-', 'ALIFMATT1I-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(81, 'PELEMEASMF-', 'PELEMEASMF-_1', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(82, 'PELEMEASMF-', 'PELEMEASMF-_2', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(83, 'PELEZYN1183', 'PELEZYN1183', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(84, 'PELEBREAS10', 'PELE', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(85, 'PELEBREAS20', 'PELE', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(86, 'PELEMMCB1B16M', 'PELE', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(87, 'PELEMMCB2B06M', 'PELE', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(88, 'PELEMMCB2B10M', 'PELE', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(89, 'PELEMMCB2B20M', 'PELE', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(90, 'PELEMMCB2B32M', 'PELE', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(91, 'PELEMMCB3B32M', 'PELE', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(92, 'PELEMMCB3B50M', 'PELE', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(93, 'PELEMMCB4B32M', 'PELE', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(94, 'PELEZYN0055', 'PELEZYN0055_1', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(95, 'PELEZYN0055', 'PELEZYN0055_2', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(96, 'CWATZYN1228', 'CWATZYN1228', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(97, 'KCAMZYN0004', 'KCAMZYN0004', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(98, 'AFOOSUGA1--', 'AFOOSUGA1--', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(99, 'AFOOZYN0017', 'AFOOZYN0017', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(100, 'AFOOZYN1089', 'AFOOZYN1089', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(101, 'ALIFZYN1006', 'ALIFZYN1006', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(102, 'ALIFZYN1013', 'ALIFZYN1013', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(103, 'ALIFZYN1014', 'ALIFZYN1014', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(104, 'ALIFZYN1019', 'ALIFZYN1019', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(105, 'ALIFZYN1023', 'ALIFZYN1023', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(106, 'ALIFZYN1025', 'ALIFZYN1025', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(107, 'ALIFZYN1028', 'ALIFZYN1028', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(108, 'ALIFZYN1029', 'ALIFZYN1029', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(109, 'ALIFZYN1034', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(110, 'ALIFZYN1047', 'ALIFZYN1047', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(111, 'ALIFZYN1057', 'ALIFZYN1057', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(112, 'ALIFZYN1060', 'ALIFZYN1060', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(113, 'ALIFZYN1062', 'ALIFZYN1062', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(114, 'ALIFZYN1081', 'ALIFZYN1081', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(115, 'ALIFZYN1086', 'ALIFZYN1086', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(116, 'ALIFZYN1095', 'ALIFZYN1095', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(117, 'ALIFZYN1097', 'ALIFZYN1097', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(118, 'ALIFZYN1172', 'ALIFZYN1172', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(119, 'ALIFZYN1185', 'ALIFZYN1185', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(120, 'ALIFZYN1208', 'ALIFZYN1208', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(121, 'ALIFZYN1218', 'ALIFZYN1218', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(122, 'ASTABINDL37B', 'ASTABINDL', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(123, 'ASTABINDL37L', 'ASTABINDL', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(124, 'ASTAENVE1WA', 'ASTAENVE1WA', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(125, 'ASTAENVE2KA', 'ASTAENVE2KA', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(126, 'ASTAENVE3KA', 'ASTAENVE3KA', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(127, 'ASTAERAS1R-', 'ASTAERAS1R-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(128, 'ASTAERASF--', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(129, 'ASTAFLIP1P5', 'ASTAFLIP1P5', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(130, 'ASTAFOLD14T', 'ASTAFOLD14T', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(131, 'ASTAFOLD24T', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(132, 'ASTAFOLDD41', 'ASTAFOLDD41', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(133, 'ASTAGLUESL-', 'ASTAGLUESL-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(134, 'ASTAPADP3--', 'ASTAPADP3--', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(135, 'YTOY31250-0K205', 'Toyota spares', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(136, 'YTOY31250-0K205', 'Toyota spares', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(137, 'ASTAPADP7--', 'ASTAPADP7--', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(138, 'ASTAPENB1B-', 'ASTAPENB1B-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(139, 'ASTAPENB1L-', 'ASTAPENB1L-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(140, 'ASTAPENB1R-', 'ASTAPENB1R-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(141, 'ASTAPENC1HB', 'ASTAPENC1HB', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(142, 'ASTAPENM1BE', 'ASTAPENM1', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(143, 'ASTAPENM1GE', 'ASTAPENM1', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(144, 'ASTAPENM1LE', 'ASTAPENM1', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(145, 'ASTAPENM1RE', 'ASTAPENM1', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(146, 'ASTAPENM2BS', 'ASTAPENM', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(147, 'ASTAPENM2GS', 'ASTAPENM', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(148, 'ASTAPENM2LS', 'ASTAPENM', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(149, 'ASTAPENM2RS', 'ASTAPENM', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(150, 'ASTAPENM3BB', 'ASTAPENM3', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(151, 'ASTAPENM3BL', 'ASTAPENM3', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(152, 'ASTAPENM3GB', 'ASTAPENM3', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(153, 'ASTAPENM3RB', 'ASTAPENM3', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(154, 'ASTAPENM4FS', 'ASTAPENM4FS', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(155, 'ASTAPUNC1P-', 'ASTAPUNC1P-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(156, 'ASTARING1K-', 'ASTARING1K-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(157, 'ASTARULE30-', 'ASTARULE30-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(158, 'ASTASCISS7B', 'ASTASCISS7B', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(159, 'ASTASTAP1M-', 'ASTASTAP1M-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(160, 'ASTASTAPR--', 'ASTASTAPR--', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(161, 'ASTAZYN1002', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(162, 'ASTAZYN1003', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(163, 'ASTAZYN1017', 'ASTAZYN1017', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(164, 'ASTAZYN1046', 'ASTAZYN1046', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(165, 'ASTAZYN1047', 'ASTAZYN1047', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(166, 'ASTAZYN1049', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(167, 'ASTAZYN1050', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(168, 'ASTAZYN1051', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(169, 'ASTAZYN1052', 'ASTAZYN1052', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(170, 'ASTAZYN1075', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(171, 'ASTAZYN1085', 'ASTAZYN1085', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(172, 'ASTAZYN1116', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(173, 'ASTAZYN1121', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(174, 'CWATZYN1028', 'CWATZYN1028', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(175, 'CWATZYN1093', 'ALIFZYN1060', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(176, 'PCOOUTENSST', 'PCOOUTENSST', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(177, 'PCOOUTENSSS', 'PCOOUTENSSS', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(178, 'PHYGBROOD--', 'PHYGBROOD--', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(179, 'PHYGBRUSFS-', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(180, 'PHYGBRUSSW-', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(181, 'PHYGGLOR1M-', 'PHYGGLOV', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(182, 'PHYGGLOVRLP', 'PHYGGLOV', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(183, 'PHYGSOAPTLW', 'PHYGSOAPTLW', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(184, 'PHYGTOWEC07', 'PHYGGLOV', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(185, 'PHYGZYN1018', 'PHYGZYN1018', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(186, 'PSAFTAPEB52', 'PSAFTAPEB52', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(187, 'PSAFCROWN1R', 'PSAFCROWN1R', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(188, 'PSAFGOGGP1-', 'PSAFGOGGP1-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(189, 'PSAFGOGGDO-', 'PSAFGOGGDO-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(190, 'PSAFGOGGW1D', 'PSAFGOGGW1D', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(191, 'PSAFZYN0003', 'PSAFZYN0003', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(192, 'PSAFMASKRF1', 'PSAFTAPEB52', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(193, 'PSAFGOGGW1-', 'PSAFGOGGW1-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(194, 'ALIFZYN01328', 'Safisha logo', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(195, 'PSAFMASKGE-', 'PSAFMASKGE-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(196, 'ALIFZYN1045', 'ALIFZYN1045', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(197, 'AFURZYN0062', 'AFURZYN0062_1', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(198, 'AFURZYN0062', 'AFURZYN0062_2', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(199, 'PSAFGLOVDO-', 'PSAFGLOVDO-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(200, 'PSAFGLOVLX-', 'PSAFGLOVLX-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(201, 'PSAFGLOVDOL', 'PSAFGLOVDOL', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(202, 'PSAFGLOVCO-', 'PSAFGLOVCO-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(203, 'PSAFGLOVM09', 'PSAFGLOVM09', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(204, 'PSAFGLOVM10', 'PSAFGLOVM10', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(205, 'PSAFGLOVM11', 'PSAFGLOVM11', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(206, 'PSAFGLOVN07', 'PSAFGLOVN07', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(207, 'PSAFGLOVN08', 'PSAFGLOVN08', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(208, 'PSAFGLOVN10', 'PSAFGLOVN10', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(209, 'PSAFGLOVHOS', 'PSAFGLOVHOS', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(210, 'PSAFGLOV510', 'PSAFGLOV510', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(211, 'ALIFBOOL37-', 'ALIFBOOL45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(212, 'ALIFBOOL38-', 'ALIFBOOL45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(213, 'PSAFBOOTP39', 'ALIFBOOL39-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(214, 'ALIFBOOL40-', 'ALIFBOOL45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(215, 'ALIFBOOL41-', 'ALIFBOOL45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(216, 'ALIFBOOL42-', 'ALIFBOOL45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(217, 'ALIFBOOL43-', 'ALIFBOOL45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(218, 'ALIFBOOL44-', 'ALIFBOOL45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(219, 'ALIFBOOL45-', 'ALIFBOOL45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(220, 'PSAFBOOTP40', 'ALIFBOOL45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(221, 'PSAFBOOTP41', 'ALIFBOOL45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(222, 'PSAFBOOTP42', 'ALIFBOOL45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(223, 'PSAFBOOTP43', 'ALIFBOOL45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(224, 'PSAFBOOTP44', 'ALIFBOOL45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(225, 'PSAFSHOEP38', 'PSAFSHOEP42', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(226, 'PSAFSHOEP39', 'PSAFSHOEP42', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(227, 'PSAFSHOEP40', 'PSAFSHOEP42', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(228, 'PSAFSHOEP41', 'PSAFSHOEP42', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(229, 'PSAFSHOEP42', 'PSAFSHOEP42', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(230, 'PSAFSHOEP43', 'PSAFSHOEP42', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(231, 'PSAFSHOEP44', 'PSAFSHOEP42', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(232, 'PSAFSHOEP45', 'PSAFSHOEP42', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(233, 'PSAFSHOEP46', 'PSAFSHOEP42', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(234, 'PHYGBOOTR37', 'PHYGBOOTR44', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(235, 'PHYGBOOTR38', 'PHYGBOOTR44', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(236, 'PHYGBOOTR39', 'PHYGBOOTR44', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(237, 'PHYGBOOTR40', 'PHYGBOOTR44', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(238, 'PHYGBOOTR41', 'PHYGBOOTR44', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(239, 'PHYGBOOTR42', 'PHYGBOOTR44', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(240, 'PHYGBOOTR43', 'PHYGBOOTR44', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(241, 'PHYGBOOTR44', 'PHYGBOOTR44', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(242, 'PHYGBOOTR45', 'PHYGBOOTR44', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(243, 'PSAFOVERMXX', 'PSAFOVERMXX', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(244, 'PSAFOVERMMS', 'PSAFOVERMMS', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(245, 'PSAFOVERMO-', 'PSAFOVERMO-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(246, 'PSAFOVERLO-', 'PSAFOVERLO-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(247, 'PSAFOVERMLM', 'PSAFOVERMLM', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(248, 'PSAFOVERMXL', 'PSAFOVERMXL', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(249, 'PSAFOVERMLM-', 'PSAFOVERMLM-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(250, 'PSAFOVERMMS-', 'PSAFOVERMMS-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(251, 'PSAFOVERMXX-', 'PSAFOVERMXX-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(252, 'PSAFRAINJLL', 'PSAFRAINJLL', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(253, 'PSAFRAINJLM', 'PSAFRAINJLM', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(254, 'PSAFRAINJXL', 'PSAFRAINJXL', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(255, 'PSAFFIREPPW', 'PSAFFIREPPW', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(256, 'PSAFFIREAF6', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(257, 'PSAFBLAN12-', 'PSAFBLAN12-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(258, 'PSAFALARSD-', 'PSAFALARSD-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(259, 'ALIFBOOL39-', 'ALIFBOOL45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(260, 'CWATPUMES74', 'CWATPUMES74', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(261, 'CWATPUMES31', 'CWATPUMES31', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(262, 'CWATPUMES23', 'CWATPUMES23', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(263, 'ADAPNETWF--', 'ADAPNETWF--', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(264, 'CWATZBE1453', 'CWATZBE1453', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(265, 'PTOOCLEATC-', 'PTOOCLEATC-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(266, 'ADAPZYN1044', 'ADAPZYN1044', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(267, 'ADAPZYN1079', 'ADAPZYN1079', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(268, 'ADAPZYN1087', 'hp LOGO', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(269, 'ASTAZYN1092', 'hp LOGO', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(270, 'ADAPZYN1019', 'hp LOGO', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(271, 'EHOEZYN0020', 'EHOEZYN0020', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(272, 'EHOEZYN0014', 'EHOEZYN0014', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(273, 'EHOESTAI2--', 'EHOESTAI2--', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(274, 'EHOESCRE4--', 'EHOESCRE4--', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(275, 'EHOECHAR1--', 'EHOECHAR1--', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(276, 'EHOEZYN0023', 'EHOEZYN0023', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(277, 'EHOEMATT1--', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(278, 'EHOEZYN0016', 'EHOEZYN0016', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(279, 'EHOEZYN0019', 'EHOEZYN0019', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(280, 'SDDCBAGP06-', 'SDDCBAGP06-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(281, 'SDREPADM1--', 'SDREPADM1--', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(282, 'SMSUTHER1D-', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(283, 'SINSCONT5C-', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(284, 'SMSUBLAN1--', 'SMSUBLAN1--', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(285, 'ELINCLOG45-', 'ELINCLOG45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(286, 'ELINCLOG43-', 'ELINCLOG45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(287, 'ELINCLOG39-', 'ELINCLOG45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(288, 'ELINCLOG41-', 'ELINCLOG45-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(289, 'ELINZYN1014', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(290, 'ELINZYN1011', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(291, 'ELINZYN1001', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(292, 'ELINZYN1002', 'default', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(293, 'EEMDLEXE2--', 'EEMDLEXE2--', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(294, 'PELEUPSD02-', 'PELEUPSD02-', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(295, 'PELEKSUINNOV01', 'PELEKSUINNOV01', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(296, 'PELEKSUINNOV02', 'PELEKSUINNOV01', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(297, 'PELEUPSD01X', 'PELEUPSD01X', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(298, 'PELEBATTS201S', 'PELEBATTS201S', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(299, 'PPACINOVKSU1', 'PPACINOVKSU1', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(300, 'PPACINOVKSU2', 'PPACINOVKSU2', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(301, 'ADAPPHONKSU1', 'ADAPPHONKSU1', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(302, 'TVECZYN1259', 'TVECZYN1259', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(303, 'YCATZYN0001', 'YCATZYN0001', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(304, 'YCATZYN0002', 'YCATZYN0001', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(305, 'YCATZYN0003', 'YCATZYN0001', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(306, 'YCATZYN0004', 'YCATZYN0001', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(307, 'YCATZYN0005', 'YCATZYN0001', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(308, 'YCATZYN0006', 'YCATZYN0001', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(309, 'YCATZYN0007', 'YCATZYN0001', '2019-09-17 09:48:21', '2019-09-17 09:48:21'),
+(310, 'YCATZYN0008', 'YCATZYN0001', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(311, 'YCATZYN0009', 'YCATZYN0001', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(312, 'YCATZYN0010', 'YCATZYN0001', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(313, 'TVECZYN1280', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(314, 'TVECZYN1281', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(315, 'TVECZYN1260', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(316, 'TVECZYN1261', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(317, 'TVECZYN1262', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(318, 'TVECZYN1263', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(319, 'TVECZYN1264', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(320, 'TVECZYN1265', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(321, 'TVECZYN1266', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(322, 'TVECZYN1268', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(323, 'TVECZYN1269', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(324, 'TVECZYN1270', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(325, 'TVECZYN1271', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(326, 'TVECZYN1272', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(327, 'TVECZYN1273', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(328, 'TVECZYN1274', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(329, 'TVECZYN1275', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(330, 'TVECZYN1276', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(331, 'TVECZYN1277', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(332, 'TVECZYN1278', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(333, 'TVECZYN1279', 'TVECZYN1280', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(334, 'PLIGZYN1047', 'PLIGZYN1047', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(335, 'YHON52400-KRH-781', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(336, 'YHON40530-KRH-781', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(337, 'YHON06430-GB5-K20', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(338, 'YHON31500-GFC-782', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(339, 'YHON41201-KRH-780', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(340, 'YHON31916-KRM-841', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(341, 'YHON23801-KWF-940', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(342, 'YHON91053-MAY-003', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(343, 'YHON96140-63010-10', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(344, 'YHON34901-KPN-B01', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(345, 'YHON22870-KRH-780', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(346, 'YHON17910-KRH-780', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(347, 'YHON17211-KRH-780', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(348, 'YHON38110-KRH-901', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(349, 'YHON53178-KRH-900', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(350, 'YHON96140-63030-10', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(351, 'YHON40530-KRH-781', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(352, 'YHON91053-MAY-003', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(353, 'YHON53178-KRH-900', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(354, 'YHON45010-KRH-780ZA', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(355, 'YHON91256-KK3-840', 'YHON', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(356, 'PELECHIN22250', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(357, 'PELEZYN1289', 'PELEZYN1289_1', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(358, 'PELEZYN1289', 'PELEZYN1289_2', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(359, 'PELEZYN1288', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(360, 'PELEZYN1287', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(361, 'PELEZYN1286', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(362, 'PELEZYN1285', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(363, 'PELEZYN1284', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(364, 'PELEZYN1283', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(365, 'PELEZYN1282', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(366, 'PELEZYN1262', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(367, 'PELEZYN1255', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(368, 'PELESOLARMMFP-', 'PELESOLARMMFP-_1', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(369, 'PELESOLARMMFP-', 'PELESOLARMMFP-_2', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(370, 'PELEZYN1221', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(371, 'PLIGZYN1034', 'PLIGZYN1034_1', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(372, 'PLIGZYN1034', 'PLIGZYN1034_2', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(373, 'PELEZYN1138', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(374, 'PELEZYN1070', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(375, 'PELEZYN1057', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(376, 'PELEZYN1056', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(377, 'PELEZYN1055', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(378, 'PELEBATT6V', 'PELEBATT6V_1', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(379, 'PELEBATT6V', 'PELEBATT6V_2', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(380, 'PELEZYN1043', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(381, 'PELECONDF16', 'PELECHIN22250', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(382, 'ASTASTAM2MA', 'ASTASTAM2MA', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(383, 'PPACTAPEM--', 'PPACTAPEM--', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(384, 'ADAPPRITZZ3', 'ADAPPRINTID1', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(385, 'AFURZYN0070', 'AFURZYN0070', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(386, 'PPAIZYN0008', 'default', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(387, 'PPACINOVKSU2', 'PPACINOVKSU2', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(388, 'PPACINOVKSU1', 'PPACINOVKSU1', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(389, 'NFOSRUTFPEP92', 'NFOSRUTFPEP92', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(390, 'NFOSRUTFCEB51', 'NFOSRUTFCEB51', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(391, 'AOFFCALCSB-', 'AOFFCALCSB-', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(392, 'PPACREEL01-', 'PPACREEL01-', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(393, 'YTOY43211-60111', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(394, 'YTOY43401-60081', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(395, 'YTOY43502-69086', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(396, 'YTOY45100-60600-B0', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(397, 'YTOY46410-60830', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(398, 'YTOY46410-60850', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(399, 'YTOY48702-60050', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(400, 'YTOY62211-60090', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(401, 'YTOY62213-60010', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(402, 'YTOY62223-60010', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(403, 'YTOY69810-90K01', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(404, 'YTOY86520-12610', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(405, 'YTOY90311-41009', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(406, 'YTOY90311-62001', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(407, 'YTOY90368-45087', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(408, 'YTOY90368-49084', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(409, 'YTOY90385-13009', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(410, 'YTOY04311-60100', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(411, 'YTOY04479-60070', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(412, 'YTOY04493-60300', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(413, 'YTOY04906-35130', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(414, 'YTOY09114-60032', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(415, 'YTOY09115-35040', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(416, 'YTOY09115-60040', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(417, 'YTOY13505-17020', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(418, 'YTOY13540-17011', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(419, 'YTOY17801-61030', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(420, 'YTOY19850-17020', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(421, 'YTOY23344-54010', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(422, 'YTOY23388-64470', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(423, 'YTOY27700-50030', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(424, 'YTOY28601-17020', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(425, 'YTOY31230-60200', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(426, 'YTOY41231-60030', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(427, 'YTOY42323-60030', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(428, 'YTOY42419-60011', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(429, 'YTOY43204-60032', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(430, 'YTOY43512-60141', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(431, 'YTOY45044-69145', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(432, 'YTOY45045-69075', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(433, 'YTOY45046-29456', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(434, 'YTOY45046-69135', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(435, 'YTOY45047-69085', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(436, 'YTOY45458-60010', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(437, 'YTOY46410-60840', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(438, 'YTOY46410-60860', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(439, 'YTOY47547-60030', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(440, 'YTOY47550-60120', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(441, 'YTOY47731-14110', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(442, 'YTOY48061-60050', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(443, 'YTOY48706-60030', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(444, 'YTOY48706-60070', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(445, 'YTOY48802-60120', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(446, 'YTOY48815-26020', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(447, 'YTOY48815-60170', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(448, 'YTOY53285-60090', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(449, 'YTOY53299-60190', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(450, 'YTOY84312-32010', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(451, 'YTOY85222-60062', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(452, 'YTOY86510-12420', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(453, 'YTOY86520-12610', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(454, 'YTOY90113-10003', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(455, 'YTOY90117-14002', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(456, 'YTOY90341-18006', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(457, 'YTOY90366-20003', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(458, 'YTOY90366-50054', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(459, 'YTOY90368-49084', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(460, 'YTOY90381-35001', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(461, 'YTOY90385-11021', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(462, 'YTOY90385-13009', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(463, 'YTOY90385-18021', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(464, 'YTOY90385-18022', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(465, 'YTOY90385-19003', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(466, 'YTOY90541-09006', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(467, 'YTOY90560-10044', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(468, 'YTOY90916-02452', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(469, 'YTOY99332-11260-8T', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(470, 'YTOY04234-68010', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(471, 'YTOY04465-60340', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(472, 'YTOY90915-30002-8T', 'Toyota spares', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(473, 'PCOMMOBP01-', 'PCOMMOBP01- picture 1', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(474, 'ALIFZPINGPONG', 'ALIFZPINGPONG', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(475, 'PHYGTROLCC-', 'PHYGTROLCC-', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(476, 'PCOMTKSUXX1', 'PCOMTKSUXX1_1', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(477, 'PCOMTKSUXX1', 'PCOMTKSUXX1_2', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(478, 'PELESECULIGHT70W', 'PELESECULIGHT_1', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(479, 'PELESECULIGHT70W', 'PELESECULIGHT_2', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(480, 'PELESECULIGHT35W', 'PELESECULIGHT_1', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(481, 'PELESECULIGHT35W', 'PELESECULIGHT_2', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(482, 'PCOLSOLEVKSU', 'PCOLSOLEVKSU', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(483, 'PPACTRUCH20', 'PPACTRUCH20', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(484, 'ALIFWASM1T-', 'ALIFWASM1T-', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(485, 'TBOAENGI40L', 'TBOAENGI40L', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(486, 'TXYAMISC-228', 'TXYAMISC-228', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(487, 'TXYAMISC-242', 'TXYAMISC-242', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(488, 'TBOATKSUXX1', 'TBOATKSUXX1', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(489, 'TVECOILET302', 'TVECOILET302', '2019-09-17 09:48:22', '2019-09-17 09:48:22'),
+(490, 'TBOAENGIY84L', 'default', '2019-09-17 09:48:22', '2019-09-17 09:48:22');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `populars`
 --
 
-DROP TABLE IF EXISTS `populars`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `populars` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `article_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `article_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `orders` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `populars`
 --
 
-LOCK TABLES `populars` WRITE;
-/*!40000 ALTER TABLE `populars` DISABLE KEYS */;
-INSERT INTO `populars` VALUES (1,'AFOOSUGA1--',28,'2019-08-18 03:35:30','2019-08-21 05:49:32'),(2,'AFOOZYN0017',30,'2019-08-18 03:35:30','2019-08-21 05:49:32'),(3,'AFOOZYN1089',5,'2019-08-18 03:35:30','2019-08-21 05:49:32'),(4,'ALIFZYN1002',2,'2019-08-19 17:56:16','2019-08-19 17:58:16'),(5,'ASTAPENB1L-',1,'2019-08-20 08:21:09','2019-08-20 08:21:09');
-/*!40000 ALTER TABLE `populars` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `populars` (`id`, `article_code`, `orders`, `created_at`, `updated_at`) VALUES
+(1, 'AFOOSUGA1--', 28, '2019-08-18 03:35:30', '2019-08-21 05:49:32'),
+(2, 'AFOOZYN0017', 30, '2019-08-18 03:35:30', '2019-08-21 05:49:32'),
+(3, 'AFOOZYN1089', 5, '2019-08-18 03:35:30', '2019-08-21 05:49:32'),
+(4, 'ALIFZYN1002', 2, '2019-08-19 17:56:16', '2019-08-19 17:58:16'),
+(5, 'ASTAPENB1L-', 1, '2019-08-20 08:21:09', '2019-08-20 08:21:09');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `unicodes`
 --
 
-DROP TABLE IF EXISTS `unicodes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `unicodes` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `group` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `family` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `desc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=296 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `group` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `family` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `desc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `unicodes`
 --
 
-LOCK TABLES `unicodes` WRITE;
-/*!40000 ALTER TABLE `unicodes` DISABLE KEYS */;
-INSERT INTO `unicodes` VALUES (1,'A','DAP','Data processing'),(2,'A','FOO','Food'),(3,'A','FUR','Furniture'),(4,'A','LIF','Team life'),(5,'A','LST','Logistic stationery'),(6,'A','OFF','Office equipment'),(7,'A','STA','Stationery'),(8,'C','BUI','Building'),(9,'C','CLI','Acclimatization'),(10,'C','SEM','Semi-permanent structures'),(11,'C','SHE','Shelter'),(12,'C','WAT','Water and sanitation'),(13,'C','XHA','Spare parts Hayward'),(14,'D','CHE','Chemicals'),(15,'D','DGT','Diagnostic tests'),(16,'D','DIS','Disinfectants'),(17,'D','DRU','To Be Defined'),(18,'D','EXO','Ophthalmic drugs for external '),(19,'D','EXT','Drugs for external use'),(20,'D','INF','Infusions'),(21,'D','INJ','Injectable drugs'),(22,'D','ORA','Oral drugs'),(23,'D','VAC','Vaccines'),(24,'E','ANE','Anesthesia'),(25,'E','ANT','Anthropometric equipment'),(26,'E','DDC','Drug dispensing and compounding'),(27,'E','DIM','Diagnostic Imaging equipment'),(28,'E','EMD','Electro mechanical medical dev'),(29,'E','HOE','Hospital equipment'),(30,'E','LAB','Laboratory equipment'),(31,'E','LAE','Electrical laboratory equipment'),(32,'E','LIN','Linen and protection clothing'),(33,'E','LOE','missing - Maurice?'),(34,'E','MEQ','Medical equipment'),(35,'E','PHY','Physiotherapy equipment'),(36,'E','PSY','Psychological support'),(37,'E','STE','Sterilization'),(38,'E','SUD','Dental surgical instruments'),(39,'E','SUF','Instruments for external fixate'),(40,'E','SUO','Ophthalmic surgical instrument'),(41,'E','SUR','Surgical instruments'),(42,'E','TMA','Training mannequins'),(43,'E','TME','Training medical material'),(44,'E','TPO','Training posters'),(45,'E','XRE','To Be Defined'),(46,'I','DIM','Diagnostic imaging checklists'),(47,'I','DRU','Checklist drugs related articles'),(48,'I','EME','Emergency items list'),(49,'I','LAB','Laboratory checklists'),(50,'I','PED','Pediatric checklists'),(51,'I','SUI','Internal fixation checklists'),(52,'K','ADM','Administration kits'),(53,'K','CAM','Camp kits'),(54,'K','COM','Communication kits'),(55,'K','DIM','To Be Defined'),(56,'K','LIB','KIT, LIBRARY'),(57,'K','MED','Medical kits'),(58,'K','PRO','Program support kits'),(59,'K','SUD','Dental surgical instruments se'),(60,'K','SUI','Internal fixation instruments '),(61,'K','SUO','Ophthalmic instruments boxes'),(62,'K','SUR','Surgical instruments sets'),(63,'K','TOO','To be defined'),(64,'K','TRA','Transport kits'),(65,'K','WAT','Water and sanitation kits'),(66,'K','XDV','To be defined'),(67,'K','XYN','To be defined'),(68,'L','000','MSF (articles written by MSF)'),(69,'L','001','MEDICINE GENERAL INFORMATION'),(70,'L','002','INTERNAL MEDICINE'),(71,'L','003','VIRAL INFECTIOUS DISEASES'),(72,'L','004','BACTERIAL INFECTIOUS DISEASES'),(73,'L','005','MYCOLOGICAL INFECTIOUS DISEASE'),(74,'L','006','PARASITIC INFECTIOUS DISEASES'),(75,'L','007','STI - AIDS'),(76,'L','008','SURGERY - ANAESTHESIA - DENTIS'),(77,'L','009','GYNAECOLOGY - OBSTETRICS - SEX'),(78,'L','010','PAEDIATRICS'),(79,'L','011','OPHTHALMOLOGY - DERMATOLOGY'),(80,'L','012','DIAGNOSTIC IMAGING'),(81,'L','013','LABORATORY'),(82,'L','014','PHARMACOLOGY'),(83,'L','015','IMMUNIZATION'),(84,'L','016','NUTRITION'),(85,'L','017','EMERGENCY MEDICINE'),(86,'L','018','WATER & SANITATION'),(87,'L','019','REFUGEES - DISPLACED'),(88,'L','020','EMERGENCIES - REFUGEES - DISAS'),(89,'L','021','TRAINING -  STAFF EDUCATION'),(90,'L','022','COMMUNITY HEALTH - HEALTH EDUC'),(91,'L','023','ANTHROPOLOGY'),(92,'L','024','EPIDEMIOLOGY - STATISTICS - OP'),(93,'L','025','MANAGEMENT OF HEALTH PROGRAMS'),(94,'L','026','PHARMACY MANAGEMENT'),(95,'L','027','MENTAL HEALTH PROGRAMS'),(96,'L','028','STAFF HEALTH'),(97,'L','029','NURSING '),(98,'L','030','INFECTION CONTROL'),(99,'L','031','SOCIAL ISSUES'),(100,'L','032','PHYSIOTHERAPY'),(101,'L','033','MEDICAL ETHICS'),(102,'L','034','PATIENT EDUCATION, SUPPORT AND'),(103,'L','040','LOGISTICS'),(104,'L','041','MECHANICS - TRANSPORT'),(105,'L','042','TELECOMMUNICATION'),(106,'L','043','BUILDING - SHELTERS'),(107,'L','044','DATA PROCESSING'),(108,'L','045','CATALOGUES & ORDER LISTS'),(109,'L','046','FOOD AID'),(110,'L','047','SUPPLY'),(111,'L','048','ENERGY'),(112,'L','049','COLD CHAIN - BIOMEDICAL ENGINE'),(113,'L','050','ADMINISTRATION - FINANCES IN M'),(114,'L','051','HUMAN RESOURCES MANAGEMENT IN '),(115,'L','052','SECURITY IN MSF'),(116,'L','060','MSF - GENERAL FACTS'),(117,'L','061','MSF - PUBLICATIONS'),(118,'L','062','MSF - INTERNAL DOCUMENTS'),(119,'L','070','HUMANITARIAN ASSISTANCE'),(120,'L','071','CONTEXTS - GEOPOLITICS'),(121,'L','072','HUMANITARIAN ASSISTANCE - LAW'),(122,'L','073','HUMANITARIAN ASSISTANCE - INTE'),(123,'L','074','INTERNATIONAL ORGANISATIONS'),(124,'L','075','NGO\'s'),(125,'L','076','STATES: HUM. ASSISTANCE'),(126,'L','077','LANGUAGES'),(127,'L','EAF','Leaflets'),(128,'L','MEC','To Be Defined'),(129,'L','MSF','To Be Defined'),(130,'N','FOO','Food commodities'),(131,'N','FOS','Specialized food'),(132,'N','SFO','Stationary food commodities'),(133,'N','SFS','Stationary Specialized food'),(134,'P','COL','Cold chain'),(135,'P','COM','Communication'),(136,'P','COO','Cooking equipment'),(137,'P','ELE','Electricity'),(138,'P','HDW','Hardware'),(139,'P','HYG','Hygiene'),(140,'P','IDE','Identification'),(141,'P','LIG','Lighting'),(142,'P','PAC','Packing and handling'),(143,'P','PAI','Paint'),(144,'P','SAF','Safety and protective equipment'),(145,'P','TOF','Tools with Facom code'),(146,'P','TOO','Tools'),(147,'P','X--','Spare parts'),(148,'P','XBO','Spare parts boats'),(149,'P','XDE','Spare parts Deutz'),(150,'P','XDV','Spare parts Davey'),(151,'P','XHA','Spare parts Hatz'),(152,'P','XHO','Spare parts Honda'),(153,'P','XIV','Spare parts Iveco'),(154,'P','XJD','Spare parts John Deere'),(155,'P','XKO','Spare parts Koshin'),(156,'P','XKU','Spare parts Kubota'),(157,'P','XLI','Spare parts Lister Petter'),(158,'P','XLO','Spare parts Lombardini'),(159,'P','XLS','Spare parts Leroy Somer'),(160,'P','XMD','To Be Defined'),(161,'P','XMI','Spare parts Mitsubishi'),(162,'P','XPC','To Be Defined'),(163,'P','XPD','Spare parts Pat-Drill'),(164,'P','XPK','Spare parts Perkins'),(165,'P','XPR','Spare parts Pramac'),(166,'P','XRO','Spare parts Robin'),(167,'P','XSO','Spare parts SOMO'),(168,'P','XTO','Spares TOYOTA'),(169,'P','XVO','To Be Defined'),(170,'P','XYA','Spares YAMAHA'),(171,'P','XYN','Spare parts Yanmar'),(172,'P','XZE','To Be Defined'),(173,'S','AST','Antibiotic Susceptibility Test'),(174,'S','BCM','Bacteriological culture media'),(175,'S','BID','Bacterial identification system'),(176,'S','BQC','Bacterial strains Quality Control'),(177,'S','CTD','Catheters, tubes and drains'),(178,'S','DDC','Drug dispensing & compounding '),(179,'S','DIM','Diagnostic imaging supplies'),(180,'S','DIS','Disinfectants'),(181,'S','DRE','Dressings'),(182,'S','FOS','Old therapeutic food family'),(183,'S','IGN','NAIL of SIGN material'),(184,'S','INS','Injection supplies'),(185,'S','LAS','Laboratory reagents'),(186,'S','MST','Medical stationery'),(187,'S','MSU','Small medical supplies'),(188,'S','PPE','Personal protective equipment '),(189,'S','SCO','Surgical consumables'),(190,'S','SDT','Stand-alone diagnostic tests'),(191,'S','STR','Stryker material for internal '),(192,'S','SUR','Surgical instruments for single'),(193,'S','SUT','Sutures'),(194,'S','TRY','Stryker material for internal '),(195,'S','TSD','Transport & Storage of biology'),(196,'S','TSS','Transport, storage and sampling'),(197,'S','XRS','X-ray supplies (stopped)'),(198,'T','AIR','Air transport and accessories'),(199,'T','BOA','Boat and boat accessories'),(200,'T','BOT','Boat'),(201,'T','CYC','Bicycle'),(202,'T','DAF','DAF vehicles'),(203,'T','HON','Honda vehicles'),(204,'T','IVE','Iveco vehicles'),(205,'T','LAN','Land Rover vehicles'),(206,'T','MAN','MAN vehicles'),(207,'T','MER','Mercedes vehicles'),(208,'T','MIT','Mitsubishi vehicles'),(209,'T','MOA','Motorcycle accessories'),(210,'T','MOT','Motorcycles & quads and access'),(211,'T','NIS','Nissan vehicles'),(212,'T','OPE','Opel vehicles'),(213,'T','PEU','Peugeot vehicles'),(214,'T','REN','Renault vehicles'),(215,'T','TOY','Toyota vehicles'),(216,'T','TRA','Agriculture machinery'),(217,'T','TRU','Trucks > 3.5 T'),(218,'T','TYR','Tyre'),(219,'T','VEA','Vehicle accessories'),(220,'T','VEC','Vehicle consumables'),(221,'T','VEH','Vehicles: cars and light truck'),(222,'T','VEM','Vehicle modifications'),(223,'T','VES','Vehicles with special purposes'),(224,'T','VWA','Volkswagen vehicles'),(225,'T','XBO','Spare parts boats'),(226,'T','XDA','Spare parts DAF'),(227,'T','XEV','Spare parts Evinrude'),(228,'T','XFO','Spare parts Ford'),(229,'T','XHO','Spare parts HONDA'),(230,'T','XIV','Spare parts Iveco'),(231,'T','XJE','Spare parts Jeep Cherokee'),(232,'T','XKO','Spare parts Kohler'),(233,'T','XKU','Spare parts Kubota'),(234,'T','XLA','Spare parts Land Rover'),(235,'T','XLD','Spare parts Lada'),(236,'T','XMA','Spare parts Mazda'),(237,'T','XME','Spare parts Mercedes'),(238,'T','XMI','Spare parts Mitsubishi'),(239,'T','XMR','Spare parts Mercury'),(240,'T','XMY','Spare parts Mercury'),(241,'T','XNI','Spare parts Nissan'),(242,'T','XOP','Spare parts Opel'),(243,'T','XPB','Spare parts Volvo Penta'),(244,'T','XPE','Spare parts Peugeot'),(245,'T','XPU','Spare parts Puch'),(246,'T','XRN','Spare parts Renault'),(247,'T','XSU','Spare parts Suzuki'),(248,'T','XTO','Spare parts Toyota'),(249,'T','XVO','Spare parts Volvo'),(250,'T','XVW','Spare parts Volkswagen'),(251,'T','XYA','Spare parts Yamaha'),(252,'T','YAM','Yamaha vehicles'),(253,'X','ADM','To Be Defined'),(254,'X','CON','To Be Defined'),(255,'X','CRA','Crating service'),(256,'X','CUS','Custom fees'),(257,'X','FRE','Freight'),(258,'X','HAN','To Be Defined'),(259,'X','INS','Insurance'),(260,'X','MAI','Maintenance'),(261,'X','PAC','To Be Defined'),(262,'X','REN','Rental'),(263,'X','REP','Reparation'),(264,'X','TAX','Taxes'),(265,'X','TRA','Transport'),(266,'Y','BOS','Bosch Spare parts'),(267,'Y','DAF','DAF spare parts'),(268,'Y','DAV','Spare parts Davey'),(269,'Y','DEE','John Deere spare parts'),(270,'Y','DEU','Deutz spare parts'),(271,'Y','HAT','Hatz spare parts'),(272,'Y','HAY','Hayward spare parts'),(273,'Y','HON','Honda spare parts'),(274,'Y','IVE','Iveco spare parts'),(275,'Y','KOS','Koshin spare parts'),(276,'Y','KUB','Kubota spare parts'),(277,'Y','LOM','Lombardini spare parts'),(278,'Y','MAN','spare parts MAN'),(279,'Y','MER','Mercedes spare parts'),(280,'Y','MIT','Mitsubishi spare parts'),(281,'Y','NGK','NGK spare parts'),(282,'Y','NIS','Nissan spare parts'),(283,'Y','PER','Perkins spare parts'),(284,'Y','PEU','Peugeot spare parts'),(285,'Y','PRA','Pramac spare parts'),(286,'Y','PRE','To Be Defined'),(287,'Y','REN','Renault spare parts'),(288,'Y','ROB','Robin spare parts'),(289,'Y','SDM','SDMO spare parts'),(290,'Y','SUZ','Suzuki spare parts'),(291,'Y','TOY','Toyota spare parts'),(292,'Y','VDO','Spare parts VDO'),(293,'Y','WIL','Wilson spare parts'),(294,'Y','YAM','Yamaha spare parts'),(295,'Y','YAN','Yanmar spare parts');
-/*!40000 ALTER TABLE `unicodes` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `unicodes` (`id`, `group`, `family`, `desc`) VALUES
+(1, 'A', 'DAP', 'Data processing'),
+(2, 'A', 'FOO', 'Food'),
+(3, 'A', 'FUR', 'Furniture'),
+(4, 'A', 'LIF', 'Team life'),
+(5, 'A', 'LST', 'Logistic stationery'),
+(6, 'A', 'OFF', 'Office equipment'),
+(7, 'A', 'STA', 'Stationery'),
+(8, 'C', 'BUI', 'Building'),
+(9, 'C', 'CLI', 'Acclimatization'),
+(10, 'C', 'SEM', 'Semi-permanent structures'),
+(11, 'C', 'SHE', 'Shelter'),
+(12, 'C', 'WAT', 'Water and sanitation'),
+(13, 'C', 'XHA', 'Spare parts Hayward'),
+(14, 'D', 'CHE', 'Chemicals'),
+(15, 'D', 'DGT', 'Diagnostic tests'),
+(16, 'D', 'DIS', 'Disinfectants'),
+(17, 'D', 'DRU', 'To Be Defined'),
+(18, 'D', 'EXO', 'Ophthalmic drugs for external '),
+(19, 'D', 'EXT', 'Drugs for external use'),
+(20, 'D', 'INF', 'Infusions'),
+(21, 'D', 'INJ', 'Injectable drugs'),
+(22, 'D', 'ORA', 'Oral drugs'),
+(23, 'D', 'VAC', 'Vaccines'),
+(24, 'E', 'ANE', 'Anesthesia'),
+(25, 'E', 'ANT', 'Anthropometric equipment'),
+(26, 'E', 'DDC', 'Drug dispensing and compounding'),
+(27, 'E', 'DIM', 'Diagnostic Imaging equipment'),
+(28, 'E', 'EMD', 'Electro mechanical medical dev'),
+(29, 'E', 'HOE', 'Hospital equipment'),
+(30, 'E', 'LAB', 'Laboratory equipment'),
+(31, 'E', 'LAE', 'Electrical laboratory equipment'),
+(32, 'E', 'LIN', 'Linen and protection clothing'),
+(33, 'E', 'LOE', 'missing - Maurice?'),
+(34, 'E', 'MEQ', 'Medical equipment'),
+(35, 'E', 'PHY', 'Physiotherapy equipment'),
+(36, 'E', 'PSY', 'Psychological support'),
+(37, 'E', 'STE', 'Sterilization'),
+(38, 'E', 'SUD', 'Dental surgical instruments'),
+(39, 'E', 'SUF', 'Instruments for external fixate'),
+(40, 'E', 'SUO', 'Ophthalmic surgical instrument'),
+(41, 'E', 'SUR', 'Surgical instruments'),
+(42, 'E', 'TMA', 'Training mannequins'),
+(43, 'E', 'TME', 'Training medical material'),
+(44, 'E', 'TPO', 'Training posters'),
+(45, 'E', 'XRE', 'To Be Defined'),
+(46, 'I', 'DIM', 'Diagnostic imaging checklists'),
+(47, 'I', 'DRU', 'Checklist drugs related articles'),
+(48, 'I', 'EME', 'Emergency items list'),
+(49, 'I', 'LAB', 'Laboratory checklists'),
+(50, 'I', 'PED', 'Pediatric checklists'),
+(51, 'I', 'SUI', 'Internal fixation checklists'),
+(52, 'K', 'ADM', 'Administration kits'),
+(53, 'K', 'CAM', 'Camp kits'),
+(54, 'K', 'COM', 'Communication kits'),
+(55, 'K', 'DIM', 'To Be Defined'),
+(56, 'K', 'LIB', 'KIT, LIBRARY'),
+(57, 'K', 'MED', 'Medical kits'),
+(58, 'K', 'PRO', 'Program support kits'),
+(59, 'K', 'SUD', 'Dental surgical instruments se'),
+(60, 'K', 'SUI', 'Internal fixation instruments '),
+(61, 'K', 'SUO', 'Ophthalmic instruments boxes'),
+(62, 'K', 'SUR', 'Surgical instruments sets'),
+(63, 'K', 'TOO', 'To be defined'),
+(64, 'K', 'TRA', 'Transport kits'),
+(65, 'K', 'WAT', 'Water and sanitation kits'),
+(66, 'K', 'XDV', 'To be defined'),
+(67, 'K', 'XYN', 'To be defined'),
+(68, 'L', '0', 'MSF (articles written by MSF)'),
+(69, 'L', '1', 'MEDICINE GENERAL INFORMATION'),
+(70, 'L', '2', 'INTERNAL MEDICINE'),
+(71, 'L', '3', 'VIRAL INFECTIOUS DISEASES'),
+(72, 'L', '4', 'BACTERIAL INFECTIOUS DISEASES'),
+(73, 'L', '5', 'MYCOLOGICAL INFECTIOUS DISEASE'),
+(74, 'L', '6', 'PARASITIC INFECTIOUS DISEASES'),
+(75, 'L', '7', 'STI - AIDS'),
+(76, 'L', '8', 'SURGERY - ANAESTHESIA - DENTIS'),
+(77, 'L', '9', 'GYNAECOLOGY - OBSTETRICS - SEX'),
+(78, 'L', '10', 'PAEDIATRICS'),
+(79, 'L', '11', 'OPHTHALMOLOGY - DERMATOLOGY'),
+(80, 'L', '12', 'DIAGNOSTIC IMAGING'),
+(81, 'L', '13', 'LABORATORY'),
+(82, 'L', '14', 'PHARMACOLOGY'),
+(83, 'L', '15', 'IMMUNIZATION'),
+(84, 'L', '16', 'NUTRITION'),
+(85, 'L', '17', 'EMERGENCY MEDICINE'),
+(86, 'L', '18', 'WATER & SANITATION'),
+(87, 'L', '19', 'REFUGEES - DISPLACED'),
+(88, 'L', '20', 'EMERGENCIES - REFUGEES - DISAS'),
+(89, 'L', '21', 'TRAINING -  STAFF EDUCATION'),
+(90, 'L', '22', 'COMMUNITY HEALTH - HEALTH EDUC'),
+(91, 'L', '23', 'ANTHROPOLOGY'),
+(92, 'L', '24', 'EPIDEMIOLOGY - STATISTICS - OP'),
+(93, 'L', '25', 'MANAGEMENT OF HEALTH PROGRAMS'),
+(94, 'L', '26', 'PHARMACY MANAGEMENT'),
+(95, 'L', '27', 'MENTAL HEALTH PROGRAMS'),
+(96, 'L', '28', 'STAFF HEALTH'),
+(97, 'L', '29', 'NURSING '),
+(98, 'L', '30', 'INFECTION CONTROL'),
+(99, 'L', '31', 'SOCIAL ISSUES'),
+(100, 'L', '32', 'PHYSIOTHERAPY'),
+(101, 'L', '33', 'MEDICAL ETHICS'),
+(102, 'L', '34', 'PATIENT EDUCATION, SUPPORT AND'),
+(103, 'L', '40', 'LOGISTICS'),
+(104, 'L', '41', 'MECHANICS - TRANSPORT'),
+(105, 'L', '42', 'TELECOMMUNICATION'),
+(106, 'L', '43', 'BUILDING - SHELTERS'),
+(107, 'L', '44', 'DATA PROCESSING'),
+(108, 'L', '45', 'CATALOGUES & ORDER LISTS'),
+(109, 'L', '46', 'FOOD AID'),
+(110, 'L', '47', 'SUPPLY'),
+(111, 'L', '48', 'ENERGY'),
+(112, 'L', '49', 'COLD CHAIN - BIOMEDICAL ENGINE'),
+(113, 'L', '50', 'ADMINISTRATION - FINANCES IN M'),
+(114, 'L', '51', 'HUMAN RESOURCES MANAGEMENT IN '),
+(115, 'L', '52', 'SECURITY IN MSF'),
+(116, 'L', '60', 'MSF - GENERAL FACTS'),
+(117, 'L', '61', 'MSF - PUBLICATIONS'),
+(118, 'L', '62', 'MSF - INTERNAL DOCUMENTS'),
+(119, 'L', '70', 'HUMANITARIAN ASSISTANCE'),
+(120, 'L', '71', 'CONTEXTS - GEOPOLITICS'),
+(121, 'L', '72', 'HUMANITARIAN ASSISTANCE - LAW'),
+(122, 'L', '73', 'HUMANITARIAN ASSISTANCE - INTE'),
+(123, 'L', '74', 'INTERNATIONAL ORGANISATIONS'),
+(124, 'L', '75', 'NGO\'s'),
+(125, 'L', '76', 'STATES: HUM. ASSISTANCE'),
+(126, 'L', '77', 'LANGUAGES'),
+(127, 'L', 'EAF', 'Leaflets'),
+(128, 'L', 'MEC', 'To Be Defined'),
+(129, 'L', 'MSF', 'To Be Defined'),
+(130, 'N', 'FOO', 'Food commodities'),
+(131, 'N', 'FOS', 'Specialized food'),
+(132, 'N', 'SFO', 'Stationary food commodities'),
+(133, 'N', 'SFS', 'Stationary Specialized food'),
+(134, 'P', 'COL', 'Cold chain'),
+(135, 'P', 'COM', 'Communication'),
+(136, 'P', 'COO', 'Cooking equipment'),
+(137, 'P', 'ELE', 'Electricity'),
+(138, 'P', 'HDW', 'Hardware'),
+(139, 'P', 'HYG', 'Hygiene'),
+(140, 'P', 'IDE', 'Identification'),
+(141, 'P', 'LIG', 'Lighting'),
+(142, 'P', 'PAC', 'Packing and handling'),
+(143, 'P', 'PAI', 'Paint'),
+(144, 'P', 'SAF', 'Safety and protective equipment'),
+(145, 'P', 'TOF', 'Tools with Facom code'),
+(146, 'P', 'TOO', 'Tools'),
+(147, 'P', 'X--', 'Spare parts'),
+(148, 'P', 'XBO', 'Spare parts boats'),
+(149, 'P', 'XDE', 'Spare parts Deutz'),
+(150, 'P', 'XDV', 'Spare parts Davey'),
+(151, 'P', 'XHA', 'Spare parts Hatz'),
+(152, 'P', 'XHO', 'Spare parts Honda'),
+(153, 'P', 'XIV', 'Spare parts Iveco'),
+(154, 'P', 'XJD', 'Spare parts John Deere'),
+(155, 'P', 'XKO', 'Spare parts Koshin'),
+(156, 'P', 'XKU', 'Spare parts Kubota'),
+(157, 'P', 'XLI', 'Spare parts Lister Petter'),
+(158, 'P', 'XLO', 'Spare parts Lombardini'),
+(159, 'P', 'XLS', 'Spare parts Leroy Somer'),
+(160, 'P', 'XMD', 'To Be Defined'),
+(161, 'P', 'XMI', 'Spare parts Mitsubishi'),
+(162, 'P', 'XPC', 'To Be Defined'),
+(163, 'P', 'XPD', 'Spare parts Pat-Drill'),
+(164, 'P', 'XPK', 'Spare parts Perkins'),
+(165, 'P', 'XPR', 'Spare parts Pramac'),
+(166, 'P', 'XRO', 'Spare parts Robin'),
+(167, 'P', 'XSO', 'Spare parts SOMO'),
+(168, 'P', 'XTO', 'Spares TOYOTA'),
+(169, 'P', 'XVO', 'To Be Defined'),
+(170, 'P', 'XYA', 'Spares YAMAHA'),
+(171, 'P', 'XYN', 'Spare parts Yanmar'),
+(172, 'P', 'XZE', 'To Be Defined'),
+(173, 'S', 'AST', 'Antibiotic Susceptibility Test'),
+(174, 'S', 'BCM', 'Bacteriological culture media'),
+(175, 'S', 'BID', 'Bacterial identification system'),
+(176, 'S', 'BQC', 'Bacterial strains Quality Control'),
+(177, 'S', 'CTD', 'Catheters, tubes and drains'),
+(178, 'S', 'DDC', 'Drug dispensing & compounding '),
+(179, 'S', 'DIM', 'Diagnostic imaging supplies'),
+(180, 'S', 'DIS', 'Disinfectants'),
+(181, 'S', 'DRE', 'Dressings'),
+(182, 'S', 'FOS', 'Old therapeutic food family'),
+(183, 'S', 'IGN', 'NAIL of SIGN material'),
+(184, 'S', 'INS', 'Injection supplies'),
+(185, 'S', 'LAS', 'Laboratory reagents'),
+(186, 'S', 'MST', 'Medical stationery'),
+(187, 'S', 'MSU', 'Small medical supplies'),
+(188, 'S', 'PPE', 'Personal protective equipment '),
+(189, 'S', 'SCO', 'Surgical consumables'),
+(190, 'S', 'SDT', 'Stand-alone diagnostic tests'),
+(191, 'S', 'STR', 'Stryker material for internal '),
+(192, 'S', 'SUR', 'Surgical instruments for single'),
+(193, 'S', 'SUT', 'Sutures'),
+(194, 'S', 'TRY', 'Stryker material for internal '),
+(195, 'S', 'TSD', 'Transport & Storage of biology'),
+(196, 'S', 'TSS', 'Transport, storage and sampling'),
+(197, 'S', 'XRS', 'X-ray supplies (stopped)'),
+(198, 'T', 'AIR', 'Air transport and accessories'),
+(199, 'T', 'BOA', 'Boat and boat accessories'),
+(200, 'T', 'BOT', 'Boat'),
+(201, 'T', 'CYC', 'Bicycle'),
+(202, 'T', 'DAF', 'DAF vehicles'),
+(203, 'T', 'HON', 'Honda vehicles'),
+(204, 'T', 'IVE', 'Iveco vehicles'),
+(205, 'T', 'LAN', 'Land Rover vehicles'),
+(206, 'T', 'MAN', 'MAN vehicles'),
+(207, 'T', 'MER', 'Mercedes vehicles'),
+(208, 'T', 'MIT', 'Mitsubishi vehicles'),
+(209, 'T', 'MOA', 'Motorcycle accessories'),
+(210, 'T', 'MOT', 'Motorcycles & quads and access'),
+(211, 'T', 'NIS', 'Nissan vehicles'),
+(212, 'T', 'OPE', 'Opel vehicles'),
+(213, 'T', 'PEU', 'Peugeot vehicles'),
+(214, 'T', 'REN', 'Renault vehicles'),
+(215, 'T', 'TOY', 'Toyota vehicles'),
+(216, 'T', 'TRA', 'Agriculture machinery'),
+(217, 'T', 'TRU', 'Trucks > 3.5 T'),
+(218, 'T', 'TYR', 'Tyre'),
+(219, 'T', 'VEA', 'Vehicle accessories'),
+(220, 'T', 'VEC', 'Vehicle consumables'),
+(221, 'T', 'VEH', 'Vehicles: cars and light truck'),
+(222, 'T', 'VEM', 'Vehicle modifications'),
+(223, 'T', 'VES', 'Vehicles with special purposes'),
+(224, 'T', 'VWA', 'Volkswagen vehicles'),
+(225, 'T', 'XBO', 'Spare parts boats'),
+(226, 'T', 'XDA', 'Spare parts DAF'),
+(227, 'T', 'XEV', 'Spare parts Evinrude'),
+(228, 'T', 'XFO', 'Spare parts Ford'),
+(229, 'T', 'XHO', 'Spare parts HONDA'),
+(230, 'T', 'XIV', 'Spare parts Iveco'),
+(231, 'T', 'XJE', 'Spare parts Jeep Cherokee'),
+(232, 'T', 'XKO', 'Spare parts Kohler'),
+(233, 'T', 'XKU', 'Spare parts Kubota'),
+(234, 'T', 'XLA', 'Spare parts Land Rover'),
+(235, 'T', 'XLD', 'Spare parts Lada'),
+(236, 'T', 'XMA', 'Spare parts Mazda'),
+(237, 'T', 'XME', 'Spare parts Mercedes'),
+(238, 'T', 'XMI', 'Spare parts Mitsubishi'),
+(239, 'T', 'XMR', 'Spare parts Mercury'),
+(240, 'T', 'XMY', 'Spare parts Mercury'),
+(241, 'T', 'XNI', 'Spare parts Nissan'),
+(242, 'T', 'XOP', 'Spare parts Opel'),
+(243, 'T', 'XPB', 'Spare parts Volvo Penta'),
+(244, 'T', 'XPE', 'Spare parts Peugeot'),
+(245, 'T', 'XPU', 'Spare parts Puch'),
+(246, 'T', 'XRN', 'Spare parts Renault'),
+(247, 'T', 'XSU', 'Spare parts Suzuki'),
+(248, 'T', 'XTO', 'Spare parts Toyota'),
+(249, 'T', 'XVO', 'Spare parts Volvo'),
+(250, 'T', 'XVW', 'Spare parts Volkswagen'),
+(251, 'T', 'XYA', 'Spare parts Yamaha'),
+(252, 'T', 'YAM', 'Yamaha vehicles'),
+(253, 'X', 'ADM', 'To Be Defined'),
+(254, 'X', 'CON', 'To Be Defined'),
+(255, 'X', 'CRA', 'Crating service'),
+(256, 'X', 'CUS', 'Custom fees'),
+(257, 'X', 'FRE', 'Freight'),
+(258, 'X', 'HAN', 'To Be Defined'),
+(259, 'X', 'INS', 'Insurance'),
+(260, 'X', 'MAI', 'Maintenance'),
+(261, 'X', 'PAC', 'To Be Defined'),
+(262, 'X', 'REN', 'Rental'),
+(263, 'X', 'REP', 'Reparation'),
+(264, 'X', 'TAX', 'Taxes'),
+(265, 'X', 'TRA', 'Transport'),
+(266, 'Y', 'BOS', 'Bosch Spare parts'),
+(267, 'Y', 'CAT', 'Catepillar Spare parts'),
+(268, 'Y', 'DAF', 'DAF spare parts'),
+(269, 'Y', 'DAV', 'Spare parts Davey'),
+(270, 'Y', 'DEE', 'John Deere spare parts'),
+(271, 'Y', 'DEU', 'Deutz spare parts'),
+(272, 'Y', 'HAT', 'Hatz spare parts'),
+(273, 'Y', 'HAY', 'Hayward spare parts'),
+(274, 'Y', 'HON', 'Honda spare parts'),
+(275, 'Y', 'IVE', 'Iveco spare parts'),
+(276, 'Y', 'KOS', 'Koshin spare parts'),
+(277, 'Y', 'KUB', 'Kubota spare parts'),
+(278, 'Y', 'LOM', 'Lombardini spare parts'),
+(279, 'Y', 'MAN', 'spare parts MAN'),
+(280, 'Y', 'MER', 'Mercedes spare parts'),
+(281, 'Y', 'MIT', 'Mitsubishi spare parts'),
+(282, 'Y', 'NGK', 'NGK spare parts'),
+(283, 'Y', 'NIS', 'Nissan spare parts'),
+(284, 'Y', 'PER', 'Perkins spare parts'),
+(285, 'Y', 'PEU', 'Peugeot spare parts'),
+(286, 'Y', 'PRA', 'Pramac spare parts'),
+(287, 'Y', 'PRE', 'To Be Defined'),
+(288, 'Y', 'REN', 'Renault spare parts'),
+(289, 'Y', 'ROB', 'Robin spare parts'),
+(290, 'Y', 'SDM', 'SDMO spare parts'),
+(291, 'Y', 'SUZ', 'Suzuki spare parts'),
+(292, 'Y', 'TOY', 'Toyota spare parts'),
+(293, 'Y', 'VDO', 'Spare parts VDO'),
+(294, 'Y', 'WIL', 'Wilson spare parts'),
+(295, 'Y', 'YAM', 'Yamaha spare parts'),
+(296, 'Y', 'YAN', 'Yanmar spare parts');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `mission` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `OC` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `project` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `comments` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `mission` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `OC` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `project` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'NULL',
+  `comments` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,NULL,'OCB','KSU','Functional Software Analyst','msfocb-ksu-it@brussels.msf.org',NULL,'$2y$10$DpCV7GRUlK63iW4kHmTMXeNu1IR1RKjsN3A9JL1VeTo.IalIRPs6C','2019-08-28 06:56:50','2019-08-28 06:56:50','2019-08-27 21:00:00',NULL),(3,NULL,'OCB','ksu','it','rickylui28@gmail.com',NULL,'$2y$10$T35hIjS73lK7qqW45St.GeZzNbBLJ/jvEDXfXGEH4nRAIRAZYa9Vi','2019-09-08 08:05:15','2019-09-08 08:05:15',NULL,NULL),(4,NULL,'INTERNATIONAL','KSU','General Manager','msfocb-ksu-coord@brussels.msf.org',NULL,'$2y$10$dIBoCrpsnZsGWypUw.nbiucpDt5jw82DE7.9RupG6P6m3R4M/eQ2K','2019-09-13 11:34:36','2019-09-13 11:34:36',NULL,NULL),(5,'South Sudan','OCB','Maban','Supply Manager','msfocb-maban-supplymanager@brussels.msf.org',NULL,'$2y$10$jCwJL83G7lIX7QLS86NBQOsMieAzr86OQEq1MJ2ZB7lwyXkPYytvi','2019-09-13 20:26:21','2019-09-13 20:26:21',NULL,NULL);
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `users` (`id`, `mission`, `OC`, `project`, `position`, `email`, `category`, `comments`, `password`, `created_at`, `updated_at`, `email_verified_at`, `remember_token`) VALUES
+(9, NULL, 'OCB', 'ksu', 'admin', 'msfocb-ksu-it@brussels.msf.org', 'supply', NULL, '$2y$10$89kff/kzVJTfcwt109CYheunoBDAPjiGpx698Fbqpc8k0R6zmXYC6', '2019-09-17 06:05:17', '2019-09-17 06:05:17', '2019-09-16 21:00:00', NULL);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `articles`
+--
+ALTER TABLE `articles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `donations`
+--
+ALTER TABLE `donations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `articles_article_code_unique` (`article_code`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `pics`
+--
+ALTER TABLE `pics`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `populars`
+--
+ALTER TABLE `populars`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `unicodes`
+--
+ALTER TABLE `unicodes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `articles`
+--
+ALTER TABLE `articles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=471;
+
+--
+-- AUTO_INCREMENT for table `donations`
+--
+ALTER TABLE `donations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `pics`
+--
+ALTER TABLE `pics`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=491;
+
+--
+-- AUTO_INCREMENT for table `populars`
+--
+ALTER TABLE `populars`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `unicodes`
+--
+ALTER TABLE `unicodes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=297;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2019-09-16  6:54:28

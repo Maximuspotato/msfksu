@@ -69,6 +69,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //dd($data['category']);
+        if (isset($data['category'])) {
+            $category = "supply";
+        } else {
+            $category = "general";
+        }
+        
         //dd($data['mission']);
         return User::create([
             'mission' => $data['mission'],
@@ -76,6 +83,7 @@ class RegisterController extends Controller
             'project' => $data['project'],
             'position' => $data['position'],
             'email' => $data['email'],
+            'category' => $category,
             'comments' => $data['comments'],
             'password' => Hash::make($data['password']),
         ]);

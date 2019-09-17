@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Cart;
+use Excel;
 use App\Pic;
 use App\Article;
 use App\Popular;
