@@ -15,7 +15,7 @@
                             <img src="{{URL('/')}}/assets/img/service-icon/pills.png" alt="Service 1" height="60">
                             <img src="{{URL('/')}}/assets/img/service-icon/camp.png" alt="Service 1">
                             <h3>Full catalogue</h3>
-                            <a href="{{URL('/catalogue?det=New')}}" class="btn">See more</a>
+                            <a href="{{URL('/catalogue')}}" class="btn">See more</a>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-3">
