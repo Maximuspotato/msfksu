@@ -141,7 +141,7 @@
                                             <!-- Add to Cart Button -->
                                             <div class="actions">
                                                 <a href="{{URL('/article')}}/{{$article->article_code}}" class="pull-left"><i class="fas fa-info-circle"></i></a>
-                                                <form action="{{URL::to('/carting')}}" method="POST">
+                                                <form class="carting">
                                                     @csrf
                                                     <input type="hidden" name="quantity" value="1">
                                                     <input type="hidden" name="article_code" value="{{$article->article_code}}">
@@ -153,7 +153,7 @@
                                                     <input type="hidden" name="weight" value="{{$article->weight}}">
                                                     <input type="hidden" name="volume" value="{{$article->volume}}">
                                                     <input type="hidden" name="sud" value="{{$article->sud}}">
-                                                    <button class="rfq-butt btn pull-right" style="height:30px">Add to Request</button>
+                                                    <button id="add_rfq_butt" class="rfq-butt btn pull-right" style="height:30px">Add to Request</button>
                                                 </form>
                                                 <div class="clearfix"></div>
                                             </div>

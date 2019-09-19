@@ -45,9 +45,13 @@ class CartController extends Controller
             )
         ));
 
-        Session::flash('success', 'Item was added to RFQ');
+        $cart_count = Cart::getContent()->count();
 
-        return back();
+        echo $cart_count;
+
+        // Session::flash('success', 'Item was added to RFQ');
+
+        // return back();
     }
 
     /**

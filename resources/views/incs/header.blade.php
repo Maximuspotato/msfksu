@@ -4,7 +4,7 @@
             <div class="menuextras">
                 <div class="extras">
                     <ul>
-                        <li class="shopping-cart-items"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="22"></i> <a href="{{URL('/cart')}}"><b>{{Cart::getContent()->count()}} item(s)</b></a></li>
+                        <li class="shopping-cart-items"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="22"></i> <a href="{{URL('/cart')}}"><b id="cart_count">{{Cart::getContent()->count()}}</b> <b>item(s)</b></a></li>
                         <li>
                             <div class="dropdown choose-country">
                                 @if (session()->get('language') == "")
