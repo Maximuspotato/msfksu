@@ -98,6 +98,18 @@
         </div>
     </script>
 
+    <script>
+        //slideshow
+        var myIndex = 0;
+        carousel();
+        function carousel() {
+            myIndex++;
+            if (myIndex > 3) {myIndex = 1}
+            $('.bg').css('background-image', 'url(./assets/img/homepage-slider/bg'+myIndex+'.jpg)');
+            setTimeout(carousel, 3000); // Change image every 2 seconds
+        }
+    </script>
+
     {{-- editable select login --}}
     <script>
         function makeFileList() {
@@ -180,16 +192,6 @@
             trigger: 'focus'
         })
         //upload attachments
-
-        //slideshow
-        var myIndex = 0;
-        carousel();
-        function carousel() {
-            myIndex++;
-            if (myIndex > 3) {myIndex = 1}
-            $('.bg').css('background-image', 'url(./assets/img/homepage-slider/bg'+myIndex+'.jpg)');
-            setTimeout(carousel, 3000); // Change image every 2 seconds
-        }
 
         //comment
         $('#comment').change(function(){
