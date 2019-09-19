@@ -178,7 +178,9 @@
                                 <p>If you don’t find the item you are looking for in our catalogue, that doesn’t mean we can’t get it for you.<br>
                                     Use below link, fill the form, send, and our Customer Service Officer will come back to you within 3 workdays.
                                 </p>
-                                <a href="{{URL('/new-request')}}" class="btn"><i class="glyphicon glyphicon-plus-sign"></i> RFQ item not in catalogue</a>
+                                @if (!AUTH::guest())
+                                    <a href="{{URL('/new-request')}}" class="btn"><i class="glyphicon glyphicon-plus-sign"></i> RFQ item not in catalogue</a>
+                                @endif
                             @endif
                         </div>
                     </main>
