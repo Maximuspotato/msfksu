@@ -53,7 +53,7 @@
                         @endif
                     </p>
                     <table class="shop-item-selections">
-                        <form action="{{URL::to('/carting')}}" method="POST">
+                        <form action="{{URL::to('/carting?det=item')}}" method="POST">
                             @csrf
                             <tr>
                                     <td><b>Quantity:</b></td>

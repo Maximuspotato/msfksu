@@ -71,8 +71,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <select id="family" name="family" class="form-control" required>
-                                        <option value="">All Families</option>
+                                    <select id="family" name="family" class="form-control" placeholder="Fam" required>
+                                        <option value="">Please choose group</option>
                                     </select>
                                 </div>
                                 <div class="input-group">

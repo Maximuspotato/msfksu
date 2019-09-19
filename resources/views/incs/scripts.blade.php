@@ -123,7 +123,7 @@
             e.preventDefault();
             form = $(this);
             $.ajax({
-                url: "{{URL::to('/carting')}}",
+                url: "{{URL::to('/carting?det=catalogue')}}",
                 dataType: 'text',
                 type: 'post',
                 contentType: 'application/x-www-form-urlencoded',
@@ -164,6 +164,7 @@
                         }, function () {
                             $(this).detach();
                             $('#cart_count').text(data);
+                            cart.effect("shake");
                         });
                     }
                 },
@@ -268,7 +269,7 @@
             var group = e.target.value;
             $.get('{{URL::to("/getfam?group=")}}'+group, function(data){
                 $('#family').empty();
-                $('#family').append('<option value="">Please choose one</option>');
+                $('#family').append('<option value="">Please choose Family</option>');
                 $.each(data, function(index, unicode){
                     $('#family').append('<option value="'+unicode.family+'">'+unicode.desc+'</option>');
                 });

@@ -45,13 +45,16 @@ class CartController extends Controller
             )
         ));
 
-        $cart_count = Cart::getContent()->count();
+        if ($request->input('det') == 'catalogue') {
+            $cart_count = Cart::getContent()->count();
 
-        echo $cart_count;
+            echo $cart_count;
+        } 
+        elseif ($request->input('det') == 'item') {
+            Session::flash('success', 'Item was added to RFQ');
 
-        // Session::flash('success', 'Item was added to RFQ');
-
-        // return back();
+            return back();
+        }
     }
 
     /**
