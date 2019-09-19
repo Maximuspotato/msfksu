@@ -57,12 +57,15 @@ class PagesController extends Controller
                 $det = $request->input('det');
                 if ($det == "Med") {
                     $articles = Article::where('category', 'Med')->orderBy('id', 'desc')->paginate(8)->onEachSide(1);
+                    $title = "Medical items";
                 }
                 elseif ($det == "Log") {
                     $articles = Article::where('category', 'Log')->orderBy('id', 'desc')->paginate(8)->onEachSide(1);
+                    $title = "Medical items";
                 }
                 elseif ($det == "New") {
                     $articles = Article::orderBy('id', 'desc')->paginate(8)->onEachSide(1);
+                    $title = "Latest items";
                 }
                 elseif ($det == "Popular") {
                     $populars = Popular::orderBy('orders', 'desc')->paginate(8)->onEachSide(1);
@@ -72,6 +75,7 @@ class PagesController extends Controller
                         array_push($arrs, $popular->article()->first());
                     }
                     $articles = collect($arrs);
+                    $title = "Popular items";
                     //dd($articles);
                     //$articles->paginate(8)->onEachSide(1);
                     // $perPage = 8;
@@ -101,8 +105,10 @@ class PagesController extends Controller
                     ->orWhere('desc_spa', 'like', '%'.$search.'%')
                     ->orWhere('details', 'like', '%'.$search.'%')
                     ->paginate(8)->onEachSide(1);
+                    $title = "All items";
                 } else {
                     $articles = Article::paginate(8)->onEachSide(1);
+                    $title = "All items";
                 }
             }
             if($request->has('group')) {
@@ -111,21 +117,25 @@ class PagesController extends Controller
                 if (!$group == "") {
                     if (!$family == "") {
                         $articles = Article::where('group', $group)->where('family', $family)->orderBy('id', 'desc')->paginate(8)->onEachSide(1);
+                        $title = "All items";
                     }
                     else {
                         $articles = Article::where('group', $group)->orderBy('id', 'desc')->paginate(8)->onEachSide(1);
+                        $title = "All items";
                     }
                 } 
                 else {
                     $articles = Article::paginate(8)->onEachSide(1);
+                    $title = "All items";
                 }
             }
         } else {
             $articles = Article::paginate(8)->onEachSide(1);
+            $title = "All items";
         }
 
         $items = Article::orderBy('id', 'desc')->get();
-        return view('catalogue')->with(['active' => 'catalogue', 'articles' => $articles, 'items' => $items]);
+        return view('catalogue')->with(['active' => 'catalogue', 'articles' => $articles, 'items' => $items, 'title' => $title]);
     }
 
     public function contacts(){
