@@ -183,13 +183,14 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
-                                        If you work in supply and place orders or other requests to KSU please tick below box.
-                                        <label for="category">Works in Supply</label>
+                                        If you work in supply, place orders or other requests, please tick the box.
+                                        {{-- <label for="category">Works in Supply</label> --}}
                                         <input type="checkbox" name="category" id="category"><br>
-                                        You will be able to access some other features that enables direct communication to KSU.                                         
+                                        Through this you will be able to access some other features.                                       
                                         <div class="form-group row">
+                                            <br>
                                             <label for="comments" class="col-md-4 col-form-label text-md-right">{{ __('Comments') }}</label>
-                                    
+                                            
                                             <div class="col-md-6">
                                                 <textarea id="comments" class="form-control @error('comments') is-invalid @enderror" name="comments" value="{{ old('comments') }}" autocomplete="comments" rows="3"></textarea>
                                                 @error('comments')

@@ -31,6 +31,17 @@
 							<img src="{{URL('/')}}/assets/img/homepage-slider/wh1.jpg" alt="" height="210">
 						</div>
 					</div> --}}
+					<div class="col-sm-6">
+						<h3>About Our Web App</h3>
+						<p>
+							We hope you will enjoy using our App and find it useful. If you have suggestions feel free to contact us. We want to meet your needs and improve. That’s why we plan to add more features as we launch the second phase of our Web App. The main functionalities we already planned to have in the near future are:- <br>
+							• Items in the catalogue can be favorited<br>
+							• Registered users can access history of all items requested for quotation<br>
+							• Related items will be displayed when searching for a specific item<br>
+							• Supply news updates from all OC’s<br>
+							• Exploring ERP integration<br>
+						</p>
+					</div>
 					<div class="col-sm-12">
 						<br>
 						<h3 class="">Organogram</h3>

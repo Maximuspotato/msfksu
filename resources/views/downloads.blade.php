@@ -63,7 +63,11 @@
                             </div>
                             <div id="collapse21" class="accordion-body collapse">
                                 <div class="accordion-inner">
-                                    <p><a href="{{URL('/download?dwnld=full')}}">Full catalogue.xlxs</a></p>
+                                    @if (AUTH::guest())
+                                        <p><a href="{{URL('/login')}}">Full catalogue.xlxs</a></p>
+                                    @else
+                                        <p><a href="{{URL('/download?dwnld=full')}}">Full catalogue.xlxs</a></p> 
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -75,7 +79,11 @@
                             </div>
                             <div id="collapse22" class="accordion-body collapse">
                                 <div class="accordion-inner">
-                                    <p><a href="{{URL('/download?dwnld=ksu')}}">KSU catalogue.xlxs</a></p>
+                                    @if (AUTH::guest())
+                                        <p><a href="{{URL('/login')}}">KSU catalogue.xlxs</a></p> 
+                                    @else
+                                        <p><a href="{{URL('/download?dwnld=ksu')}}">KSU catalogue.xlxs</a></p>  
+                                    @endif
                                 </div>
                             </div>
                         </div>
