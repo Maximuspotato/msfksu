@@ -67,14 +67,16 @@
                                             <input type="hidden" name="unit" value="{{$item->attributes->unit}}">
                                         </form>
                                         <!-- Shopping Cart Item Price -->
-                                        @if (session()->get('currency') == 'usd')
-                                            <td class="price">{{number_format(Cart::get($item->id)->getPriceSum()*Session::get('KES_USD'),'2','.','')}} USD</td>
-                                        @elseif(session()->get('currency') == 'eur')
-                                            <td class="price">{{number_format(Cart::get($item->id)->getPriceSum()*Session::get('KES_EUR'),'2','.','')}} EUR</td>
-                                        @elseif(session()->get('currency') == 'chf')
-                                            <td class="price">{{number_format(Cart::get($item->id)->getPriceSum()*Session::get('KES_EUR'),'2','.','')}} CHF</td>
-                                        @else
-                                            <td class="price">{{Cart::get($item->id)->getPriceSum()}} KSH</td>
+                                        @if (!AUTH::guest())
+                                            @if (session()->get('currency') == 'usd')
+                                                <td class="price">{{number_format(Cart::get($item->id)->getPriceSum()*Session::get('KES_USD'),'2','.','')}} USD</td>
+                                            @elseif(session()->get('currency') == 'eur')
+                                                <td class="price">{{number_format(Cart::get($item->id)->getPriceSum()*Session::get('KES_EUR'),'2','.','')}} EUR</td>
+                                            @elseif(session()->get('currency') == 'chf')
+                                                <td class="price">{{number_format(Cart::get($item->id)->getPriceSum()*Session::get('KES_EUR'),'2','.','')}} CHF</td>
+                                            @else
+                                                <td class="price">{{Cart::get($item->id)->getPriceSum()}} KSH</td>
+                                            @endif
                                         @endif
                                         {{-- <td class="price">{{Cart::get($item->id)->getPriceSum()}}</td> --}}
                                         <!-- Shopping Cart Item Actions -->
@@ -98,26 +100,28 @@
                     <!-- Shopping Cart Totals -->
                     @if (count($items)>0)
                         <div class="pull-right">
-                            <table class="cart-totals">
-                                <tr class="cart-grand-total">
-                                    <td><b>Total</b></td>
-                                    <td>
-                                        @if (session()->get('currency') == 'usd')
-                                            <b>{{number_format(Cart::getSubTotal()*Session::get('KES_USD'),'2','.','')}} USD</b>
-                                        @elseif(session()->get('currency') == 'eur')
-                                            <b>{{number_format(Cart::getSubTotal()*Session::get('KES_EUR'),'2','.','')}} EUR</b>
-                                        @elseif(session()->get('currency') == 'chf')
-                                            <b>{{number_format(Cart::getSubTotal()*Session::get('KES_EUR'),'2','.','')}} CHF</b>
-                                        @else
-                                            <b>{{number_format(Cart::getSubTotal(),'2','.','')}} KSH</td>
-                                        @endif
-                                        {{-- <b>{{Cart::getSubTotal()}}</b> --}}
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td></td>
-                                </tr>
-                            </table>
+                            @if (!AUTH::guest())
+                                <table class="cart-totals">
+                                    <tr class="cart-grand-total">
+                                        <td><b>Total</b></td>
+                                        <td>
+                                            @if (session()->get('currency') == 'usd')
+                                                <b>{{number_format(Cart::getSubTotal()*Session::get('KES_USD'),'2','.','')}} USD</b>
+                                            @elseif(session()->get('currency') == 'eur')
+                                                <b>{{number_format(Cart::getSubTotal()*Session::get('KES_EUR'),'2','.','')}} EUR</b>
+                                            @elseif(session()->get('currency') == 'chf')
+                                                <b>{{number_format(Cart::getSubTotal()*Session::get('KES_EUR'),'2','.','')}} CHF</b>
+                                            @else
+                                                <b>{{number_format(Cart::getSubTotal(),'2','.','')}} KSH</td>
+                                            @endif
+                                            {{-- <b>{{Cart::getSubTotal()}}</b> --}}
+                                        </td>
+                                    </tr>
+                                    <tr class="">
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            @endif
                         </div>
                     @endif
                     <div class="col-md-12">
