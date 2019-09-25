@@ -29,7 +29,11 @@
                                 @else
                                     <button class="btn rfq-butt"  data-toggle="modal" data-target="#irModal" data-trigger="hover" title="Download internal request form"><i class="glyphicon glyphicon-download"></i> IR FORM</button>
                                     <a href="{{URL('/exportUf')}}" class="btn rfq-butt" data-trigger="hover" title="Download Unifield importation file: Remember to save the file as XML 2003"><i class="glyphicon glyphicon-download"></i> UF FILE</a>
-                                    <button class="btn rfq-butt" data-toggle="modal" data-target="#rfqModal"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="18"></i> RFQ TO KSU</button>
+                                    @if (AUTH::user()->category == "supply")
+                                        <button class="btn rfq-butt" data-toggle="modal" data-target="#rfqModal"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="18"></i> RFQ TO KSU</button>
+                                    @else
+                                        <button class="btn rfq-butt" data-toggle="modal" data-target="#supModal"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="18"></i> RFQ TO KSU</button>
+                                    @endif
                                 @endif
                             </div>
                         </div>
@@ -209,6 +213,37 @@
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('form-rfq').submit();">Send RFQ</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="supModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Request Supply rights</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                This feature is only accessible when you have the supply user rights.<br> 
+                If you want access please fill in below form:                        
+                <form id="form-sup" action="{{URL('/request-supply')}}" method="post">
+                    @csrf
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" class="form-control" required>
+                    <label for="position">Position</label>
+                    <input type="text" name="position" id="position" class="form-control" required>
+                    <label for="task">Supply related tasks in your position related to ordering</label>
+                    <textarea name="task" id="task" class="form-control" rows="4"></textarea>
+                </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('form-sup').submit();">Submit</button>
                 </div>
             </div>
             </div>

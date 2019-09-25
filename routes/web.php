@@ -51,6 +51,8 @@ Route::get('/exportUf', 'CartController@exportUf')->middleware(['auth', 'verifie
 Route::post('/exportIr', 'CartController@exportIr')->middleware(['auth', 'verified']);
 Route::post('/exportRfq', 'CartController@exportRfq')->middleware(['auth', 'verified']);
 
+Route::post('/request-supply', 'EmailController@requestSupply')->middleware(['verified']);
+
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'PagesController@index')->name('home');
