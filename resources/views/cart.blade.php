@@ -22,12 +22,11 @@
                                 <a href="{{URL('/new-request')}}" class="btn rfq-butt"><i class="glyphicon glyphicon-plus-sign"></i> REQUEST ITEM NOT IN CATALOGUE</a>
                             </div><br> --}}
                             <div class="pull-right">
+                                <button class="btn rfq-butt"  data-toggle="modal" data-target="#irModal" data-trigger="hover" title="Download internal request form"><i class="glyphicon glyphicon-download"></i> IR FORM</button>
                                 @if (AUTH::guest())
-                                    <a class="btn rfq-butt" href="{{URL('/login')}}" data-trigger="hover" title="Download internal request form"><i class="glyphicon glyphicon-download"></i> IR FORM</a>
                                     <a href="{{URL('/login')}}" class="btn rfq-butt" data-trigger="hover" title="Download Unifield importation file: Remember to save the file as XML 2003"><i class="glyphicon glyphicon-download"></i> UF FILE</a>
                                     <a class="btn rfq-butt" href="{{URL('/login')}}"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="18"></i> RFQ TO KSU</a>
                                 @else
-                                    <button class="btn rfq-butt"  data-toggle="modal" data-target="#irModal" data-trigger="hover" title="Download internal request form"><i class="glyphicon glyphicon-download"></i> IR FORM</button>
                                     <a href="{{URL('/exportUf')}}" class="btn rfq-butt" data-trigger="hover" title="Download Unifield importation file: Remember to save the file as XML 2003"><i class="glyphicon glyphicon-download"></i> UF FILE</a>
                                     @if (AUTH::user()->category == "supply")
                                         <button class="btn rfq-butt" data-toggle="modal" data-target="#rfqModal"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="18"></i> RFQ TO KSU</button>
@@ -135,15 +134,18 @@
                         </div>
                         @if (count($items)>0)
                             <div class="pull-right">
-                                    @if (AUTH::guest())
-                                        <a class="btn rfq-butt" href="{{URL('/login')}}" data-trigger="hover" title="Download internal request form"><i class="glyphicon glyphicon-download"></i> IR FORM</a>
-                                        <a href="{{URL('/login')}}" class="btn rfq-butt" data-trigger="hover" title="Download Unifield importation file: Remember to save the file as XML 2003"><i class="glyphicon glyphicon-download"></i> UF FILE</a>
-                                        <a class="btn rfq-butt" href="{{URL('/login')}}"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="18"></i> RFQ TO KSU</a>
-                                    @else
-                                        <button class="btn rfq-butt"  data-toggle="modal" data-target="#irModal" data-trigger="hover" title="Download internal request form"><i class="glyphicon glyphicon-download"></i> IR FORM</button>
-                                        <a href="{{URL('/exportUf')}}" class="btn rfq-butt" data-trigger="hover" title="Download Unifield importation file: Remember to save the file as XML 2003"><i class="glyphicon glyphicon-download"></i> UF FILE</a>
+                                <button class="btn rfq-butt"  data-toggle="modal" data-target="#irModal" data-trigger="hover" title="Download internal request form"><i class="glyphicon glyphicon-download"></i> IR FORM</button>
+                                @if (AUTH::guest())
+                                    <a href="{{URL('/login')}}" class="btn rfq-butt" data-trigger="hover" title="Download Unifield importation file: Remember to save the file as XML 2003"><i class="glyphicon glyphicon-download"></i> UF FILE</a>
+                                    <a class="btn rfq-butt" href="{{URL('/login')}}"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="18"></i> RFQ TO KSU</a>
+                                @else
+                                    <a href="{{URL('/exportUf')}}" class="btn rfq-butt" data-trigger="hover" title="Download Unifield importation file: Remember to save the file as XML 2003"><i class="glyphicon glyphicon-download"></i> UF FILE</a>
+                                    @if (AUTH::user()->category == "supply")
                                         <button class="btn rfq-butt" data-toggle="modal" data-target="#rfqModal"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="18"></i> RFQ TO KSU</button>
+                                    @else
+                                        <button class="btn rfq-butt" data-toggle="modal" data-target="#supModal"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="18"></i> RFQ TO KSU</button>
                                     @endif
+                                @endif
                             </div>
                         @endif
                     </div>

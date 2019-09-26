@@ -48,7 +48,7 @@ Route::post('/update', 'CartController@update');
 Route::get('/decarting/{id}', 'CartController@decarting');
 Route::get('/clear', 'CartController@clear');
 Route::get('/exportUf', 'CartController@exportUf')->middleware(['auth', 'verified']);
-Route::post('/exportIr', 'CartController@exportIr')->middleware(['auth', 'verified']);
+Route::post('/exportIr', 'CartController@exportIr');
 Route::post('/exportRfq', 'CartController@exportRfq')->middleware(['auth', 'verified']);
 
 Route::post('/request-supply', 'EmailController@requestSupply')->middleware(['verified']);
