@@ -52,6 +52,7 @@ class PagesController extends Controller
     }
 
     public function catalogue(Request $request){
+        //$populars = "";
         if ($request->exists('det') || $request->exists('search') || $request->exists('group')) {
             if ($request->has('det')) {
                 $det = $request->input('det');
@@ -135,7 +136,11 @@ class PagesController extends Controller
         }
 
         $items = Article::orderBy('id', 'desc')->get();
-        return view('catalogue')->with(['active' => 'catalogue', 'articles' => $articles, 'items' => $items, 'title' => $title]);
+        if (isset($populars)) {
+            return view('catalogue')->with(['active' => 'catalogue', 'articles' => $articles, 'items' => $items, 'title' => $title, 'populars' => $populars]);
+        } else {
+            return view('catalogue')->with(['active' => 'catalogue', 'articles' => $articles, 'items' => $items, 'title' => $title]);
+        }
     }
 
     public function contacts(){

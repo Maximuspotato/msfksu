@@ -184,21 +184,11 @@
                     </main>
                 </div>
                 <div class="pagination-wrapper ">
-                    {{ $articles->appends(request()->query())->links() }}
-                    {{-- <ul class="pagination pagination-lg">
-                        <li class="disabled"><a href="#">Previous</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">6</a></li>
-                        <li><a href="#">7</a></li>
-                        <li><a href="#">8</a></li>
-                        <li><a href="#">9</a></li>
-                        <li><a href="#">10</a></li>
-                        <li><a href="#">Next</a></li>
-                    </ul> --}}
+                    @if (isset($populars))
+                        {{ $populars->appends(request()->query())->links() }}
+                    @else
+                        {{ $articles->appends(request()->query())->links() }}
+                    @endif
                 </div>
             </div>
         </div>

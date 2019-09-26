@@ -31,7 +31,7 @@
                         <div class="service-wrapper">
                             <img src="{{URL('/')}}/assets/img/service-icon/popular.png" alt="Service 1">
                             <h3 style="font-size: 1.2em; color: #53555c;">Popular items</h3>
-                            <a href="{{URL('/catalogue')}}" class="btn">See more</a>
+                            <a href="{{URL('/catalogue?det=Popular')}}" class="btn">See more</a>
                         </div>
                     </div>
                     <div class="row">
