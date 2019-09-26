@@ -250,12 +250,9 @@
         })
         //upload attachments
 
-        //comment
-        $('#comment').change(function(){
-            $('#update_form').submit();
-        });
-        $('#quantity').change(function(){
-            $('#update_form').submit();
+        //update comments and qty
+        $(".refresh").on('click', function(){
+            $(this).parents(".cart-items").find("form").submit();
         });
 
         //zoom pic effect

@@ -46,7 +46,7 @@
                             <!-- Shopping Cart Item -->
                             @if (count($items)>0)
                                 @foreach ($items as $item)
-                                    <tr>
+                                    <tr class="cart-items">
                                         <!-- Shopping Cart Item Image -->
                                         <td><a href="{{URL('/article')}}/{{$item->id}}"><img src="{{$item->attributes->pic}}" alt="Item Name" height="80"></a></td>
                                         <!-- Shopping Cart Item Description & Features -->
@@ -54,14 +54,14 @@
                                             <div class="cart-item-title"><a href="{{URL('/article')}}/{{$item->id}}">{{$item->id}}</a></div>
                                             <div class="cart-item-title"><a href="{{URL('/article')}}/{{$item->id}}">{{$item->name}}</a></div>
                                         </td>
-                                        <form id="update_form" action="{{URL('/update')}}" method="post">
+                                        <form class="update_form" action="{{URL('/update')}}" method="post">
                                             @csrf
                                             <td class="">
-                                                <input id="comment" name="comment" class="form-control " type="text" value="{{$item->attributes->comment}}" placeholder="Add comment and press enter to update">
+                                                <input name="comment" class="form-control comment" type="text" value="{{$item->attributes->comment}}" placeholder="Add comment and press enter to update">
                                             </td>
                                             <!-- Shopping Cart Item Quantity -->
                                             <td class="quantity">
-                                                <input id="quantity" name="quantity" class="form-control input-sm input-micro" type="text" value="{{$item->quantity}}">
+                                                <input name="quantity" class="form-control input-sm input-micro qty" type="text" value="{{$item->quantity}}">
                                             </td>
                                             <input type="hidden" name="fra" value="{{$item->attributes->fra}}">
                                             <input type="hidden" name="esp" value="{{$item->attributes->esp}}">
@@ -86,7 +86,7 @@
                                         <td class="actions">
                                             
                                             <a href="{{URL('/decarting')}}/{{$item->id}}" class="btn btn-xs btn-grey"><i class="glyphicon glyphicon-trash"></i></a>
-                                            <a href="" class="btn btn-xs btn-grey"><i class="glyphicon glyphicon-refresh"></i></a>
+                                            <button class="refresh" href="" class="btn btn-xs btn-grey"><i class="glyphicon glyphicon-refresh"></i></button>
                                         </td>
                                     </tr>
                                     <!-- End Shopping Cart Item -->
