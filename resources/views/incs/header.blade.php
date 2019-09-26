@@ -8,15 +8,14 @@
                         <li>
                             <div class="dropdown choose-country">
                                 @if (session()->get('language') == "")
-                                    <a class="#" data-toggle="dropdown" href=""><img src="{{URL('/')}}/assets/img/flags/gb.png" alt="English"> EN</a>
+                                    <a class="#" data-toggle="dropdown" href=""><img src="{{URL('/')}}/assets/img/flags/gb.png" alt="English"> EN <span class="fas fa-caret-down"></span></a>
                                 @elseif(session()->get('language') == "en")
-                                    <a class="#" data-toggle="dropdown" href=""><img src="{{URL('/')}}/assets/img/flags/gb.png" alt="English"> EN</a>
+                                    <a class="#" data-toggle="dropdown" href=""><img src="{{URL('/')}}/assets/img/flags/gb.png" alt="English"> EN <span class="fas fa-caret-down"></span></a>
                                 @elseif(session()->get('language') == "fr")
-                                    <a class="#" data-toggle="dropdown" href=""><img src="{{URL('/')}}/assets/img/flags/fr.png" alt="French"> FR</a>
+                                    <a class="#" data-toggle="dropdown" href=""><img src="{{URL('/')}}/assets/img/flags/fr.png" alt="French"> FR <span class="fas fa-caret-down"></span></a>
                                 @elseif(session()->get('language') == "es")
-                                    <a class="#" data-toggle="dropdown" href=""><img src="{{URL('/')}}/assets/img/flags/es.png" alt="Spanish"> ES</a>
+                                    <a class="#" data-toggle="dropdown" href=""><img src="{{URL('/')}}/assets/img/flags/es.png" alt="Spanish"> ES <span class="fas fa-caret-down"></span></a>
                                 @endif
-                                <span class="fas fa-caret-down"></span>
                                 <ul class="dropdown-menu" role="menu">
                                     <li role="menuitem"><a href="{{URL('/language')}}?lan=en"><img src="{{URL('/')}}/assets/img/flags/gb.png" alt="English"> EN</a></li>
                                     <li role="menuitem"><a href="{{URL('/language')}}?lan=fr"><img src="{{URL('/')}}/assets/img/flags/fr.png" alt="French"> FR</a></li>
@@ -27,17 +26,16 @@
                         <li>
                             <div class="dropdown choose-country">
                                 @if (session()->get('currency') == "")
-                                    <a class="#" data-toggle="dropdown" href="">KSH</a>
+                                    <a class="#" data-toggle="dropdown" href="">KSH <span class="fas fa-caret-down"></span></a>
                                 @elseif(session()->get('currency') == "ksh")
-                                    <a class="#" data-toggle="dropdown" href="">KSH</a>
+                                    <a class="#" data-toggle="dropdown" href="">KSH <span class="fas fa-caret-down"></span></a>
                                 @elseif(session()->get('currency') == "usd")
-                                    <a class="#" data-toggle="dropdown" href="">USD</a>
+                                    <a class="#" data-toggle="dropdown" href="">USD <span class="fas fa-caret-down"></span></a>
                                 @elseif(session()->get('currency') == "eur")
-                                    <a class="#" data-toggle="dropdown" href="">EUR</a>
+                                    <a class="#" data-toggle="dropdown" href="">EUR <span class="fas fa-caret-down"></span></a>
                                 @elseif(session()->get('currency') == "chf")
-                                    <a class="#" data-toggle="dropdown" href="">CHF</a>
+                                    <a class="#" data-toggle="dropdown" href="">CHF <span class="fas fa-caret-down"></span></a>
                                 @endif
-                                <span class="fas fa-caret-down"></span>
                                 <ul class="dropdown-menu" role="menu">
                                     <li role="menuitem"><a href="{{URL('/currency')}}?curr=ksh">KSH</a></li>
                                     <li role="menuitem"><a href="{{URL('/currency')}}?curr=usd">USD</a></li>
