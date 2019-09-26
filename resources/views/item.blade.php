@@ -14,7 +14,7 @@
     
     <div class="section">
         <div class="container">
-            <div class="row">
+            <div class="row item">
                 <!-- Product Image & Available Colors -->
                 <div class="col-sm-6">
                     <div class="product-image-large image">
@@ -53,7 +53,7 @@
                         @endif
                     </p>
                     <table class="shop-item-selections">
-                        <form action="{{URL::to('/carting?det=item')}}" method="POST">
+                        <form id="carting">
                             @csrf
                             <tr>
                                     <td><b>Quantity:</b></td>
@@ -74,7 +74,7 @@
                                 <tr>
                                     <td>&nbsp;</td>
                                     <td>
-                                        <button type="submit" class="btn btn"> Add to Request</button>
+                                        <button id="add_rfq_butt" type="submit" class="btn btn"> Add to Request</button>
 
                                     </td>
                                 </tr>

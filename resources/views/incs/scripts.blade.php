@@ -131,6 +131,7 @@
 		}
     </script>
     <script>
+        //ajax send to rfq catalogue
         $('.carting').on('submit', function(e){
             e.preventDefault();
             form = $(this);
@@ -143,6 +144,62 @@
                 success: function( data, textStatus, jQxhr ){
                     var cart = $('.shopping-cart-items');
                     var imgtodrag = form.parents('.shop-item').find("img").eq(0);
+                    if (imgtodrag) {
+                        var imgclone = imgtodrag.clone()
+                            .offset({
+                            top: imgtodrag.offset().top,
+                            left: imgtodrag.offset().left
+                        })
+                            .css({
+                            'opacity': '0.5',
+                                'position': 'absolute',
+                                'height': '100px',
+                                'width': '100px',
+                                'z-index': '100'
+                        })
+                            .appendTo($('body'))
+                            .animate({
+                            'top': cart.offset().top + 10,
+                                'left': cart.offset().left + 10,
+                                'width': 75,
+                                'height': 75
+                        }, 'easeInOutExpo');
+            
+                        // setTimeout(function () {
+                        //     cart.effect("shake", {
+                        //         times: 2
+                        //     }, 200);
+                        // }, 1500);
+            
+                        imgclone.animate({
+                            'width': 0,
+                                'height': 0
+                        }, function () {
+                            $(this).detach();
+                            $('#cart_count').text(data);
+                            cart.effect("shake");
+                        });
+                    }
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                }
+            });
+        });
+
+        //ajax send to rfq item
+        $('#carting').on('submit', function(e){
+            e.preventDefault();
+            form = $(this);
+            $.ajax({
+                url: "{{URL::to('/carting?det=catalogue')}}",
+                dataType: 'text',
+                type: 'post',
+                contentType: 'application/x-www-form-urlencoded',
+                data: $(this).serialize(),
+                success: function( data, textStatus, jQxhr ){
+                    var cart = $('.shopping-cart-items');
+                    var imgtodrag = form.parents('.item').find("img").eq(0);
                     if (imgtodrag) {
                         var imgclone = imgtodrag.clone()
                             .offset({
