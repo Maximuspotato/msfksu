@@ -18,8 +18,7 @@
 					<div class="col-sm-6">
 						{{-- <h3>History</h3>
 						<p>KENYA SUPPLY UNIT (KSU) formerly known as Logistical Centre Nairobi (LCN) was established in 2005 following the amalgamations of MSF supply and logistics activities of four sections in Kenya (OCB, OCG, OCP and OCBA). </p> --}}
-						<h3>About Us</h3>
-						<h4 style="color:#F05E38"><b>COMING SOON!</b></h4><br>
+						
 						{{-- <p>
 							Our ambition is value addition to local and regional clients in Africa and the MSF Supply Chain by focusing on the client needs, development of expertise through unlocking the value of supply chain and logistics.<br><br>
 							We operate in a manner that recognizes and adapts to the increasing complexity of client needs within a rapidly changing environment. KSU strives to make MSF humanitarian responses more efficient (to save costs) and more effective (to save time) through analyzing and optimizing supply chains to enhance procurement, transportation, warehousing and distribution of medical, non-medical and logistical commodities.<br><br>
@@ -34,7 +33,10 @@
 							• Related items will be displayed when searching for a specific item<br>
 							• Supply news updates from all OC’s<br>
 							• Exploring ERP integration<br>
+							• A mapping of processes and lead times for importation and exportation to countries in the region<br><br>
 						</p>
+						<h3>About Us</h3>
+						<h4 style="color:red"><b>COMING SOON!</b></h4><br>
 					</div>
 					<div class="col-sm-6">
 						<div class="video-wrapper">
