@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Page Title -->
-    <div class="section section-breadcrumbs">
+        <div class="section section-breadcrumbs">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -11,6 +11,16 @@
                 </div>
             </div>
         </div>
+
+        @if (Session::has('reg'))
+            <div class="section" style="background:greenyellow">
+                <div class="container text-center">
+                    Thank you for your registration! We welcoming you to our Web App. 
+                    Your request is being processed and within one working day you will receive a verification email.
+                    If you encounter any problems please don’t hesitate to <a href="{{URL('/contacts')}}">contact</a> us through our contact page.
+                </div>
+            </div>
+        @endif
         
         <div class="section">
             <div class="container">
@@ -49,17 +59,17 @@
                                 </div>
                             
                                 <div class="form-group row mb-0">
-                                    <div class="col-md-8 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
+                                    <div class="col-md-12">
+                                        <a class="pull-left" href="{{URL('/password/reset')}}">Forgot your password?</a>
+                                        <button type="submit" class="btn btn-primary pull-right">
                                             {{ __('Login') }}
                                         </button>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <a href="{{URL('/password/reset')}}">Forgot your password?</a>
                         <br>
-                        <div class="pull-right">
+                        <div class="pull-left">
                             Not a member <span><a href="{{URL('/register')}}" class="btn">Register Now</a></span>
                         </div>
                     </div>

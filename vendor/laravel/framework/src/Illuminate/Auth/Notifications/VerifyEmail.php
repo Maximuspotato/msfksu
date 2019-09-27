@@ -49,7 +49,7 @@ class VerifyEmail extends Notification
             ->bcc('MSFOCB-KSU-IT@brussels.msf.org')
             ->line(Lang::getFromJson('Please wait while we verify your email address.'))
             // ->action(Lang::getFromJson('Verify Email Address'), $verificationUrl)
-            ->line(Lang::getFromJson('If you we do not contact you within 24 hrs and you should be verified please contact us through our contacts page.'));
+            ->line(Lang::getFromJson('If we do not contact you within 24 hrs and you should be verified please contact us through our contacts page.'));
     }
 
     /**

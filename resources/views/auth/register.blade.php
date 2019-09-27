@@ -144,7 +144,7 @@
                                             <label for="project" class="col-md-4 col-form-label text-md-right">{{ __('Project') }}</label>
                                     
                                             <div class="col-md-6">
-                                                <input id="project" type="text" class="form-control @error('project') is-invalid @enderror" name="project" value="{{ old('project') }}" required autocomplete="project">
+                                                <input id="project" type="text" class="form-control @error('project') is-invalid @enderror" name="project" value="{{ old('project') }}" autocomplete="project">
                                     
                                                 @error('project')
                                                     <span class="invalid-feedback" role="alert">
@@ -205,7 +205,7 @@
                                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
                                     
                                             <div class="col-md-6">
-                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="should be a minimum of 6 characters">
+                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="should be a minimum of 8 characters">
                                     
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">

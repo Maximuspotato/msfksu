@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Auth;
 ini_set('max_execution_time', 180);
 
 use App\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+
 
 class RegisterController extends Controller
 {
@@ -30,7 +34,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -51,13 +55,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            //'mission' => ['string', 'max:255'],
+            'mission' => ['max:255'],
             'oc' => ['required', 'string', 'max:255'],
-            'project' => ['string', 'max:255'],
+            'project' => ['max:255'],
             'position' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            //'comments' => ['string', 'max:255'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'comments' => ['max:255'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -69,14 +73,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        //dd($data['category']);
         if (isset($data['category'])) {
             $category = "supply";
         } else {
             $category = "general";
         }
         
-        //dd($data['mission']);
         return User::create([
             'mission' => $data['mission'],
             'oc' => $data['oc'],
@@ -92,5 +94,19 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         return view('auth.register')->with(['active' => '']);
+    }
+
+    public function register(Request $request)
+    {
+        if( strpos( $request->email, 'msf' ) !== false || strpos( $request->email, 'MSF' ) !== false) {
+            $this->validator($request->all())->validate();
+
+            event(new Registered($user = $this->create($request->all())));
+
+            return redirect($this->redirectPath())->with('reg', '');
+        }
+        else{
+            return redirect('register')->with('error', 'You are unauthorized to perform this action');
+        }
     }
 }
