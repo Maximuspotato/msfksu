@@ -14,6 +14,9 @@
         
         <div class="section">
             <div class="container">
+                <div>
+                    <i class="fas fa-info-circle pull-right" style="cursor:pointer" data-toggle="modal" data-target="#info"></i>
+                </div>
                 @if (count($items)>0)
                     <div class="row">
                         <div class="col-md-12">
@@ -153,6 +156,26 @@
             </div>
         </div>
         <!-- Modal -->
+        <div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">RFQ features</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    Here you are able to finalize the request of items picked [e.g. add a comment to a product line or change quantity]. After finalization you can choice to download an internal request form <img src="{{URL('/')}}/assets/img/ir.jpg" alt="" height="18"> to use in your mission, download a UniField importation file <img src="{{URL('/')}}/assets/img/ir.jpg" alt="" height="18"> or to send the request to KSU for a quotation. If you didn’t find the item you were looking for you can also send a request for information or quotation to KSU <img src="{{URL('/')}}/assets/img/ir.jpg" alt="" height="18">
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Got It</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
         <div class="modal fade" id="irModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -250,4 +273,5 @@
             </div>
             </div>
         </div>
+
 @endsection

@@ -57,5 +57,17 @@ class AppController extends Controller
         elseif ($dwnld == "ksu") {
             return Excel::download(new KsuUfExport, 'KSU Catalogue.xlsx');
         }
+        elseif ($dwnld == "tc") {
+            if (Session::get('language') == "fr") {
+                $file = "files/Kenya Supply Unit-Conditions-Generales_Francais.pdf";
+            } else {
+                $file = "files/Kenya Supply Unit-Terms-of-Conditions.pdf";
+            }
+            return response()->download(public_path($file));
+        }
+        elseif ($dwnld == "jobo") {
+            $file = "files/Re-advert Medical Intern_September 2019.pdf";
+            return response()->download(public_path($file));
+        }
     }
 }

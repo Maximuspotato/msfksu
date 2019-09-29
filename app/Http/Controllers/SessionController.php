@@ -132,13 +132,4 @@ class SessionController extends Controller
 
         return redirect('/add-item');
     }
-
-    public function tc(){
-        if (Session::get('language') == "fr") {
-            $file = "files/Kenya Supply Unit-Conditions-Generales_Francais.pdf";
-        } else {
-            $file = "files/Kenya Supply Unit-Terms-of-Conditions.pdf";
-        }
-        return response()->download(public_path($file));
-    }
 }
