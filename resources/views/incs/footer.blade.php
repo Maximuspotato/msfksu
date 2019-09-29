@@ -18,7 +18,7 @@
                         <li><a href="https://apps.powerapps.com/play/0e8f5ced-1eb3-463c-9703-cb7b829fe753?tenantId=4d9dd1af-83ce-4e9b-b090-b0543ccc2b31" target="_blank">Unidata catalogue</a></li>
                         <li class="disabled" target="_blank"><a href="">Executive Supply Chain Committee</a></li>
                         <li class=""><a href="https://www.msf.org/" target="_blank">MSF International</a></li>
-                        <li><a href="{{URL('/download?dwnld=tc')}}">KSU's Terms & Conditions</a></li>
+                        <li><a href="{{URL('/dwnlds?dwnld=tc')}}">KSU's Terms & Conditions</a></li>
                         {{-- <li class="disabled"><a href="">MSF OCA</a></li>
                         <li class="disabled"><a href="">MSF OCB</a></li>
                         <li class="disabled"><a href="">MSF OCBA</a></li>

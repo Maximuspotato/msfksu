@@ -26,7 +26,7 @@
                         <tr>
                             <!-- Position -->
                             <td class="job-position">
-                                <a href="{{URL('/download?dwnld=jobo')}}">Medical Intern</a> <span class="label label-danger">New</span>
+                                <a href="{{URL('/dwnlds?dwnld=jobo')}}">Medical Intern</a> <span class="label label-danger">New</span>
                             </td>
                             <!-- Job Type -->
                             <td class="job-type hidden-phone">INTERNSHIP</td>

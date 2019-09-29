@@ -12,6 +12,8 @@
 */
 Route::post('/request-new', 'AppController@requestnew');
 Route::get('/download', 'AppController@download')->middleware(['auth', 'verified']);
+Route::get('/dwnlds', 'AppController@dwnlds');
+
 
 //pages
 Route::get('/', 'PagesController@index');
