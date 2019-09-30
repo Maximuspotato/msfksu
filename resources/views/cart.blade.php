@@ -14,8 +14,10 @@
         
         <div class="section">
             <div class="container">
-                <div>
-                    <i class="fas fa-info-circle pull-right" style="cursor:pointer" data-toggle="modal" data-target="#info"></i>
+                <div class="row">
+                    <div class="col-sm-4 col-sm-offset-10">
+                        <i class="fas fa-info-circle" style="cursor:pointer" data-toggle="modal" data-target="#info"></i>
+                    </div>
                 </div>
                 @if (count($items)>0)
                     <div class="row">
@@ -166,7 +168,7 @@
                 </button>
                 </div>
                 <div class="modal-body">
-                    Here you are able to finalize the request of items picked [e.g. add a comment to a product line or change quantity]. After finalization you can choice to download an internal request form <img src="{{URL('/')}}/assets/img/ir.JPG" alt="" height="20"> to use in your mission, download a UniField importation file <img src="{{URL('/')}}/assets/img/uf.JPG" alt="" height="20"> or to send the request to KSU for a quotation <img src="{{URL('/')}}/assets/img/rfq.JPG" alt="" height="20">. If you didn’t find the item you were looking for you can also send a request for information or quotation to KSU <img src="{{URL('/')}}/assets/img/rfqnot.JPG" alt="" height="20">
+                Here you are able to finalize the request of items picked [e.g. add a comment to a product line or change quantity]. After finalization you can choice to download an internal request form  to use in your mission <img src="{{URL('/')}}/assets/img/ir.JPG" alt="" height="20">, download a UniField importation file <img src="{{URL('/')}}/assets/img/uf.JPG" alt="" height="20"> or to send the request to KSU for a quotation <img src="{{URL('/')}}/assets/img/rfq.JPG" alt="" height="20">. If you didn’t find the item you were looking for you can also send a request for information or quotation to KSU by using this button: <img src="{{URL('/')}}/assets/img/rfqnot.JPG" alt="" height="20">.
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Got It</button>
