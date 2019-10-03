@@ -256,11 +256,7 @@
                 });
                 //window.setTimeout(function() { jQuery('#twc').hide(); }, 5);
             });
-        })
-        .addHook(function(){
-            console.log("Hook called for: " + this.activeEgg.keys);
-            console.log(this.activeEgg.metadata);
-        }).listen();
+        });
 
         $('.popover-dismiss').popover({
             trigger: 'focus'
