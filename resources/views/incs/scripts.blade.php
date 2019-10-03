@@ -256,7 +256,7 @@
                 });
                 //window.setTimeout(function() { jQuery('#twc').hide(); }, 5);
             });
-        });
+        }).listen();
 
         $('.popover-dismiss').popover({
             trigger: 'focus'
