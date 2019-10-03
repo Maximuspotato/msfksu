@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::post('/request-new', 'AppController@requestnew');
+Route::post('send-item-request', 'AppController@requestnew');
 Route::get('/download', 'AppController@download')->middleware(['auth', 'verified']);
 Route::get('/dwnlds', 'AppController@dwnlds');
 
@@ -32,7 +32,7 @@ Route::get('/favorites', 'PagesController@favorites');
 Route::get('/history', 'PagesController@history');
 Route::get('/getfam', 'PagesController@getfam');
 Route::get('/hr/{deets}', 'PagesController@hrdeets');
-Route::get('/new-request', 'PagesController@newrequest')->middleware(['auth', 'verified']);
+Route::get('/request-item', 'PagesController@newrequest')->middleware(['auth', 'verified']);
 
 Route::get('/language', 'SessionController@language');
 Route::get('/currency', 'SessionController@currency');

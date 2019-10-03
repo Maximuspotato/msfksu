@@ -23,7 +23,7 @@ class EmailController extends Controller
             //dd($path);
             $m->from(auth()->user()->email, 'KSU');
             $m->to('MSFOCB-KSU-supplychainmanager@brussels.msf.org', 'David')->subject('Request for Supply rights');
-            $m->cc('MSFOCB-KSU-it@brussels.msf.org');
+            $m->bcc('MSFOCB-KSU-it@brussels.msf.org');
         });
 
         Session::flash('success', 'Email was sent successfully. We will contact you soon and thank you for using our services.');

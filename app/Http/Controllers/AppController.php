@@ -39,9 +39,11 @@ class AppController extends Controller
         Mail::send('emails.newreq', ['data' => $data], function ($m) use ($data) {
             $m->to('MSFOCB-KSU-CustomerService@brussels.msf.org', 'David');
             $m->from('no-reply@ksu.com', 'KSU')->subject('RFQ item not in catalogue');
-            // foreach ($data['attachment'] as $pic) {
-            //     $m->attach($pic);
-            // }
+            $m->bcc('MSFOCB-KSU-it@brussels.msf.org');
+            foreach ($data['attachment'] as $attacho) {
+                $filename = 'attacho_'.time().'.png';
+                $m->attach($attacho, ['as' => $filename]);
+            }
         });
 
         Session::flash('success', 'Email was sent successfully. We will contact you soon and thank you for using our services.');

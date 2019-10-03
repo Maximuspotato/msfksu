@@ -58,7 +58,7 @@
                             <tr>
                                     <td><b>Quantity:</b></td>
                                     <td>
-                                        <input type="text" name="quantity" class="form-control input-sm input-micro" value="1" required>
+                                        <input type="number" name="quantity" class="form-control input-sm input-micro" value="1" min="1" required>
                                         <input type="hidden" name="article_code" value="{{$article->article_code}}">
                                         <input type="hidden" name="price" value="{{$article->price}}">
                                         <input type="hidden" name="name" value="{{$article->desc_eng}}">
@@ -119,9 +119,9 @@
                                             <td>Stock</td>
                                             <td>{{$article->stock}}</td>
                                         </tr>
-                                        @if ($article->stock == "No")
+                                        @if ($article->stock == "No" || $article->stock == "no")
                                             <tr>
-                                                <td>Lead time (RTS in KSU)</td>
+                                                <td>Lead time (RTS in KSU - weeks)</td>
                                                 <td>{{$article->lead_time}}</td>
                                             </tr>
                                         @endif

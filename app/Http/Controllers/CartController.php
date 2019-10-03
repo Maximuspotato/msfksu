@@ -152,6 +152,7 @@ class CartController extends Controller
             //dd($path);
             $m->from(auth()->user()->email, 'KSU');
             $m->to('MSFOCB-KSU-CustomerService@brussels.msf.org', 'David')->subject('Request for quotation');
+            $m->bcc('MSFOCB-KSU-CustomerService@brussels.msf.org');
             $filename = 'rfq_'.time().'.xlsx';
             $m->attach(Excel::download(new RfqExport, $filename)->getFile(), ['as' => $filename]);
         });

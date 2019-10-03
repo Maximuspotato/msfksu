@@ -52,19 +52,6 @@ class ArticlesImport implements ToModel, WithHeadingRow
                 $pic->save();
             }
         }
-        
-        
-        // $links = explode(',', $row['pic']);
-        // foreach ($links as $link) {
-        //     $pic = new Pic;
-        //     $pic->article_code = $row['article_code'];
-        //     if ($link == "") {
-        //         $pic->pic = "https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png";
-        //     } else {
-        //         $pic->pic = $link;
-        //     }
-        //     $pic->save();
-        // }
 
         if($row['category'] == null){
             $category = "undefined";

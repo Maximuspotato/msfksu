@@ -66,7 +66,7 @@
                                             </td>
                                             <!-- Shopping Cart Item Quantity -->
                                             <td class="quantity">
-                                                <input name="quantity" class="form-control input-sm input-micro qty" type="text" value="{{$item->quantity}}">
+                                                <input name="quantity" class="form-control input-sm input-micro qty" type="number" min="1" value="{{$item->quantity}}">
                                             </td>
                                             <input type="hidden" name="fra" value="{{$item->attributes->fra}}">
                                             <input type="hidden" name="esp" value="{{$item->attributes->esp}}">
@@ -135,7 +135,7 @@
                     <div class="col-md-12">
                         <!-- Action Buttons -->
                         <div class="pull-left">
-                            <a href="{{URL('/new-request')}}" class="btn"><i class="glyphicon glyphicon-plus-sign"></i> RFQ item not in catalogue</a>
+                            <a href="{{URL('/request-item')}}" class="btn"><i class="glyphicon glyphicon-plus-sign"></i> RFQ item not in catalogue</a>
                         </div>
                         @if (count($items)>0)
                             <div class="pull-right">

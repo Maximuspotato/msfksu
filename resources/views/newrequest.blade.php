@@ -18,7 +18,7 @@
                     <div class="col-sm-12">
                         <h5>This form is to request a quotation for an item that is not displayed in our catalogue.</h5>
                         <div class="basic-login">
-                            <form method="POST" action="{{URL('/request-new')}}" enctype="multipart/form-data">
+                            <form method="POST" action="{{URL('/send-item-request')}}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -58,10 +58,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="budget" class="col-md-4 col-form-label text-md-right">{{ __('Indicative budget *') }}<br><span>Exclusive of additional cost [e.g. transportation]</span></label>
+                                            <label for="budget" class="col-md-4 col-form-label text-md-right">{{ __('Indicative budget (USD)*') }}<br><span>Exclusive of additional cost [e.g. transportation]</span></label>
                                     
                                             <div class="col-md-6">
-                                                <input id="budget" type="number" class="form-control" name="budget" value="{{ old('budget') }}" autocomplete="budget" autofocus requiredquan placeholder="in USD">
+                                                <input id="budget" type="number" step="0.001" min="0" class="form-control" name="budget" value="0.001" autocomplete="budget" autofocus requiredquan placeholder="in USD">
                                             </div>
                                         </div>
                                     </div>
