@@ -46,6 +46,7 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGQZQXG"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+        <img id="twc" src="{{URL('/')}}/assets/img/flags/twc.jpg" alt="" height="300" style="display:none">
 
         @include('incs.header')
 

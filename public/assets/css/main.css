@@ -2962,3 +2962,10 @@ span.color-red {
   font-weight: lighter;
   font-size: 12px;
 }
+
+#twc{
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  z-index: 100;
+}

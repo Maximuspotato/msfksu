@@ -18,6 +18,7 @@
     <script src="{{URL('/')}}/assets/js/jquery.magnify.js"></script>
 <!-- Optional mobile plugin (uncomment the line below to enable): -->
 <!-- <script src="/js/jquery.magnify-mobile.js"></script> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/egg.js/1.0/egg.min.js"></script>
 
     <!-- Fine Uploader Gallery template
     ====================================================================== -->
@@ -245,6 +246,22 @@
     </script>
     <script>
       $(document).ready(function () {
+        //easter egg
+        var egg = new Egg();
+        egg
+        .addCode("t,h,e,w,e,t,c,h,i,c,k,e,n", function() {
+            jQuery('#twc').fadeIn(3000, function() {
+                jQuery('#twc').fadeOut(3000, function(){
+                    jQuery(this).hide();
+                });
+                //window.setTimeout(function() { jQuery('#twc').hide(); }, 5);
+            });
+        })
+        .addHook(function(){
+            console.log("Hook called for: " + this.activeEgg.keys);
+            console.log(this.activeEgg.metadata);
+        }).listen();
+
         $('.popover-dismiss').popover({
             trigger: 'focus'
         })
