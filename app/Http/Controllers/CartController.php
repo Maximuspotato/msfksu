@@ -133,7 +133,11 @@ class CartController extends Controller
         //dd($request->input('pic'));
         $items = Cart::getContent();
         //return view('exports.ir')->with(['info' => $info, 'items' => $items]);
-        $pdf = PDF::loadView('exports.ir', ['info' => $info, 'items' => $items])->setPaper('a4', 'landscape');
+        if ($request->session()->get('language') == 'fr') {
+            $pdf = PDF::loadView('exports.frenchIr', ['info' => $info, 'items' => $items])->setPaper('a4', 'landscape');
+        } else {
+            $pdf = PDF::loadView('exports.ir', ['info' => $info, 'items' => $items])->setPaper('a4', 'landscape');
+        }
         $filename = 'ir_'.$ref_no.'.pdf';
         return $pdf->download($filename);
     }

@@ -147,6 +147,8 @@
                                                     <input type="hidden" name="article_code" value="{{$article->article_code}}">
                                                     <input type="hidden" name="price" value="{{$article->price}}">
                                                     <input type="hidden" name="name" value="{{$article->desc_eng}}">
+                                                    <input type="hidden" name="fra" value="{{$article->desc_fra}}">
+                                                    <input type="hidden" name="esp" value="{{$article->desc_esp}}">
                                                     <input type="hidden" name="pic" value="{{URL('/')}}/assets/img/pics/{{$article->pic->first()['pic']}}.png">
                                                     <input type="hidden" name="unit" value="{{$article->unit}}">
                                                     <input type="hidden" name="lead_time" value="{{$article->lead_time}}">

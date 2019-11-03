@@ -57,7 +57,23 @@
                                         <!-- Shopping Cart Item Description & Features -->
                                         <td>
                                             <div class="cart-item-title"><a href="{{URL('/article')}}/{{$item->id}}">{{$item->id}}</a></div>
-                                            <div class="cart-item-title"><a href="{{URL('/article')}}/{{$item->id}}">{{$item->name}}</a></div>
+                                            @if (session()->get('language') == 'en')
+                                                <div class="cart-item-title"><a href="{{URL('/article')}}/{{$item->id}}">{{$item->name}}</a></div>
+                                            @elseif(session()->get('language') == 'fr')
+                                                @if ($item->attributes->fra == '')
+                                                    <div class="cart-item-title"><a href="{{URL('/article')}}/{{$item->id}}">{{$item->name}}</a></div>
+                                                @else
+                                                    <div class="cart-item-title"><a href="{{URL('/article')}}/{{$item->id}}">{{$item->attributes->fra}}</a></div>
+                                                @endif
+                                            @elseif(session()->get('language') == 'es')
+                                                @if ($item->attributes->esp == "")
+                                                    <div class="cart-item-title"><a href="{{URL('/article')}}/{{$item->id}}">{{$item->name}}</a></div>
+                                                @else
+                                                    <div class="cart-item-title"><a href="{{URL('/article')}}/{{$item->id}}">{{$item->attributes->esp}}</a></div>
+                                                @endif
+                                            @elseif(session()->get('language') == '')
+                                                <div class="cart-item-title"><a href="{{URL('/article')}}/{{$item->id}}">{{$item->name}}</a></div>
+                                            @endif
                                         </td>
                                         <form class="update_form" action="{{URL('/update')}}" method="post">
                                             @csrf
