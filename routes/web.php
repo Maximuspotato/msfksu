@@ -37,6 +37,7 @@ Route::get('/request-item', 'PagesController@newrequest')->middleware(['auth', '
 Route::get('/language', 'SessionController@language');
 Route::get('/currency', 'SessionController@currency');
 Route::get('/upload', 'SessionController@upload');
+Route::get('/list', 'SessionController@list');
 Route::post('/upload-images', 'SessionController@uploadImages');
 
 Route::resource('article', 'ArticleController');

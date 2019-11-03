@@ -52,24 +52,29 @@ class PagesController extends Controller
     }
 
     public function catalogue(Request $request){
-        //$populars = "";
+        if ($request->session()->has('list')) {
+            $list = $request->session()->get('list');
+        } else {
+            $list = 8;
+        }
+        
         if ($request->exists('det') || $request->exists('search') || $request->exists('group')) {
             if ($request->has('det')) {
                 $det = $request->input('det');
                 if ($det == "Med") {
-                    $articles = Article::where('category', 'Med')->orderBy('id', 'desc')->paginate(8)->onEachSide(1);
+                    $articles = Article::where('category', 'Med')->orderBy('id', 'desc')->paginate($list)->onEachSide(1);
                     $title = "Medical items";
                 }
                 elseif ($det == "Log") {
-                    $articles = Article::where('category', 'Log')->orderBy('id', 'desc')->paginate(8)->onEachSide(1);
+                    $articles = Article::where('category', 'Log')->orderBy('id', 'desc')->paginate($list)->onEachSide(1);
                     $title = "Medical items";
                 }
                 elseif ($det == "New") {
-                    $articles = Article::orderBy('id', 'desc')->paginate(8)->onEachSide(1);
+                    $articles = Article::orderBy('id', 'desc')->paginate($list)->onEachSide(1);
                     $title = "Latest items";
                 }
                 elseif ($det == "Popular") {
-                    $populars = Popular::orderBy('orders', 'desc')->paginate(8)->onEachSide(1);
+                    $populars = Popular::orderBy('orders', 'desc')->paginate($list)->onEachSide(1);
                     //dd($populars->article()->first()->article_code);
                     $arrs = array();
                     foreach ($populars as $popular) {
@@ -78,7 +83,7 @@ class PagesController extends Controller
                     $articles = collect($arrs);
                     $title = "Popular items";
                     //dd($articles);
-                    //$articles->paginate(8)->onEachSide(1);
+                    //$articles->paginate($list)->onEachSide(1);
                     // $perPage = 8;
                     // $page = null;
                     // $options = [];
@@ -105,10 +110,10 @@ class PagesController extends Controller
                     ->orWhere('desc_fra', 'like', '%'.$search.'%')
                     ->orWhere('desc_spa', 'like', '%'.$search.'%')
                     ->orWhere('details', 'like', '%'.$search.'%')
-                    ->paginate(8)->onEachSide(1);
+                    ->paginate($list)->onEachSide(1);
                     $title = "All items";
                 } else {
-                    $articles = Article::paginate(8)->onEachSide(1);
+                    $articles = Article::paginate($list)->onEachSide(1);
                     $title = "All items";
                 }
             }
@@ -117,21 +122,21 @@ class PagesController extends Controller
                 $family = $request->input('family');
                 if (!$group == "") {
                     if (!$family == "") {
-                        $articles = Article::where('group', $group)->where('family', $family)->orderBy('id', 'desc')->paginate(8)->onEachSide(1);
+                        $articles = Article::where('group', $group)->where('family', $family)->orderBy('id', 'desc')->paginate($list)->onEachSide(1);
                         $title = "All items";
                     }
                     else {
-                        $articles = Article::where('group', $group)->orderBy('id', 'desc')->paginate(8)->onEachSide(1);
+                        $articles = Article::where('group', $group)->orderBy('id', 'desc')->paginate($list)->onEachSide(1);
                         $title = "All items";
                     }
                 } 
                 else {
-                    $articles = Article::paginate(8)->onEachSide(1);
+                    $articles = Article::paginate($list)->onEachSide(1);
                     $title = "All items";
                 }
             }
         } else {
-            $articles = Article::paginate(8)->onEachSide(1);
+            $articles = Article::paginate($list)->onEachSide(1);
             $title = "All items";
         }
 

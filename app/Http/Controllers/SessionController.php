@@ -132,4 +132,9 @@ class SessionController extends Controller
 
         return redirect('/add-item');
     }
+
+    public function list(Request $request){
+        $request->session()->put('list', $request->input('list'));
+        return back();
+    }
 }
