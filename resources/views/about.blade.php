@@ -33,7 +33,9 @@
 							• Related items will be displayed when searching for a specific item<br>
 							• Supply news updates from all OC’s<br>
 							• Exploring ERP integration<br>
-							• A mapping of processes and lead times for importation and exportation to countries in the region<br><br>
+							• A mapping of processes and lead times for importation and exportation to countries in the region<br>
+							• Overview of indicated transport prices to various destinations.<br>
+							• Online Feedback form for claims, feedback and complaints.<br><br>
 						</p>
 						<h3>About Us</h3>
 						<h4 style="color:red"><b>COMING SOON!</b></h4><br>
