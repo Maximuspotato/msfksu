@@ -113,7 +113,7 @@
                                                 <a href="{{URL('/article')}}/{{$article->article_code}}">{{$article->article_code}}</a>
                                             </div>
                                             <!-- Product Price -->
-                                            @if (!AUTH::guest())
+                                            @if (!AUTH::guest() && !AUTH::user()->email_verified_at == "")
                                                 <div class="title" style="margin-bottom:5px; font-size: 12px;">
                                                     <h3><a href="{{URL('/article')}}/{{$article->article_code}}">{{number_format($article->price,'2','.','')}} 
                                                     @if (session()->get('currency') == 'usd')
