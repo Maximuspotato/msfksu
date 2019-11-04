@@ -83,6 +83,15 @@
                     </aside>
                     <main class="col-sm-9">
                         <div class="col-sm-12">
+                            <div class="dropdown show pull-left">
+                                @if (Session::get('pics') == "enabled")
+                                    <a href="{{URL('/notShowPics')}}" class="btn-secondary">Pictures <span class="fas fa-eye-slash"></span></a>
+                                @elseif(Session::get('pics') == "disabled")
+                                    <a href="{{URL('/showPics')}}" class="btn-secondary">Pictures <span class="fas fa-eye"></span></a>
+                                @else
+                                    <a href="{{URL('/notShowPics')}}" class="btn-secondary">Pictures <span class="fas fa-eye-slash"></span></a>
+                                @endif
+                            </div>
                             <div class="dropdown show pull-right">
                                 <a href="#" class="btn-secondary dropdown-toggle" role="button" id="dropdownList" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">List <span class="fas fa-caret-down"></span></a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownList">
@@ -98,17 +107,23 @@
                                 @foreach ($articles as $article)
                                     <div class="col-sm-3">
                                         <!-- Product -->
-                                        <div class="shop-item">
+                                        @if (Session::get('pics') == "enabled" || Session::get('pics') == "")
+                                        <div class="shop-item" style="height:245px">
+                                        @else
+                                        <div class="shop-item" style="height:150px">   
+                                        @endif
                                             <!-- Product Image -->
-                                            <div class="image">
-                                                @foreach ($article->pic as $pic)
-                                                    @if ($pic['pic'] == "default")
-                                                        <a href="{{URL('/article')}}/{{$article->article_code}}"><img class="img-thumbnail zoom" src="{{URL('/')}}/assets/img/pics/default.png" data-magnify-src="{{URL('/')}}/assets/img/pics/default.png" alt="" ></a>
-                                                    @else
-                                                        <a href="{{URL('/article')}}/{{$article->article_code}}"><img class="img-thumbnail zoom" src="{{URL('/')}}/assets/img/pics/{{$pic['pic']}}.png" data-magnify-src="{{URL('/')}}/assets/img/pics/{{$pic['pic']}}.png" alt="" ></a>
-                                                    @endif
-                                                @endforeach
-                                            </div>
+                                            @if (Session::get('pics') == "enabled" || Session::get('pics') == "")
+                                                <div class="image">
+                                                    @foreach ($article->pic as $pic)
+                                                        @if ($pic['pic'] == "default")
+                                                            <a href="{{URL('/article')}}/{{$article->article_code}}"><img class="img-thumbnail zoom" src="{{URL('/')}}/assets/img/pics/default.png" data-magnify-src="{{URL('/')}}/assets/img/pics/default.png" alt="" ></a>
+                                                        @else
+                                                            <a href="{{URL('/article')}}/{{$article->article_code}}"><img class="img-thumbnail zoom" src="{{URL('/')}}/assets/img/pics/{{$pic['pic']}}.png" data-magnify-src="{{URL('/')}}/assets/img/pics/{{$pic['pic']}}.png" alt="" ></a>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            @endif
                                             <div class="price">
                                                 <a href="{{URL('/article')}}/{{$article->article_code}}">{{$article->article_code}}</a>
                                             </div>
@@ -155,22 +170,41 @@
                                             <!-- Add to Cart Button -->
                                             <div class="actions">
                                                 <a href="{{URL('/article')}}/{{$article->article_code}}" class="pull-left"><i class="fas fa-info-circle"></i></a>
-                                                <form class="carting">
-                                                    @csrf
-                                                    <input type="hidden" name="quantity" value="1">
-                                                    <input type="hidden" name="article_code" value="{{$article->article_code}}">
-                                                    <input type="hidden" name="price" value="{{$article->price}}">
-                                                    <input type="hidden" name="name" value="{{$article->desc_eng}}">
-                                                    <input type="hidden" name="fra" value="{{$article->desc_fra}}">
-                                                    <input type="hidden" name="esp" value="{{$article->desc_esp}}">
-                                                    <input type="hidden" name="pic" value="{{URL('/')}}/assets/img/pics/{{$article->pic->first()['pic']}}.png">
-                                                    <input type="hidden" name="unit" value="{{$article->unit}}">
-                                                    <input type="hidden" name="lead_time" value="{{$article->lead_time}}">
-                                                    <input type="hidden" name="weight" value="{{$article->weight}}">
-                                                    <input type="hidden" name="volume" value="{{$article->volume}}">
-                                                    <input type="hidden" name="sud" value="{{$article->sud}}">
-                                                    <button id="add_rfq_butt" class="rfq-butt btn pull-right" style="height:30px">Add to Request</button>
-                                                </form>
+                                                @if (Session::get('pics') == "enabled" || Session::get('pics') == "")
+                                                    <form class="carting">
+                                                        @csrf
+                                                        <input type="hidden" name="quantity" value="1">
+                                                        <input type="hidden" name="article_code" value="{{$article->article_code}}">
+                                                        <input type="hidden" name="price" value="{{$article->price}}">
+                                                        <input type="hidden" name="name" value="{{$article->desc_eng}}">
+                                                        <input type="hidden" name="fra" value="{{$article->desc_fra}}">
+                                                        <input type="hidden" name="esp" value="{{$article->desc_esp}}">
+                                                        <input type="hidden" name="pic" value="{{URL('/')}}/assets/img/pics/{{$article->pic->first()['pic']}}.png">
+                                                        <input type="hidden" name="unit" value="{{$article->unit}}">
+                                                        <input type="hidden" name="lead_time" value="{{$article->lead_time}}">
+                                                        <input type="hidden" name="weight" value="{{$article->weight}}">
+                                                        <input type="hidden" name="volume" value="{{$article->volume}}">
+                                                        <input type="hidden" name="sud" value="{{$article->sud}}">
+                                                        <button id="add_rfq_butt" class="rfq-butt btn pull-right" style="height:30px">Add to Request</button>
+                                                    </form>
+                                                @else
+                                                    <form action="{{URL('/cartNoPic')}}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="quantity" value="1">
+                                                        <input type="hidden" name="article_code" value="{{$article->article_code}}">
+                                                        <input type="hidden" name="price" value="{{$article->price}}">
+                                                        <input type="hidden" name="name" value="{{$article->desc_eng}}">
+                                                        <input type="hidden" name="fra" value="{{$article->desc_fra}}">
+                                                        <input type="hidden" name="esp" value="{{$article->desc_esp}}">
+                                                        <input type="hidden" name="pic" value="{{URL('/')}}/assets/img/pics/{{$article->pic->first()['pic']}}.png">
+                                                        <input type="hidden" name="unit" value="{{$article->unit}}">
+                                                        <input type="hidden" name="lead_time" value="{{$article->lead_time}}">
+                                                        <input type="hidden" name="weight" value="{{$article->weight}}">
+                                                        <input type="hidden" name="volume" value="{{$article->volume}}">
+                                                        <input type="hidden" name="sud" value="{{$article->sud}}">
+                                                        <button id="add_rfq_butt" class="rfq-butt btn pull-right" style="height:30px">Add to Request</button>
+                                                    </form>
+                                                @endif
                                                 <div class="clearfix"></div>
                                             </div>
                                         </div>

@@ -38,6 +38,8 @@ Route::get('/language', 'SessionController@language');
 Route::get('/currency', 'SessionController@currency');
 Route::get('/upload', 'SessionController@upload');
 Route::get('/list', 'SessionController@list');
+Route::get('/notShowPics', 'SessionController@notShowPics');
+Route::get('/showPics', 'SessionController@showPics');
 Route::post('/upload-images', 'SessionController@uploadImages');
 
 Route::resource('article', 'ArticleController');
@@ -46,6 +48,7 @@ Route::post('/deletePics', 'ArticleController@deletePics');
 Route::post('/import', 'ArticleController@import');
 
 Route::post('/carting', 'CartController@carting');
+Route::post('/cartNoPic', 'CartController@cartNoPic');
 Route::post('/update', 'CartController@update');
 Route::get('/decarting/{id}', 'CartController@decarting');
 Route::get('/clear', 'CartController@clear');

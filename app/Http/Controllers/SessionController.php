@@ -137,4 +137,14 @@ class SessionController extends Controller
         $request->session()->put('list', $request->input('list'));
         return back();
     }
+
+    public function notShowPics(){
+        Session::put('pics', 'disabled');
+        return back();
+    }
+
+    public function showPics(){
+        Session::put('pics', 'enabled');
+        return back();
+    }
 }

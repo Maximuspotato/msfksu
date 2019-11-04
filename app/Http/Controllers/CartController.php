@@ -57,6 +57,49 @@ class CartController extends Controller
         }
     }
 
+    public function cartNoPic(Request $request){
+        $article_code = $request->input("article_code");
+        $quantity = $request->input("quantity");
+        $price = $request->input("price");
+        $name = $request->input("name");
+        $fra = $request->input("fra");
+        $esp = $request->input("esp");
+        $pic = $request->input("pic");
+        $unit = $request->input("unit");
+        $lead_time = $request->input("lead_time");
+        $weight = $request->input("weight");
+        $volume = $request->input("volume");
+        $sud = $request->input("sud");
+        Cart::add(array(
+            'id' => $article_code,
+            'name' => $name,
+            'quantity' => $quantity,
+            'price' => $price,
+            'attributes' => array(
+                'fra' => $fra,
+                'esp' => $esp,
+                'pic' => $pic,
+                'comment' => "",
+                'unit' => $unit,
+                'lead_time' => $lead_time,
+                'weight' => $weight,
+                'volume' => $volume,
+                'sud' => $sud
+            )
+        ));
+
+        // if ($request->input('det') == 'catalogue') {
+        //     $cart_count = Cart::getContent()->count();
+
+        //     echo $cart_count;
+        // } 
+        // elseif ($request->input('det') == 'item') {
+        //     Session::flash('success', 'Item was added to RFQ');
+
+            return back();
+        //}
+    }
+
     /**
      * remove the specified resource from cart.
      *

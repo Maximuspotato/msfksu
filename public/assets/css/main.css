@@ -739,7 +739,7 @@ a:hover {
   /* margin-top: 20px; */
   margin-bottom: 10px;
   border: 8px solid #FFF;
-  height: 245px;
+  /* height: 245px; */
   -webkit-border-radius: 5px;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 5px;
