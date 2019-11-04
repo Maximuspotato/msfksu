@@ -246,6 +246,7 @@
     </script>
     <script>
       $(document).ready(function () {
+        $('#loginModal').modal();
         //easter egg
         var egg = new Egg();
         egg
