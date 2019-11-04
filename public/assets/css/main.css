@@ -739,7 +739,7 @@ a:hover {
   /* margin-top: 20px; */
   margin-bottom: 10px;
   border: 8px solid #FFF;
-  height: 235px;
+  height: 245px;
   -webkit-border-radius: 5px;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 5px;
@@ -787,7 +787,7 @@ a:hover {
   color: #535b60;
   font-size: 1em;
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   font-weight: 600;
   -webkit-border-radius: 7px;
   -webkit-background-clip: padding-box;

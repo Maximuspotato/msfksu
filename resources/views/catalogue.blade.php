@@ -112,6 +112,22 @@
                                             <div class="price">
                                                 <a href="{{URL('/article')}}/{{$article->article_code}}">{{$article->article_code}}</a>
                                             </div>
+                                            <!-- Product Price -->
+                                            @if (!AUTH::guest())
+                                                <div class="title" style="margin-bottom:5px; font-size: 12px;">
+                                                    <h3><a href="{{URL('/article')}}/{{$article->article_code}}">{{number_format($article->price,'2','.','')}} 
+                                                    @if (session()->get('currency') == 'usd')
+                                                        USD
+                                                    @elseif(session()->get('currency') == 'eur')
+                                                        EUR
+                                                    @elseif(session()->get('currency') == 'chf')
+                                                        CHF
+                                                    @else
+                                                        KSH
+                                                    @endif
+                                                    </a></h3>
+                                                </div>
+                                            @endif
                                             <!-- Product Title -->
                                             <div class="title">
                                                 @if (session()->get('language') == 'en')
@@ -132,19 +148,6 @@
                                                     <h3><a href="{{URL('/article')}}/{{$article->article_code}}">{{$article->desc_eng}}</a></h3>
                                                 @endif
                                             </div>
-                                            {{-- <div class="title">
-                                                <h3><a href="{{URL('/article')}}/{{$article->article_code}}">{{number_format($article->price,'2','.','')}} 
-                                                @if (session()->get('currency') == 'usd')
-                                                    USD
-                                                @elseif(session()->get('currency') == 'eur')
-                                                    EUR
-                                                @elseif(session()->get('currency') == 'chf')
-                                                    CHF
-                                                @else
-                                                    KSH
-                                                @endif
-                                                </a></h3>
-                                            </div> --}}
                                             <!-- Product Description-->
                                             {{-- <div class="description">
                                                 <p></p>
