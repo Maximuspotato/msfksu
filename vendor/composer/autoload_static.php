@@ -525,6 +525,7 @@ class ComposerStaticInitec3f9ebd5c3a8c65d2039e4d6c93e9cd
     public static $classMap = array (
         'App\\Article' => __DIR__ . '/../..' . '/app/Article.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Donation' => __DIR__ . '/../..' . '/app/Donation.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Exports\\CatalogExport' => __DIR__ . '/../..' . '/app/Exports/CatalogExport.php',
         'App\\Exports\\IrExport' => __DIR__ . '/../..' . '/app/Exports/IrExport.php',

@@ -20,11 +20,11 @@
                     </div>
                     <div class="col-md-3 col-sm-3">
                             {{-- <img class="overlay" src="{{URL('/')}}/assets/img/soon.png" alt="" height="80"> --}}
-                        <div class="service-wrapper disabled">
+                        <div class="service-wrapper">
                             <img src="{{URL('/')}}/assets/img/service-icon/love.png" alt="Service 1">
                             <h3>Up for donation</h3>
-                            <a href="{{URL('/catalogue')}}" class="btn">See more</a>
-                            <h4 class="overlay" style="color:#F05E38"><b>COMING SOON!</b></h4>
+                            <a href="{{URL('/exportDonations')}}" class="btn">See more</a>
+                            {{-- <h4 class="overlay" style="color:#F05E38"><b>COMING SOON!</b></h4> --}}
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-3">

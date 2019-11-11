@@ -22,8 +22,15 @@
                     @if ($det == 'add')
                     <form action="{{URL('/import')}}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        Import excel file
+                        Import article excel file
                         <input type="file" name="article" id="" required>
+                        <button type="submit">Import</button>
+                    </form>
+                    <br>
+                    <form action="{{URL('/importDonations')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        Import donations excel file
+                        <input type="file" name="donation" id="" required>
                         <button type="submit">Import</button>
                     </form>
                     

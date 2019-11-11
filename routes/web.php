@@ -58,6 +58,9 @@ Route::post('/exportRfq', 'CartController@exportRfq')->middleware(['auth', 'veri
 
 Route::post('/request-supply', 'EmailController@requestSupply')->middleware(['verified']);
 
+Route::post('/importDonations', 'DonationController@importDonations');
+Route::get('/exportDonations', 'DonationController@exportDonations');
+
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'PagesController@index')->name('home');
