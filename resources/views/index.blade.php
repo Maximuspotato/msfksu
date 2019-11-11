@@ -109,7 +109,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-primary" data-dismiss="modal">Don't show again</button>
+                    <button type="button" class="btn-primary again" data-dismiss="modal">Don't show again</button>
                 </div>
             </div>
             </div>
