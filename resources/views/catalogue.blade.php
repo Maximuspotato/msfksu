@@ -82,26 +82,28 @@
                         </div>
                     </aside>
                     <main class="col-sm-9">
-                        <div class="col-sm-12">
-                            <div class="dropdown show pull-left">
-                                @if (Session::get('pics') == "enabled")
-                                    <a href="{{URL('/notShowPics')}}" class="btn-secondary">Pictures <span class="fas fa-eye-slash"></span></a>
-                                @elseif(Session::get('pics') == "disabled")
-                                    <a href="{{URL('/showPics')}}" class="btn-secondary">Pictures <span class="fas fa-eye"></span></a>
-                                @else
-                                    <a href="{{URL('/notShowPics')}}" class="btn-secondary">Pictures <span class="fas fa-eye-slash"></span></a>
-                                @endif
-                            </div>
-                            <div class="dropdown show pull-right">
-                                <a href="#" class="btn-secondary dropdown-toggle" role="button" id="dropdownList" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">List <span class="fas fa-caret-down"></span></a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownList">
-                                    <a class="dropdown-item" href="{{URL('/list?list=8')}}"> 8 items</a><br>
-                                    <a class="dropdown-item" href="{{URL('/list?list=20')}}"> 20 items</a><br>
-                                    <a class="dropdown-item" href="{{URL('/list?list=40')}}"> 40 items</a><br>
-                                    <a class="dropdown-item" href="{{URL('/list?list=60')}}"> 60 items</a>
+                        @if (count($articles) > 0)
+                            <div class="col-sm-12">
+                                <div class="dropdown show pull-left">
+                                    @if (Session::get('pics') == "enabled")
+                                        <a href="{{URL('/notShowPics')}}" class="btn-secondary">Pictures <span class="fas fa-eye-slash"></span></a>
+                                    @elseif(Session::get('pics') == "disabled")
+                                        <a href="{{URL('/showPics')}}" class="btn-secondary">Pictures <span class="fas fa-eye"></span></a>
+                                    @else
+                                        <a href="{{URL('/notShowPics')}}" class="btn-secondary">Pictures <span class="fas fa-eye-slash"></span></a>
+                                    @endif
+                                </div>
+                                <div class="dropdown show pull-right">
+                                    <a href="#" class="btn-secondary dropdown-toggle" role="button" id="dropdownList" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">List <span class="fas fa-caret-down"></span></a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownList">
+                                        <a class="dropdown-item" href="{{URL('/list?list=8')}}"> 8 items</a><br>
+                                        <a class="dropdown-item" href="{{URL('/list?list=20')}}"> 20 items</a><br>
+                                        <a class="dropdown-item" href="{{URL('/list?list=40')}}"> 40 items</a><br>
+                                        <a class="dropdown-item" href="{{URL('/list?list=60')}}"> 60 items</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                         <div class="row">
                             @if (count($articles) > 0)
                                 @foreach ($articles as $article)
