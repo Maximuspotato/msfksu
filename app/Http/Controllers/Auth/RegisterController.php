@@ -96,17 +96,17 @@ class RegisterController extends Controller
         return view('auth.register')->with(['active' => '']);
     }
 
-    public function register(Request $request)
-    {
-        if( strpos( $request->email, 'msf' ) !== false || strpos( $request->email, 'MSF' ) !== false) {
-            $this->validator($request->all())->validate();
+    // public function register(Request $request)
+    // {
+    //     if( strpos( $request->email, 'msf' ) !== false || strpos( $request->email, 'MSF' ) !== false) {
+    //         $this->validator($request->all())->validate();
 
-            event(new Registered($user = $this->create($request->all())));
+    //         event(new Registered($user = $this->create($request->all())));
 
-            return redirect($this->redirectPath())->with('reg', '');
-        }
-        else{
-            return redirect('register')->with('error', 'You are unauthorized to perform this action');
-        }
-    }
+    //         return redirect($this->redirectPath())->with('reg', '');
+    //     }
+    //     else{
+    //         return redirect('register')->with('error', 'You are unauthorized to perform this action');
+    //     }
+    // }
 }
