@@ -144,7 +144,7 @@
                                             @endif
                                         </tr>
                                         <tr>
-                                            <td>Weight</td>
+                                            <td>Weight [kg]</td>
                                             @if (empty($article->weight))
                                                 <td>-</td>
                                             @else
@@ -152,7 +152,7 @@
                                             @endif
                                         </tr>
                                         <tr>
-                                            <td>Volume</td>
+                                            <td>Volume [dm<sup>3</sup>]</td>
                                             @if (empty($article->volume))
                                                 <td>-</td>
                                             @else
@@ -167,7 +167,7 @@
                                         @if (empty($article->details))
                                             No information available
                                         @else
-                                            {!!$article->details!!}
+                                            {!! nl2br(e($article->details)) !!}
                                         @endif
                                     </p>
     
