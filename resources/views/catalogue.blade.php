@@ -132,16 +132,16 @@
                                             <!-- Product Price -->
                                             @if (!AUTH::guest() && !AUTH::user()->email_verified_at == "")
                                                 <div class="title" style="margin-bottom:5px; font-size: 12px;">
-                                                    <h3><a href="{{URL('/article')}}/{{$article->article_code}}">{{number_format($article->price,'2','.','')}} 
-                                                    @if (session()->get('currency') == 'usd')
-                                                        USD
-                                                    @elseif(session()->get('currency') == 'eur')
-                                                        EUR
-                                                    @elseif(session()->get('currency') == 'chf')
-                                                        CHF
-                                                    @else
-                                                        KSH
-                                                    @endif
+                                                    <h3><a href="{{URL('/article')}}/{{$article->article_code}}">
+                                                        @if (session()->get('currency') == 'usd')
+                                                            {{number_format($article->price*Session::get('KES_USD'),'2','.','')}} USD
+                                                        @elseif(session()->get('currency') == 'eur')
+                                                            {{number_format($article->price*Session::get('KES_EUR'),'2','.','')}} EUR
+                                                        @elseif(session()->get('currency') == 'chf')
+                                                            {{number_format($article->price*Session::get('KES_EUR'),'2','.','')}} CHF
+                                                        @else
+                                                            {{number_format($article->price,'2','.','')}} KSH
+                                                        @endif
                                                     </a></h3>
                                                 </div>
                                             @endif
