@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://msfksu.com'),
+    'url' => env('APP_URL', 'https://msfksu.com'),
 
     'asset_url' => env('ASSET_URL', null),
 
