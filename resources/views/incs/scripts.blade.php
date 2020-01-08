@@ -9,7 +9,7 @@
     <script src="{{URL('/')}}/assets/js/main-menu.js"></script>
     <script src="{{URL('/')}}/assets/js/main.js"></script>
     <script src="{{URL('/')}}/assets/js/template.js"></script>
-    <script src="{{URL('/')}}/assets/js/jquery-editable-select.js"></script>
+    {{-- <script src="{{URL('/')}}/assets/js/jquery-editable-select.js"></script> --}}
     <script src="{{URL('/')}}/assets/client/jquery.fine-uploader.js"></script>
     <script type="text/javascript" src="{{URL('/')}}/assets/js/moment.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
