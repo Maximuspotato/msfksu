@@ -123,7 +123,6 @@ $('#carting').on('submit', function(e){
 $(document).ready(function () {
     //cookie for pop up login
     var popStatus =  readCookie('show');
-    console.log(popStatus);
     if(popStatus == null){
         $('#loginModal').modal();
     }
