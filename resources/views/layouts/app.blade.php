@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="{{URL('/')}}/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{URL('/')}}/assets/css/icomoon-social.css">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
     <link href="{{URL('/')}}/assets/css/fontawesome/fontawesome.css" rel="stylesheet">
     <link href="{{URL('/')}}/assets/css/fontawesome/solid.css" rel="stylesheet">
     <link href="{{URL('/')}}/assets/css/fontawesome/brands.css" rel="stylesheet">
