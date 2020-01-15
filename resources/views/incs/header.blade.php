@@ -114,6 +114,14 @@
                     </li>
 
                     <li
+                    @if ($active == "feedback")
+                        class = "active"
+                    @endif
+                    >
+                        <a href="{{URL('/feedback')}}">Feedback</a>
+                    </li>
+
+                    <li
                     @if ($active == "contacts")
                         class = "active"
                     @endif

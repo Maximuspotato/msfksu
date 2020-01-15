@@ -75,9 +75,6 @@
                                     <button type="submit" class="btn pull-right">Send</button>
                                 </div>
                             </div>
-                            <div>
-                                You can help us become better. Follow this <a href="https://docs.google.com/forms/d/e/1FAIpQLSepal27e56EyeAq3hM4Og_XPiSFr_hwiuIvnbTOFZJG2yv7hQ/viewform" target="_blank">link</a> and fill out the form provided.
-                            </div>
                         </form>
                     </div>
                     <!-- End Contact Info -->

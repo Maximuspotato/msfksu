@@ -164,6 +164,10 @@ class PagesController extends Controller
         }
     }
 
+    public function feedback(){
+        return view('feedback')->with('active', 'feedback');
+    }
+
     public function contacts(){
         return view('contacts')->with('active', 'contacts');
     }

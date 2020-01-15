@@ -21,6 +21,7 @@ Route::get('/about', 'PagesController@about');
 Route::get('/add-item', 'PagesController@add');
 Route::get('/cart', 'PagesController@cart');
 Route::get('/catalogue', 'PagesController@catalogue');
+Route::get('/feedback', 'PagesController@feedback');
 Route::get('/contacts', 'PagesController@contacts');
 Route::get('/downloads', 'PagesController@downloads');
 Route::get('/edit', 'PagesController@edit');
