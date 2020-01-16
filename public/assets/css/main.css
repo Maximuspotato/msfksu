@@ -2969,3 +2969,15 @@ span.color-red {
   left: 30%;
   z-index: 100;
 }
+
+.card{
+  background-color: #EFF0F1;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  height: 95px;
+  padding: 2px;
+}
+
+.card p{
+  color: #535b60;
+}
