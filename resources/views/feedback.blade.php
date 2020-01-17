@@ -24,7 +24,7 @@
                                         <img src="{{URL('/')}}/assets/img/fb_wapp.png" alt="" height="80">
                                     </div>
                                     <div class="col-xs-10">
-                                        <h3 class="card-title">Webapp feedack form</h3>
+                                        <h3 class="card-title">Webapp feedback form</h3>
                                         <p class="card-text">With your input we would like to improve our WebApp</p>
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
                                         <img src="{{URL('/')}}/assets/img/fb_ops.png" alt="" height="80">
                                     </div>
                                     <div class="col-xs-10">
-                                        <h3 class="card-title">KSU Operations feedack form</h3>
+                                        <h3 class="card-title">KSU Operations feedback form</h3>
                                         <p class="card-text" style="margin-bottom:0">You can help KSU to become better by sharing your ideas, suggestions, complaints, claims and complements etc.</p>
                                         <p style="color:red"><b>COMING SOON!</b></h4><p>
                                     </div>

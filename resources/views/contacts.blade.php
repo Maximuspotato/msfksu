@@ -24,28 +24,6 @@
                         <iframe width="652" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=-1.3278%2C%2036.866&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"></iframe>
                     </div>
                     <!-- End Map -->
-                    <!-- Contact Info -->
-                    <p class="contact-us-details">
-                        MSF Kenya Supply Unit<br>
-                        Road C off enterprise Road<br>
-                        Sameer Industrial Park<br/>
-                        P.O. Box 38897 – 00623<br/>
-                        Nairobi, Kenya<br/>
-                        Telephone +254 (0)20 354 2419<br>
-                        <br>
-                        KSU Customer Service<br>
-                        <a href="MSFOCB-KSU-CustomerService@brussels.msf.org">MSFOCB-KSU-CustomerService@brussels.msf.org</a><br>
-                        Cell +254 (0)<br>
-                        <br>
-                        KSU HR Manager<br>
-                        <a href="MSFOCB-KSU-Admin@brussels.msf.org">MSFOCB-KSU-Admin@brussels.msf.org</a><br>
-                        Cell +254 (0) 705 000 570<br>
-                        <br>
-                        KSU General Manager<br>
-                        <a href="MSFOCB-KSU-Coord@brussels.msf.org">MSFOCB-KSU-Coord@brussels.msf.org</a><br>
-                        Cell +254 (0) 722 509 964
-                    </p>
-                    <!-- End Contact Info -->
                 </div>
                 <div class="col-sm-5">
                     <!-- Contact Form -->
@@ -77,7 +55,39 @@
                             </div>
                         </form>
                     </div>
+                    
                     <!-- End Contact Info -->
+                </div>
+                <div class="col-sm-3">
+                    <p class="contact-us-details">
+                        MSF Kenya Supply Unit<br>
+                        Road C off enterprise Road<br>
+                        Sameer Industrial Park<br/>
+                        P.O. Box 38897 – 00623<br/>
+                        Nairobi, Kenya<br/>
+                        Telephone +254 (0)20 354 2419
+                    </p>
+                </div>
+                <div class="col-sm-3">
+                    <p class="contact-us-details">
+                        KSU Customer Service<br>
+                        <a href="MSFOCB-KSU-CustomerService@brussels.msf.org">MSFOCB-KSU-CustomerService@brussels.msf.org</a><br>
+                        Cell +254 (0) 794 655 262
+                    </p>
+                </div>
+                <div class="col-sm-3">
+                    <p class="contact-us-details">
+                        KSU HR Manager<br>
+                        <a href="MSFOCB-KSU-Admin@brussels.msf.org">MSFOCB-KSU-Admin@brussels.msf.org</a><br>
+                        Cell +254 (0) 705 000 570
+                    </p>
+                </div>
+                <div class="col-sm-3">
+                    <p class="contact-us-details">
+                        KSU General Manager<br>
+                        <a href="MSFOCB-KSU-Coord@brussels.msf.org">MSFOCB-KSU-Coord@brussels.msf.org</a><br>
+                        Cell +254 (0) 722 509 964
+                    </p>
                 </div>
             </div>
         </div>
