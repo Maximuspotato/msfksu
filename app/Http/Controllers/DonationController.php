@@ -94,6 +94,8 @@ class DonationController extends Controller
     }
 
     public function exportDonations(){
-        return Excel::download(new DonationsExport, 'Donations.xlsx');
+        //return Excel::download(new DonationsExport, 'Donations.xlsx');
+        $file = "files/Donations.xlsx";
+        return response()->download(public_path($file));
     }
 }
