@@ -40,9 +40,11 @@ class AppController extends Controller
             $m->to('MSFOCB-KSU-CustomerService@brussels.msf.org', 'David');
             $m->from('no-reply@ksu.com', 'KSU')->subject('RFQ item not in catalogue');
             $m->bcc('MSFOCB-KSU-it@brussels.msf.org');
-            foreach ($data['attachment'] as $attacho) {
-                $filename = 'attacho_'.time().'.png';
-                $m->attach($attacho, ['as' => $filename]);
+            if ($data['attachment'] != "") {
+                foreach ($data['attachment'] as $attacho) {
+                    $filename = 'attacho_'.time().'.png';
+                    $m->attach($attacho, ['as' => $filename]);
+                }
             }
         });
 
