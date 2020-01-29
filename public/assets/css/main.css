@@ -2507,7 +2507,7 @@ span.color-red {
 }
 @media screen and (max-width: 979px) {
   .mainmenu {
-    font-size: 0.8em;
+    /* font-size: 0.8em; */
   }
   .mainmenu-submenu {
     font-size: 1.2em;
@@ -2725,7 +2725,6 @@ span.color-red {
 .navbar-toggle{
   height: 50px;
   background: #efefef;
-  margin-left: 130px;
 }
 
 .icon-bar{
@@ -2980,4 +2979,10 @@ span.color-red {
 
 .card p{
   color: #535b60;
+}
+
+@media screen and (max-width: 1200px) {
+  .mainmenu {
+    padding-left: 130px;
+  }
 }

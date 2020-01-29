@@ -10,7 +10,7 @@
                         <h2>Welcome to KSU</h2>
                         <h3>Regional logistic centre for the whole East Africa region</h3>
                     </div>
-                    <div class="col-md-3 col-sm-3">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="service-wrapper">
                             <img src="{{URL('/')}}/assets/img/service-icon/pills.png" alt="Service 1" height="60">
                             <img src="{{URL('/')}}/assets/img/service-icon/camp.png" alt="Service 1">
@@ -18,7 +18,7 @@
                             <a href="{{URL('/catalogue')}}" class="btn">See more</a>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-3">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
                             {{-- <img class="overlay" src="{{URL('/')}}/assets/img/soon.png" alt="" height="80"> --}}
                         <div class="service-wrapper">
                             <img src="{{URL('/')}}/assets/img/service-icon/love.png" alt="Service 1">
@@ -27,20 +27,18 @@
                             {{-- <h4 class="overlay" style="color:#F05E38"><b>COMING SOON!</b></h4> --}}
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-3">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="service-wrapper">
                             <img src="{{URL('/')}}/assets/img/service-icon/popular.png" alt="Service 1">
                             <h3 style="font-size: 1.2em; color: #53555c;">Popular items</h3>
                             <a href="{{URL('/catalogue?det=Popular')}}" class="btn">See more</a>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-3 col-sm-3">
-                            <div class="service-wrapper">
-                                <img src="{{URL('/')}}/assets/img/service-icon/megaphone.png" alt="Service 1">
-                                <h3>Latest items</h3>
-                                <a href="{{URL('/catalogue?det=New')}}" class="btn">See more</a>
-                            </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="service-wrapper">
+                            <img src="{{URL('/')}}/assets/img/service-icon/megaphone.png" alt="Service 1">
+                            <h3>Latest items</h3>
+                            <a href="{{URL('/catalogue?det=New')}}" class="btn">See more</a>
                         </div>
                     </div>
                 </div>

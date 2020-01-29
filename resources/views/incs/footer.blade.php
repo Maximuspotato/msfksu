@@ -2,7 +2,7 @@
     <div class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-footer col-md-3 col-xs-6">
+                <div class="col-footer col-md-3 ">
                     <h3>Useful</h3>
                     <ul class="no-list-style footer-navigate-section">
                         <li style="color:white">
@@ -28,7 +28,7 @@
                     </ul>
                 </div>
 
-                <div class="col-footer col-md-3 col-xs-6">
+                <div class="col-footer col-md-3 ">
                     <h3>Navigate</h3>
                     <ul class="no-list-style footer-navigate-section">
                         <li><a href="{{URL('/')}}">Home</a></li>
@@ -40,8 +40,35 @@
                         <li><a href="{{URL('/downloads')}}">Downloads</a></li>
                     </ul>
                 </div>
+            
+                <div class="col-footer col-md-3 ">
+                    <h3>Address</h3>
+                    <p class="contact-us-details">
+                        MSF Kenya Supply Unit<br>
+                        Road C off enterprise Road<br>
+                        Sameer Industrial Park<br/>
+                        P.O. Box 38897 – 00623<br/>
+                        Nairobi, Kenya<br/>
+                        Telephone +254 (0)20 354 2419
+                    </p>
+                </div>
+
+                <div class="col-footer col-md-3 ">
+                    <h3>Contacts</h3>
+                    <p class="contact-us-details">
+                        KSU Customer Service<br>
+                        <a href="MSFOCB-KSU-CustomerService@brussels.msf.org">MSFOCB-KSU-CustomerService@brussels.msf.org</a><br>
+                        Cell +254 (0) 794 655 262<br>
+                        KSU HR Manager<br>
+                        <a href="MSFOCB-KSU-Admin@brussels.msf.org">MSFOCB-KSU-Admin@brussels.msf.org</a><br>
+                        Cell +254 (0) 705 000 570<br>
+                        KSU General Manager<br>
+                        <a href="MSFOCB-KSU-Coord@brussels.msf.org">MSFOCB-KSU-Coord@brussels.msf.org</a><br>
+                        Cell +254 (0) 722 509 964
+                    </p>
+                </div>
                 
-                <div class="col-footer col-md-6 col-xs-6">
+                {{-- <div class="col-footer col-md-6 col-xs-6">
                     <h3>Contacts</h3>
                     <div class="row">
                         <div class="col-footer col-md-6 col-xs-6">
@@ -68,7 +95,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="row">
                 <div class="col-md-12">
