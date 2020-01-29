@@ -21,6 +21,8 @@
 <!-- <script src="/js/jquery.magnify-mobile.js"></script> -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/egg.js/1.0/egg.min.js"></script>
 
+    <script type="text/javascript" src="{{URL('/')}}/assets/js/FeedEk.min.js"></script>
+
     <!-- Fine Uploader Gallery template
     ====================================================================== -->
     {{-- <script type="text/template" id="qq-template-gallery">
@@ -150,9 +152,18 @@
         // });
 
         
-
+    
         
    </script> --}}
+
+   <script type="text/javascript">
+    //$(document).ready(function () {
+        $('#rss').FeedEk({
+			FeedUrl: 'https://www.msf.org/rss/all', MaxCount: 3, ShowDesc: true, ShowPubDate: false, DescCharacterLimit: 100
+		});
+    //});
+
+</script>
 
    @isset($det)
        @if ($det == "edit")

@@ -31,6 +31,8 @@
 
     <link href="{{URL('/')}}/assets/client/fine-uploader-gallery.css" rel="stylesheet">
 
+    <link href="{{URL('/')}}/assets/css/FeedEk.css" rel="stylesheet" type="text/css" />
+
     <script src="{{URL('/')}}/assets/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 
     <!-- Google Tag Manager -->
