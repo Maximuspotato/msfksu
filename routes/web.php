@@ -65,3 +65,5 @@ Route::get('/exportDonations', 'DonationController@exportDonations');
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'PagesController@index')->name('home');
+
+Route::view('404','errors.404', ['active' => '']);

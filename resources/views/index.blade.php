@@ -46,6 +46,7 @@
                         </div>
                     </div>
                     <div class="col-md-2" style="padding-left:0;">
+                        <h5><b>MSF News</b></h5>
                         <div id="rss" >
                             
                         </div>
