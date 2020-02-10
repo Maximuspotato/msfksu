@@ -313,7 +313,6 @@
         'topics'
     ];
     var count = rss.length;
-    console.log(count);
     var rand = Math.floor(Math.random() * count);
 
     $('#rss').FeedEk({

@@ -35,6 +35,10 @@
 
     <script src="{{URL('/')}}/assets/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 
+    <script type="text/javascript">
+        var APP_URL = {!! json_encode(url('/')) !!};
+    </script>
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
