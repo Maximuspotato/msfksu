@@ -87,18 +87,18 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="panel panel-default">
+                        <div class="panel panel-default">
                             <div class="panel-heading">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse22">
-                                    Policies
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse23">
+                                    Regional transport rates
                                 </a>
                             </div>
-                            <div id="collapse22" class="accordion-body collapse">
+                            <div id="collapse23" class="accordion-body collapse">
                                 <div class="accordion-inner">
-                                    <p><a>Policies.doc</a></p>
+                                    <p><a href="{{URL('/downloadTransport')}}">KSU Regional Transport  Rates.xlsx</a></p>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
