@@ -81,6 +81,9 @@
                             <p>
                                 Transit cargo management, cargo consolidation, local and international distribution of supplies by road, air and sea
                             </p>
+                            <p>
+                                Click <a href="{{URL('/downloadTransport')}}">here</a> for an overview of the regional transport rates
+                            </p>
                         </div>
                     </div>
                     <div class="row service-wrapper-row">

@@ -77,4 +77,9 @@ class AppController extends Controller
             return response()->download(public_path($file));
         }
     }
+
+    public function downloadTransport(){
+        $file = "files/KSU Regional Transport  Rates.xlsx";
+        return response()->download(public_path($file));
+    }
 }

@@ -13,6 +13,7 @@
 Route::post('send-item-request', 'AppController@requestnew');
 Route::get('/download', 'AppController@download')->middleware(['auth', 'verified']);
 Route::get('/dwnlds', 'AppController@dwnlds');
+Route::get('/downloadTransport', 'AppController@downloadTransport');
 
 
 //pages
