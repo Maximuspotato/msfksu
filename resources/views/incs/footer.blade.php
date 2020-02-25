@@ -100,7 +100,7 @@
             <div class="row">
                 <div class="col-md-12">
                         <div class="footer-copyright">All prices on this web site are subject to change without notice</div>
-                    <div class="footer-copyright">&copy; 2019 MSF-KSU. All rights reserved.</div>
+                    <div class="footer-copyright">&copy; {{now()->year}} MSF-KSU. All rights reserved.</div>
                 </div>
             </div>
         </div>
