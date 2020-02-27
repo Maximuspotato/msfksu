@@ -142,20 +142,6 @@ class CartController extends Controller
     }
 
     public function exportUf(){
-        // $items = Cart::getContent();
-        // foreach ($items as $item) {
-        //     $popular = new Popular;
-        //     $exist = Popular::where('article_code', $item->id)->first();
-        //     if ($exist == "") {
-        //         $popular->article_code = $item->id;
-        //         $popular->orders = 1;
-        //         $popular->save();
-        //     } else {
-        //         //dd($exist->orders);
-        //         $exist->orders += 1;
-        //         $exist->save();
-        //     }
-        // }
         return Excel::download(new UnifieldExport, 'Unifield_import.xlsx');
     }
 
@@ -186,23 +172,38 @@ class CartController extends Controller
     }
 
     public function exportRfq(Request $request){
-        $request->validate([
-            'fname' => 'required',
-            'lname' => 'required',
-        ]);
-        $data = array(
-            'fname' => $request->input('fname'),
-            'lname' => $request->input('lname'),
-            'info' => $request->input('info'),
-        );
-        Mail::send('emails.rfq', ['items' => Cart::getContent(), 'data' => $data], function ($m) {
-            //dd($path);
-            $m->from(auth()->user()->email, 'KSU');
-            $m->to('MSFOCB-KSU-CustomerService@brussels.msf.org', 'David')->subject('Request for quotation');
-            $m->bcc('MSFOCB-KSU-it@brussels.msf.org');
-            $filename = 'rfq_'.time().'.xlsx';
-            $m->attach(Excel::download(new RfqExport, $filename)->getFile(), ['as' => $filename]);
-        });
+        // $request->validate([
+        //     'fname' => 'required',
+        //     'lname' => 'required',
+        // ]);
+        // $data = array(
+        //     'fname' => $request->input('fname'),
+        //     'lname' => $request->input('lname'),
+        //     'info' => $request->input('info'),
+        // );
+        // Mail::send('emails.rfq', ['items' => Cart::getContent(), 'data' => $data], function ($m) {
+        //     //dd($path);
+        //     $m->from(auth()->user()->email, 'KSU');
+        //     $m->to('MSFOCB-KSU-CustomerService@brussels.msf.org', 'David')->subject('Request for quotation');
+        //     $m->bcc('MSFOCB-KSU-it@brussels.msf.org');
+        //     $filename = 'rfq_'.time().'.xlsx';
+        //     $m->attach(Excel::download(new RfqExport, $filename)->getFile(), ['as' => $filename]);
+        // });
+
+        $items = Cart::getContent();
+        foreach ($items as $item) {
+            $popular = new Popular;
+            $exist = Popular::where('article_code', $item->id)->first();
+            if ($exist == "") {
+                $popular->article_code = $item->id;
+                $popular->orders = 1;
+                $popular->save();
+            } else {
+                //dd($exist->orders);
+                $exist->orders += 1;
+                $exist->save();
+            }
+        }
 
         Session::flash('success', 'Email was sent successfully. We will contact you soon and thank you for using our services.');
 
