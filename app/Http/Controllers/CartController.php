@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use PDF;
 use Cart;
 use Mail;
+use App\Popular;
 use App\Exports\IrExport;
 use App\Exports\RfqExport;
 use Illuminate\Http\Request;
@@ -172,23 +173,23 @@ class CartController extends Controller
     }
 
     public function exportRfq(Request $request){
-        // $request->validate([
-        //     'fname' => 'required',
-        //     'lname' => 'required',
-        // ]);
-        // $data = array(
-        //     'fname' => $request->input('fname'),
-        //     'lname' => $request->input('lname'),
-        //     'info' => $request->input('info'),
-        // );
-        // Mail::send('emails.rfq', ['items' => Cart::getContent(), 'data' => $data], function ($m) {
-        //     //dd($path);
-        //     $m->from(auth()->user()->email, 'KSU');
-        //     $m->to('MSFOCB-KSU-CustomerService@brussels.msf.org', 'David')->subject('Request for quotation');
-        //     $m->bcc('MSFOCB-KSU-it@brussels.msf.org');
-        //     $filename = 'rfq_'.time().'.xlsx';
-        //     $m->attach(Excel::download(new RfqExport, $filename)->getFile(), ['as' => $filename]);
-        // });
+        $request->validate([
+            'fname' => 'required',
+            'lname' => 'required',
+        ]);
+        $data = array(
+            'fname' => $request->input('fname'),
+            'lname' => $request->input('lname'),
+            'info' => $request->input('info'),
+        );
+        Mail::send('emails.rfq', ['items' => Cart::getContent(), 'data' => $data], function ($m) {
+            //dd($path);
+            $m->from(auth()->user()->email, 'KSU');
+            $m->to('MSFOCB-KSU-CustomerService@brussels.msf.org', 'David')->subject('Request for quotation');
+            $m->bcc('MSFOCB-KSU-it@brussels.msf.org');
+            $filename = 'rfq_'.time().'.xlsx';
+            $m->attach(Excel::download(new RfqExport, $filename)->getFile(), ['as' => $filename]);
+        });
 
         $items = Cart::getContent();
         foreach ($items as $item) {
