@@ -5,7 +5,7 @@
     <div class="section" style="padding-bottom: 0px">
         <div class="bg">
             <div class="container">
-                <div class="row" style="padding-top:100px">
+                <div class="row" style="padding-top:120px">
                     <div class="col-md-10">
                         <div class="row">
                             <div class="col-md-12 col-sm-12">

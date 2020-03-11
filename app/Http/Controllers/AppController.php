@@ -73,7 +73,7 @@ class AppController extends Controller
             return response()->download(public_path($file));
         }
         elseif ($dwnld == "jobo") {
-            $file = "files/Re-advert Medical Intern_September 2019.pdf";
+            $file = "files/Advert Nanny_March 2020.pdf";
             return response()->download(public_path($file));
         }
     }

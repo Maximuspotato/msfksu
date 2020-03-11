@@ -54,12 +54,13 @@
                                 </div>
                             </div>
                         </div> --}}
-                        <h3>Downloads</h3>
+                        <h3>Downloads <span class="pull-right" style="font-size:16px">Last Updated</span></h3>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse21">
                                     Catalogue
                                 </a>
+                                <span class="pull-right">24/01/2020</span>
                             </div>
                             <div id="collapse21" class="accordion-body collapse">
                                 <div class="accordion-inner">
@@ -76,6 +77,7 @@
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse22">
                                     Unifield supplier catalogue
                                 </a>
+                                <span class="pull-right">24/01/2020</span>
                             </div>
                             <div id="collapse22" class="accordion-body collapse">
                                 <div class="accordion-inner">
@@ -92,10 +94,16 @@
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse23">
                                     Regional transport rates
                                 </a>
+                                <span class="pull-right">24/02/2020</span>
                             </div>
                             <div id="collapse23" class="accordion-body collapse">
                                 <div class="accordion-inner">
-                                    <p><a href="{{URL('/downloadTransport')}}">KSU Regional Transport  Rates.xlsx</a></p>
+                                    @if (AUTH::guest())
+                                        <p><a href="{{URL('/login')}}">KSU Regional Transport  Rates.xlsx</a></p> 
+                                    @else
+                                        <p><a href="{{URL('/downloadTransport')}}">KSU Regional Transport  Rates.xlsx</a></p>  
+                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>

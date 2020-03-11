@@ -15,9 +15,9 @@
     <div class="section">
         <div class="container">
             <div class="row">
-                No open positions. Make sure to come back because we are always looking for someone to add to our amazing team:)
+                {{-- No open positions. Make sure to come back because we are always looking for someone to add to our amazing team:) --}}
                 <!-- Open Vacancies List -->
-                {{-- <div class="col-md-8">
+                <div class="col-md-8">
                     <table class="jobs-list">
                         <tr>
                             <th>Position</th>
@@ -26,12 +26,12 @@
                         <tr>
                             <!-- Position -->
                             <td class="job-position">
-                                <a href="{{URL('/dwnlds?dwnld=jobo')}}">Medical Intern</a> <span class="label label-danger">New</span>
+                                <a href="{{URL('/dwnlds?dwnld=jobo')}}">Nanny</a> <span class="label label-danger">New</span>
                             </td>
                             <!-- Job Type -->
-                            <td class="job-type hidden-phone">INTERNSHIP</td>
+                            <td class="job-type hidden-phone">FULL-TIME</td>
                     </table>
-                </div> --}}
+                </div>
                 <!-- End Open Vacancies List -->
                 <!-- Sidebar -->
                 {{-- <div class="col-md-4 col-sm-6">

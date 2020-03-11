@@ -82,7 +82,11 @@
                                 Transit cargo management, cargo consolidation, local and international distribution of supplies by road, air and sea
                             </p>
                             <p>
-                                Click <a href="{{URL('/downloadTransport')}}">here</a> for an overview of the regional transport rates
+                                @if (AUTH::guest())
+                                    Click <a href="{{URL('/login')}}">here</a> for an overview of the regional transport rates 
+                                @else
+                                    Click <a href="{{URL('/downloadTransport')}}">here</a> for an overview of the regional transport rates 
+                                @endif
                             </p>
                         </div>
                     </div>
