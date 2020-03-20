@@ -208,6 +208,10 @@ class PagesController extends Controller
         return view('newrequest')->with('active', '');
     }
 
+    public function covid(){
+        return view('covid')->with('active', '');
+    }
+
     public function hrdeets(Request $request, $deets){
         $deet = $request->input('deet');
         return view('deets')->with(['active' => '', 'deet' => $deet]);

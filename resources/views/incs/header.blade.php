@@ -1,7 +1,6 @@
     <!-- Navigation & Logo-->
     <div class="mainmenu-wrapper">
         <div class="ad text-center">
-            {{-- <span style="font-size:40px; color:#FBD81C"><b>Inventory Week</b>&nbsp</span> --}}
             <span style="color:white; font-size:18px"><b>Warehouse will be closed due to Inventory</b>&nbsp&nbsp</span>
             <span style="color:white; border:2px solid #ee0000; border-radius: 5px; font-size:18px">20/4/2020 - 1/5/2020</span> 
         </div>

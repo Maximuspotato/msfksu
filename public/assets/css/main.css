@@ -1703,7 +1703,8 @@ span.color-red {
   background: #222;
   background: rgba(34, 34, 34, 0.8);
   /* margin-bottom: 10px; */
-  padding-top: 110px;
+  /* padding-top: 110px; */
+  padding-top: 180px;
   padding-bottom: 20px;
 }
 .section-breadcrumbs h1 {
@@ -2994,19 +2995,23 @@ span.color-red {
   padding-top: 15px;
 }
 
-/* @keyframes changewidth {
-  from {
-    font-size: 18px;
-  }
-
-  to {
-    font-size: 22px;
-  }
+#covid19{
+  background: rgba(238,0,0,0.8);
 }
 
-.ad span {
-  animation-duration: 1.5s;
-  animation-name: changewidth;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-} */
+#covid19 h3{
+  color: #fff;
+}
+
+#covid19 .btn{
+  color: #ee0000;
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #fff;
+}
+
+#covid19 .btn:hover{
+  background: none repeat scroll 0 0 #3b3c41;
+  color: #FFF;
+  text-decoration: none;
+  border: 1px solid #3b3c41;
+}
