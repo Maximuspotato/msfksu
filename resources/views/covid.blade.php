@@ -14,7 +14,10 @@
     
     <div class="section">
         <div class="container">
-            
+            This page is work in progress.<br>
+            More information will follow.<br>
+            <br>
+            During these times we monitor our supply movements closely. Please refer to this <a href="{{URL('/downloadCovidUpdate')}}">daily updated document</a> to read about the import & export situation in Kenya. 
         </div>
     </div>
 @endsection

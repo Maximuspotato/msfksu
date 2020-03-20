@@ -82,4 +82,9 @@ class AppController extends Controller
         $file = "files/KSU Regional Transport  Rates.xlsx";
         return response()->download(public_path($file));
     }
+
+    public function downloadCovid(){
+        $file = "files/Kenya import and export update.docx";
+        return response()->download(public_path($file));
+    }
 }

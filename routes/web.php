@@ -14,6 +14,7 @@ Route::post('send-item-request', 'AppController@requestnew');
 Route::get('/download', 'AppController@download')->middleware(['auth', 'verified']);
 Route::get('/dwnlds', 'AppController@dwnlds');
 Route::get('/downloadTransport', 'AppController@downloadTransport');
+Route::get('/downloadCovidUpdate', 'AppController@downloadCovid');
 
 
 //pages
@@ -35,7 +36,7 @@ Route::get('/history', 'PagesController@history');
 Route::get('/getfam', 'PagesController@getfam');
 Route::get('/hr/{deets}', 'PagesController@hrdeets');
 Route::get('/request-item', 'PagesController@newrequest')->middleware(['auth', 'verified']);
-Route::get('/covid19', 'PagesController@covid');
+Route::get('/covid19', 'PagesController@covid')->middleware(['auth', 'verified']);
 
 Route::get('/language', 'SessionController@language');
 Route::get('/currency', 'SessionController@currency');
