@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('/upload-story', 'StoryController@upload');
+
 Route::post('send-item-request', 'AppController@requestnew');
 Route::get('/download', 'AppController@download')->middleware(['auth', 'verified']);
 Route::get('/dwnlds', 'AppController@dwnlds');
@@ -21,6 +23,7 @@ Route::get('/downloadCovidUpdate', 'AppController@downloadCovid');
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/add-item', 'PagesController@add');
+Route::get('/add-story', 'PagesController@addstory');
 Route::get('/cart', 'PagesController@cart');
 Route::get('/catalogue', 'PagesController@catalogue');
 Route::get('/feedback', 'PagesController@feedback');

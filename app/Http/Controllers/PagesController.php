@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Cart;
+use App\Story;
 use App\Article;
 use App\Unicode;
 use App\Popular;
@@ -209,7 +210,12 @@ class PagesController extends Controller
     }
 
     public function covid(){
-        return view('covid')->with('active', '');
+        $stories = Story::all();
+        return view('covid')->with(['active' => '', 'stories' => $stories]);
+    }
+
+    public function addstory(){
+        return view('story')->with('active', '');
     }
 
     public function hrdeets(Request $request, $deets){
