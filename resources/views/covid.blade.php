@@ -21,6 +21,7 @@
             <br><br> --}}
             @if (count($stories)>0)
                 @foreach ($stories as $story)
+                <div class="pull-right"><i>Last Updated: {{$story->date}} {{$story->time}}</i></div><br>
                     {!! $story->details !!}
                 @endforeach
             @endif 
