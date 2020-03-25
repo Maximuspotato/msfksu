@@ -2759,7 +2759,8 @@ span.color-red {
 .alert{
   position: absolute;
   width: 100%;
-  margin-top: 150px;
+  /* margin-top: 150px; */
+  margin-top: 210px;
   height: 35px;
 }
 
