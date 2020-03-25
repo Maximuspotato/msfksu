@@ -10,7 +10,7 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <h2>Welcome to KSU</h2>
-                                <h3>Regional logistic centre for the whole East Africa region</h3>
+                                <h3>Supply Centre for the whole East Africa region</h3>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="service-wrapper" id="covid19">
