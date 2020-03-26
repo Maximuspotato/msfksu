@@ -59,6 +59,8 @@
                                         <li class="disabled" role="menuitem"><a href="{{URL('/history')}}"><i class="fas fa-history"></i> My History</a></li>
                                         @if (Auth::user()->email == "msfocb-ksu-it@brussels.msf.org")
                                             <li role="menuitem"><a href="{{URL('/add-item')}}"><i class="fas fa-plus"></i> Add article</a></li>
+                                        @endif
+                                        @if (Auth::user()->email == "msfocb-ksu-it@brussels.msf.org" || Auth::user()->email == "msfocb-ksu-coord@brussels.msf.org")
                                             <li role="menuitem"><a href="{{URL('/add-story')}}"><i class="fas fa-plus"></i> Add story</a></li>
                                         @endif
                                         <li role="menuitem">
