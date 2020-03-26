@@ -221,7 +221,8 @@ class PagesController extends Controller
     }
 
     public function addstory(){
-        return view('story')->with('active', '');
+        $stories = Story::all();
+        return view('story')->with(['active' => '', 'stories' => $stories]);
     }
 
     public function hrdeets(Request $request, $deets){
