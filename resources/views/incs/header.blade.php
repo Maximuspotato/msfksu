@@ -58,6 +58,7 @@
                                         <li class="disabled" role="menuitem"><a href="{{URL('/favorites')}}"><i class="fas fa-heart"></i> My Favorites</a></li>
                                         <li class="disabled" role="menuitem"><a href="{{URL('/history')}}"><i class="fas fa-history"></i> My History</a></li>
                                         @if (Auth::user()->email == "msfocb-ksu-it@brussels.msf.org")
+                                            <li role="menuitem"><a href="{{URL('/verify-emails')}}"><i class="fas fa-check"></i> Verify emails</a></li>
                                             <li role="menuitem"><a href="{{URL('/add-item')}}"><i class="fas fa-plus"></i> Add article</a></li>
                                         @endif
                                         @if (Auth::user()->email == "msfocb-ksu-it@brussels.msf.org" || Auth::user()->email == "msfocb-ksu-coord@brussels.msf.org")

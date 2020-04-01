@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/user-verify', 'UserController@verify');
+Route::get('/user-delete', 'UserController@delete');
+
 Route::post('/upload-story', 'StoryController@upload');
 
 Route::post('send-item-request', 'AppController@requestnew');
@@ -37,6 +40,7 @@ Route::get('/services', 'PagesController@services');
 Route::get('/favorites', 'PagesController@favorites');
 Route::get('/history', 'PagesController@history');
 Route::get('/getfam', 'PagesController@getfam');
+Route::get('/verify-emails', 'PagesController@verifyemails');
 Route::get('/hr/{deets}', 'PagesController@hrdeets');
 Route::get('/request-item', 'PagesController@newrequest')->middleware(['auth', 'verified']);
 Route::get('/covid19', 'PagesController@covid')->middleware(['auth', 'verified']);

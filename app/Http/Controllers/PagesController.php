@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Cart;
+use App\User;
 use App\Story;
 use App\Article;
 use App\Unicode;
@@ -213,6 +214,11 @@ class PagesController extends Controller
 
     public function newrequest(){
         return view('newrequest')->with('active', '');
+    }
+
+    public function verifyemails(){
+        $users = User::where('email_verified_at', null)->get();
+        return view('verifyemails')->with(['active' => '', 'users' => $users]);
     }
 
     public function covid(){
