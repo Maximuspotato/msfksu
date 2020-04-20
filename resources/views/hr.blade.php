@@ -26,7 +26,7 @@
                         <tr>
                             <!-- Position -->
                             <td class="job-position">
-                                <a href="{{URL('/dwnlds?dwnld=jobo')}}">Nanny</a> <span class="label label-danger">New</span>
+                                <a href="{{URL('/dwnlds?dwnld=jobo')}}">Pharmacy Technician</a> <span class="label label-danger">New</span>
                             </td>
                             <!-- Job Type -->
                             <td class="job-type hidden-phone">FULL-TIME</td>
