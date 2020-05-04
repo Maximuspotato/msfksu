@@ -15,9 +15,9 @@
     <div class="section">
         <div class="container">
             <div class="row">
-                {{-- No open positions. Make sure to come back because we are always looking for someone to add to our amazing team:) --}}
+                No open positions. Make sure to come back because we are always looking for someone to add to our amazing team:)
                 <!-- Open Vacancies List -->
-                <div class="col-md-8">
+                {{-- <div class="col-md-8">
                     <table class="jobs-list">
                         <tr>
                             <th>Position</th>
@@ -31,7 +31,7 @@
                             <!-- Job Type -->
                             <td class="job-type hidden-phone">FULL-TIME</td>
                     </table>
-                </div>
+                </div> --}}
                 <!-- End Open Vacancies List -->
                 <!-- Sidebar -->
                 {{-- <div class="col-md-4 col-sm-6">
