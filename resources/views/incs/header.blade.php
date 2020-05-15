@@ -61,7 +61,7 @@
                                             <li role="menuitem"><a href="{{URL('/verify-emails')}}"><i class="fas fa-check"></i> Verify emails</a></li>
                                             <li role="menuitem"><a href="{{URL('/add-item')}}"><i class="fas fa-plus"></i> Add article</a></li>
                                         @endif
-                                        @if (Auth::user()->email == "msfocb-ksu-it@brussels.msf.org" || Auth::user()->email == "msfocb-ksu-coord@brussels.msf.org")
+                                        @if (Auth::user()->email == "msfocb-ksu-it@brussels.msf.org" || Auth::user()->email == "msfocb-ksu-coord@brussels.msf.org" || Auth::user()->email == "msfocb-ksu-supplychainmanager@brussels.msf.org")
                                             <li role="menuitem"><a href="{{URL('/add-story')}}"><i class="fas fa-plus"></i> Add story</a></li>
                                         @endif
                                         <li role="menuitem">
