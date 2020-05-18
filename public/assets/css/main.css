@@ -2849,7 +2849,7 @@ span.color-red {
 
 .logo-wrapper img{
   position: absolute;
-  top: 45%;
+  top: 50%;
   left: 2%;
 }
 
@@ -2991,7 +2991,7 @@ span.color-red {
 }
 
 .ad{
-  height:60px; 
+  height:90px; 
   background-color:#1A1A1A;
   padding-top: 15px;
 }
