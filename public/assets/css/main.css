@@ -2849,7 +2849,7 @@ span.color-red {
 
 .logo-wrapper img{
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 2%;
 }
 
@@ -2991,9 +2991,16 @@ span.color-red {
 }
 
 .ad{
-  height:90px; 
+  height:60px; 
   background-color:#1A1A1A;
   padding-top: 15px;
+  font-size:18px
+}
+
+@media screen and (max-width: 479px) {
+  .ad {
+    font-size:14px
+  }
 }
 
 #covid19{

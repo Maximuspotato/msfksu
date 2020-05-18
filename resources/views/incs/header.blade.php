@@ -1,8 +1,8 @@
     <!-- Navigation & Logo-->
     <div class="mainmenu-wrapper">
         <div class="ad text-center">
-            <span style="color:white; font-size:18px"><b>Due to the curfew in Kenya at the moment our opening hours are from</b>&nbsp&nbsp</span>
-            <span style="color:white; border:2px solid #ee0000; border-radius: 5px; font-size:18px">7am till 3.30pm</span> 
+            <span style="color:white;"><b>Due to the curfew in Kenya at the moment our opening hours are from</b>&nbsp&nbsp</span>
+            <span style="color:white; border:2px solid #ee0000; border-radius: 5px;">7am till 3.30pm</span> 
         </div>
         <div class="container">
             <div class="menuextras">
