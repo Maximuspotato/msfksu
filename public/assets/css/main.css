@@ -2849,7 +2849,8 @@ span.color-red {
 
 .logo-wrapper img{
   position: absolute;
-  top: 45%;
+  /* top: 45%; */
+  top:  10%;
   left: 2%;
 }
 
