@@ -1703,8 +1703,8 @@ span.color-red {
   background: #222;
   background: rgba(34, 34, 34, 0.8);
   /* margin-bottom: 10px; */
-  /* padding-top: 110px; */
-  padding-top: 180px;
+  padding-top: 110px;
+  /* padding-top: 180px; */
   padding-bottom: 20px;
 }
 .section-breadcrumbs h1 {
