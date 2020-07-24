@@ -12,13 +12,13 @@
                                 <h2>Welcome to KSU</h2>
                                 <h3>Supply Centre for the whole East Africa region</h3>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6">
+                            {{-- <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="service-wrapper" id="covid19">
                                     <img src="{{URL('/')}}/assets/img/service-icon/covid.png" alt="Service 1">
                                     <h3><span class="fas fa-exclamation-triangle">&nbsp;</span><b>COVID-19</b>&nbsp;<span class="fas fa-exclamation-triangle"></span></h3>
                                     <a href="{{URL('/covid19')}}" class="btn">See more</a>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="service-wrapper">
                                     <img src="{{URL('/')}}/assets/img/service-icon/pills.png" alt="Service 1" height="60">
@@ -43,13 +43,13 @@
                                     <a href="{{URL('/catalogue?det=Popular')}}" class="btn">See more</a>
                                 </div>
                             </div>
-                            {{-- <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="service-wrapper">
                                     <img src="{{URL('/')}}/assets/img/service-icon/megaphone.png" alt="Service 1">
                                     <h3>Latest items</h3>
                                     <a href="{{URL('/catalogue?det=New')}}" class="btn">See more</a>
                                 </div>
-                            </div> --}}
+                            </div>
                             
                         </div>
                     </div>

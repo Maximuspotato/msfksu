@@ -43,7 +43,7 @@ Route::get('/getfam', 'PagesController@getfam');
 Route::get('/verify-emails', 'PagesController@verifyemails');
 Route::get('/hr/{deets}', 'PagesController@hrdeets');
 Route::get('/request-item', 'PagesController@newrequest')->middleware(['auth', 'verified']);
-Route::get('/covid19', 'PagesController@covid')->middleware(['auth', 'verified']);
+//Route::get('/covid19', 'PagesController@covid')->middleware(['auth', 'verified']);
 
 Route::get('/language', 'SessionController@language');
 Route::get('/currency', 'SessionController@currency');
