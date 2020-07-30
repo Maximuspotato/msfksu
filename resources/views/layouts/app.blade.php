@@ -3,11 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="description" content="">
+    <title>Médecins Sans Frontières(MSF) Kenya Supply Unit</title>
+    <meta name="description" content="Médecins Sans Frontières(MSF) Kenya Supply Unit - Supply Centre for the whole East Africa region">
+    <meta name="keywords" content="Médecins Sans Frontières, MSF, Kenya, Medecins Sans Frontieres, KSU, Kenya Supply Unit, Humanitarian, NGO">
+    <meta name =”robots” content=”index,follow”>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta property="og:title" content="MSF KSU">
-    <meta property="og:type" content="http://msfksu.com">
+    <meta property="og:title" content="Médecins Sans Frontières(MSF) Kenya Supply Unit - Supply Centre for the whole East Africa region">
+    <meta property="og:type" content="{{URL('/')}}">
     <meta property="og:image" content="{{URL('/')}}/assets/img/logo.png">
 
     <link rel="stylesheet" href="{{URL('/')}}/assets/css/bootstrap.min.css">
