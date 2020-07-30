@@ -26,10 +26,19 @@
                         <tr>
                             <!-- Position -->
                             <td class="job-position">
-                                <a href="{{URL('/dwnlds?dwnld=jobo')}}">Procurement Officer</a> <span class="label label-danger">New</span>
+                                <a href="{{URL('/dwnlds?dwnld=job1')}}">Procurement Officer</a> <span class="label label-danger">New</span>
                             </td>
                             <!-- Job Type -->
                             <td class="job-type hidden-phone">FULL-TIME</td>
+                        </tr>
+                        <tr>
+                            <!-- Position -->
+                            <td class="job-position">
+                                <a href="{{URL('/dwnlds?dwnld=job2')}}">Customer Service Officer</a> <span class="label label-danger">New</span>
+                            </td>
+                            <!-- Job Type -->
+                            <td class="job-type hidden-phone">FULL-TIME</td>
+                        </tr>
                     </table>
                 </div>
                 <!-- End Open Vacancies List -->
