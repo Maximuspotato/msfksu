@@ -50,7 +50,7 @@
 						<br>
 						<h3 class="">Organogram</h3>
 						<div class="container">
-							<img src="{{URL('/')}}/assets/img/organogram.PNG" class="" alt="" height="600" style="width:100%">
+							<img src="{{URL('/')}}/assets/img/organogram.PNG" class="" alt="" height="673" style="width:100%">
 						</div>
 					</div>
 				</div>
