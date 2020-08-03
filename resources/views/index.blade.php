@@ -121,11 +121,11 @@
                     </div>
                     <br>
                     <div class="pull-left">
-                        Not a member <span><a href="{{URL('/register')}}" class="btn">Register Now</a></span>
+                        Not a member <span><a href="{{URL('/register')}}" class="btn">Register Now</a></span><span>&nbsp;&nbsp;</span><span><button type="button" class="btn-primary again" data-dismiss="modal">Register Later</button></span>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-primary again" data-dismiss="modal">Don't show again</button>
+                    {{-- <button type="button" class="btn-primary again" data-dismiss="modal">Don't show again</button> --}}
                 </div>
             </div>
             </div>
