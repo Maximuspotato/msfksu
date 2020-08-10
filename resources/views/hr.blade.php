@@ -23,14 +23,12 @@
                             <th>Position</th>
                             <th>Type</th>
                         </tr>
-                        <tr>
-                            <!-- Position -->
+                        {{-- <tr>
                             <td class="job-position">
                                 <a href="{{URL('/dwnlds?dwnld=job1')}}">Procurement Officer</a> <span class="label label-danger">New</span>
                             </td>
-                            <!-- Job Type -->
                             <td class="job-type hidden-phone">FULL-TIME</td>
-                        </tr>
+                        </tr> --}}
                         <tr>
                             <!-- Position -->
                             <td class="job-position">
