@@ -76,10 +76,10 @@ class AppController extends Controller
         //     $file = "files/Advert Procurement Officer_July 2020.pdf";
         //     return response()->download(public_path($file));
         // }
-        elseif ($dwnld == "job2") {
-            $file = "files/Advert  Customer Service Officer_July 2020.pdf";
-            return response()->download(public_path($file));
-        }
+        // elseif ($dwnld == "job2") {
+        //     $file = "files/Advert  Customer Service Officer_July 2020.pdf";
+        //     return response()->download(public_path($file));
+        // }
     }
 
     public function downloadTransport(){

@@ -29,14 +29,12 @@
                             </td>
                             <td class="job-type hidden-phone">FULL-TIME</td>
                         </tr> --}}
-                        <tr>
-                            <!-- Position -->
+                        {{-- <tr>
                             <td class="job-position">
                                 <a href="{{URL('/dwnlds?dwnld=job2')}}">Customer Service Officer</a> <span class="label label-danger">New</span>
                             </td>
-                            <!-- Job Type -->
                             <td class="job-type hidden-phone">FULL-TIME</td>
-                        </tr>
+                        </tr> --}}
                     </table>
                 </div>
                 <!-- End Open Vacancies List -->
