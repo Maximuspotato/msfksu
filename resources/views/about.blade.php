@@ -38,7 +38,7 @@
 							• Online Feedback form for claims, feedback and complaints.<br><br>
 						</p>
 						<h3>About Us</h3>
-						<p>• Due to the recent extension of curfew hours in Kenya we have resumed our normal working hours from <span style="border:2px solid #ee0000; border-radius: 5px;">7:30am - 4:00pm</span></p>
+						<p>• Due to the recent extension of curfew hours in Kenya we have resumed our normal working hours from <span style="border:2px solid #ee0000; border-radius: 5px;">7:30am - 4:00pm EAT</span></p>
 						<h4 style="color:red"><b>MORE COMING SOON!</b></h4><br>
 					</div>
 					<div class="col-sm-6">
