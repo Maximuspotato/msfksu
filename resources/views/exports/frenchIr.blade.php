@@ -1,0 +1,128 @@
+<div style="font-family: Arial, Helvetica, sans-serif;">
+<div>
+    <table style="width:100%; table-layout:fixed;">
+        <tbody>
+            <tr>
+                <td style="width:30%"><img src="{{public_path()}}/assets/img/logo.png" alt=""></td>
+                <td style="width:60%;"><h1>BON DE DEMANDE INTERNE</h1></td>
+                <td><b>NR.:</b></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div><br>
+<div>
+<table style="width:100% table-layout:fixed;">
+    <tbody>
+        <tr>
+            <td style="width:20%"><b>DATE:</b></td>
+            <td style="width:40%; word-wrap:break-word">{{$info['date']}}</td>
+            <td style="width:20%"><b>DESTINATION:</b></td>
+            <td style="word-wrap:break-word">{{$info['destination']}}</td>
+        </tr>
+        <tr>
+            <td style="width:20%"><b>Demandé par:</b></td>
+            <td style="width:40%; word-wrap:break-word">{{$info['name']}} {{$info['position']}}</td>
+            <td style="width:20%"><b>Livrer à:</b></td>
+            <td style="word-wrap:break-word">{{$info['delivery']}}</td>
+        </tr>
+        <tr>
+            <td style="width:20%"><b>But:</b></td>
+            <td style="width:40%; word-wrap:break-word">{{$info['purpose']}}</td>
+            <td style="width:20%"><b>Livrer avant:</b></td>
+            <td style="word-wrap:break-word">{{$info['rdd']}}</td>
+        </tr>
+    </tbody>
+</table>
+</div><br>
+<div>
+    <table style="width:100% table-layout:fixed; border-collapse: collapse;">
+        <td style="width:64.45%;"></td>
+        <td style="width:15%; border:0.5px solid black; text-align:center">Quantity</td>
+        <td style=""></td>
+    </table>
+</div>
+<div>
+<table style="width:100% table-layout:fixed; border-collapse: collapse;">
+    <tr>
+        <td style="width:2%; border:0.5px solid black"><b>Item</b></td>
+        <td style="width:12%; border:0.5px solid black;"><b>Code de l'article</b></td>
+        <td style="width:27%; border:0.5px solid black"><b>Description</b></td>
+        <td style="width:11%; border:0.5px solid black"><b>Picture</b></td>
+        <td style="width:6%; border:0.5px solid black"><b>Price</b></td>
+        <td style="width:5%; border:0.5px solid black"><b>QTY</b></td>
+        <td style="width:5%; border:0.5px solid black; font-size:12px">Stock</td>
+        <td style="width:5%; border:0.5px solid black; font-size:12px">Achat Local</td>
+        <td style="width:5%; border:0.5px solid black; font-size:12px">Ordre</td>
+        <td style="border:0.5px solid black"><b>Remarques</b></td>
+    </tr>
+    @php
+        $i = 1;
+    @endphp
+    @foreach ($items as $item)
+        <tr>
+            <td style="border:0.5px solid black; word-wrap:break-word">{{$i++}}</td>
+            <td style="border:0.5px solid black; word-wrap:break-word">{{$item->id}}</td>
+            <td style="border:0.5px solid black; word-wrap:break-word">{{$item->attributes->fra}}</td>
+            <td style="border:0.5px solid black;">
+                @if ($info['pic'] == "on")
+                    @if ($item->attributes->pic != "https://res.cloudinary.com/ksucatalog/image/upload/v1565681241/media/camp_gzviph.png")
+                        <img src="{{$item->attributes->pic}}" alt="" height="80">
+                    @endif
+                @endif
+            </td>
+            @if (session()->get('currency') == 'usd')
+                <td style="border:0.5px solid black; word-wrap:break-word">{{number_format(Cart::get($item->id)->getPriceSum()*Session::get('KES_USD'),'2','.','')}} USD</td>
+            @elseif(session()->get('currency') == 'eur')
+                <td style="border:0.5px solid black; word-wrap:break-word">{{number_format(Cart::get($item->id)->getPriceSum()*Session::get('KES_EUR'),'2','.','')}} EUR</td>
+            @elseif(session()->get('currency') == 'chf')
+                <td style="border:0.5px solid black; word-wrap:break-word">{{number_format(Cart::get($item->id)->getPriceSum()*Session::get('KES_EUR'),'2','.','')}} CHF</td>
+            @else
+                <td style="border:0.5px solid black; word-wrap:break-word">{{Cart::get($item->id)->getPriceSum()}} KSH</td>
+            @endif
+            <td style="border:0.5px solid black; word-wrap:break-word">{{$item->quantity}}</td>
+            <td style="border:0.5px solid black;"></td>
+            <td style="border:0.5px solid black;"></td>
+            <td style="border:0.5px solid black;"></td>
+            <td style="border:0.5px solid black; word-wrap:break-word">{{$item->attributes->comment}}</td>
+        </tr>
+    @endforeach
+</table>
+</div><br>
+<div>
+    <table style="width:100% table-layout:fixed; border-collapse: collapse;">
+        <tr>
+            <td style="width:10%"></td>
+            <td style="width:18%; border:0.5px solid black">Demandeur</td>
+            <td style="width:18%; border:0.5px solid black">Responsable du budget</td>
+            <td style="width:18%; border:0.5px solid black">Supply</td>
+            <td style="width:18%; border:0.5px solid black">Magasinier/ère</td>
+            <td style="width:18%; border:0.5px solid black">Receveur</td>
+        </tr>
+        <tr>
+            <td>Nom</td>
+            <td style="border:0.5px solid black; word-wrap:break-word">{{$info['name']}}</td>
+            <td style="border:0.5px solid black"></td>
+            <td style="border:0.5px solid black"></td>
+            <td style="border:0.5px solid black"></td>
+            <td style="border:0.5px solid black"></td>
+        </tr>
+        <tr>
+            <td>Signature</td>
+            <td style="border:0.5px solid black;"></td>
+            <td style="border:0.5px solid black"></td>
+            <td style="border:0.5px solid black"></td>
+            <td style="border:0.5px solid black"></td>
+            <td style="border:0.5px solid black"></td>
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td style="border:0.5px solid black; word-wrap:break-word">{{$info['date']}}</td>
+            <td style="border:0.5px solid black"></td>
+            <td style="border:0.5px solid black"></td>
+            <td style="border:0.5px solid black"></td>
+            <td style="border:0.5px solid black"></td>
+        </tr>
+    </table>
+</div>
+</div>
