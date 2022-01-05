@@ -154,6 +154,16 @@
                     >
                         <a href="{{URL('/downloads')}}">Downloads</a>
                     </li>
+                    @if (!Auth::guest())
+                        <li
+                        @if ($active == "extranet")
+                            class = "active"
+                        @endif
+                        class=""
+                        >
+                            <a href="{{URL('/extranet')}}">Extranet</a>
+                        </li>
+                    @endif
                 </ul>
             </nav>
         </div>

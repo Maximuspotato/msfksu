@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Downloads and General information</h1>
+                    <h1>Extranet</h1>
                 </div>
             </div>
         </div>
@@ -17,56 +17,40 @@
             <div class="row">
                 <div class="col-md-12 faq-wrapper">
                     <div class="panel-group" id="accordion2">
-                        <h3>Downloads <span class="pull-right" style="font-size:16px">Last Updated</span></h3>
+                        <h3>Extranet reports</h3>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse21">
-                                    Catalogue
+                                    Orders
                                 </a>
-                                <span class="pull-right">24/01/2020</span>
                             </div>
                             <div id="collapse21" class="accordion-body collapse">
                                 <div class="accordion-inner">
-                                    @if (AUTH::guest())
-                                        <p><a href="{{URL('/login')}}">Full catalogue.xlxs</a></p>
-                                    @else
-                                        <p><a href="{{URL('/download?dwnld=full')}}">Full catalogue.xlxs</a></p> 
-                                    @endif
+                                    {{-- <p><a href="{{URL('/')}}">AC Followup</a></p> --}}
                                 </div>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse22">
-                                    Unifield supplier catalogue
+                                    Transport
                                 </a>
-                                <span class="pull-right">24/01/2020</span>
                             </div>
                             <div id="collapse22" class="accordion-body collapse">
                                 <div class="accordion-inner">
-                                    @if (AUTH::guest())
-                                        <p><a href="{{URL('/login')}}">KSU catalogue.xlxs</a></p> 
-                                    @else
-                                        <p><a href="{{URL('/download?dwnld=ksu')}}">KSU catalogue.xlxs</a></p>  
-                                    @endif
+                                    <p><a href="{{URL('/pk-overview')}}">Packing Overview</a></p>
                                 </div>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse23">
-                                    Regional transport rates
+                                    Finance
                                 </a>
-                                <span class="pull-right">24/02/2020</span>
                             </div>
                             <div id="collapse23" class="accordion-body collapse">
                                 <div class="accordion-inner">
-                                    @if (AUTH::guest())
-                                        <p><a href="{{URL('/login')}}">KSU Regional Transport  Rates.xlsx</a></p> 
-                                    @else
-                                        <p><a href="{{URL('/downloadTransport')}}">KSU Regional Transport  Rates.xlsx</a></p>  
-                                    @endif
-                                    
+                                    {{-- <p><a href="{{URL('/')}}">AC Followup</a></p> --}}
                                 </div>
                             </div>
                         </div>

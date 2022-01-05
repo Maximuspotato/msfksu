@@ -241,4 +241,11 @@ class PagesController extends Controller
         $fams = Unicode::where('group', $group)->get();
         return response()->json($fams);
     }
+
+    public function extranet(){
+        return view('extranet')->with('active', 'extranet');
+    }
+    public function pk_overview(){
+        return view('pk_overview')->with('active', 'extranet');
+    }
 }
