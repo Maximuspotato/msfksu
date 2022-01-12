@@ -78,8 +78,3 @@ Route::get('/home', 'PagesController@index')->name('home');
 
 Route::get('/extranet', 'PagesController@extranet')->middleware(['auth', 'verified']);
 Route::get('/pk-overview', 'PagesController@pk_overview')->middleware(['auth', 'verified']);
-
-Route::get('/clear-cache', function() {
-    Artisan::call('cache:clear');
-    return "Cache is cleared";
-});

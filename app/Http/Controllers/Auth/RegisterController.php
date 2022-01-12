@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 ini_set('max_execution_time', 180);
 
 use App\User;
+use App\UserSection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -59,7 +60,8 @@ class RegisterController extends Controller
             'lname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'oc' => ['required', 'string', 'max:255'],
-            'country' => ['required', 'string', 'max:255'],
+            'country' => ['string', 'max:255'],
+            'level' => ['string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -71,23 +73,29 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
-        if (isset($data['category'])) {
-            $category = "supply";
-        } else {
-            $category = "general";
-        }
-        
-        return User::create([
-            'mission' => $data['mission'],
-            'oc' => $data['oc'],
-            'project' => $data['project'],
-            'position' => $data['position'],
+    {   
+        $user = User::create([
+            'fname' => $data['fname'],
+            'lname' => $data['lname'],
             'email' => $data['email'],
-            'category' => $category,
-            'comments' => $data['comments'],
             'password' => Hash::make($data['password']),
         ]);
+
+        if (!isset($data['country'])) {
+            $data['country'] = null;
+        }
+        if (!isset($data['level'])) {
+            $data['level'] = null;
+        }
+
+        UserSection::create([
+            'email' => $data['email'],
+            'oc' => $data['oc'],
+            'country' => $data['country'],
+            'level' => $data['level']
+        ]);
+
+        return $user;
     }
 
     public function showRegistrationForm()
@@ -101,6 +109,12 @@ class RegisterController extends Controller
             $this->validator($request->all())->validate();
 
             event(new Registered($user = $this->create($request->all())));
+
+            // $user_section = new UserSection;
+            // $user_section->email = $request->email;
+            // $user_section->oc = $request->oc;
+            // $user_section->country = $request->country;
+            // $user_section->save();
 
             return redirect($this->redirectPath())->with('reg', '');
         }

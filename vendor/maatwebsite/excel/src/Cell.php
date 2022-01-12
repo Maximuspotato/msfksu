@@ -2,10 +2,11 @@
 
 namespace Maatwebsite\Excel;
 
+use PhpOffice\PhpSpreadsheet\Calculation\Exception;
+use PhpOffice\PhpSpreadsheet\Cell\Cell as SpreadsheetCell;
 use PhpOffice\PhpSpreadsheet\RichText\RichText;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-use PhpOffice\PhpSpreadsheet\Cell\Cell as SpreadsheetCell;
 
 class Cell
 {
@@ -17,7 +18,7 @@ class Cell
     private $cell;
 
     /**
-     * @param SpreadsheetCell $cell
+     * @param  SpreadsheetCell  $cell
      */
     public function __construct(SpreadsheetCell $cell)
     {
@@ -25,11 +26,11 @@ class Cell
     }
 
     /**
-     * @param Worksheet $worksheet
-     * @param string    $coordinate
+     * @param  Worksheet  $worksheet
+     * @param  string  $coordinate
+     * @return Cell
      *
      * @throws \PhpOffice\PhpSpreadsheet\Exception
-     * @return Cell
      */
     public static function make(Worksheet $worksheet, string $coordinate)
     {
@@ -45,10 +46,9 @@ class Cell
     }
 
     /**
-     * @param null $nullValue
-     * @param bool $calculateFormulas
-     * @param bool $formatData
-     *
+     * @param  null  $nullValue
+     * @param  bool  $calculateFormulas
+     * @param  bool  $formatData
      * @return mixed
      */
     public function getValue($nullValue = null, $calculateFormulas = false, $formatData = true)
@@ -58,7 +58,11 @@ class Cell
             if ($this->cell->getValue() instanceof RichText) {
                 $value = $this->cell->getValue()->getPlainText();
             } elseif ($calculateFormulas) {
-                $value = $this->cell->getCalculatedValue();
+                try {
+                    $value = $this->cell->getCalculatedValue();
+                } catch (Exception $e) {
+                    $value = $this->cell->getOldCalculatedValue();
+                }
             } else {
                 $value = $this->cell->getValue();
             }

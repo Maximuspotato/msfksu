@@ -45,11 +45,9 @@ class VerifyEmail extends Notification
 
         return (new MailMessage)
             ->subject(Lang::getFromJson('Verify Email Address'))
-            ->from('ksucatalogue@gmail.com', 'MSF KSU')
-            ->bcc('MSFOCB-KSU-IT@brussels.msf.org')
-            ->line(Lang::getFromJson('Please wait while we verify your email address.'))
-            // ->action(Lang::getFromJson('Verify Email Address'), $verificationUrl)
-            ->line(Lang::getFromJson('If we do not contact you within 24 hrs and you should be verified please contact us through our contacts page.'));
+            ->line(Lang::getFromJson('Please click the button below to verify your email address.'))
+            ->action(Lang::getFromJson('Verify Email Address'), $verificationUrl)
+            ->line(Lang::getFromJson('If you did not create an account, no further action is required.'));
     }
 
     /**

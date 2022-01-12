@@ -84,6 +84,23 @@
                                                 @enderror
                                             </div>
                                         </div>
+
+                                        <div class="form-group row">
+                                            <label for="level" id="levelLabel" class="col-md-4 col-form-label text-md-right">{{ __('Level *') }}</label>
+                                            
+                                            <div class="col-md-6">
+                                                <select id="level" name="level" class="form-control @error('level') is-invalid @enderror" value="{{ old('level') }}" autocomplete="level" autofocus required onchange="levelFunc()">
+                                                    <option value="hq">HQ</option>
+                                                    <option value="field">Field</option>
+                                                </select>
+                                                @error('level')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
                                         <div class="form-group row">
                                             <label id="countryLabel" for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country *') }}</label>
                                             
@@ -168,13 +185,42 @@
             </div>
         </div>
         <script>
+            var country = document.getElementById('country');
+            var countryLabel = document.getElementById('countryLabel');
+
+            var level = document.getElementById('level');
+            var levelLabel = document.getElementById('levelLabel');
+
+            country.style.display = "none";
+            countryLabel.style.display = "none";
+            country.value = null;
+            country.required = false;
             function sectFunc() {
                 if (document.getElementById('oc').value == 'INTERNATIONAL') {
-                    document.getElementById('country').style.display = "none";
-                    document.getElementById('countryLabel').style.display = "none";
+                    country.style.display = "none";
+                    countryLabel.style.display = "none";
+                    country.value = null;
+                    country.required = false;
+
+                    level.style.display = "none";
+                    levelLabel.style.display = "none";
+                    level.value = null;
+                    level.required = false;
                 }else{
-                    document.getElementById('country').style.display = "block";
-                    document.getElementById('countryLabel').style.display = "block";
+                    level.style.display = "block";
+                    levelLabel.style.display = "block";
+                }
+            }
+
+            function levelFunc() {
+                if (level.value == 'hq') {
+                    country.style.display = "none";
+                    countryLabel.style.display = "none";
+                    country.value = null;
+                    country.required = false;
+                }else{
+                    country.style.display = "block";
+                    countryLabel.style.display = "block";
                 }
             }
         </script>
