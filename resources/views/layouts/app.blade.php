@@ -15,7 +15,7 @@
 
     <link rel="stylesheet" href="{{URL('/')}}/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{URL('/')}}/assets/css/icomoon-social.css">
-    <link rel="stylesheet" href="{{URL('/')}}/assets/css/reports.css">
+    <link rel="stylesheet" href="{{URL('/')}}/ext/css/reports.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
     <link href="{{URL('/')}}/assets/css/fontawesome/fontawesome.css" rel="stylesheet">
     <link href="{{URL('/')}}/assets/css/fontawesome/solid.css" rel="stylesheet">
@@ -60,6 +60,12 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
         <img id="twc" src="{{URL('/')}}/assets/img/flags/twc.jpg" alt="" height="250" style="display:none">
+        @php
+            include_once(app_path() . '\outils\functions.php');
+            $c = db_connect();
+            global $tab_filter;
+            //echo $c;
+        @endphp
 
         @include('incs.header')
 

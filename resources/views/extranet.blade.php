@@ -38,6 +38,7 @@
                             </div>
                             <div id="collapse22" class="accordion-body collapse">
                                 <div class="accordion-inner">
+                                    <p><a href="{{URL('/tr-overview')}}">Transport Overview</a></p>
                                     <p><a href="{{URL('/pk-overview')}}">Packing Overview</a></p>
                                 </div>
                             </div>

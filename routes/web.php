@@ -78,3 +78,4 @@ Route::get('/home', 'PagesController@index')->name('home');
 
 Route::get('/extranet', 'PagesController@extranet')->middleware(['auth', 'verified']);
 Route::get('/pk-overview', 'PagesController@pk_overview')->middleware(['auth', 'verified']);
+Route::get('/tr-overview', 'PagesController@tr_overview')->middleware(['auth', 'verified']);

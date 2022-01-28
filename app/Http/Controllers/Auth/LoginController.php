@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\UserSection;
+use \Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -20,6 +22,24 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+
+    protected function authenticated(Request $request, $user)
+    {
+        $userSect = UserSection::where('email', $user->email)->first();
+        if ($userSect->oc == 'INTERNATIONAL') {
+            $request->session()->put('oc', 'all');
+            $request->session()->put('country', 'all');
+        }else{
+            if ($userSect->level == 'hq') {
+                $request->session()->put('oc', $userSect->oc);
+                $request->session()->put('country', 'all');
+            }else{
+                $request->session()->put('oc', $userSect->oc);
+                $request->session()->put('country', $userSect->country);
+            }
+        }
+        return redirect('/');
+    }
 
     /**
      * Where to redirect users after login.

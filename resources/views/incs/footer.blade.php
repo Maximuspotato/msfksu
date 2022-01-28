@@ -15,7 +15,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="https://apps.powerapps.com/play/0e8f5ced-1eb3-463c-9703-cb7b829fe753?tenantId=4d9dd1af-83ce-4e9b-b090-b0543ccc2b31" target="_blank">Unidata catalogue</a></li>
+                        <li><a href="https://unicat.msf.org" target="_blank">Unidata catalogue</a></li>
                         <li class="disabled"><a href=""  target="_blank">Executive Supply Chain Committee</a></li>
                         <li class=""><a href="https://www.msf.org/" target="_blank">MSF International</a></li>
                         <li class=""><a href="https://ksu.msfsupply.be"  target="_blank">KSU Extranet</a></li>
@@ -49,7 +49,7 @@
                         Sameer Industrial Park<br/>
                         P.O. Box 38897 – 00623<br/>
                         Nairobi, Kenya<br/>
-                        Telephone +254 (0)20 354 2419
+                        Telephone +254 (0) 20 354 2419
                     </p>
                 </div>
 
@@ -59,12 +59,7 @@
                         KSU Customer Service<br>
                         <a href="MSFOCB-KSU-CustomerService@brussels.msf.org">MSFOCB-KSU-CustomerService@brussels.msf.org</a><br>
                         Cell +254 (0) 794 655 262<br>
-                        KSU HR Manager<br>
-                        <a href="MSFOCB-KSU-Admin@brussels.msf.org">MSFOCB-KSU-Admin@brussels.msf.org</a><br>
-                        Cell +254 (0) 705 000 570<br>
-                        KSU General Manager<br>
-                        <a href="MSFOCB-KSU-Coord@brussels.msf.org">MSFOCB-KSU-Coord@brussels.msf.org</a><br>
-                        Cell +254 (0) 722 509 964
+                        Tel +254 (0) 20 354 2419
                     </p>
                 </div>
                 

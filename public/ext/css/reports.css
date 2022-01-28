@@ -86,3 +86,14 @@
 	font-weight:bold;
 	margin:50px 25px;
 }
+
+.form-popup {
+    display: none;
+    background-color: #2B8797;
+    border: 3px solid #f1f1f1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    opacity: .9;
+	margin-top: 160px;
+}

@@ -248,4 +248,7 @@ class PagesController extends Controller
     public function pk_overview(){
         return view('pk_overview')->with('active', 'extranet');
     }
+    public function tr_overview(){
+        return view('tr_overview')->with('active', 'extranet');
+    }
 }

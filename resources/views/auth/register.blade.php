@@ -221,6 +221,7 @@
                 }else{
                     country.style.display = "block";
                     countryLabel.style.display = "block";
+                    country.required = true;
                 }
             }
         </script>

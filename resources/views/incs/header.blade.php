@@ -53,7 +53,53 @@
                         @else
                             <li>
                                 <div class="dropdown choose-country">
-                                    <a class="#" data-toggle="dropdown" href="" style="color:forestgreen">WELCOME, {{Auth::user()->position}} <i class="fas fa-caret-down"></i></a>
+                                    @if (session()->get('oc') == 'all')
+                                        <a class="#" data-toggle="dropdown" href="">SECTION <i class="fas fa-caret-down"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li role="menuitem"><a href="{{URL('/oc')}}?oc=OCB">OCB</a></li>
+                                            <li role="menuitem"><a href="{{URL('/oc')}}?oc=OCBA">OCBA</a></li>
+                                            <li role="menuitem"><a href="{{URL('/oc')}}?oc=OCA">OCA</a></li>
+                                            <li role="menuitem"><a href="{{URL('/oc')}}?oc=OCG">OCG</a></li>
+                                            <li role="menuitem"><a href="{{URL('/oc')}}?oc=OCP">OCP</a></li>								
+                                        </ul>
+                                    @else
+                                        <a class="#" data-toggle="dropdown" href="">{{session()->get('oc')}} <i class="fas fa-caret-down"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li role="menuitem"><a href="">{{session()->get('oc')}}</a></li>								
+                                        </ul>
+                                    @endif
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dropdown choose-country">
+                                    @if (session()->get('country') == 'all')
+                                        <a class="#" data-toggle="dropdown" href="">COUNTRY <i class="fas fa-caret-down"></i></a>
+                                        <ul class="dropdown-menu" role="menu" style=" max-width: 200px; max-height: 200px; overflow-y: scroll; overflow-x: scroll">
+                                            @php
+                                                $query_country = " SELECT DISTINCT PAY_CODE, PAY_NOM 
+                                                                        FROM XN_PAYS        
+                                                                        ORDER BY PAY_CODE ASC
+                                                                    ";
+                                                $stmt = oci_parse($c, $query_country);
+                                                ociexecute($stmt, OCI_DEFAULT);
+                                                $nrows = ocifetchstatement($stmt, $result_country,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+                                                
+                                                foreach($result_country as $one_country){
+                                                    echo '<li role="menuitem"><a href="{{URL("/country")}}?country='.$one_country['PAY_CODE'].'">'.$one_country['PAY_NOM'].'</a></li>';	
+                                                }
+                                            @endphp								
+                                        </ul>
+                                    @else
+                                        <a class="#" data-toggle="dropdown" href="">{{session()->get('country')}} <i class="fas fa-caret-down"></i></a>
+                                        <ul class="dropdown-menu" role="menu" style=" max-width: 200px; max-height: 200px; overflow-y: scroll; overflow-x: scroll">
+                                            <li role="menuitem"><a href="">{{session()->get('country')}}</a></li>
+                                        </ul>
+                                    @endif
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dropdown choose-country">
+                                    <a class="#" data-toggle="dropdown" href="" style="color:forestgreen">WELCOME, {{Auth::user()->fname}} <i class="fas fa-caret-down"></i></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li class="disabled" role="menuitem"><a href="{{URL('/favorites')}}"><i class="fas fa-heart"></i> My Favorites</a></li>
                                         <li class="disabled" role="menuitem"><a href="{{URL('/history')}}"><i class="fas fa-history"></i> My History</a></li>
@@ -89,13 +135,15 @@
                     <span class="icon-bar"></span> 
                 </button>
                 <ul class="collapse navbar-collapse" id="myNavbar">
-                    <li
-                    @if ($active == "home")
-                        class = "active"
+                    @if (Auth::guest())
+                        <li
+                        @if ($active == "home")
+                            class = "active"
+                        @endif
+                        >
+                            <a href="{{URL('/')}}">Home</a>
+                        </li>
                     @endif
-                    >
-                        <a href="{{URL('/')}}">Home</a>
-                    </li>
 
                     <li
                     @if ($active == "about")

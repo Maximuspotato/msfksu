@@ -14,7 +14,7 @@
     <div class="section">
         <div class="container">
             @php
-                include(app_path() . '\outils\functions.php');
+                include_once(app_path() . '\outils\functions.php');
                 $generalparams = array(
                     'xlsname'=>'pk_overview',
                     'title'=>'Packing Overview'
@@ -184,6 +184,7 @@
                 if(isset($_REQUEST['country']) && trim($_REQUEST['country']) != ""){
                     array_push($tab_filter,array('name'=>'country','value'=>trim($_REQUEST['country'])));
                 }
+                //dd($tab_filter);
 
                 //echo '<pre>'.$query.'</pre>';
 
