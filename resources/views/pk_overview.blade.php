@@ -165,6 +165,13 @@
                         $query .= " AND cli_pay_code <> 'KE' ";
                     }
                 }
+                if (session()->get('oc') != "") {
+                    $query .= " AND CLI_SFC_CODE = '".session()->get('oc')."'";
+                }
+
+                if (session()->get('country') != "") {
+                    $query .= " AND CLI_PAY_CODE = '".session()->get('country_code')."'";
+                }
 
                 if (!isset($_REQUEST['orderby']) OR !isset($_REQUEST['order'])) {
                     $_REQUEST['orderby'] = $fields[0]['sqlfield'];
@@ -196,8 +203,8 @@
                 }
             @endphp
 
-            <div>
-                <form method="GET" action="http://localhost/msfksu/public/pk-overview" autocomplete="off">
+            <div id="grille-param">
+                <form method="GET" action="{{URL('/')}}/pk-overview" autocomplete="off">
                     <div class="div_filter">
                         <label>Include:</label>
                         <input type="checkbox" name="cm" id="cm" value="cm" <?php if(isset($_REQUEST['cm'])) echo "checked=" ?>> Cargo Manifest<br><br>
@@ -206,10 +213,17 @@
                         <select name="client">
                             <option></option>
                     <?php
-                            $query_client = " SELECT PCT_NOM_LIV FROM MS_PACK_CLI_TETE
-                            GROUP BY PCT_NOM_LIV
-                            ORDER BY PCT_NOM_LIV ASC ";
-                    
+                            $query_client = " SELECT DISTINCT PCT_NOM_LIV
+                            FROM MS_PACK_CLI_TETE, XN_CLI
+							WHERE CLI_CODE(+) = PCT_CLI_CODE_LIV ";
+                            if (session()->get('oc') != "") {
+								$query_client .= " AND CLI_SFC_CODE = '".session()->get('oc')."'";
+							}
+
+							if (session()->get('country') != "") {
+								$query_client .= " AND CLI_PAY_CODE = '".session()->get('country_code')."'";
+							}
+							$query_client .= "ORDER BY PCT_NOM_LIV";
                         $stmt = oci_parse($c, $query_client);
                         ociexecute($stmt, OCI_DEFAULT);
                         $nrows = ocifetchstatement($stmt, $result_client,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
@@ -227,7 +241,7 @@
                         <option value="RG" <?php if (isset($_REQUEST['country']) && $_REQUEST['country'] == "RG") echo "selected"; ?>>Region</option>
                     </select><br><br>
                     
-                        <input type="submit" name="Go" value="Go"/>
+                        <input type="submit" value="Go"/>
                     </div>
                     </form>
                     <span>Weight:</span>
@@ -238,10 +252,10 @@
                     <span id="parcel"></span><br>
                     <span>Value:</span>
                     <span id="value"></span><br><br>
-                    @php
-                     render_table($result, $fields);   
-                    @endphp
             </div>
+            @php
+            render_table($result, $fields);   
+           @endphp
         </div>
     </div>
     <script>

@@ -27,15 +27,15 @@ class LoginController extends Controller
     {
         $userSect = UserSection::where('email', $user->email)->first();
         if ($userSect->oc == 'INTERNATIONAL') {
-            $request->session()->put('oc', 'all');
-            $request->session()->put('country', 'all');
+            $request->session()->put('position', 'international');
         }else{
             if ($userSect->level == 'hq') {
+                $request->session()->put('position', 'hq');
                 $request->session()->put('oc', $userSect->oc);
-                $request->session()->put('country', 'all');
             }else{
+                $request->session()->put('position', 'field');
                 $request->session()->put('oc', $userSect->oc);
-                $request->session()->put('country', $userSect->country);
+                $request->session()->put('country_code', $userSect->country);
             }
         }
         return redirect('/');

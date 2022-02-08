@@ -97,3 +97,22 @@
     opacity: .9;
 	margin-top: 160px;
 }
+
+#grille-param {
+	clear: both;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: normal;
+	color: black;
+	background-color: #e8eef3;
+	text-align: left;
+	width: max-content;
+	margin-top: 25px;
+	padding: 5px 10px 10px 10px;
+	margin-bottom: 10px;
+	/* margin-right: 2em; */
+	border: 1px solid #000000;	
+	min-height: 5em;
+	margin-left: 0;		
+}

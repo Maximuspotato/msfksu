@@ -150,4 +150,29 @@ class SessionController extends Controller
         Session::put('pics', 'enabled');
         return back();
     }
+
+    //set oc
+    public function oc(Request $request){
+        $oc = $request->input('oc');
+        if ($oc == 'all') {
+            $request->session()->forget('oc');
+        } else {
+            $request->session()->put('oc', $oc);
+        }
+        return back();
+    }
+
+    //set country
+    public function country(Request $request){
+        $country_code = $request->input('country_code');
+        $country = $request->input('country');
+        if ($country_code == 'all') {
+            $request->session()->forget('country_code');
+            $request->session()->forget('country');
+        } else {
+            $request->session()->put('country_code', $country_code);
+            $request->session()->put('country', $country);
+        }
+        return back();
+    }
 }

@@ -53,9 +53,14 @@
                         @else
                             <li>
                                 <div class="dropdown choose-country">
-                                    @if (session()->get('oc') == 'all')
-                                        <a class="#" data-toggle="dropdown" href="">SECTION <i class="fas fa-caret-down"></i></a>
+                                    @if (session()->get('position') == 'international')
+                                        @if (session()->get('oc') != "")
+                                            <a class="#" data-toggle="dropdown" href="">{{session()->get('oc')}} <i class="fas fa-caret-down"></i></a>
+                                        @else
+                                            <a class="#" data-toggle="dropdown" href="">SECTION <i class="fas fa-caret-down"></i></a>
+                                        @endif
                                         <ul class="dropdown-menu" role="menu">
+                                            <li role="menuitem"><a href="{{URL('/oc')}}?oc=all">ALL</a></li>
                                             <li role="menuitem"><a href="{{URL('/oc')}}?oc=OCB">OCB</a></li>
                                             <li role="menuitem"><a href="{{URL('/oc')}}?oc=OCBA">OCBA</a></li>
                                             <li role="menuitem"><a href="{{URL('/oc')}}?oc=OCA">OCA</a></li>
@@ -64,17 +69,19 @@
                                         </ul>
                                     @else
                                         <a class="#" data-toggle="dropdown" href="">{{session()->get('oc')}} <i class="fas fa-caret-down"></i></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li role="menuitem"><a href="">{{session()->get('oc')}}</a></li>								
-                                        </ul>
                                     @endif
                                 </div>
                             </li>
                             <li>
                                 <div class="dropdown choose-country">
-                                    @if (session()->get('country') == 'all')
-                                        <a class="#" data-toggle="dropdown" href="">COUNTRY <i class="fas fa-caret-down"></i></a>
+                                    @if (session()->get('position') == 'international' || session()->get('position') == 'hq')
+                                        @if (session()->get('country_code') != "")
+                                         <a class="#" data-toggle="dropdown" href="">{{session()->get('country')}} <i class="fas fa-caret-down"></i></a>
+                                        @else
+                                            <a class="#" data-toggle="dropdown" href="">COUNTRY <i class="fas fa-caret-down"></i></a>
+                                        @endif
                                         <ul class="dropdown-menu" role="menu" style=" max-width: 200px; max-height: 200px; overflow-y: scroll; overflow-x: scroll">
+                                            <li role="menuitem"><a href="{{URL('/country')}}?country_code=all">ALL</a></li>
                                             @php
                                                 $query_country = " SELECT DISTINCT PAY_CODE, PAY_NOM 
                                                                         FROM XN_PAYS        
@@ -85,15 +92,12 @@
                                                 $nrows = ocifetchstatement($stmt, $result_country,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
                                                 
                                                 foreach($result_country as $one_country){
-                                                    echo '<li role="menuitem"><a href="{{URL("/country")}}?country='.$one_country['PAY_CODE'].'">'.$one_country['PAY_NOM'].'</a></li>';	
+                                                    echo '<li role="menuitem"><a href="'.URL("/country").'?country_code='.$one_country['PAY_CODE'].'&country='.$one_country['PAY_NOM'].'">'.$one_country['PAY_NOM'].'</a></li>';	
                                                 }
                                             @endphp								
                                         </ul>
                                     @else
-                                        <a class="#" data-toggle="dropdown" href="">{{session()->get('country')}} <i class="fas fa-caret-down"></i></a>
-                                        <ul class="dropdown-menu" role="menu" style=" max-width: 200px; max-height: 200px; overflow-y: scroll; overflow-x: scroll">
-                                            <li role="menuitem"><a href="">{{session()->get('country')}}</a></li>
-                                        </ul>
+                                        <a class="#" data-toggle="dropdown" href="">{{session()->get('country_code')}} <i class="fas fa-caret-down"></i></a>
                                     @endif
                                 </div>
                             </li>

@@ -20,7 +20,7 @@ Route::get('/download', 'AppController@download')->middleware(['auth', 'verified
 Route::get('/dwnlds', 'AppController@dwnlds');
 Route::get('/downloadTransport', 'AppController@downloadTransport');
 Route::get('/downloadCovidUpdate', 'AppController@downloadCovid');
-
+Route::get('/downloadCovidUpdate', 'AppController@downloadCovid');
 
 //pages
 Route::get('/', 'PagesController@index');
@@ -43,6 +43,14 @@ Route::get('/getfam', 'PagesController@getfam');
 Route::get('/verify-emails', 'PagesController@verifyemails');
 Route::get('/hr/{deets}', 'PagesController@hrdeets');
 Route::get('/request-item', 'PagesController@newrequest')->middleware(['auth', 'verified']);
+Route::get('/extranet', 'PagesController@extranet')->middleware(['auth', 'verified']);
+Route::get('/pk-overview', 'PagesController@pk_overview')->middleware(['auth', 'verified']);
+Route::get('/tr-overview', 'PagesController@tr_overview')->middleware(['auth', 'verified']);
+Route::get('/bo-monitoring', 'PagesController@bo_monitoring')->middleware(['auth', 'verified']);
+Route::get('/tr-packing', 'PagesController@tr_packing')->middleware(['auth', 'verified']);
+Route::get('/order-confirmation', 'PagesController@order_confirmation')->middleware(['auth', 'verified']);
+Route::get('/packing-view', 'PagesController@pk_view')->middleware(['auth', 'verified']);
+Route::get('/order-view', 'PagesController@order_view')->middleware(['auth', 'verified']);
 //Route::get('/covid19', 'PagesController@covid')->middleware(['auth', 'verified']);
 
 Route::get('/language', 'SessionController@language');
@@ -52,6 +60,8 @@ Route::get('/list', 'SessionController@list');
 Route::get('/notShowPics', 'SessionController@notShowPics');
 Route::get('/showPics', 'SessionController@showPics');
 Route::post('/upload-images', 'SessionController@uploadImages');
+Route::get('/oc', 'SessionController@oc');
+Route::get('/country', 'SessionController@country');
 
 Route::resource('article', 'ArticleController');
 Route::post('/uploadPics', 'ArticleController@uploadPics');
@@ -75,7 +85,3 @@ Route::get('/exportDonations', 'DonationController@exportDonations');
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'PagesController@index')->name('home');
-
-Route::get('/extranet', 'PagesController@extranet')->middleware(['auth', 'verified']);
-Route::get('/pk-overview', 'PagesController@pk_overview')->middleware(['auth', 'verified']);
-Route::get('/tr-overview', 'PagesController@tr_overview')->middleware(['auth', 'verified']);

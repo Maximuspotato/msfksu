@@ -26,8 +26,6 @@ function db_connect_msfs() {
 	Function that renders the result of the request
 ****************************************************************************************************************************************/
 function execute_request($c,$query,$tab_filter) {
-	//global $tab_filter;
-	//dd($GLOBALS['tab_filter']);
 	
 	$stmt = oci_parse($c, $query);
 	
@@ -235,5 +233,10 @@ function render_table_xls($result){
 
 	$objWriter = PHPExcel_IOFactory::createWriter($objExcel, 'Excel5');
 	$objWriter->save('php://output');
+}
+
+function logtext($log_text)
+{
+  	syslog(LOG_INFO, $_SERVER['REMOTE_ADDR'].'@'.$_SERVER['SCRIPT_FILENAME'].' '.$_SESSION['username'].' '.$log_text);
 }
 ?>

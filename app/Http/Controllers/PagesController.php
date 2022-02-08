@@ -251,4 +251,19 @@ class PagesController extends Controller
     public function tr_overview(){
         return view('tr_overview')->with('active', 'extranet');
     }
+    public function bo_monitoring(){
+        return view('bo_monitoring')->with('active', 'extranet');
+    }
+    public function tr_packing(){
+        return view('tr_packing')->with('active', 'extranet');
+    }
+    public function order_confirmation(){
+        return view('order_confirmation')->with('active', 'extranet');
+    }
+    public function pk_view(){
+        return view('pk_view')->with('active', 'extranet');
+    }
+    public function order_view(){
+        return view('order_view')->with('active', 'extranet');
+    }
 }

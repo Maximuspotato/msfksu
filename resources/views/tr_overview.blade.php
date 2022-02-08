@@ -15,7 +15,6 @@
 	<div class="section">
         <div class="container">
 			@php
-				//dd(app_path());
 				include_once(app_path() . '\outils\functions.php');
 
 				$generalparams = array(
@@ -209,12 +208,12 @@
 					$query .= " AND DTR_INDEX <> :indx ";
 				}
 
-				if (session()->get('oc') != 'all') {
-					$query .= " AND CLI_SFC_CODE(+) = '".session()->get('oc')."'";
+				if (session()->get('oc') != "") {
+					$query .= " AND CLI_SFC_CODE = '".session()->get('oc')."'";
 				}
 
-				if (session()->get('country') != 'all') {
-					$query .= " AND CLI_PAY_CODE(+) = '".session()->get('country')."'";
+				if (session()->get('country') != "") {
+					$query .= " AND CLI_PAY_CODE = '".session()->get('country_code')."'";
 				}
 
 				if (!isset($_REQUEST['orderby']) OR !isset($_REQUEST['order'])) {
@@ -241,8 +240,8 @@
 					exit();
 				}
 			@endphp
-			<div>
-				<form method="GET" action="{{URL('/')}}/tr-overview" autocomplete="off">
+			<div class="container" >
+				<form method="GET" id="grille-param" action="{{URL('/')}}/tr-overview" autocomplete="off">
 					<div class="div_filter">
 					<label>File status:</label>
 					<input type="checkbox" name="indx" id="indx" <?php if(!isset($_REQUEST['indx']))echo 'value="W"' ?> 
@@ -256,7 +255,7 @@
 							<option value="RG" <?php if (isset($_REQUEST['country']) && $_REQUEST['country'] == "RG") echo "selected=selected"; ?>>Region</option>
 						</select><br><br>
 					
-					<input type="submit" name="Go" value="Go"/>
+					<input type="submit" value="Go"/>
 					</div>
 					</form>
 					
