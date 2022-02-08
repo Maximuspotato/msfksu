@@ -45,7 +45,7 @@ if ($filename=="") $filename='doc-'.str_replace(" ", "_", $_SESSION['username'])
 
 	$startTime = array_sum(explode(" ",microtime()));
 
-	dd($reporturl);
+	//dd($reporturl);
 	$f = fopen($reporturl, 'r');
 	if (!$f) {
 		logtext('Error: could not contact report server! URL='.$reporturl);
@@ -74,7 +74,6 @@ Please make sure you entered all parameters correctly.<br>
 
 
 	fclose($f);
-	//exit;
 	//logtext('pdf downloaded in '.round((array_sum(explode(" ",microtime())) - $startTime),1).'s gen:'.round((array_sum(explode(" ",microtime())) - $startTime2),1).'s '.$_SERVER['SCRIPT_NAME']);
 
 	//	exec('/bin/rm /tmp/doc-'.$_SESSION['username'].'.pdf');

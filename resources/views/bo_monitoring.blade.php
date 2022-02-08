@@ -87,14 +87,14 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>'CCT_NO',				// champ SQL pur
+					'sqlfield'=>"'<a href=\"order-view?order_no=' || CCT_NO || '\">' || CCT_NO || '</a>'",
 					'title'=>'Order',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
 					
 					'aliasname'=>'ORDER_NO',					//alias
-					'sortsqlfield'=>'',					//sort	
+					'sortsqlfield'=>'ORDER_NO',					//sort	
 				);
 
 				$fields[]=array(
@@ -211,25 +211,25 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>'PCL_PCT_NO',		// champ SQL pur
+					'sqlfield'=>"'<a href=\"packing-view?pk=' || PCL_PCT_NO || '\">' || PCL_PCT_NO || '</a>'",
 					'title'=>'Packing',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
 
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
+					'aliasname'=>'PK',					//alias
+					'sortsqlfield'=>'PK',					//sort	
 				);
 
 				$fields[]=array(
-					'sqlfield'=>'DTR_NO',		// champ SQL pur
+					'sqlfield'=>"'<a href=\"freight-view?cm=' || DTR_NO || '\">' || DTR_NO || '</a>'",
 					'title'=>'Manifest',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
 
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
+					'aliasname'=>'CM',					//alias
+					'sortsqlfield'=>'CM',					//sort	
 				);
 
 				$fields[]=array(

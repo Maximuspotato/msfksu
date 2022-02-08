@@ -266,4 +266,7 @@ class PagesController extends Controller
     public function order_view(){
         return view('order_view')->with('active', 'extranet');
     }
+    public function freight_view(){
+        return view('freight_view')->with('active', 'extranet');
+    }
 }

@@ -23,14 +23,14 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>'PCT_NO',				// champ SQL pur
+					'sqlfield'=>"'<a href=\"packing-view?pk=' || PCT_NO || '\">' || PCT_NO || '</a>'",
 					'title'=>'Packing No',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
 					
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
+					'aliasname'=>'PKNO',					//alias
+					'sortsqlfield'=>'PKNO',					//sort	
 				);
 
 				$fields[]=array(

@@ -30,6 +30,7 @@ function execute_request($c,$query,$tab_filter) {
 	$stmt = oci_parse($c, $query);
 	
 	// filters of the request
+	//dd($query);
 	foreach($tab_filter as $one_filter){
 		if($one_filter['value'] !="") ocibindbyname($stmt, ":".$one_filter['name'], $one_filter['value']);	
 	}

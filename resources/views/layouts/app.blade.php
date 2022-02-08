@@ -60,12 +60,14 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
         <img id="twc" src="{{URL('/')}}/assets/img/flags/twc.jpg" alt="" height="250" style="display:none">
-        @php
-            include_once(app_path() . '\outils\functions.php');
-            $c = db_connect();
-            global $tab_filter;
-            //echo $c;
-        @endphp
+        @if (!Auth::guest())
+            @php
+                include_once(app_path() . '\outils\functions.php');
+                $c = db_connect();
+                global $tab_filter;
+                //echo $c;
+            @endphp
+        @endif
 
         @include('incs.header')
 

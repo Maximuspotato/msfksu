@@ -29,14 +29,14 @@
 				}
 
 				$fields[]=array(
-					'sqlfield'=>'DTR_NO',				// champ SQL pur
+					'sqlfield'=>"'<a href=\"freight-view?cm=' || DTR_NO || '\">' || DTR_NO || '</a>'",
 					'title'=>'File',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
 					
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
+					'aliasname'=>'DTR',					//alias
+					'sortsqlfield'=>'DTR',					//sort	
 				);
 
 				$fields[]=array(
