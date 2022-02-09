@@ -213,7 +213,7 @@
                         @endif
                         class=""
                         >
-                            <a href="{{URL('/extranet')}}">Extranet</a>
+                            <a href="{{URL('/extra_net')}}">Extranet</a>
                         </li>
                     @endif
                 </ul>

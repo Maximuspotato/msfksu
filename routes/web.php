@@ -43,7 +43,7 @@ Route::get('/getfam', 'PagesController@getfam');
 Route::get('/verify-emails', 'PagesController@verifyemails');
 Route::get('/hr/{deets}', 'PagesController@hrdeets');
 Route::get('/request-item', 'PagesController@newrequest')->middleware(['auth', 'verified']);
-Route::get('/extranet', 'PagesController@extranet')->middleware(['auth', 'verified']);
+Route::get('/extra_net', 'PagesController@extranet')->middleware(['auth', 'verified']);
 Route::get('/pk-overview', 'PagesController@pk_overview')->middleware(['auth', 'verified']);
 Route::get('/tr-overview', 'PagesController@tr_overview')->middleware(['auth', 'verified']);
 Route::get('/bo-monitoring', 'PagesController@bo_monitoring')->middleware(['auth', 'verified']);
