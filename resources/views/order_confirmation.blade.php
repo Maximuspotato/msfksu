@@ -130,7 +130,7 @@
 					
 					$filename="op".$_REQUEST['order'].".pdf";
 
-					include_once(app_path() . '\outils\sendreport.php');
+					include_once(app_path() . '/outils/sendreport.php');
 					exit;
 				} elseif (isset($_REQUEST['fichier']) && $_REQUEST['fichier'] =='csv') {
 					$query = "
