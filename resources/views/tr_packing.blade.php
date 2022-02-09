@@ -23,7 +23,7 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>"'<a href=\"packing-view?pk=' || PCT_NO || '\">' || PCT_NO || '</a>'",
+					'sqlfield'=>"'<a target=\"_blank\" href=\"packing-view?pk=' || PCT_NO || '\">' || PCT_NO || '</a>'",
 					'title'=>'Packing No',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
