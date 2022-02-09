@@ -1031,6 +1031,7 @@ function get_xml_spreadsheet_for_unifield($missionref) {
 	//echo $Workbook->asXml();
 
 	//OCILogoff($c);
+	ob_get_clean();
 
 	return($dom->saveXML());
 
