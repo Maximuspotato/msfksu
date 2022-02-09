@@ -196,7 +196,7 @@
 					exit;
 				} elseif (isset($_REQUEST['fichier']) && $_REQUEST['fichier'] =='xml' || isset($_REQUEST['fichier']) && $_REQUEST['fichier'] =='spreadsheet') { 
 					//require_once('../includes/functions-global.php');
-					include_once(app_path() . '\outils\functions-order_confirmation.php');
+					include_once(app_path() . '/outils/functions-order_confirmation.php');
 					
 					if($_REQUEST['fichier']=='xml'){
 						$xmldata=get_xml_for_unifield($_REQUEST['order']);
