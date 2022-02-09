@@ -65,7 +65,7 @@ function render_table($result, $fields) {
 	if(count($result) > 0){
 ?>	
 	<i class="i_excel">
-    	<img src="/extranet/images/xls_icon.gif"/>
+    	<img src="/ext/images/xls_icon.gif"/>
 		<a href="<?php echo $_SERVER['REQUEST_URI'].($_SERVER['REQUEST_URI']==$_SERVER['PHP_SELF']?'?':'').'&xls=yes';?>">This table in Excel</a>
     </i>
     <br>
@@ -96,7 +96,7 @@ function render_table($result, $fields) {
 						
 						if ($_REQUEST['orderby'] == ($field['sortsqlfield']==""?$field['sqlfield']:$field['sortsqlfield']) ) {
 ?>							
-								<img style="margin-bottom:-3px;" src="/extranet/images/<?php echo ($_REQUEST['order']=="ASC"?'arrow_down_16.png':'arrow_up_16.png');?>" />
+								<img style="margin-bottom:-3px;" src="/ext/images/<?php echo ($_REQUEST['order']=="ASC"?'arrow_down_16.png':'arrow_up_16.png');?>" />
 <?php					}	?>
 					</a>                        
                 </th>

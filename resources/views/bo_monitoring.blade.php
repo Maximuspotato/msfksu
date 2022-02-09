@@ -708,13 +708,12 @@
 					</div>
 					
 					</form>
-
-					<?php
-						if (isset($_REQUEST['procode']) ) {
-							render_table($result, $fields);
-						}		
-					?>
 			</div>
+			<?php
+				if (isset($_REQUEST['procode']) ) {
+					render_table($result, $fields);
+				}		
+			?>
 		</div>
 	</div>
 
