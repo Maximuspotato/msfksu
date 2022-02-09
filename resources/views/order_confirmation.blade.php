@@ -14,7 +14,7 @@
 	<div class="section">
         <div class="container">
 			<?php
-				include_once(app_path() . '\outils\functions.php');
+				include_once(app_path() . '/outils/functions.php');
 				$GLOBALS['c'] = db_connect();
 
 				function op_is_from_client($order,$clifac) {

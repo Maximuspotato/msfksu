@@ -15,7 +15,7 @@
 	<div class="section">
         <div class="container">
 			@php
-				include_once(app_path() . '\outils\functions.php');
+				include_once(app_path() . '/outils/functions.php');
 
 				$fields[]=array(
 					'sqlfield'=>'PCL_ART_CODE',				// champ SQL pur

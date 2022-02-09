@@ -14,7 +14,7 @@
     <div class="section">
         <div class="container">
             @php
-                include_once(app_path() . '\outils\functions.php');
+                include_once(app_path() . '/outils/functions.php');
                 $generalparams = array(
                     'xlsname'=>'pk_overview',
                     'title'=>'Packing Overview'
