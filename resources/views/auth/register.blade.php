@@ -2,7 +2,7 @@
 
 @section('content')
     @php
-        include(app_path() . '\outils\functions.php');
+        include(app_path() . '/outils/functions.php');
         $c = db_connect();
     @endphp
     <!-- Page Title -->
