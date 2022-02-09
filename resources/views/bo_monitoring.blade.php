@@ -87,7 +87,7 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>"'<a href=\"order-view?order_no=' || CCT_NO || '\">' || CCT_NO || '</a>'",
+					'sqlfield'=>"'<a target=\"_blank\" href=\"order-view?order_no=' || CCT_NO || '\">' || CCT_NO || '</a>'",
 					'title'=>'Order',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
@@ -211,7 +211,7 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>"'<a href=\"packing-view?pk=' || PCL_PCT_NO || '\">' || PCL_PCT_NO || '</a>'",
+					'sqlfield'=>"'<a target=\"_blank\" href=\"packing-view?pk=' || PCL_PCT_NO || '\">' || PCL_PCT_NO || '</a>'",
 					'title'=>'Packing',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
@@ -222,7 +222,7 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>"'<a href=\"freight-view?cm=' || DTR_NO || '\">' || DTR_NO || '</a>'",
+					'sqlfield'=>"'<a target=\"_blank\" href=\"freight-view?cm=' || DTR_NO || '\">' || DTR_NO || '</a>'",
 					'title'=>'Manifest',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
