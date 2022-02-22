@@ -258,6 +258,30 @@
 					'sortsqlfield'=>'',					//sort	
 				);
 
+				$fields[]=array(
+					'sqlfield'=>'DTRC_DT_RC',		// champ SQL pur
+					'title'=>'Recieved',					// Title for the column
+					
+					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'',
+
+					'aliasname'=>'',					//alias
+					'sortsqlfield'=>'',					//sort	
+				);
+
+				if(!isset($_REQUEST['xls']) || $_REQUEST['xls'] <> 'yes'){
+					$fields[]=array(
+						'sqlfield'=>"'<img src=\"ext/images/add.png\" onclick=\"openForm(''' || DTR_NO || ''')\"/>'",		// champ SQL pur
+						'title'=>'',					// Title for the column
+						
+						'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+						'decimal'=>'',
+					
+						'aliasname'=>'BUTTONADD',					//alias
+						'sortsqlfield'=>'BUTTONADD',					//sort	
+					);
+				}
+
 				$c = db_connect();
 
 				$query = "SELECT ";
@@ -274,7 +298,7 @@
 				AND CCL_NO_LIGNE=PCL_CCL_NO_LIGNE(+)
 				AND PCT_NO(+) = PCL_PCT_NO
 				AND DTR_NO(+) = PCT_NO_DOSSIER
-				AND DTR_NO(+) <> DTRC_DTR_NO
+				AND DTR_NO= DTRC_DTR_NO(+)
 				AND CLI_CODE(+) = CCT_CLI_CODE_LIVRE ";
 
 				if(isset($_REQUEST['procode']) && trim($_REQUEST['procode']) != ""){
@@ -357,7 +381,7 @@
 				isset($_REQUEST['delivered']) &&
 				!isset($_REQUEST['cancelled'])){
 					$query .= " AND (CCT_TYD_CODE = 'CS'
-					OR (DTR_NO IS NOT NULL AND DTR_INDEX = 'Z')) ";
+					OR (DTRC_DT_RC IS NOT NULL)) ";
 				}
 				if(isset($_REQUEST['draft']) &&
 				!isset($_REQUEST['confirmed']) && 
@@ -422,7 +446,7 @@
 				isset($_REQUEST['delivered']) &&
 				!isset($_REQUEST['cancelled'])){
 					$query .= " AND (CCT_TYD_CODE = 'CC' AND PCL_PCT_NO IS NULL
-					OR (DTR_NO IS NOT NULL AND DTR_INDEX = 'Z')) ";
+					OR (DTRC_DT_RC IS NOT NULL)) ";
 				}
 				if(!isset($_REQUEST['draft']) &&
 				isset($_REQUEST['confirmed']) && 
@@ -520,7 +544,7 @@
 				isset($_REQUEST['delivered']) &&
 				!isset($_REQUEST['cancelled'])){
 					$query .= " AND DTR_NO IS NOT NULL 
-					AND DTR_INDEX = 'Z' ";
+					AND DTRC_DT_RC IS NOT NULL ";
 				}
 				//delivered or
 				if(!isset($_REQUEST['draft']) &&
@@ -530,7 +554,7 @@
 				isset($_REQUEST['delivered']) &&
 				isset($_REQUEST['cancelled'])){
 					$query .= " AND (CCT_TYD_CODE IS NOT NULL AND CCT_TYD_CODE = 'CX'
-					OR (DTR_NO IS NOT NULL AND DTR_INDEX = 'Z')) ";
+					OR (DTR_NO IS NOT NULL AND DTRC_DT_RC IS NOT NULL)) ";
 				}
 
 				if(!isset($_REQUEST['draft']) &&
@@ -551,7 +575,7 @@
 				}
 
 				$query .= " GROUP BY CCT_NOM_DISP, CCT_REF_CMDE_CLI1, CCT_CHA_CODE, CCT_NO, CCL_ART_CODE, CCL_DES1, CCT_TYD_CODE, CCL_QTE_RESTE,
-				DTR_INDEX, PCL_QTE_LIV, CCT_DT_FERM, PCL_PCT_NO, DTR_NO, CCT_MTR_CODE, CCL_QTE_CMDE, CCL_PX_VTE_NET, CCT_DEV_CODE, MTR_LIB ";
+				DTR_INDEX, PCL_QTE_LIV, CCT_DT_FERM, PCL_PCT_NO, DTR_NO, CCT_MTR_CODE, CCL_QTE_CMDE, CCL_PX_VTE_NET, CCT_DEV_CODE, MTR_LIB, DTRC_DT_RC ";
 
 				if (isset($_REQUEST['confirmed'])) {
 					$query .= " UNION
@@ -559,14 +583,14 @@
 					(SELECT ROW_NUMBER() OVER (ORDER BY CCT_NO DESC), (CCT_NOM_DISP), (CCT_REF_CMDE_CLI1), (CCT_CHA_CODE), (CCT_NO),
 					(CCL_ART_CODE), (CCL_DES1), ('CONFIRMED'), (CCL_QTE_RESTE), CCL_PX_VTE_NET, CCL_PX_VTE_NET*CCL_QTE_RESTE, CCT_DEV_CODE, TO_CHAR(CCT_DT_FERM, 'DD/MM/YYYY'),
 					(NULL), (NULL),
-					(MTR_LIB),
+					(MTR_LIB), (DTRC_DT_RC)
 					('MSFOCB-KSU-CustomerService@brussels.msf.org')
 					FROM XN_CMDE_CLI_TETE,XN_CMDE_CLI_LIGNE,XN_MODE_TRANSP, MS_DOSSIER_TRANSP, EXT_DOSSIER_TRANSP_RC, XN_CLI
 					WHERE CCT_NO = CCL_CCT_NO
 					AND MTR_CODE = CCT_MTR_CODE
 					AND CCL_QTE_RESTE > 0
 					AND CCL_INDEX = '4'
-					AND DTR_NO(+) <> DTRC_DTR_NO
+					AND DTR_NO = DTRC_DTR_NO(+)
 					AND CLI_CODE(+) = CCT_CLI_CODE_LIVRE ";
 					
 					if(isset($_REQUEST['procode']) && trim($_REQUEST['procode']) != ""){
@@ -597,7 +621,7 @@
 					
 					$query .= "
 					GROUP BY CCT_NOM_DISP, CCT_REF_CMDE_CLI1, CCT_CHA_CODE, CCT_NO, CCL_ART_CODE, CCL_DES1, CCT_DT_FERM, CCT_MTR_CODE, CCL_QTE_RESTE, 
-					CCL_PX_VTE_NET, CCT_DEV_CODE, MTR_LIB) ";
+					CCL_PX_VTE_NET, CCT_DEV_CODE, MTR_LIB, DTRC_DT_RC) ";
 				}
 
 
@@ -716,5 +740,42 @@
 			?>
 		</div>
 	</div>
-
+	<div class="form-popup" id="trForm">
+		<div class="div_filter">
+			<form id="transForm" class="form-container">
+				<h1 id="trHead"></h1>
+	
+				<label for="recieved"><b>Recieved</b></label>
+				<input type="date" id="recieved" name="recieved">
+	
+				<input type="hidden" id="dtr_no" name="dtr_no" value="" required>
+	
+				<button type="submit" class="btn" onclick="save()" >Save</button>
+				<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+			</form>
+		</div>
+	</div>
+	<script>
+		function openForm(dtr_no){
+			document.getElementById("trForm").style.display = "table";
+			document.getElementById("trHead").innerHTML = "File no. "+dtr_no;
+			document.getElementById("dtr_no").value = dtr_no;
+			//console.log("{!! app_path() !!}");
+		}
+	
+		function closeForm() {
+			document.getElementById("trForm").style.display = "none";
+		}
+	
+		function save(){
+			var http = new XMLHttpRequest();
+			http.open("POST", "{{url('/')}}/ext/utils/KSU_trans_ajax.php", true);
+			http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			var params = "recieved="+document.getElementById("recieved").value+"&dtr_no="+document.getElementById("dtr_no").value;
+			http.send(params);
+			http.onload = function() {
+				window.location.replace("<?php echo Request::fullUrl(); ?>");
+			}
+		}
+	</script>
 @endsection

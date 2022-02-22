@@ -174,7 +174,10 @@
 					array_push($tab_filter,array('name'=>'order_no','value'=>trim($_REQUEST['order_no'])));
 				}
 
-				$result = execute_request($c,$query,$tab_filter);
+				if (isset($_REQUEST['order_no'])) {
+					$result = execute_request($c,$query,$tab_filter);
+				}
+
 			@endphp
 			<div class="container" id="grille-param">
 				<form method="GET" action="{{URL('/')}}/order-view" autocomplete="off">

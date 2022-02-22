@@ -72,6 +72,10 @@ class AppController extends Controller
             }
             return response()->download(public_path($file));
         }
+        elseif ($dwnld == "gpc") {
+            $file = "files/KSU General Purchase Conditions.pdf";
+            return response()->download(public_path($file));
+        }
         // elseif ($dwnld == "job1") {
         //     $file = "files/Advert Procurement Officer_July 2020.pdf";
         //     return response()->download(public_path($file));

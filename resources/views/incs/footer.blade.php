@@ -15,11 +15,12 @@
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="https://unicat.msf.org" target="_blank">Unidata catalogue</a></li>
+                        <li><a href="https://unicat.msf.org" target="_blank">MSF catalogue</a></li>
                         <li class="disabled"><a href=""  target="_blank">Executive Supply Chain Committee</a></li>
                         <li class=""><a href="https://www.msf.org/" target="_blank">MSF International</a></li>
                         <li class=""><a href="https://ksu.msfsupply.be"  target="_blank">KSU Extranet</a></li>
                         <li><a href="{{URL('/dwnlds?dwnld=tc')}}">KSU's Terms & Conditions</a></li>
+                        <li><a href="{{URL('/dwnlds?dwnld=gpc')}}">KSU's General Purchasing Conditions</a></li>
                         {{-- <li class="disabled"><a href="">MSF OCA</a></li>
                         <li class="disabled"><a href="">MSF OCB</a></li>
                         <li class="disabled"><a href="">MSF OCBA</a></li>
@@ -58,8 +59,7 @@
                     <p class="contact-us-details">
                         KSU Customer Service<br>
                         <a href="MSFOCB-KSU-CustomerService@brussels.msf.org">MSFOCB-KSU-CustomerService@brussels.msf.org</a><br>
-                        Cell +254 (0) 794 655 262<br>
-                        Tel +254 (0) 20 354 2419
+                        Telephone +254 (0) 20 354 2419
                     </p>
                 </div>
                 

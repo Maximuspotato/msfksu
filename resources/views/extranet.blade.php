@@ -28,6 +28,7 @@
                                 <div class="accordion-inner">
                                     <p><a href="{{URL('/bo-monitoring')}}">Backorder Monitoring</a></p>
                                     <p><a href="{{URL('/order-confirmation')}}">Order Confirmation</a></p>
+                                    <p><a href="{{URL('/order-view')}}">Order View</a></p>
                                 </div>
                             </div>
                         </div>
@@ -42,6 +43,8 @@
                                     <p><a href="{{URL('/tr-overview')}}">Transport Overview</a></p>
                                     <p><a href="{{URL('/pk-overview')}}">Packing Overview</a></p>
                                     <p><a href="{{URL('/tr-packing')}}">Transport Cost Per Packing</a></p>
+                                    <p><a href="{{URL('/packing-view')}}">Packing View</a></p>
+                                    <p><a href="{{URL('/freight-view')}}">Freight View</a></p>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +56,7 @@
                             </div>
                             <div id="collapse23" class="accordion-body collapse">
                                 <div class="accordion-inner">
-                                    {{-- <p><a href="{{URL('/')}}">AC Followup</a></p> --}}
+                                    <p><a href="{{URL('/invoice')}}">Invoice pdf</a></p>
                                 </div>
                             </div>
                         </div>

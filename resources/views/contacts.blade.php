@@ -72,22 +72,7 @@
                     <p class="contact-us-details">
                         KSU Customer Service<br>
                         <a href="MSFOCB-KSU-CustomerService@brussels.msf.org">MSFOCB-KSU-CustomerService@brussels.msf.org</a><br>
-                        Cell +254 (0) 794 655 262
-                    </p>
-                </div>
-                <div class="col-sm-3">
-                    <p class="contact-us-details">
-                        KSU HR Manager<br>
-                        <a href="MSFOCB-KSU-HRManager@brussels.msf.org">MSFOCB-KSU-HRManager@brussels.msf.org</a><br>
-                        Tel +254 (0) 20 354 2420
-                        Tel +254 (0) 20 354 2421
-                    </p>
-                </div>
-                <div class="col-sm-3">
-                    <p class="contact-us-details">
-                        KSU General Manager<br>
-                        <a href="MSFOCB-KSU-Coord@brussels.msf.org">MSFOCB-KSU-Coord@brussels.msf.org</a><br>
-                        Cell +254 (0) 722 509 964
+                        Tel +254 (0) 20 354 2419
                     </p>
                 </div>
             </div>

@@ -152,8 +152,9 @@
 				}
 
 				//echo '<pre>'.$query.'</pre>';
-
-				$result = execute_request($c,$query,$tab_filter);
+				if(isset($_REQUEST['cm'])){
+					$result = execute_request($c,$query,$tab_filter);
+				}
 
 				if(isset($_REQUEST['xls']) && $_REQUEST['xls'] == 'yes'){
 					render_table_xls($result);	

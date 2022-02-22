@@ -244,7 +244,9 @@
 					array_push($tab_filter,array('name'=>'cm','value'=>trim($_REQUEST['cm'])));
 				}
 
-				$result = execute_request($c,$query,$tab_filter);
+				if(isset($_REQUEST['cm'])){
+					$result = execute_request($c,$query,$tab_filter);
+				}
 			@endphp
 			<div class="container" id="grille-param">
 				<form method="GET" action="{{URL('/')}}/freight-view" autocomplete="off">
@@ -260,7 +262,7 @@
                     <?php
                         if (isset($_REQUEST['cm'])) {
                             echo '<label>Nb parcels: </label>';
-                            $query_cm = " SELECT PCT_NB_COLIS, PCT_TOT_PDS, PCT_TOT_VOL, MTR_LIB, DTR_NO, DTR_ZZ_DT_ETD, DTR_ZZ_DT_ETA
+                            $query_cm = " SELECT SUM(PCT_NB_COLIS), SUM(PCT_TOT_PDS), SUM(PCT_TOT_VOL), MTR_LIB, DTR_NO, DTR_ZZ_DT_ETD, DTR_ZZ_DT_ETA
 											FROM MS_PACK_CLI_TETE, MS_DOSSIER_TRANSP, XN_MODE_TRANSP, XN_CLI
 											WHERE DTR_NO(+) = PCT_NO_DOSSIER
 											AND DTR_MTR_CODE = MTR_CODE(+)
@@ -273,25 +275,26 @@
 							if (session()->get('country') != "") {
 								$query_cm .= " AND CLI_PAY_CODE = '".session()->get('country_code')."'";
 							}
+							$query_cm .= " GROUP BY MTR_LIB, DTR_NO, DTR_ZZ_DT_ETD, DTR_ZZ_DT_ETA ";
                             $stmt = oci_parse($c, $query_cm);
                             ocibindbyname($stmt, ":cm", $_REQUEST['cm']);
                             ociexecute($stmt, OCI_DEFAULT);
                             $nrows = ocifetchstatement($stmt, $result_cm,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
                             
                             foreach($result_cm as $one_cm){
-                                echo ' '.$one_cm['PCT_NB_COLIS'];
+                                echo ' '.$one_cm['SUM(PCT_NB_COLIS)'];
                                 echo '<br>';
                             }
 
                             echo '<label>Total weight: </label>';
                             foreach($result_cm as $one_cm){
-                                echo ' '.$one_cm['PCT_TOT_PDS'].' kg';
+                                echo ' '.$one_cm['SUM(PCT_TOT_PDS)'].' kg';
                                 echo '<br>';
                             }
 
                             echo '<label>Total vol: </label>';
                             foreach($result_cm as $one_cm){
-                                echo ' '.$one_cm['PCT_TOT_VOL'].' dm<sup>3</sup>';
+                                echo ' '.$one_cm['SUM(PCT_TOT_VOL)'].' dm<sup>3</sup>';
                                 echo '<br>';
                             }
 
