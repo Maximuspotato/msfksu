@@ -95,4 +95,14 @@ class AppController extends Controller
         $file = "files/Kenya import and export update.docx";
         return response()->download(public_path($file));
     }
+
+    public function inv(Request $request){
+        $inv_no = $request->input('inv_no');
+        $reporturl='http://192.168.125.26:9002/reports/rwservlet?report=/u02/app/nodhos/msfsup/rdf/trvf531r&P_DEP_CODE=NBO&P_DEP_SOC_CODE=KSU&P_FCT_NO_DEB='.$inv_no.'&P_FCT_NO_FIN='.$inv_no.'&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&paramform=no&desformat=pdf';
+					
+        $filename="op".$inv_no.".pdf";
+
+        include_once(app_path() . '/outils/sendreport.php');
+        return back();
+    }
 }

@@ -21,6 +21,7 @@ Route::get('/dwnlds', 'AppController@dwnlds');
 Route::get('/downloadTransport', 'AppController@downloadTransport');
 Route::get('/downloadCovidUpdate', 'AppController@downloadCovid');
 Route::get('/downloadCovidUpdate', 'AppController@downloadCovid');
+Route::get('/inv', 'AppController@inv');
 
 //pages
 Route::get('/', 'PagesController@index');
@@ -52,7 +53,7 @@ Route::get('/order-confirmation', 'PagesController@order_confirmation')->middlew
 Route::get('/packing-view', 'PagesController@pk_view')->middleware(['auth', 'verified']);
 Route::get('/order-view', 'PagesController@order_view')->middleware(['auth', 'verified']);
 Route::get('/freight-view', 'PagesController@freight_view')->middleware(['auth', 'verified']);
-Route::get('/invoice', 'PagesController@freight_view')->middleware(['auth', 'verified']);
+Route::get('/invoice', 'PagesController@invoice')->middleware(['auth', 'verified']);
 //Route::get('/covid19', 'PagesController@covid')->middleware(['auth', 'verified']);
 
 Route::get('/language', 'SessionController@language');
