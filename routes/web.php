@@ -54,6 +54,10 @@ Route::get('/packing-view', 'PagesController@pk_view')->middleware(['auth', 'ver
 Route::get('/order-view', 'PagesController@order_view')->middleware(['auth', 'verified']);
 Route::get('/freight-view', 'PagesController@freight_view')->middleware(['auth', 'verified']);
 Route::get('/invoice', 'PagesController@invoice')->middleware(['auth', 'verified']);
+Route::get('/rts', 'PagesController@rts')->middleware(['auth', 'verified']);
+Route::get('/stock', 'PagesController@stock')->middleware(['auth', 'verified']);
+Route::get('/rts-value', 'PagesController@rts_value')->middleware(['auth', 'verified']);
+Route::get('/freight-reception', 'PagesController@freight_reception')->middleware(['auth', 'verified']);
 //Route::get('/covid19', 'PagesController@covid')->middleware(['auth', 'verified']);
 
 Route::get('/language', 'SessionController@language');

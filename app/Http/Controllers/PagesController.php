@@ -272,4 +272,16 @@ class PagesController extends Controller
     public function invoice(){
         return view('invoice')->with('active', 'extranet');
     }
+    public function rts(){
+        return view('rts')->with('active', 'extranet');
+    }
+    public function stock(){
+        return view('stock')->with('active', 'extranet');
+    }
+    public function rts_value(){
+        return view('rts_value')->with('active', 'extranet');
+    }
+    public function freight_reception(){
+        return view('freight_reception')->with('active', 'extranet');
+    }
 }

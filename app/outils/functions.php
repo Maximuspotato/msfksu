@@ -65,8 +65,8 @@ function render_table($result, $fields) {
 	if(count($result) > 0){
 ?>	
 	<i class="i_excel">
-    	<img src="/ext/images/xls_icon.gif"/>
-		<a href="<?php echo $_SERVER['REQUEST_URI'].($_SERVER['REQUEST_URI']==$_SERVER['PHP_SELF']?'?':'').'&xls=yes';?>">This table in Excel</a>
+    	<img src="<?php echo url('/') ?>/ext/images/xls_icon.gif"/>
+		<a href="<?php echo Request::url() ?>?xls=yes">This table in Excel</a>
     </i>
     <br>
 	<table class="table_request" id="table_request">
@@ -96,7 +96,7 @@ function render_table($result, $fields) {
 						
 						if ($_REQUEST['orderby'] == ($field['sortsqlfield']==""?$field['sqlfield']:$field['sortsqlfield']) ) {
 ?>							
-								<img style="margin-bottom:-3px;" src="/ext/images/<?php echo ($_REQUEST['order']=="ASC"?'arrow_down_16.png':'arrow_up_16.png');?>" />
+								<img style="margin-bottom:-3px;" src="<?php echo url('/') ?>/ext/images/<?php echo ($_REQUEST['order']=="ASC"?'arrow_down_16.png':'arrow_up_16.png');?>" />
 <?php					}	?>
 					</a>                        
                 </th>
@@ -139,15 +139,14 @@ function render_table($result, $fields) {
 
 
 
-function render_table_xls($result){
+function render_table_xls($result, $fields, $generalparams){
 
-	global $generalparams;
+	//global $generalparams;
 	//echo memory_get_usage()."-";
+	
+	include_once "PHPExcel/Classes/PHPExcel.php";
+	include_once "PHPExcel/Classes/PHPExcel/IOFactory.php";
 
-	include_once "/var/www/html/outils/PHPExcel/Classes/PHPExcel.php";
-	include_once "/var/www/html/outils/PHPExcel/Classes/PHPExcel/IOFactory.php";
-
-	global $fields;
 	error_reporting(E_ALL);
 	date_default_timezone_set('Europe/London');
 		
@@ -231,9 +230,11 @@ function render_table_xls($result){
 	header('Content-Disposition: attachment;filename="'.$generalparams['xlsname'].'.xls"');
 	
 	header('Cache-Control: max-age=0');
-
+	ob_get_clean();
 	$objWriter = PHPExcel_IOFactory::createWriter($objExcel, 'Excel5');
+	
 	$objWriter->save('php://output');
+	exit;
 }
 
 function logtext($log_text)

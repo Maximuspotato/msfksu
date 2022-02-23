@@ -20,6 +20,20 @@
                         <h3>Extranet reports</h3>
                         <div class="panel panel-default">
                             <div class="panel-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse24">
+                                    Client
+                                </a>
+                            </div>
+                            <div id="collapse24" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <p><a href="{{URL('/rts')}}">RTS Report</a></p>
+                                    <p><a href="{{URL('/stock')}}">Stock Report</a></p>
+                                    <p><a href="{{URL('/rts-value')}}">RTS Value Report</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse21">
                                     Orders
                                 </a>
@@ -45,6 +59,7 @@
                                     <p><a href="{{URL('/tr-packing')}}">Transport Cost Per Packing</a></p>
                                     <p><a href="{{URL('/packing-view')}}">Packing View</a></p>
                                     <p><a href="{{URL('/freight-view')}}">Freight View</a></p>
+                                    <p><a href="{{URL('/freight-reception')}}">Freight reception</a></p>
                                 </div>
                             </div>
                         </div>
