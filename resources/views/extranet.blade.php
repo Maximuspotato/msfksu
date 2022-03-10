@@ -29,6 +29,7 @@
                                     <p><a href="{{URL('/rts')}}">RTS Report</a></p>
                                     <p><a href="{{URL('/stock')}}">Stock Report</a></p>
                                     <p><a href="{{URL('/rts-value')}}">RTS Value Report</a></p>
+                                    <p><a href="{{URL('/batch-traceability')}}">Batch Traceability</a></p>
                                 </div>
                             </div>
                         </div>

@@ -284,4 +284,7 @@ class PagesController extends Controller
     public function freight_reception(){
         return view('freight_reception')->with('active', 'extranet');
     }
+    public function bt_trace(){
+        return view('bt_trace')->with('active', 'extranet');
+    }
 }
