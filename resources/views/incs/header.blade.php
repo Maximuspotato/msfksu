@@ -80,7 +80,9 @@
                                         @else
                                             <a class="#" data-toggle="dropdown" href="">COUNTRY <i class="fas fa-caret-down"></i></a>
                                         @endif
-                                        <ul class="dropdown-menu" role="menu" style=" max-width: 200px; max-height: 200px; overflow-y: scroll; overflow-x: scroll">
+                                        
+                                        <ul id="countries" class="dropdown-menu" role="menu" style=" max-width: 200px; max-height: 200px; overflow-y: scroll; overflow-x: scroll">
+                                            <input type="text" id="myInput" onkeyup="search()" placeholder="Search country.." title="Type in country">
                                             <li role="menuitem"><a href="{{URL('/country')}}?country_code=all">ALL</a></li>
                                             @php
                                                 $query_country = " SELECT DISTINCT PAY_CODE, PAY_NOM 
