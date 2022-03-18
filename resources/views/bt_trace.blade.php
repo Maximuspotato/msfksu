@@ -78,8 +78,41 @@
 				);
 
 				$fields[]=array(
+					'sqlfield'=>'BFL_BFT_NO_BL',				// champ SQL pur
+					'title'=>'Reception no',					// Title for the column
+					
+					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'',
+					
+					'aliasname'=>'',					//alias
+					'sortsqlfield'=>'',					//sort	
+				);
+
+				$fields[]=array(
+					'sqlfield'=>'BFT_DT_BL',				// champ SQL pur
+					'title'=>'Reception date',					// Title for the column
+					
+					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'',
+					
+					'aliasname'=>'',					//alias
+					'sortsqlfield'=>'',					//sort	
+				);
+
+				$fields[]=array(
 					'sqlfield'=>'PCT_NO',				// champ SQL pur
-					'title'=>'RC No',					// Title for the column
+					'title'=>'Packing',					// Title for the column
+					
+					'format'=>'Packing',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'',
+					
+					'aliasname'=>'',					//alias
+					'sortsqlfield'=>'',					//sort	
+				);
+
+				$fields[]=array(
+					'sqlfield'=>'PCL_FCT_NO_FACTURE',				// champ SQL pur
+					'title'=>'Invoice',					// Title for the column
 					
 					'format'=>'Packing',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
@@ -122,13 +155,24 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>'PCL_QTE_LIV',				// champ SQL pur
-					'title'=>'Quantity',					// Title for the column
+					'sqlfield'=>'BFL_QTE_LIVREE',				// champ SQL pur
+					'title'=>'Quantity in',					// Title for the column
 					
-					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-					'decimal'=>'',
+					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'0',
 					
 					'aliasname'=>'',					//alias
+					'sortsqlfield'=>'',					//sort	
+				);
+
+				$fields[]=array(
+					'sqlfield'=>'SUM(PCL_QTE_LIV)',				// champ SQL pur
+					'title'=>'Quantity out',					// Title for the column
+					
+					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'0',
+					
+					'aliasname'=>'QTYOUT',					//alias
 					'sortsqlfield'=>'',					//sort	
 				);
 
@@ -150,10 +194,32 @@
 					$query .= " AND PCL_ART_CODE = :art ";
 				}
 
+				$query = "SELECT ";
+
+				foreach ($fields as $k => $field) {
+					$query .= $field['sqlfield'].' '.$field['aliasname'].($k < (count($fields) -1)?',':'');
+				}
+
+				$query .= "
+				FROM MS_PACK_CLI_TETE, MS_PACK_CLI_LIGNE, MS_DOSSIER_TRANSP, XN_BL_FOUR_LIGNE, XN_BL_FOUR_TETE
+				WHERE PCL_PCT_NO = PCT_NO
+				AND DTR_NO(+) = PCT_NO_DOSSIER
+				AND DTR_INDEX(+) IN('P','Z')
+				AND BFL_CCT_NO(+) = PCL_CCT_NO
+				AND BFL_ART_CODE(+) = PCL_ART_CODE
+				AND BFT_NO_BL(+) = BFL_BFT_NO_BL ";
+
+				if(isset($_REQUEST['art'])){
+					$query .= " AND PCL_ART_CODE = :art ";
+				}
+
+				$query .=" GROUP BY PCL_ART_CODE, PCL_ART_VAR1, PCL_DES1, PCL_NO_SERIE_LOT, PCL_DT_PEREMPTION, BFL_BFT_NO_BL, BFT_DT_BL, PCT_NO, PCL_FCT_NO_FACTURE,
+				PCT_CLI_CODE_LIV, PCT_CLI_CODE_DISP, DTR_ZZ_DT_ETD, BFL_QTE_LIVREE ";
+
 				$query .= " UNION
 
-				SELECT  PCI_ART_CODE, PCI_ART_VAR1, PCI_DES1, PCI_NO_SERIE_LOT, PCI_DT_PEREMPTION, PCT_NO,PCT_CLI_CODE_LIV, PCT_CLI_CODE_DISP, DTR_ZZ_DT_ETD,
-				PCI_QTE_LIV
+				SELECT  PCI_ART_CODE, PCI_ART_VAR1, PCI_DES1, PCI_NO_SERIE_LOT, PCI_DT_PEREMPTION,NULL, NULL, PCT_NO, PCI_FCT_NO_FACTURE, PCT_CLI_CODE_LIV,
+				PCT_CLI_CODE_DISP, DTR_ZZ_DT_ETD, PCI_QTE_LIV QTY_IN, PCI_QTE_LIV QTY_OUT
 				FROM MS_PACK_CLI_TETE, TR_PACK_CLI_LIGNE_INTER, MS_DOSSIER_TRANSP
 				WHERE PCI_PCT_NO = PCT_NO
 				AND DTR_NO(+) = PCT_NO_DOSSIER
@@ -162,6 +228,9 @@
 				if(isset($_REQUEST['art'])){
 					$query .= " AND PCI_ART_CODE = :art ";
 				}
+
+				$query .=" GROUP BY PCI_ART_CODE, PCI_ART_VAR1, PCI_DES1, PCI_NO_SERIE_LOT, PCI_DT_PEREMPTION, PCT_NO, PCI_FCT_NO_FACTURE,
+				PCT_CLI_CODE_LIV, PCT_CLI_CODE_DISP, DTR_ZZ_DT_ETD, PCI_QTE_LIV ";
 
 				if (!isset($_REQUEST['orderby']) OR !isset($_REQUEST['order'])) {
 					$_REQUEST['orderby'] = $fields[0]['sqlfield'];
