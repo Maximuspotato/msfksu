@@ -249,6 +249,11 @@
 					$result = execute_request($c,$query,$tab_filter);
 				}
 
+				if(isset($_REQUEST['xls']) && $_REQUEST['xls'] == 'yes'){
+					render_table_xls($result, $fields, $generalparams);	
+					exit();
+				}
+
 			@endphp
 			<div class="container" id="grille-param">
 				<form method="GET" action="{{URL('/')}}/batch-traceability" autocomplete="off">

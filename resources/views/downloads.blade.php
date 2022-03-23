@@ -70,6 +70,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse24">
+                                    Terms & conditions
+                                </a>
+                            </div>
+                            <div id="collapse24" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    @if (AUTH::guest())
+                                        <p><a href="{{URL('/login')}}">Kenya Supply Unit-Terms-of-Conditions.pdf</a></p>
+                                    @else
+                                        <p><a href="{{URL('/dwnlds?dwnld=tc')}}">Kenya Supply Unit-Terms-of-Conditions.pdf</a></p> 
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -72,7 +72,14 @@
                     <p class="contact-us-details">
                         KSU Customer Service<br>
                         <a href="MSFOCB-KSU-CustomerService@brussels.msf.org">MSFOCB-KSU-CustomerService@brussels.msf.org</a><br>
-                        Tel +254 (0) 20 354 2419
+                        Tel @if (AUTH::guest()) +254 (0) 20 354 2419 @else +254 (0) 794 655 262 @endif
+                    </p>
+                </div>
+                <div class="col-sm-3">
+                    <p class="contact-us-details">
+                        KSU Transport Manager<br>
+                        <a href="MSFOCB-KSU-TransportManager@brussels.msf.org">MSFOCB-KSU-TransportManager@brussels.msf.org</a><br>
+                        Tel @if (AUTH::guest()) +254 (0) 20 354 2419 @else +254 (0) 710 809 156 @endif
                     </p>
                 </div>
             </div>
