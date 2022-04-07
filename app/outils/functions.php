@@ -63,10 +63,17 @@ function render_table($result, $fields) {
 <?php
 	//echo '<pre>'.print_r($result,true).'</pre>';	
 	if(count($result) > 0){
+	$fullurl = Request::fullUrl();
+	if(strpos($fullurl, '?')){
+		$fullurl .="&xls=yes";
+	}else {
+		$fullurl .="?xls=yes";
+	}
+
 ?>	
 	<i class="i_excel">
     	<img src="<?php echo url('/') ?>/ext/images/xls_icon.gif"/>
-		<a href="<?php echo Request::fullUrl() ?>&xls=yes">This table in Excel</a>
+		<a href="<?php echo $fullurl ?>">This table in Excel</a>
     </i>
     <br>
 	<table class="table_request" id="table_request">
