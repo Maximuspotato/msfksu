@@ -8,6 +8,7 @@ use App\Story;
 use App\Article;
 use App\Unicode;
 use App\Popular;
+use App\UserSection;
 use Illuminate\Http\Request;
 // use Illuminate\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
@@ -218,7 +219,12 @@ class PagesController extends Controller
 
     public function verifyemails(){
         $users = User::where('email_verified_at', null)->get();
-        return view('verifyemails')->with(['active' => '', 'users' => $users]);
+        if (count($users) > 0) {
+            $user_sects = UserSection::all();
+            return view('verifyemails')->with(['active' => '', 'users' => $users, 'user_sects' => $user_sects]);
+        }else{
+            return view('index')->with('active', 'home');
+        }
     }
 
     public function covid(){
