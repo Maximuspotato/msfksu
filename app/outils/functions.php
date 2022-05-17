@@ -53,12 +53,12 @@ function render_table($result, $fields) {
 	<script type="text/javascript" src="/javascript/jquery.freezeheader.js"></script>
     <script type="text/javascript" src="/javascript/picnet.table.filter.min.js"></script>
     
-    <script>
+    <!-- <script>
 		$(document).ready(function() {
 			$("#table_request").freezeHeader();
 			$("#table_request").tableFilter();
 		});
-	</script>
+	</script> -->
     
 <?php
 	//echo '<pre>'.print_r($result,true).'</pre>';	

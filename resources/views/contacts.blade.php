@@ -65,7 +65,7 @@
                         Sameer Industrial Park<br/>
                         P.O. Box 38897 – 00623<br/>
                         Nairobi, Kenya<br/>
-                        Telephone +254 (0)20 354 2419
+                        {{-- Telephone +254 (0)20 354 2419 --}}
                     </p>
                 </div>
                 @if (AUTH::guest())
@@ -73,7 +73,7 @@
                         <p class="contact-us-details">
                             KSU Support<br>
                             <a href="mailto:MSFOCB-KSU-Support@brussels.msf.org">MSFOCB-KSU-Support@brussels.msf.org</a><br>
-                            Tel +254 (0) 20 354 2419
+                            {{-- Tel +254 (0) 20 354 2419 --}}
                         </p>
                     </div>
                 @else
@@ -81,14 +81,14 @@
                         <p class="contact-us-details">
                             KSU Customer Service<br>
                             <a href="mailto:MSFOCB-KSU-CustomerService@brussels.msf.org">MSFOCB-KSU-CustomerService@brussels.msf.org</a><br>
-                            Tel +254 (0) 794 655 262
+                            {{-- Tel +254 (0) 794 655 262 --}}
                         </p>
                     </div>
                     <div class="col-sm-3">
                         <p class="contact-us-details">
                             KSU Transport Manager<br>
                             <a href="mailto:MSFOCB-KSU-TransportManager@brussels.msf.org">MSFOCB-KSU-TransportManager@brussels.msf.org</a><br>
-                            Tel +254 (0) 710 809 156
+                            {{-- Tel +254 (0) 710 809 156 --}}
                         </p>
                     </div>
                 @endif

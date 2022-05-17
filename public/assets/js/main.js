@@ -250,7 +250,7 @@ $(document).ready(function () {
     });
 
     //ck editor
-    CKEDITOR.replace( 'article-ckeditor' );
+    // CKEDITOR.replace( 'article-ckeditor' );
 
     //date on placeholder
     var date = new Date();

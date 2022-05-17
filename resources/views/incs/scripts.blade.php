@@ -13,7 +13,7 @@
     <script src="{{URL('/')}}/assets/client/jquery.fine-uploader.js"></script>
     <script type="text/javascript" src="{{URL('/')}}/assets/js/moment.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="{{URL('/')}}/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    {{-- <script src="{{URL('/')}}/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script> --}}
     <script type="text/javascript" src="{{URL('/')}}/assets/slick/slick.min.js"></script>
 
     <script src="{{URL('/')}}/assets/js/jquery.magnify.js"></script>
@@ -339,6 +339,19 @@
     $("#countries").click(function(e){
         e.stopPropagation();
     });
+
+    var header = $('#tablenav');
+			var offTop = header.offset().top;
+			
+
+			$(window).scroll(function(){
+				var top = $(window).scrollTop();
+				if (top > offTop) {
+					header.addClass("sticky");
+				} else {
+					header.removeClass("sticky");
+				}
+			});
 
 </script>
 
