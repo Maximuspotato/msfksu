@@ -34,14 +34,14 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>'PCT_CCT_NO',				// champ SQL pur
+					'sqlfield'=>"'<a target=\"_blank\" href=\"order-view?order_no=' || PCT_CCT_NO || '\">' || PCT_CCT_NO || '</a>'",
 					'title'=>'Client Order',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
 					
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
+					'aliasname'=>'OP',					//alias
+					'sortsqlfield'=>'OP',					//sort	
 				);
 
 				$fields[]=array(

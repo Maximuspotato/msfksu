@@ -216,6 +216,14 @@
 					$query .= " AND CLI_PAY_CODE = '".session()->get('country_code')."'";
 				}
 
+				if(isset($_REQUEST['dateAfter']) && trim($_REQUEST['dateAfter']) != ""){
+					$query .= " AND DTR_DT_CREAT_DOS >= TO_DATE(:dateAfter,'DD/MM/YYYY') ";
+				}
+
+				if(isset($_REQUEST['dateBefore']) && trim($_REQUEST['dateBefore']) != ""){
+					$query .= " AND DTR_DT_CREAT_DOS <= TO_DATE(:dateBefore,'DD/MM/YYYY')+1 ";
+				}
+
 				if (!isset($_REQUEST['orderby']) OR !isset($_REQUEST['order'])) {
 					$_REQUEST['orderby'] = $fields[0]['sqlfield'];
 					$_REQUEST['order']="DESC";
@@ -227,6 +235,14 @@
 
 				if(isset($_REQUEST['indx']) && trim($_REQUEST['indx']) != ""){
 					array_push($tab_filter,array('name'=>'indx','value'=>trim($_REQUEST['indx'])));
+				}
+
+				if(isset($_REQUEST['dateAfter']) && trim($_REQUEST['dateAfter']) != ""){
+					array_push($tab_filter,array('name'=>'dateAfter','value'=>trim($_REQUEST['dateAfter'])));
+				}
+
+				if(isset($_REQUEST['dateBefore']) && trim($_REQUEST['dateBefore']) != ""){
+					array_push($tab_filter,array('name'=>'dateBefore','value'=>trim($_REQUEST['dateBefore'])));
 				}
 				//array_push($tab_filter,array('name'=>'indsex','value'=>'sex'));
 				//dd($tab_filter);
@@ -254,6 +270,11 @@
 							<option value="KE" <?php if (isset($_REQUEST['country']) && $_REQUEST['country'] == "KE") echo "selected=selected"; ?>>Kenya</option>
 							<option value="RG" <?php if (isset($_REQUEST['country']) && $_REQUEST['country'] == "RG") echo "selected=selected"; ?>>Region</option>
 						</select><br><br>
+					
+					<label>Start date: </label>
+					<input type="text" name="dateAfter" id="dateAfter" placeholder="dd/mm/yyyy" value="<?php if (isset($_REQUEST['dateAfter'])) echo $_REQUEST['dateAfter'];?>" size="9" maxlength="10"/>
+					<label> End date: </label>
+					<input type="text" name="dateBefore" id="dateBefore" placeholder="dd/mm/yyyy" value="<?php if (isset($_REQUEST['dateBefore'])) echo $_REQUEST['dateBefore'];?>" size="9" maxlength="10"/>
 					
 					<input type="submit" value="Go"/>
 					</div>

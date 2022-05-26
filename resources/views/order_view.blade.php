@@ -89,14 +89,14 @@
 				);
 
                 $fields[]=array(
-					'sqlfield'=>'PCT_NO',				// champ SQL pur
+					'sqlfield'=>"'<a target=\"_blank\" href=\"packing-view?pk=' || PCT_NO || '\">' || PCT_NO || '</a>'",
 					'title'=>'packing',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
 					
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
+					'aliasname'=>'PK',					//alias
+					'sortsqlfield'=>'PK',					//sort	
 				);
 
                 $fields[]=array(
@@ -122,14 +122,14 @@
 				);
 
                 $fields[]=array(
-					'sqlfield'=>'PCT_NO_DOSSIER',				// champ SQL pur
+					'sqlfield'=>"'<a target=\"_blank\" href=\"freight-view?cm=' || PCT_NO_DOSSIER || '\">' || PCT_NO_DOSSIER || '</a>'",
 					'title'=>'Tr no',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
 					
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
+					'aliasname'=>'CM',					//alias
+					'sortsqlfield'=>'CM',					//sort	
 				);
 
 				$c = db_connect();

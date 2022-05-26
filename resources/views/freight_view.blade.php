@@ -78,14 +78,14 @@
 				);
 
                 $fields[]=array(
-					'sqlfield'=>'PCT_NO',				// champ SQL pur
+					'sqlfield'=>"'<a target=\"_blank\" href=\"packing-view?pk=' || PCT_NO || '\">' || PCT_NO || '</a>'",
 					'title'=>'Packing',					// Title for the column
 					
-					'format'=>'Text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
-					
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
+
+					'aliasname'=>'PK',					//alias
+					'sortsqlfield'=>'PK',					//sort	
 				);
 
                 $fields[]=array(

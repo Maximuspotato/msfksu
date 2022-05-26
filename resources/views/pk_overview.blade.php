@@ -25,15 +25,15 @@
                 // }
 
                 $fields[]=array(
-                    'sqlfield'=>'PCT_NO',				// champ SQL pur
-                    'title'=>'Packing No',					// Title for the column
-                    
-                    'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-                    'decimal'=>'',
-                    
-                    'aliasname'=>'',					//alias
-                    'sortsqlfield'=>'',					//sort	
-                );
+					'sqlfield'=>"'<a target=\"_blank\" href=\"packing-view?pk=' || PCT_NO || '\">' || PCT_NO || '</a>'",
+					'title'=>'Packing',					// Title for the column
+					
+					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'',
+
+					'aliasname'=>'PKNG',					//alias
+					'sortsqlfield'=>'PKNG',					//sort	
+				);
 
                 $fields[]=array(
                     'sqlfield'=>'PCT_NOM_DISP',				// champ SQL pur
@@ -153,18 +153,6 @@
                     $query .= " AND PCT_NO_DOSSIER IS NULL ";
                 }
 
-                if(isset($_REQUEST['client']) && trim($_REQUEST['client']) != ""){
-                    $query .= " AND PCT_NOM_LIV = :client ";
-                }
-
-                if(isset($_REQUEST['country']) && trim($_REQUEST['country']) != ""){
-                    if ($_REQUEST['country'] == 'KE') {
-                        $query .= " AND cli_pay_code = 'KE' ";
-                    }
-                    elseif ($_REQUEST['country'] == 'RG') {
-                        $query .= " AND cli_pay_code <> 'KE' ";
-                    }
-                }
                 if (session()->get('oc') != "") {
                     $query .= " AND CLI_SFC_CODE = '".session()->get('oc')."'";
                 }
@@ -174,7 +162,7 @@
                 }
 
                 if (!isset($_REQUEST['orderby']) OR !isset($_REQUEST['order'])) {
-                    $_REQUEST['orderby'] = $fields[0]['sqlfield'];
+                    $_REQUEST['orderby'] = $fields[2]['sqlfield'];
                     $_REQUEST['order']="DESC";
                 }
 
@@ -184,12 +172,6 @@
 
                 if(isset($_REQUEST['client']) && trim($_REQUEST['client']) != ""){
                     array_push($tab_filter,array('name'=>'client','value'=>trim($_REQUEST['client'])));
-                }
-                if(isset($_REQUEST['oc']) && trim($_REQUEST['oc']) != ""){
-                    array_push($tab_filter,array('name'=>'oc','value'=>trim($_REQUEST['oc'])));
-                }
-                if(isset($_REQUEST['country']) && trim($_REQUEST['country']) != ""){
-                    array_push($tab_filter,array('name'=>'country','value'=>trim($_REQUEST['country'])));
                 }
                 //dd($tab_filter);
 
@@ -208,38 +190,6 @@
                     <div class="div_filter">
                         <label>Include:</label>
                         <input type="checkbox" name="cm" id="cm" value="cm" <?php if(isset($_REQUEST['cm'])) echo "checked=" ?>> Cargo Manifest<br><br>
-                    
-                        <label>Client:</label>
-                        <select name="client">
-                            <option></option>
-                    <?php
-                            $query_client = " SELECT DISTINCT PCT_NOM_LIV
-                            FROM MS_PACK_CLI_TETE, XN_CLI
-							WHERE CLI_CODE(+) = PCT_CLI_CODE_LIV ";
-                            if (session()->get('oc') != "") {
-								$query_client .= " AND CLI_SFC_CODE = '".session()->get('oc')."'";
-							}
-
-							if (session()->get('country') != "") {
-								$query_client .= " AND CLI_PAY_CODE = '".session()->get('country_code')."'";
-							}
-							$query_client .= "ORDER BY PCT_NOM_LIV";
-                        $stmt = oci_parse($c, $query_client);
-                        ociexecute($stmt, OCI_DEFAULT);
-                        $nrows = ocifetchstatement($stmt, $result_client,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
-            
-                        foreach($result_client as $one_client){
-                            echo '<option '.(isset($_REQUEST['client']) && $one_client['PCT_NOM_LIV'] == $_REQUEST['client']?' selected ':'').'>'.$one_client['PCT_NOM_LIV'].'</option>';	
-                        }
-                    ?></select><br><br>
-
-                    </select>
-                    <label>Country selection:</label>
-                    <select name="country">
-                        <option></option>
-                        <option value="KE" <?php if (isset($_REQUEST['country']) && $_REQUEST['country'] == "KE") echo "selected"; ?>>Kenya</option>
-                        <option value="RG" <?php if (isset($_REQUEST['country']) && $_REQUEST['country'] == "RG") echo "selected"; ?>>Region</option>
-                    </select><br><br>
                     
                         <input type="submit" value="Go"/>
                     </div>
