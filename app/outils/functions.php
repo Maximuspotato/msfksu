@@ -4,7 +4,7 @@
 	Function to connect to the DB
 ****************************************************************************************************************************************/	
 function db_connect() {	
-	$c = ocilogon("MSF", "MSF", "192.168.125.26:1521/ORCL");
+	$c = ocilogon("MSF", "MSF", "10.210.168.40:1521/ORCL");
 	if ( ! $c ) {
 		echo "Unable to connect: " . var_dump( oci_error() );
 		die();
