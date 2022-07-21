@@ -126,7 +126,7 @@
 				}
 
 				if (isset($_REQUEST['fichier']) && $_REQUEST['fichier'] =='pdf') {
-					$reporturl='http://192.168.125.26:9002/reports/rwservlet?report=/u02/app/nodhos/msfsup/rdf/trvc324r&P_CCT_NO_DEB='.$_REQUEST['order'].'&P_CCT_NO_FIN='.$_REQUEST['order'].'&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&paramform=no&desformat=pdf';
+					$reporturl='http://10.210.168.40:9002/reports/rwservlet?report=/u02/app/nodhos/msfsup/rdf/trvc324r&P_CCT_NO_DEB='.$_REQUEST['order'].'&P_CCT_NO_FIN='.$_REQUEST['order'].'&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&paramform=no&desformat=pdf';
 					
 					$filename="op".$_REQUEST['order'].".pdf";
 
@@ -134,42 +134,20 @@
 					exit;
 				} elseif (isset($_REQUEST['fichier']) && $_REQUEST['fichier'] =='csv') {
 					$query = "
-					select
-				CCL_DES2,
-				CCL_ART_CODE,
-				CCL_ART_VAR1,
-				case when ARL_DES1 is null then CCL_DES1 else ARL_DES1 end CCL_DES1,
-				CCL_COND_VTE,
-				CCL_QTE_CMDE,
-				CCL_PX_VTE_NET PX_UNIT,
-				CCL_MT_HT_LIGNE,
-				CCT_DEV_CODE,
-				to_char(CCT_DT_CMDE,'DD/MM/YYYY') DT_CMDE,
-				CCL_PDS,
-				CCL_VOL,
-				ccl_dt_liv_prev
+					SELECT CCL_DES2, CCL_ART_CODE, CCL_ART_VAR1, CCL_DES1, CCT_DT_CMDE, CCT_DT_FERM, CCL_PDS, CCL_VOL, CCL_COND_VTE, CCL_QTE_CMDE,CCL_PX_VTE_NET,
+					CCL_MT_HT_LIGNE, CCT_DEV_CODE
+					FROM XN_CMDE_CLI_LIGNE, XN_CMDE_CLI_TETE
+					WHERE CCT_NO = CCL_CCT_NO
+					AND CCL_CCT_NO = :ref
+					AND CCL_SOLDEE_ON = 'N'
+					AND CCT_TYD_CODE = 'CC'";
 
-				from XN_CMDE_CLI_LIGNE,XN_CMDE_CLI_TETE, XN_ART_LANGUE
-
-				where CCL_CCT_NO=CCT_NO and
-				CCT_REF_CMDE_CLI1 = :ref and
-				CCL_SOLDEE_ON = 'N' and
-				CCT_TYD_CODE = 'CC' and
-				ARL_ART_CODE(+) =CCL_ART_CODE and
-				ARL_ART_VAR1(+) = CCL_ART_VAR1 and
-				ARL_LAN_CODE(+) = :arllancode
-
-				order by to_number(CCL_DES2)";
-
-					$commande = OCIParse($GLOBALS['c'], $query);
+					$commande = oci_parse($GLOBALS['c'], $query);
 					$ref=$_REQUEST['order'];
 					ocibindbyname($commande, ":ref",$ref);
 
-					$langue='E';
-
-					ocibindbyname($commande, ":arllancode",$langue);
-
-					OCIExecute($commande, OCI_DEFAULT);
+					ociexecute($commande, OCI_DEFAULT);
+					$nrows = ocifetchstatement($commande, $resulte,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
 					
 					$filename="op".$_REQUEST['order'].".csv";
 					
@@ -177,20 +155,20 @@
 					header("Content-disposition: filename=".$filename);
 					ob_get_clean();
 					echo 'Item;Code;Version;Description;Creation Date;RTS Date;Weight(kg);'.utf8_decode('Volume(dm³)').';'.'Packaging;Quantity;Pack Price;Value;Currency;'."\n";
-					while (OCIFetch($commande)) {
-						echo OCIResult($commande,'CCL_DES2').';'
-						.OCIResult($commande,'CCL_ART_CODE').';'
-						.OCIResult($commande,'CCL_ART_VAR1').';'
-						.utf8_encode(OCIResult($commande,'CCL_DES1')).';'
-						.OCIResult($commande,'DT_CMDE').';'
-						.OCIResult($commande,'CCL_DT_LIV_PREV').';'
-						.number_format(OCIResult($commande,'CCL_PDS'),4,',','').';'
-						.number_format(OCIResult($commande,'CCL_VOL'),4,',','').';'
-						.number_format(OCIResult($commande,'CCL_COND_VTE'),0,',','').';'
-						.number_format(OCIResult($commande,'CCL_QTE_CMDE'),0,',','').';'
-						.number_format(OCIResult($commande,'PX_UNIT'),4,',','').';'
-						.number_format(OCIResult($commande,'CCL_MT_HT_LIGNE'),4,',','').';'
-						.OCIResult($commande,'CCT_DEV_CODE').';'
+					foreach ($resulte as $one_resulte) {
+						echo $one_resulte['CCL_DES2'].';'
+						.$one_resulte['CCL_ART_CODE'].';'
+						.$one_resulte['CCL_ART_VAR1'].';'
+						.$one_resulte['CCL_DES1'].';'
+						.$one_resulte['CCT_DT_CMDE'].';'
+						.$one_resulte['CCT_DT_FERM'].';'
+						.number_format($one_resulte['CCL_PDS'],4,',','').';'
+						.number_format($one_resulte['CCL_VOL'],4,',','').';'
+						.number_format($one_resulte['CCL_COND_VTE'],0,',','').';'
+						.number_format($one_resulte['CCL_QTE_CMDE'],0,',','').';'
+						.number_format($one_resulte['CCL_PX_VTE_NET'],4,',','').';'
+						.number_format($one_resulte['CCL_MT_HT_LIGNE'],4,',','').';'
+						.$one_resulte['CCT_DEV_CODE'].';'
 						."\n";
 					}
 					exit;
