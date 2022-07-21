@@ -341,15 +341,17 @@
     });
 
     var header = $('#tablenav');
-			var offTop = header.offset().top;
+			var offTop = header.offset().top + -90;
 			
 
 			$(window).scroll(function(){
 				var top = $(window).scrollTop();
 				if (top > offTop) {
 					header.addClass("sticky");
+                    $('#mainmenu-wrapper').hide();
 				} else {
 					header.removeClass("sticky");
+                    $('#mainmenu-wrapper').show();
 				}
 			});
 
