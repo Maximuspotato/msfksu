@@ -193,7 +193,7 @@
 
 				if(!isset($_REQUEST['xls']) || $_REQUEST['xls'] <> 'yes'){
 					$fields[]=array(
-						'sqlfield'=>"'<img src=\"ext/images/add.png\" onclick=\"openForm(''' || DTR_NO || ''')\"/>'",		// champ SQL pur
+						'sqlfield'=>"'<img src=\"ext/images/add.png\" onclick=\"commForm(''' || DTR_NO || ''')\"/>'",		// champ SQL pur
 						'title'=>'Add Comment',					// Title for the column
 						
 						'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
@@ -322,6 +322,21 @@
 			</form>
 		</div>
 	</div>
+	<div class="form-popup" id="commForm">
+		<div class="div_filter">
+			<form id="transForm" class="form-container">
+				<h1 id="commHead"></h1>
+	
+				<textarea name="comment" placeholder="Add comment here..."></textarea>
+	
+				<input type="hidden" id="dtr_no" name="dtr_no" value="" required>
+				<input type="hidden" id="det" name="det" value="comm" required>
+	
+				<button type="submit" class="btn" onclick="save()" >Save</button>
+				<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+			</form>
+		</div>
+	</div>
 	<script>
 		function openForm(dtr_no){
 			document.getElementById("trForm").style.display = "table";
@@ -329,9 +344,16 @@
 			document.getElementById("dtr_no").value = dtr_no;
 			//console.log("{!! app_path() !!}");
 		}
+		function commForm(dtr_no){
+			document.getElementById("commForm").style.display = "table";
+			document.getElementById("commHead").innerHTML = "File no. "+dtr_no;
+			document.getElementById("dtr_no").value = dtr_no;
+			//console.log("{!! app_path() !!}");
+		}
 	
 		function closeForm() {
 			document.getElementById("trForm").style.display = "none";
+			document.getElementById("commForm").style.display = "none";
 		}
 	
 		function save(){
