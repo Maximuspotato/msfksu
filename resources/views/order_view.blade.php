@@ -18,8 +18,8 @@
 				include_once(app_path() . '/outils/functions.php');
 
 				$generalparams = array(
-					'xlsname'=>'tr_overview',
-					'title'=>'TR Overview'
+					'xlsname'=>'order_view',
+					'title'=>'Order View'
 				);
 
 				$fields[]=array(
@@ -176,6 +176,11 @@
 
 				if (isset($_REQUEST['order_no'])) {
 					$result = execute_request($c,$query,$tab_filter);
+
+					if(isset($_REQUEST['xls']) && $_REQUEST['xls'] == 'yes'){
+						render_table_xls($result, $fields, $generalparams);	
+						exit();
+					}
 				}
 
 			@endphp

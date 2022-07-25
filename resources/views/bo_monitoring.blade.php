@@ -164,7 +164,7 @@
 					'title'=>'Unit price',					// Title for the column
 					
 					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-					'decimal'=>'2',
+					'decimal'=>'0',
 
 					'aliasname'=>'UNITPRICE',					//alias
 					'sortsqlfield'=>'',					//sort	CCL_QTE_RESTE
@@ -182,7 +182,7 @@
 					'title'=>'Total price',					// Title for the column
 					
 					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-					'decimal'=>'2',
+					'decimal'=>'0',
 
 					'aliasname'=>'TOTALPRICE',					//alias
 					'sortsqlfield'=>'',					//sort	
@@ -200,10 +200,10 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>"TO_CHAR(CCT_DT_FERM,'DD/MM/YYYY')",		// champ SQL pur
+					'sqlfield'=>"CCT_DT_FERM",		// champ SQL pur
 					'title'=>'RTS Date',					// Title for the column
 					
-					'format'=>'date',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
 
 					'aliasname'=>'',					//alias
@@ -269,19 +269,6 @@
 					'sortsqlfield'=>'',					//sort	
 				);
 
-				if(!isset($_REQUEST['xls']) || $_REQUEST['xls'] <> 'yes'){
-					$fields[]=array(
-						'sqlfield'=>"'<img src=\"ext/images/add.png\" onclick=\"openForm(''' || DTR_NO || ''')\"/>'",		// champ SQL pur
-						'title'=>'',					// Title for the column
-						
-						'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-						'decimal'=>'',
-					
-						'aliasname'=>'BUTTONADD',					//alias
-						'sortsqlfield'=>'BUTTONADD',					//sort	
-					);
-				}
-
 				$c = db_connect();
 
 				$query = "SELECT ";
@@ -329,7 +316,7 @@
 				!isset($_REQUEST['onfreight']) && 
 				!isset($_REQUEST['delivered']) && 
 				!isset($_REQUEST['cancelled'])){
-					$query .= " AND PCL_PCT_NO IS NULL ";
+					$query .= " AND PCL_PCT_NO IS NULL AND CCT_TYD_CODE <> 'CX'";
 				}
 				if(isset($_REQUEST['draft']) &&
 				isset($_REQUEST['confirmed']) && 
@@ -337,7 +324,7 @@
 				!isset($_REQUEST['onfreight']) && 
 				!isset($_REQUEST['delivered']) && 
 				!isset($_REQUEST['cancelled'])){
-					$query .= " AND DTR_NO IS NULL ";
+					$query .= " AND DTR_NO IS NULL AND CCT_TYD_CODE <> 'CX'";
 				}
 				if(isset($_REQUEST['draft']) &&
 				isset($_REQUEST['confirmed']) && 
@@ -345,7 +332,7 @@
 				isset($_REQUEST['onfreight']) && 
 				!isset($_REQUEST['delivered']) &&
 				!isset($_REQUEST['cancelled'])){
-					$query .= " AND NOT DTR_INDEX(+) = 'Z' ";
+					$query .= " AND NOT DTR_INDEX(+) = 'Z' AND CCT_TYD_CODE <> 'CX'";
 				}
 				if(isset($_REQUEST['draft']) &&
 				isset($_REQUEST['confirmed']) && 
@@ -381,7 +368,7 @@
 				isset($_REQUEST['delivered']) &&
 				!isset($_REQUEST['cancelled'])){
 					$query .= " AND (CCT_TYD_CODE = 'CS'
-					OR (DTRC_DT_RC IS NOT NULL)) ";
+					OR (DTRC_DT_RC IS NOT NULL OR (DTR_NO IS NOT NULL AND DTR_INDEX = 'Z'))) ";
 				}
 				if(isset($_REQUEST['draft']) &&
 				!isset($_REQUEST['confirmed']) && 
@@ -445,8 +432,8 @@
 				!isset($_REQUEST['onfreight']) && 
 				isset($_REQUEST['delivered']) &&
 				!isset($_REQUEST['cancelled'])){
-					$query .= " AND (CCT_TYD_CODE = 'CC' AND PCL_PCT_NO IS NULL
-					OR (DTRC_DT_RC IS NOT NULL)) ";
+					$query .= " AND (CCT_TYD_CODE = 'CC' AND PCL_PCT_NO IS NULL 
+					OR (DTRC_DT_RC IS NOT NULL OR (DTR_NO IS NOT NULL AND DTR_INDEX = 'Z'))) ";
 				}
 				if(!isset($_REQUEST['draft']) &&
 				isset($_REQUEST['confirmed']) && 
@@ -494,7 +481,7 @@
 				isset($_REQUEST['delivered']) &&
 				!isset($_REQUEST['cancelled'])){
 					$query .= " AND (PCL_PCT_NO IS NOT NULL AND DTR_NO IS NULL
-					OR (DTR_NO IS NOT NULL AND DTR_INDEX = 'Z')) ";
+					OR (DTRC_DT_RC IS NOT NULL OR (DTR_NO IS NOT NULL AND DTR_INDEX = 'Z'))) ";
 				}
 				if(!isset($_REQUEST['draft']) &&
 				!isset($_REQUEST['confirmed']) && 
@@ -523,7 +510,7 @@
 				isset($_REQUEST['onfreight']) && 
 				isset($_REQUEST['delivered']) &&
 				!isset($_REQUEST['cancelled'])){
-					$query .= " AND DTR_NO IS NOT NULL ";
+					$query .= " AND (DTR_NO IS NOT NULL OR (DTRC_DT_RC IS NOT NULL)) ";
 				}
 				//onfreight or
 				if(!isset($_REQUEST['draft']) &&
@@ -543,8 +530,8 @@
 				!isset($_REQUEST['onfreight']) && 
 				isset($_REQUEST['delivered']) &&
 				!isset($_REQUEST['cancelled'])){
-					$query .= " AND DTR_NO IS NOT NULL 
-					AND DTRC_DT_RC IS NOT NULL ";
+					$query .= " AND (DTR_NO IS NOT NULL AND DTR_INDEX = 'Z'
+					OR (DTRC_DT_RC IS NOT NULL)) ";
 				}
 				//delivered or
 				if(!isset($_REQUEST['draft']) &&
@@ -580,17 +567,17 @@
 				if (isset($_REQUEST['confirmed'])) {
 					$query .= " UNION
 
-					(SELECT ROW_NUMBER() OVER (ORDER BY CCT_NO DESC), (CCT_NOM_DISP), (CCT_REF_CMDE_CLI1), (CCT_CHA_CODE), (CCT_NO),
-					(CCL_ART_CODE), (CCL_DES1), ('CONFIRMED'), (CCL_QTE_RESTE), CCL_PX_VTE_NET, CCL_PX_VTE_NET*CCL_QTE_RESTE, CCT_DEV_CODE, TO_CHAR(CCT_DT_FERM, 'DD/MM/YYYY'),
-					(NULL), (NULL),
-					(MTR_LIB), (DTRC_DT_RC)
-					('MSFOCB-KSU-CustomerService@brussels.msf.org')
-					FROM XN_CMDE_CLI_TETE,XN_CMDE_CLI_LIGNE,XN_MODE_TRANSP, MS_DOSSIER_TRANSP, EXT_DOSSIER_TRANSP_RC, XN_CLI
+					SELECT ROW_NUMBER() OVER (ORDER BY CCT_NO DESC), CCT_NOM_DISP, CCT_REF_CMDE_CLI1, CCT_CHA_CODE, '<a href=\"http://10.210.168.40/reports/order_view.php?order_no=' || CCT_NO || '&Go=Go\">' || CCT_NO || '</a>',
+					CCL_ART_CODE, CCL_DES1, 'CONFIRMED', CCL_QTE_RESTE, CCL_PX_VTE_NET, (CCL_PX_VTE_NET*CCL_QTE_RESTE), CCT_DEV_CODE, CCT_DT_FERM,
+					NULL, NULL,
+					MTR_LIB,
+					'MSFOCB-KSU-CustomerService@brussels.msf.org', NULL
+					FROM XN_CMDE_CLI_TETE,XN_CMDE_CLI_LIGNE,XN_MODE_TRANSP, MS_DOSSIER_TRANSP, XN_CLI
 					WHERE CCT_NO = CCL_CCT_NO
 					AND MTR_CODE = CCT_MTR_CODE
 					AND CCL_QTE_RESTE > 0
 					AND CCL_INDEX = '4'
-					AND DTR_NO = DTRC_DTR_NO(+)
+					AND CCT_TYD_CODE = 'CC'
 					AND CLI_CODE(+) = CCT_CLI_CODE_LIVRE ";
 					
 					if(isset($_REQUEST['procode']) && trim($_REQUEST['procode']) != ""){
@@ -618,17 +605,18 @@
 					if (session()->get('country') != "") {
 						$query .= " AND CLI_PAY_CODE = '".session()->get('country_code')."'";
 					}
-					
+
 					$query .= "
 					GROUP BY CCT_NOM_DISP, CCT_REF_CMDE_CLI1, CCT_CHA_CODE, CCT_NO, CCL_ART_CODE, CCL_DES1, CCT_DT_FERM, CCT_MTR_CODE, CCL_QTE_RESTE, 
-					CCL_PX_VTE_NET, CCT_DEV_CODE, MTR_LIB, DTRC_DT_RC) ";
+					CCL_PX_VTE_NET, CCT_DEV_CODE, MTR_LIB ";
+					
 				}
 
 
 
 				if (!isset($_REQUEST['orderby']) OR !isset($_REQUEST['order'])) {
-					$_REQUEST['orderby'] = $fields[0]['sqlfield'];
-					$_REQUEST['order']="DESC";
+					$_REQUEST['orderby'] = 'INDEXNO';
+					$_REQUEST['order']="ASC";
 				}
 
 				$query .= ' ORDER BY '.$_REQUEST['orderby'].' '.$_REQUEST['order'];
@@ -656,7 +644,7 @@
 				$result = execute_request($c,$query,$tab_filter);
 
 				if(isset($_REQUEST['xls']) && $_REQUEST['xls'] == 'yes'){
-					render_table_xls($result);	
+					render_table_xls($result, $fields, $generalparams);	
 					exit();
 				}
 			@endphp
@@ -740,42 +728,4 @@
 			?>
 		</div>
 	</div>
-	<div class="form-popup" id="trForm">
-		<div class="div_filter">
-			<form id="transForm" class="form-container">
-				<h1 id="trHead"></h1>
-	
-				<label for="recieved"><b>Recieved</b></label>
-				<input type="date" id="recieved" name="recieved">
-	
-				<input type="hidden" id="dtr_no" name="dtr_no" value="" required>
-	
-				<button type="submit" class="btn" onclick="save()" >Save</button>
-				<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-			</form>
-		</div>
-	</div>
-	<script>
-		function openForm(dtr_no){
-			document.getElementById("trForm").style.display = "table";
-			document.getElementById("trHead").innerHTML = "File no. "+dtr_no;
-			document.getElementById("dtr_no").value = dtr_no;
-			//console.log("{!! app_path() !!}");
-		}
-	
-		function closeForm() {
-			document.getElementById("trForm").style.display = "none";
-		}
-	
-		function save(){
-			var http = new XMLHttpRequest();
-			http.open("POST", "{{url('/')}}/ext/utils/KSU_trans_ajax.php", true);
-			http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			var params = "recieved="+document.getElementById("recieved").value+"&dtr_no="+document.getElementById("dtr_no").value;
-			http.send(params);
-			http.onload = function() {
-				window.location.replace("<?php echo Request::fullUrl(); ?>");
-			}
-		}
-	</script>
 @endsection

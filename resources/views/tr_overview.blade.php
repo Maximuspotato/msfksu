@@ -170,13 +170,37 @@
 				if(!isset($_REQUEST['xls']) || $_REQUEST['xls'] <> 'yes'){
 					$fields[]=array(
 						'sqlfield'=>"'<img src=\"ext/images/add.png\" onclick=\"openForm(''' || DTR_NO || ''')\"/>'",		// champ SQL pur
-						'title'=>'',					// Title for the column
+						'title'=>'Add Date',					// Title for the column
 						
 						'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 						'decimal'=>'',
 					
 						'aliasname'=>'BUTTONADD',					//alias
 						'sortsqlfield'=>'BUTTONADD',					//sort	
+					);
+				}
+
+				$fields[]=array(
+					'sqlfield'=>'DTC_COMM',		// champ SQL pur
+					'title'=>'Comments',					// Title for the column
+					
+					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'',
+
+					'aliasname'=>'',					//alias
+					'sortsqlfield'=>'',					//sort	
+				);
+
+				if(!isset($_REQUEST['xls']) || $_REQUEST['xls'] <> 'yes'){
+					$fields[]=array(
+						'sqlfield'=>"'<img src=\"ext/images/add.png\" onclick=\"openForm(''' || DTR_NO || ''')\"/>'",		// champ SQL pur
+						'title'=>'Add Comment',					// Title for the column
+						
+						'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+						'decimal'=>'',
+					
+						'aliasname'=>'COMMADD',					//alias
+						'sortsqlfield'=>'COMMADD',					//sort	
 					);
 				}
 
@@ -189,10 +213,12 @@
 				}
 
 				$query .= "
-				FROM MS_DOSSIER_TRANSP, XN_MODE_TRANSP, XN_CLI, EXT_DOSSIER_TRANSP_RC
+				FROM MS_DOSSIER_TRANSP, XN_MODE_TRANSP, XN_CLI, EXT_DOSSIER_TRANSP_RC,
+				EXT_DOSSIER_TRANSP_COMM
 				WHERE MTR_CODE = DTR_MTR_CODE
 				AND CLI_CODE = DTR_CLI_CODE_DISP
-				AND DTRC_DTR_NO(+) = DTR_NO ";
+				AND DTRC_DTR_NO(+) = DTR_NO 
+				AND DTC_DTR_NO(+) = DTR_NO ";
 
 				if(isset($_REQUEST['country']) && trim($_REQUEST['country']) != ""){
 					if ($_REQUEST['country'] == 'KE') {
@@ -252,7 +278,7 @@
 				$result = execute_request($c,$query,$tab_filter);
 
 				if(isset($_REQUEST['xls']) && $_REQUEST['xls'] == 'yes'){
-					render_table_xls($result);	
+					render_table_xls($result, $fields, $generalparams);	
 					exit();
 				}
 			@endphp
@@ -264,12 +290,7 @@
 					<?php if(isset($_REQUEST['indx']))echo 'value=""' ?> 
 					<?php if($_REQUEST['indx'] == '')echo 'checked=""' ?>><span>Z</span><br><br>
 					
-					<label>Country selection:</label>
-					<select name="country">
-							<option></option>
-							<option value="KE" <?php if (isset($_REQUEST['country']) && $_REQUEST['country'] == "KE") echo "selected=selected"; ?>>Kenya</option>
-							<option value="RG" <?php if (isset($_REQUEST['country']) && $_REQUEST['country'] == "RG") echo "selected=selected"; ?>>Region</option>
-						</select><br><br>
+					
 					
 					<label>Start date: </label>
 					<input type="text" name="dateAfter" id="dateAfter" placeholder="dd/mm/yyyy" value="<?php if (isset($_REQUEST['dateAfter'])) echo $_REQUEST['dateAfter'];?>" size="9" maxlength="10"/>
