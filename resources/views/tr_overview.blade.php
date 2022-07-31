@@ -181,19 +181,20 @@
 				}
 
 				$fields[]=array(
-					'sqlfield'=>'DTC_COMM',		// champ SQL pur
+					'sqlfield'=>'COMMTBL.DTC_COMM',		// champ SQL pur
 					'title'=>'Comments',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
 
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
+					'aliasname'=>'COMM',					//alias
+					'sortsqlfield'=>'COMM',					//sort	
 				);
 
 				if(!isset($_REQUEST['xls']) || $_REQUEST['xls'] <> 'yes'){
 					$fields[]=array(
-						'sqlfield'=>"'<img src=\"ext/images/add.png\" onclick=\"commForm(''' || DTR_NO || ''')\"/>'",		// champ SQL pur
+						'sqlfield'=>"'<img src=\"ext/images/add.png\" onclick=\"commForm(''' || DTR_NO || ''')\"/>
+						<img src=\"ext/images/edit.png\" onclick=\"fetchComms(''' || DTR_NO || ''')\"/>'",		// champ SQL pur
 						'title'=>'Add Comment',					// Title for the column
 						
 						'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
@@ -213,12 +214,13 @@
 				}
 
 				$query .= "
-				FROM MS_DOSSIER_TRANSP, XN_MODE_TRANSP, XN_CLI, EXT_DOSSIER_TRANSP_RC,
-				EXT_DOSSIER_TRANSP_COMM
+				FROM MS_DOSSIER_TRANSP TR, XN_MODE_TRANSP, XN_CLI, EXT_DOSSIER_TRANSP_RC,
+				(SELECT ROWNUM RN, DTC_DTR_NO, DTC_COMM, DTC_DT FROM (SELECT ROWNUM ,DTC_DTR_NO, DTC_COMM, DTC_DT FROM EXT_DOSSIER_TRANSP_COMM ORDER BY DTC_DT DESC)) COMMTBL
 				WHERE MTR_CODE = DTR_MTR_CODE
 				AND CLI_CODE = DTR_CLI_CODE_DISP
 				AND DTRC_DTR_NO(+) = DTR_NO 
-				AND DTC_DTR_NO(+) = DTR_NO ";
+				AND COMMTBL.DTC_DTR_NO(+) = DTR_NO
+				AND COMMTBL.RN(+) = 1 ";
 
 				if(isset($_REQUEST['country']) && trim($_REQUEST['country']) != ""){
 					if ($_REQUEST['country'] == 'KE') {
@@ -327,15 +329,21 @@
 			<form id="transForm" class="form-container">
 				<h1 id="commHead"></h1>
 	
-				<textarea name="comment" placeholder="Add comment here..."></textarea>
+				<textarea name="comm" placeholder="Add comment here..." required></textarea>
 	
-				<input type="hidden" id="dtr_no" name="dtr_no" value="" required>
-				<input type="hidden" id="det" name="det" value="comm" required>
+				<input type="hidden" id="dtr_nos" name="dtr_nos" value="" required>
+				<input type="hidden" id="det" name="det" value="det" required>
 	
 				<button type="submit" class="btn" onclick="save()" >Save</button>
 				<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
 			</form>
 		</div>
+	</div>
+	<div class="form-popup" id="allComms">
+		<div class="div_filter" id="commsDiv" style="overflow-y: scroll">
+			<h1 id="allCommsHead"></h1>
+		</div>
+		<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
 	</div>
 	<script>
 		function openForm(dtr_no){
@@ -347,14 +355,26 @@
 		function commForm(dtr_no){
 			document.getElementById("commForm").style.display = "table";
 			document.getElementById("commHead").innerHTML = "File no. "+dtr_no;
-			document.getElementById("dtr_no").value = dtr_no;
+			document.getElementById("dtr_nos").value = dtr_no;
 			//console.log("{!! app_path() !!}");
 		}
-	
 		function closeForm() {
 			document.getElementById("trForm").style.display = "none";
 			document.getElementById("commForm").style.display = "none";
+			var comClass = document.getElementsByClassName('com');
+			if (comClass != null) {
+				var length = comClass.length;
+				for(var i = 0; i < length; i++) {
+					comClass[0].remove();
+				}
+				document.getElementById("allComms").style.display = "none";
+			}
 		}
+	
+		// function closeForm() {
+		// 	document.getElementById("trForm").style.display = "none";
+		// 	document.getElementById("commForm").style.display = "none";
+		// }
 	
 		function save(){
 			var http = new XMLHttpRequest();
@@ -365,6 +385,56 @@
 			// http.onload = function() {
 			// 	alert(http.responseText);
 			// }
+		}
+		function delComm(comm2del){
+			var http = new XMLHttpRequest();
+			http.open("POST", "{{url('/')}}/ext/utils/KSU_trans_ajax.php", true);
+			http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			var params = "recieved="+document.getElementById("recieved").value+"&dtr_no="+document.getElementById("dtr_no").value;
+			http.send(params);
+			// http.onload = function() {
+			// 	alert(http.responseText);
+			// }
+		}
+		function fetchComms(dtr_no){
+			var http = new XMLHttpRequest();
+			http.open("POST", "{{url('/')}}/ext/utils/KSU_trans_ajax.php", true);
+			http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			var params = "dtr_no="+dtr_no+"&det=fetch";
+			http.send(params);
+			http.onload = function() {
+				if (http.responseText === "empty\t") {
+					alert("No comment available");
+				} else {
+					var comClass = document.getElementsByClassName('com');
+					if (comClass != null) {
+						var length = comClass.length;
+						for(var i = 0; i < length; i++) {
+							comClass[0].remove();
+						}
+						document.getElementById("allComms").style.display = "none";
+					}
+					var resp = JSON.parse(http.responseText);
+					document.getElementById("allComms").style.display = "table";
+					document.getElementById("allCommsHead").innerHTML = "File no. "+dtr_no;
+					var counter = 1;
+					resp.forEach(comm => {
+						//console.log(comm['DTC_COMM']);
+						const para = document.createElement("p");
+						para.setAttribute("class", "com");
+						para.setAttribute("style", "color: white");
+						para.innerHTML = counter+". "+comm['DTC_COMM'];
+
+						const pic = document.createElement("img");
+						pic.setAttribute("src", "ext/images/delete.gif");
+						//pic.setAttribute("onclick", "delComm("+comm['DTC_COMM']+")");
+
+						document.getElementById("commsDiv").appendChild(para);
+						document.getElementById("commsDiv").appendChild(pic );
+						counter++;
+					});
+				}
+			}
 		}
 	</script>
 @endsection
