@@ -45,6 +45,22 @@
 				);
 
 				$fields[]=array(
+					'sqlfield'=>"
+					CASE
+					WHEN DTR_MTR_CODE = 'R' THEN DTR_NO_BL_TRANSP
+					WHEN DTR_MTR_CODE = 'A' THEN DTR_MAWB
+					END
+					",				// champ SQL pur
+					'title'=>'DN no/AWB',					// Title for the column
+					
+					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'',
+					
+					'aliasname'=>'DNAWN',					//alias
+					'sortsqlfield'=>'DNAWN',					//sort	
+				);
+
+				$fields[]=array(
 					'sqlfield'=>'FCT_NO_FACTURE',				// champ SQL pur
 					'title'=>'Freight invoice',					// Title for the column
 					
@@ -229,7 +245,7 @@
 				}
 
 				$query .= " GROUP BY DTR_NO, SDT_NO, FCT_NO_FACTURE, PCT_OBS2, PCT_CHA_CODE, PCT_NO, PCT_NO_FACTURE, PCL_ART_CODE, PCL_DES1, PCL_ART_VAR1, PCL_DT_PEREMPTION,
-							PCL_NO_SERIE_LOT, FOU_NOM, PAY_NOM, PCL_QTE_LIV, PCL_PX_REMISE ";
+							PCL_NO_SERIE_LOT, FOU_NOM, PAY_NOM, PCL_QTE_LIV, PCL_PX_REMISE, DTR_MTR_CODE, DTR_NO_BL_TRANSP, DTR_MAWB ";
 
 				if (!isset($_REQUEST['orderby']) OR !isset($_REQUEST['order'])) {
 					$_REQUEST['orderby'] = $fields[0]['sqlfield'];
