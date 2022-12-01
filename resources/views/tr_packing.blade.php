@@ -187,15 +187,15 @@
 						
 						echo '<br>';
 						echo '<label>Total Invoice: </label>';
-						$query_amt = " SELECT SUM(FCT_MT_BASE_REMISE) AMT FROM XN_FAC_CLI_TETE WHERE FCT_CCT_REF_CMDE_CLI1 = :cm ";
+						$query_amt = " SELECT SUM(FCT_MT_BASE_REMISE) AMT, FCT_DEV_CODE CURR FROM XN_FAC_CLI_TETE WHERE FCT_CCT_REF_CMDE_CLI1 = :cm GROUP BY FCT_DEV_CODE ";
 						$stmt = oci_parse($c, $query_amt);
 						ocibindbyname($stmt, ":cm", $_REQUEST['cm']);
 						ociexecute($stmt, OCI_DEFAULT);
 						$nrows = ocifetchstatement($stmt, $result_amt,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
 						
 						foreach($result_amt as $one_amt){
-							echo $one_amt['AMT'];
-						}
+							echo $one_amt['AMT'].' '.$one_amt['CURR'];
+	}
 
 						echo '<br>';
 						echo '<label>Tr Mode: </label>';
