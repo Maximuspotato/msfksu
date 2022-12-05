@@ -275,6 +275,15 @@ class PagesController extends Controller
     public function freight_view(){
         return view('freight_view')->with('active', 'extranet');
     }
+    public function dnno_view(){
+        return view('dnno_view')->with('active', 'extranet');
+    }
+    public function awb_view(){
+        return view('awb_view')->with('active', 'extranet');
+    }
+    public function cmr_view(){
+        return view('cmr_view')->with('active', 'extranet');
+    }
     public function invoice(){
         return view('invoice')->with('active', 'extranet');
     }

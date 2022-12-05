@@ -53,6 +53,9 @@ Route::get('/order-confirmation', 'PagesController@order_confirmation')->middlew
 Route::get('/packing-view', 'PagesController@pk_view')->middleware(['auth', 'verified']);
 Route::get('/order-view', 'PagesController@order_view')->middleware(['auth', 'verified']);
 Route::get('/freight-view', 'PagesController@freight_view')->middleware(['auth', 'verified']);
+Route::get('/dnno-view', 'PagesController@dnno_view')->middleware(['auth', 'verified']);
+Route::get('/awb-view', 'PagesController@awb_view')->middleware(['auth', 'verified']);
+Route::get('/cmr-view', 'PagesController@cmr_view')->middleware(['auth', 'verified']);
 Route::get('/invoice', 'PagesController@invoice')->middleware(['auth', 'verified']);
 Route::get('/rts', 'PagesController@rts')->middleware(['auth', 'verified']);
 Route::get('/stock', 'PagesController@stock')->middleware(['auth', 'verified']);

@@ -60,6 +60,9 @@
                                     <p><a href="{{URL('/tr-packing')}}">Transport Cost Per Packing</a></p>
                                     <p><a href="{{URL('/packing-view')}}">Packing View</a></p>
                                     <p><a href="{{URL('/freight-view')}}">Freight View</a></p>
+                                    <p><a href="{{URL('/dnno-view')}}">Dn no view</a></p>
+                                    <p><a href="{{URL('/awb-view')}}">AWB view</a></p>
+                                    <p><a href="{{URL('/cmr-view')}}">CMR view</a></p>
                                     <p><a href="{{URL('/freight-reception')}}">Freight reception</a></p>
                                 </div>
                             </div>

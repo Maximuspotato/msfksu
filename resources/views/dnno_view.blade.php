@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Freight View</h1>
+                    <h1>Dn no View</h1>
                 </div>
             </div>
         </div>
@@ -18,8 +18,8 @@
 				include_once(app_path() . '/outils/functions.php');
 
 				$generalparams = array(
-					'xlsname'=>'tr_overview',
-					'title'=>'TR Overview'
+					'xlsname'=>'dnno_view',
+					'title'=>'Dn no View'
 				);
 
 				$fields[]=array(
@@ -45,30 +45,14 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>"
-					CASE
-					WHEN DTR_MTR_CODE = 'R' THEN '<a target=\"_blank\" href=\"dnno-view?dn=' || DTR_NO_BL_TRANSP || '\">' || DTR_NO_BL_TRANSP || '</a>'
-					WHEN DTR_MTR_CODE = 'A' THEN '<a target=\"_blank\" href=\"awb-view?awb=' || DTR_MAWB || '\">' || DTR_MAWB || '</a>'
-					END
-					",				// champ SQL pur
-					'title'=>'DN no/AWB',					// Title for the column
-					
-					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-					'decimal'=>'',
-					
-					'aliasname'=>'DNAWN',					//alias
-					'sortsqlfield'=>'DNAWN',					//sort	
-				);
-
-				$fields[]=array(
-					'sqlfield'=>"'<a target=\"_blank\" href=\"cmr-view?cmr=' || SDT_LTA_CMR_TC || '\">' || SDT_LTA_CMR_TC || '</a>'",				// champ SQL pur
+					'sqlfield'=>'SDT_LTA_CMR_TC',				// champ SQL pur
 					'title'=>'CMR',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
 					
-					'aliasname'=>'CMR',					//alias
-					'sortsqlfield'=>'CMR',					//sort	
+					'aliasname'=>'',					//alias
+					'sortsqlfield'=>'',					//sort	
 				);
 
 				$fields[]=array(
@@ -243,8 +227,8 @@
 				AND PAY_CODE = DTR_PAY_CODE_DISP
 				AND CLI_CODE = DTR_CLI_CODE_DISP ";
 
-				if(isset($_REQUEST['cm'])){
-					$query .= " AND DTR_NO = :cm ";
+				if(isset($_REQUEST['dn'])){
+					$query .= " AND DTR_NO_BL_TRANSP = :dn ";
 				}
 
 				if (session()->get('oc') != "") {
@@ -267,93 +251,27 @@
 
 				$tab_filter	= array();
 
-				if(isset($_REQUEST['cm']) && trim($_REQUEST['cm']) != ""){
-					array_push($tab_filter,array('name'=>'cm','value'=>trim($_REQUEST['cm'])));
+				if(isset($_REQUEST['dn']) && trim($_REQUEST['dn']) != ""){
+					array_push($tab_filter,array('name'=>'dn','value'=>trim($_REQUEST['dn'])));
 				}
 
-				if(isset($_REQUEST['cm'])){
+				if(isset($_REQUEST['dn'])){
 					$result = execute_request($c,$query,$tab_filter);
 				}
 			@endphp
 			<div class="container" id="grille-param">
-				<form method="GET" action="{{URL('/')}}/freight-view" autocomplete="off">
+				<form method="GET" action="{{URL('/')}}/dnno-view" autocomplete="off">
 					<div class="div_filter">
 					
-						<label>Freight:</label>
-						<input type="text" name="cm" id="cm" value="<?php if (isset($_REQUEST['cm'])) echo $_REQUEST['cm'];?>" required><br><br>
+						<label>Dn no:</label>
+						<input type="text" name="dn" id="dn" value="<?php if (isset($_REQUEST['dn'])) echo $_REQUEST['dn'];?>" required><br><br>
 					
 						<input type="submit" value="Go"/><br><br>
 					</div>
 				</form>
-				<div class="div_filter">
-                    <?php
-                        if (isset($_REQUEST['cm'])) {
-                            echo '<label>Nb parcels: </label>';
-                            $query_cm = " SELECT SUM(PCT_NB_COLIS), SUM(PCT_TOT_PDS), SUM(PCT_TOT_VOL), MTR_LIB, DTR_NO, DTR_ZZ_DT_ETD, DTR_ZZ_DT_ETA
-											FROM MS_PACK_CLI_TETE, MS_DOSSIER_TRANSP, XN_MODE_TRANSP, XN_CLI
-											WHERE DTR_NO(+) = PCT_NO_DOSSIER
-											AND DTR_MTR_CODE = MTR_CODE(+)
-											AND CLI_CODE(+) = DTR_CLI_CODE_DISP 
-											AND DTR_NO = :cm ";
-                            if (session()->get('oc') != "") {
-								$query_cm .= " AND CLI_SFC_CODE = '".session()->get('oc')."'";
-							}
-
-							if (session()->get('country') != "") {
-								$query_cm .= " AND CLI_PAY_CODE = '".session()->get('country_code')."'";
-							}
-							$query_cm .= " GROUP BY MTR_LIB, DTR_NO, DTR_ZZ_DT_ETD, DTR_ZZ_DT_ETA ";
-                            $stmt = oci_parse($c, $query_cm);
-                            ocibindbyname($stmt, ":cm", $_REQUEST['cm']);
-                            ociexecute($stmt, OCI_DEFAULT);
-                            $nrows = ocifetchstatement($stmt, $result_cm,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
-                            
-                            foreach($result_cm as $one_cm){
-                                echo ' '.$one_cm['SUM(PCT_NB_COLIS)'];
-                                echo '<br>';
-                            }
-
-                            echo '<label>Total weight: </label>';
-                            foreach($result_cm as $one_cm){
-                                echo ' '.$one_cm['SUM(PCT_TOT_PDS)'].' kg';
-                                echo '<br>';
-                            }
-
-                            echo '<label>Total vol: </label>';
-                            foreach($result_cm as $one_cm){
-                                echo ' '.$one_cm['SUM(PCT_TOT_VOL)'].' dm<sup>3</sup>';
-                                echo '<br>';
-                            }
-
-                            echo '<label>Tr mode: </label>';
-                            foreach($result_cm as $one_cm){
-                                echo ' '.$one_cm['MTR_LIB'];
-                                echo '<br>';
-                            }
-
-                            echo '<label>Tr no: </label>';
-                            foreach($result_cm as $one_cm){
-                                echo ' '.$one_cm['DTR_NO'];
-                                echo '<br>';
-                            }
-
-                            echo '<label>ETD: </label>';
-                            foreach($result_cm as $one_cm){
-                                echo ' '.$one_cm['DTR_ZZ_DT_ETD'];
-                                echo '<br>';
-                            }
-
-							echo '<label>ETA: </label>';
-                            foreach($result_cm as $one_cm){
-                                echo ' '.$one_cm['DTR_ZZ_DT_ETA'];
-                                echo '<br>';
-                            }
-                        }
-					?>
-                </div>
 			</div>
 			<?php
-				if (isset($_REQUEST['cm'])) {
+				if (isset($_REQUEST['dn'])) {
 					render_table($result, $fields);
 				}
 			?>
