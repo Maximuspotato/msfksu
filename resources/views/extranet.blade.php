@@ -18,7 +18,7 @@
                 <div class="col-md-12 faq-wrapper">
                     <div class="panel-group" id="accordion2">
                         <h3>Extranet reports</h3>
-                        <div class="panel panel-default">
+                        {{-- <div class="panel panel-default">
                             <div class="panel-heading">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse24">
                                     Client
@@ -32,7 +32,7 @@
                                     <p><a href="{{URL('/batch-traceability')}}">Batch Traceability</a></p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse21">
