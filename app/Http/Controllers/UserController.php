@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\UserSection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -21,6 +22,8 @@ class UserController extends Controller
         $id = $request->input('id');
         $user = User::find($id);
         $user->delete();
+        $userSection = UserSection::find($id);
+        $userSection->delete();
 
         return back();
     }
