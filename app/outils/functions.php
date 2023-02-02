@@ -239,9 +239,7 @@ function render_table_xls($result, $fields, $generalparams){
 	header('Cache-Control: max-age=0');
 	ob_get_clean();
 	$objWriter = PHPExcel_IOFactory::createWriter($objExcel, 'Excel2007');
-	// ob_end_clean();
 	$objWriter->save('php://output');
-	//exit;
 }
 
 function logtext($log_text)
