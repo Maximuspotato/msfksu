@@ -157,9 +157,9 @@
 				}
 
 				if(isset($_REQUEST['xls']) && $_REQUEST['xls'] == 'yes'){
-					render_table_xls($result);	
-					exit();
-				}
+                    render_table_xls($result, $fields, $generalparams);	
+                    exit();
+                }
 			@endphp
 			<div class="container" id="grille-param">
 				<form method="GET" action="{{URL('/')}}/tr-packing" autocomplete="off">

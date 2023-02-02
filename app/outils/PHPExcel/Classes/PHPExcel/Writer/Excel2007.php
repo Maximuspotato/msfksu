@@ -201,8 +201,8 @@ class PHPExcel_Writer_Excel2007 implements PHPExcel_Writer_IWriter
 
 			$saveDebugLog = PHPExcel_Calculation::getInstance()->writeDebugLog;
 			PHPExcel_Calculation::getInstance()->writeDebugLog = false;
-			$saveDateReturnType = PHPExcel_Calculation_Functions::getReturnDateType();
-			PHPExcel_Calculation_Functions::setReturnDateType(PHPExcel_Calculation_Functions::RETURNDATE_EXCEL);
+			// $saveDateReturnType = PHPExcel_Calculation_Functions::getReturnDateType();
+			//PHPExcel_Calculation_Functions::setReturnDateType(PHPExcel_Calculation_Functions::RETURNDATE_EXCEL);
 
 			// Create string lookup table
 			$this->_stringTable = array();
@@ -338,7 +338,7 @@ class PHPExcel_Writer_Excel2007 implements PHPExcel_Writer_IWriter
 				}
 			}
 
-			PHPExcel_Calculation_Functions::setReturnDateType($saveDateReturnType);
+			//PHPExcel_Calculation_Functions::setReturnDateType($saveDateReturnType);
 			PHPExcel_Calculation::getInstance()->writeDebugLog = $saveDebugLog;
 
 			// Close file

@@ -16,6 +16,10 @@
         <div class="container">
 			@php
 				include_once(app_path() . '/outils/functions.php');
+				$generalparams = array(
+					'xlsname'=>'packing_view',
+					'title'=>'Packing View'
+				);
 
 				$fields[]=array(
 					'sqlfield'=>'PCL_ART_CODE',				// champ SQL pur
@@ -173,9 +177,9 @@
 				}
 
 				if(isset($_REQUEST['xls']) && $_REQUEST['xls'] == 'yes'){
-					render_table_xls($result);	
-					exit();
-				}
+                    render_table_xls($result, $fields, $generalparams);	
+                    exit();
+                }
 			@endphp
 			<div class="container" id="grille-param">
 				<form method="GET" action="{{URL('/')}}/packing-view" autocomplete="off">

@@ -157,7 +157,7 @@ function render_table_xls($result, $fields, $generalparams){
 	error_reporting(E_ALL);
 	date_default_timezone_set('Europe/London');
 		
-	// font style
+	// // font style
 	$style = array(
 				'font'    => array(
 					'bold'      => true
@@ -180,7 +180,7 @@ function render_table_xls($result, $fields, $generalparams){
 
 	$objExcel = new PHPExcel();
 	
-	//title
+	// //title
 	$car = 'A';
 	$j = 1;
 	$objExcel->setActiveSheetIndex(0);
@@ -234,14 +234,14 @@ function render_table_xls($result, $fields, $generalparams){
 		
 	// Redirect output to a client's web browser (Excel5)
 	header('Content-Type: application/vnd.ms-excel');
-	header('Content-Disposition: attachment;filename="'.$generalparams['xlsname'].'.xls"');
+	header('Content-Disposition: attachment;filename="'.$generalparams['xlsname'].'.xlsx"');
 	
 	header('Cache-Control: max-age=0');
 	ob_get_clean();
-	$objWriter = PHPExcel_IOFactory::createWriter($objExcel, 'Excel5');
-	
+	$objWriter = PHPExcel_IOFactory::createWriter($objExcel, 'Excel2007');
+	// ob_end_clean();
 	$objWriter->save('php://output');
-	exit;
+	//exit;
 }
 
 function logtext($log_text)

@@ -18,8 +18,8 @@
 				include_once(app_path() . '/outils/functions.php');
 
 				$generalparams = array(
-					'xlsname'=>'tr_overview',
-					'title'=>'TR Overview'
+					'xlsname'=>'freight_view',
+					'title'=>'Freight View'
 				);
 
 				$fields[]=array(
@@ -274,6 +274,10 @@
 				if(isset($_REQUEST['cm'])){
 					$result = execute_request($c,$query,$tab_filter);
 				}
+				if(isset($_REQUEST['xls']) && $_REQUEST['xls'] == 'yes'){
+                    render_table_xls($result, $fields, $generalparams);	
+                    exit();
+                }
 			@endphp
 			<div class="container" id="grille-param">
 				<form method="GET" action="{{URL('/')}}/freight-view" autocomplete="off">
