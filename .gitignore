@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+/app/outils/functions.php
 /storage/*.key
 .env
 .phpunit.result.cache
