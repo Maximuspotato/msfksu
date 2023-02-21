@@ -203,6 +203,9 @@ function render_table_xls($result, $fields, $generalparams){
 		$car = 'A';
 		foreach ($fields as $k => $field) {
 			$fieldvalue = ($field['aliasname']!=""?$line[$field['aliasname']]:$line[$field['sqlfield']]);
+
+			$fieldvalue = utf8_encode($fieldvalue);
+			$fieldvalue = strip_tags($fieldvalue);
 			
 			if($field['format'] == 'number' && $fieldvalue != ""){
 				$fieldvalue = number_format($fieldvalue,(isset($field['decimal']) && trim($field['decimal']) != "" && $field['decimal'] >= 0?$field['decimal']:5),'.','');
