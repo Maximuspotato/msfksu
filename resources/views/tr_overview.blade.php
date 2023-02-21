@@ -117,6 +117,28 @@
 				);
 
 				$fields[]=array(
+					'sqlfield'=>"FCT_MT_BASE_REMISE",		// champ SQL pur
+					'title'=>'custom clearance',					// Title for the column
+					
+					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'2',
+
+					'aliasname'=>'',					//alias
+					'sortsqlfield'=>'',					//sort	CCL_QTE_RESTE
+				);
+
+				$fields[]=array(
+					'sqlfield'=>'FCT_DEV_CODE',		// champ SQL pur
+					'title'=>'Currency',					// Title for the column
+					
+					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'',
+
+					'aliasname'=>'',					//alias
+					'sortsqlfield'=>'',					//sort	
+				);
+
+				$fields[]=array(
 					'sqlfield'=>"
 					CASE
 					WHEN DTR_INDEX = 'S' THEN 'CREATED'
@@ -215,12 +237,13 @@
 
 				$query .= "
 				FROM MS_DOSSIER_TRANSP TR, XN_MODE_TRANSP, XN_CLI, EXT_DOSSIER_TRANSP_RC,
-				(SELECT ROWNUM RN, DTC_DTR_NO, DTC_COMM, DTC_DT FROM (SELECT ROWNUM ,DTC_DTR_NO, DTC_COMM, DTC_DT FROM EXT_DOSSIER_TRANSP_COMM ORDER BY DTC_DT DESC)) COMMTBL
+				(SELECT ROWNUM RN, DTC_DTR_NO, DTC_COMM, DTC_DT FROM (SELECT ROWNUM ,DTC_DTR_NO, DTC_COMM, DTC_DT FROM EXT_DOSSIER_TRANSP_COMM ORDER BY DTC_DT DESC)) COMMTBL, XN_FAC_CLI_TETE
 				WHERE MTR_CODE = DTR_MTR_CODE
 				AND CLI_CODE = DTR_CLI_CODE_DISP
 				AND DTRC_DTR_NO(+) = DTR_NO 
 				AND COMMTBL.DTC_DTR_NO(+) = DTR_NO
-				AND COMMTBL.RN(+) = 1 ";
+				AND COMMTBL.RN(+) = 1
+				AND FCT_CCT_REF_CMDE_CLI1(+) = TO_CHAR(DTR_NO) ";
 
 				if(isset($_REQUEST['country']) && trim($_REQUEST['country']) != ""){
 					if ($_REQUEST['country'] == 'KE') {
