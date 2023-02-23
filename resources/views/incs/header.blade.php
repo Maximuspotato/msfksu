@@ -99,7 +99,25 @@
                                             @endphp								
                                         </ul>
                                     @else
-                                        <a class="#" data-toggle="dropdown" href="">{{session()->get('country_code')}} <i class="fas fa-caret-down"></i></a>
+                                    
+                                        @php
+                                            $query_country = " SELECT DISTINCT PAY_CODE, PAY_NOM 
+                                                                    FROM XN_PAYS        
+                                                                    WHERE PAY_CODE = :country_code
+                                                                ";
+                                            $stmt = oci_parse($c, $query_country);
+                                            $country_code = session()->get('country_code');
+                                            ocibindbyname($stmt, ":country_code", $country_code);
+                                            ociexecute($stmt, OCI_DEFAULT);
+                                            $nrows = ocifetchstatement($stmt, $result_country,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+                                            
+                                            foreach($result_country as $one_country){
+                                                session()->put('country_code', $one_country['PAY_CODE']);
+                                                session()->put('country', $one_country['PAY_NOM']);
+                                                echo '<a class="#" data-toggle="dropdown" href="'.URL("/country").'?country_code='.$one_country['PAY_CODE'].'&country='.$one_country['PAY_NOM'].'">'.$one_country['PAY_NOM'].'<i class="fas fa-caret-down"></i></a>';	
+                                            }
+                                        @endphp	
+                                        {{-- <a class="#" data-toggle="dropdown" href="">{{session()->get('country_code')}} <i class="fas fa-caret-down"></i></a> --}}
                                     @endif
                                 </div>
                             </li>
