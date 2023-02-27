@@ -126,52 +126,106 @@
 				}
 
 				if (isset($_REQUEST['fichier']) && $_REQUEST['fichier'] =='pdf') {
-					$reporturl='http://10.210.168.40:9002/reports/rwservlet?report=/u02/app/nodhos/msfsup/rdf/trvc324r&P_CCT_NO_DEB='.$_REQUEST['order'].'&P_CCT_NO_FIN='.$_REQUEST['order'].'&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&paramform=no&desformat=pdf';
-					
-					$filename="op".$_REQUEST['order'].".pdf";
+					include_once(app_path() . '/outils/functions.php');
+					$c = db_connect();
+					$query_op = " SELECT DISTINCT CCT_NO, CCT_REF_CMDE_CLI1
+											FROM XN_CMDE_CLI_TETE, XN_CLI
+											WHERE CLI_CODE(+) = CCT_CLI_CODE_LIVRE
+											AND CCT_REF_CMDE_CLI1 = :order_ref
+										";
+						if (session()->get('oc') != "") {
+							$query_op .= " AND CLI_SFC_CODE = '".session()->get('oc')."'";
+						}
 
-					include_once(app_path() . '/outils/sendreport.php');
-					exit;
-				} elseif (isset($_REQUEST['fichier']) && $_REQUEST['fichier'] =='csv') {
-					$query = "
-					SELECT CCL_DES2, CCL_ART_CODE, CCL_ART_VAR1, CCL_DES1, CCT_DT_CMDE, CCT_DT_FERM, CCL_PDS, CCL_VOL, CCL_COND_VTE, CCL_QTE_CMDE,CCL_PX_VTE_NET,
-					CCL_MT_HT_LIGNE, CCT_DEV_CODE
-					FROM XN_CMDE_CLI_LIGNE, XN_CMDE_CLI_TETE
-					WHERE CCT_NO = CCL_CCT_NO
-					AND CCL_CCT_NO = :ref
-					AND CCL_SOLDEE_ON = 'N'
-					AND CCT_TYD_CODE = 'CC'";
-
-					$commande = oci_parse($GLOBALS['c'], $query);
-					$ref=$_REQUEST['order'];
-					ocibindbyname($commande, ":ref",$ref);
-
-					ociexecute($commande, OCI_DEFAULT);
-					$nrows = ocifetchstatement($commande, $resulte,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+						if (session()->get('country') != "") {
+							$query_op .= " AND CLI_PAY_CODE = '".session()->get('country_code')."'";
+						}
+					$stmt = oci_parse($c, $query_op);
+					ocibindbyname($stmt, ":order_ref", $_REQUEST['order']);
+					ociexecute($stmt, OCI_DEFAULT);
+					$nrows = ocifetchstatement($stmt, $result_op,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+					$op;
+					if ($nrows > 0) {
+						if ($nrows == 1) {
+							foreach($result_op as $one_op){
+                                $op = $one_op['CCT_NO'];
+								$reporturl='http://10.210.168.40:9002/reports/rwservlet?report=/u02/app/nodhos/msfsup/rdf/trvc324r&P_CCT_NO_DEB='.$op.'&P_CCT_NO_FIN='.$op.'&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&amp;paramform=no&desformat=pdf';
+								//dd($reporturl);
 					
-					$filename="op".$_REQUEST['order'].".csv";
-					
-					header('Content-type: application/csv');
-					header("Content-disposition: filename=".$filename);
-					ob_get_clean();
-					echo 'Item;Code;Version;Description;Creation Date;RTS Date;Weight(kg);'.utf8_decode('Volume(dm³)').';'.'Packaging;Quantity;Pack Price;Value;Currency;'."\n";
-					foreach ($resulte as $one_resulte) {
-						echo $one_resulte['CCL_DES2'].';'
-						.$one_resulte['CCL_ART_CODE'].';'
-						.$one_resulte['CCL_ART_VAR1'].';'
-						.$one_resulte['CCL_DES1'].';'
-						.$one_resulte['CCT_DT_CMDE'].';'
-						.$one_resulte['CCT_DT_FERM'].';'
-						.number_format($one_resulte['CCL_PDS'],4,',','').';'
-						.number_format($one_resulte['CCL_VOL'],4,',','').';'
-						.number_format($one_resulte['CCL_COND_VTE'],0,',','').';'
-						.number_format($one_resulte['CCL_QTE_CMDE'],0,',','').';'
-						.number_format($one_resulte['CCL_PX_VTE_NET'],4,',','').';'
-						.number_format($one_resulte['CCL_MT_HT_LIGNE'],4,',','').';'
-						.$one_resulte['CCT_DEV_CODE'].';'
-						."\n";
+								// $filename="op".$_REQUEST['order'].".pdf";
+
+								// include_once(app_path() . '/outils/sendreport.php');
+								header('Location: '.$reporturl);
+								exit;
+							}
+						}
 					}
-					exit;
+					
+				} elseif (isset($_REQUEST['fichier']) && $_REQUEST['fichier'] =='csv') {
+					include_once(app_path() . '/outils/functions.php');
+					$c = db_connect();
+
+					$query_op = " SELECT DISTINCT CCT_NO, CCT_REF_CMDE_CLI1
+											FROM XN_CMDE_CLI_TETE, XN_CLI
+											WHERE CLI_CODE(+) = CCT_CLI_CODE_LIVRE
+											AND CCT_REF_CMDE_CLI1 = :order_ref
+										";
+						if (session()->get('oc') != "") {
+							$query_op .= " AND CLI_SFC_CODE = '".session()->get('oc')."'";
+						}
+
+						if (session()->get('country') != "") {
+							$query_op .= " AND CLI_PAY_CODE = '".session()->get('country_code')."'";
+						}
+					$stmt = oci_parse($c, $query_op);
+					ocibindbyname($stmt, ":order_ref", $_REQUEST['order']);
+					ociexecute($stmt, OCI_DEFAULT);
+					$nrows = ocifetchstatement($stmt, $result_op,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+					if ($nrows > 0) {
+						if ($nrows == 1) {
+							foreach($result_op as $one_op){
+                                $query = "
+								SELECT CCL_DES2, CCL_ART_CODE, CCL_ART_VAR1, CCL_DES1, CCT_DT_CMDE, CCT_DT_FERM, CCL_PDS, CCL_VOL, CCL_COND_VTE, CCL_QTE_CMDE,CCL_PX_VTE_NET,
+								CCL_MT_HT_LIGNE, CCT_DEV_CODE
+								FROM XN_CMDE_CLI_LIGNE, XN_CMDE_CLI_TETE
+								WHERE CCT_NO = CCL_CCT_NO
+								AND CCL_CCT_NO = :op";
+
+
+								$commande = oci_parse($c, $query);
+								ocibindbyname($commande, ":op",$one_op['CCT_NO']);
+
+								ociexecute($commande, OCI_DEFAULT);
+								$nrows = ocifetchstatement($commande, $resulte,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+								
+								
+								$filename="op".$_REQUEST['order'].".csv";
+								
+								header('Content-type: application/csv');
+								header("Content-disposition: filename=".$filename);
+								ob_get_clean();
+								echo 'Item;Code;Version;Description;Creation Date;RTS Date;Weight(kg);'.utf8_decode('Volume(dm³)').';'.'Packaging;Quantity;Pack Price;Value;Currency;'."\n";
+								foreach ($resulte as $one_resulte) {
+									echo $one_resulte['CCL_DES2'].';'
+									.$one_resulte['CCL_ART_CODE'].';'
+									.$one_resulte['CCL_ART_VAR1'].';'
+									.$one_resulte['CCL_DES1'].';'
+									.$one_resulte['CCT_DT_CMDE'].';'
+									.$one_resulte['CCT_DT_FERM'].';'
+									.number_format($one_resulte['CCL_PDS'],4,',','').';'
+									.number_format($one_resulte['CCL_VOL'],4,',','').';'
+									.number_format($one_resulte['CCL_COND_VTE'],0,',','').';'
+									.number_format($one_resulte['CCL_QTE_CMDE'],0,',','').';'
+									.number_format($one_resulte['CCL_PX_VTE_NET'],4,',','').';'
+									.number_format($one_resulte['CCL_MT_HT_LIGNE'],4,',','').';'
+									.$one_resulte['CCT_DEV_CODE'].';'
+									."\n";
+								}
+								exit;
+							}
+						}
+					}
+					
 				} elseif (isset($_REQUEST['fichier']) && $_REQUEST['fichier'] =='xml' || isset($_REQUEST['fichier']) && $_REQUEST['fichier'] =='spreadsheet') { 
 					//require_once('../includes/functions-global.php');
 					include_once(app_path() . '/outils/functions-order_confirmation.php');
