@@ -109,7 +109,7 @@
 					}else{
 			?>
 					<!-- <input type="text" name="order" value="" maxlength="7" size="10"> -->
-					<input type="text" name="order" value="" size="10" required>
+					<input type="text" name="order" value="<?php if(isset($_REQUEST['order']))echo($_REQUEST['order']) ?>" size="10" required>
 
 					<!-- Choix Liste valeur... -->
 					
@@ -117,9 +117,9 @@
 			<?php
 					}
 					echo '<br><label><input checked type="radio" name="fichier" value="pdf"'.(isset($_REQUEST['radiocheck']) && $_REQUEST['radiocheck']=='pdf'?' checked=checked ':'').' onchange="changeListe(\'op\');">'."PDF format".'</label> <br>
-					<label><input type="radio" name="fichier" value="csv"'.(isset($_REQUEST['radiocheck']) && $_REQUEST['radiocheck']=='csv'?' checked=checked ':'').' onchange="changeListe(\'op\');">'."CSV format".'</label><br>
+					<label><input disabled type="radio" name="fichier" value="csv"'.(isset($_REQUEST['radiocheck']) && $_REQUEST['radiocheck']=='csv'?' checked=checked ':'').' onchange="changeListe(\'op\');">'."CSV format".'</label><br>
 					
-					<label><input type="radio" name="fichier" value="spreadsheet"'.(isset($_REQUEST['radiocheck']) && $_REQUEST['radiocheck']=='spreadsheet'?' checked=checked ':'').' onchange="changeListe(\'unifield\');">XML Spreadsheet for Unifield</label>
+					<label><input disabled type="radio" name="fichier" value="spreadsheet"'.(isset($_REQUEST['radiocheck']) && $_REQUEST['radiocheck']=='spreadsheet'?' checked=checked ':'').' onchange="changeListe(\'unifield\');">XML Spreadsheet for Unifield</label>
 					<span id="baseDonnee" style="display:'.(isset($_REQUEST['radiocheck']) && $_REQUEST['radiocheck']=='xml'?'inline':'none').';"></span>
 
 					<br><br><br><input type="submit" value="'."Search".'"></form></div>';
@@ -146,18 +146,19 @@
 					$nrows = ocifetchstatement($stmt, $result_op,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
 					$op;
 					if ($nrows > 0) {
-						if ($nrows == 1) {
-							foreach($result_op as $one_op){
-                                $op = $one_op['CCT_NO'];
-								$reporturl='http://10.210.168.40:9002/reports/rwservlet?report=/u02/app/nodhos/msfsup/rdf/trvc324r&P_CCT_NO_DEB='.$op.'&P_CCT_NO_FIN='.$op.'&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&amp;paramform=no&desformat=pdf';
-								//dd($reporturl);
-					
-								// $filename="op".$_REQUEST['order'].".pdf";
+						echo("<p><b>Files found</b></p>");
+						foreach($result_op as $one_op){
+							$op = $one_op['CCT_NO'];
+							$reporturl='http://10.210.168.40:9002/reports/rwservlet?report=/u02/app/nodhos/msfsup/rdf/trvc324r&P_CCT_NO_DEB='.$op.'&P_CCT_NO_FIN='.$op.'&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&amp;paramform=no&desformat=pdf';
+							//dd($reporturl);
+				
+							// $filename="op".$_REQUEST['order'].".pdf";
 
-								// include_once(app_path() . '/outils/sendreport.php');
-								header('Location: '.$reporturl);
-								exit;
-							}
+							// include_once(app_path() . '/outils/sendreport.php');
+							//header('Location: '.$reporturl);
+							//exit;
+							echo("<a href='".$reporturl."' target='_blank'>".$op.".pdf</a>");
+							echo("<br>");
 						}
 					}
 					
@@ -168,7 +169,7 @@
 					$query_op = " SELECT DISTINCT CCT_NO, CCT_REF_CMDE_CLI1
 											FROM XN_CMDE_CLI_TETE, XN_CLI
 											WHERE CLI_CODE(+) = CCT_CLI_CODE_LIVRE
-											AND CCT_REF_CMDE_CLI1 = :order_ref
+											AND CCT_REF_CMDE_CLI1 LIKE '%:order_ref%'
 										";
 						if (session()->get('oc') != "") {
 							$query_op .= " AND CLI_SFC_CODE = '".session()->get('oc')."'";
@@ -182,7 +183,7 @@
 					ociexecute($stmt, OCI_DEFAULT);
 					$nrows = ocifetchstatement($stmt, $result_op,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
 					if ($nrows > 0) {
-						if ($nrows == 1) {
+						//if ($nrows == 1) {
 							foreach($result_op as $one_op){
                                 $query = "
 								SELECT CCL_DES2, CCL_ART_CODE, CCL_ART_VAR1, CCL_DES1, CCT_DT_CMDE, CCT_DT_FERM, CCL_PDS, CCL_VOL, CCL_COND_VTE, CCL_QTE_CMDE,CCL_PX_VTE_NET,
@@ -221,9 +222,10 @@
 									.$one_resulte['CCT_DEV_CODE'].';'
 									."\n";
 								}
-								exit;
+								//exit;
 							}
-						}
+							exit;
+						//}
 					}
 					
 				} elseif (isset($_REQUEST['fichier']) && $_REQUEST['fichier'] =='xml' || isset($_REQUEST['fichier']) && $_REQUEST['fichier'] =='spreadsheet') { 
