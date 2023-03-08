@@ -43,7 +43,7 @@
 					<div id="grille-param"><form action="{{URL('/')}}/order-confirmation" method=get>
 						<h2>Order Confirmation</h2>
 						Dowload your order confirmation<br><br>
-							KSU Order Ref: 
+							Mission Order Ref: 
 			<?php
 					if(isset($_REQUEST['choose'])) {
 						$queryS="
@@ -128,7 +128,7 @@
 				if (isset($_REQUEST['fichier']) && $_REQUEST['fichier'] =='pdf') {
 					include_once(app_path() . '/outils/functions.php');
 					$c = db_connect();
-					$query_op = " SELECT DISTINCT CCT_NO, CCT_REF_CMDE_CLI1
+					$query_op = " SELECT DISTINCT CCT_NO, CCT_REF_CMDE_CLI1, CCT_REF_CMDE_CLI2
 											FROM XN_CMDE_CLI_TETE, XN_CLI
 											WHERE CLI_CODE(+) = CCT_CLI_CODE_LIVRE
 											AND CCT_REF_CMDE_CLI1 = :order_ref
@@ -146,9 +146,10 @@
 					$nrows = ocifetchstatement($stmt, $result_op,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
 					$op;
 					if ($nrows > 0) {
-						echo("<p><b>Files found</b></p>");
+						echo("<p><b><u>Files found</u></b></p>");
 						foreach($result_op as $one_op){
 							$op = $one_op['CCT_NO'];
+							$ref = $one_op['CCT_REF_CMDE_CLI2'];
 							$reporturl='http://10.210.168.40:9002/reports/rwservlet?report=/u02/app/nodhos/msfsup/rdf/trvc324r&P_CCT_NO_DEB='.$op.'&P_CCT_NO_FIN='.$op.'&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&amp;paramform=no&desformat=pdf';
 							//dd($reporturl);
 				
@@ -157,7 +158,7 @@
 							// include_once(app_path() . '/outils/sendreport.php');
 							//header('Location: '.$reporturl);
 							//exit;
-							echo("<a href='".$reporturl."' target='_blank'>".$op.".pdf</a>");
+							echo("<a href='".$reporturl."' target='_blank'>".$ref."-".$op.".pdf</a>");
 							echo("<br>");
 						}
 					}
@@ -166,7 +167,7 @@
 					include_once(app_path() . '/outils/functions.php');
 					$c = db_connect();
 
-					$query_op = " SELECT DISTINCT CCT_NO, CCT_REF_CMDE_CLI1
+					$query_op = " SELECT DISTINCT CCT_NO, CCT_REF_CMDE_CLI1, CCT_REF_CMDE_CLI2
 											FROM XN_CMDE_CLI_TETE, XN_CLI
 											WHERE CLI_CODE(+) = CCT_CLI_CODE_LIVRE
 											AND CCT_REF_CMDE_CLI1 LIKE '%:order_ref%'
