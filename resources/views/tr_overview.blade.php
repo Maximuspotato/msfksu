@@ -118,7 +118,7 @@
 
 				$fields[]=array(
 					'sqlfield'=>"FCT_MT_BASE_REMISE",		// champ SQL pur
-					'title'=>'custom clearance',					// Title for the column
+					'title'=>'Transport and Customs cost',					// Title for the column
 					
 					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'2',
