@@ -151,7 +151,7 @@
             </div>
             <nav id="mainmenu" class="mainmenu">
                 <div class="logo-wrapper">
-                    <a href="{{URL('/')}}"><img src="{{URL('/')}}/assets/img/logo.png" alt="" height="75"></a>
+                    <a href="{{URL('/')}}"><img src="{{URL('/')}}/assets/img/logo.png" alt="logo Doctors Without Borders" style="border-radius: 8%" height="75"></a>
                 </div>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
