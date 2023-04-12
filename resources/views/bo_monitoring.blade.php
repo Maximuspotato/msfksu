@@ -677,31 +677,73 @@
 						}
 					?>
 						</select>
-						<label>Dispatch:</label>
-						<select name="dispcode">
-							<option></option>
-					<?php
-							$query_dispcode = " SELECT DISTINCT CCT_NOM_DISP 
-												FROM XN_CMDE_CLI_TETE, XN_CLI
-												WHERE CLI_CODE(+) = CCT_CLI_CODE_LIVRE
-											";
-							if (session()->get('oc') != "") {
-								$query_dispcode .= " AND CLI_SFC_CODE = '".session()->get('oc')."'";
-							}
-
-							if (session()->get('country') != "") {
-								$query_dispcode .= " AND CLI_PAY_CODE = '".session()->get('country_code')."'";
-							}
-							$query_dispcode .= "ORDER BY CCT_NOM_DISP";
-						$stmt = oci_parse($c, $query_dispcode);
-						ociexecute($stmt, OCI_DEFAULT);
-						$nrows = ocifetchstatement($stmt, $result_dispcode,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
-						
-						foreach($result_dispcode as $one_dispcode){
-							echo '<option '.(isset($_REQUEST['dispcode']) && $one_dispcode['CCT_NOM_DISP'] == $_REQUEST['dispcode']?' selected ':'').'>'.$one_dispcode['CCT_NOM_DISP'].'</option>';
-						}
-					?>
-						</select><br><br>
+						<div class="dropdown choose-country" style="float:right;display:inline;">
+							@if (session()->get('position') == 'international' || session()->get('position') == 'hq')
+								@if (session()->get('country_code') != "")
+								 <a class="#" data-toggle="dropdown" href="">{{session()->get('country')}} <i class="fas fa-caret-down"></i></a>
+								@else
+									<a class="#" data-toggle="dropdown" href="">COUNTRY <i class="fas fa-caret-down"></i></a>
+								@endif
+								
+								<ul id="countries" class="dropdown-menu" role="menu" style=" max-width: 200px; max-height: 200px; overflow-y: scroll; overflow-x: scroll">
+									<input type="text" id="myInput" onkeyup="search()" placeholder="Search country.." title="Type in country">
+									<li role="menuitem"><a href="{{URL('/country')}}?country_code=all">ALL</a></li>
+									@php
+										$query_country = " SELECT DISTINCT PAY_CODE, PAY_NOM 
+																FROM XN_PAYS        
+																ORDER BY PAY_CODE ASC
+															";
+										$stmt = oci_parse($c, $query_country);
+										ociexecute($stmt, OCI_DEFAULT);
+										$nrows = ocifetchstatement($stmt, $result_country,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+										
+										foreach($result_country as $one_country){
+											echo '<li role="menuitem"><a href="'.URL("/country").'?country_code='.$one_country['PAY_CODE'].'&country='.$one_country['PAY_NOM'].'">'.$one_country['PAY_NOM'].'</a></li>';	
+										}
+									@endphp								
+								</ul>
+							@else
+							
+								@php
+									$query_country = " SELECT DISTINCT PAY_CODE, PAY_NOM 
+															FROM XN_PAYS        
+															WHERE PAY_CODE = :country_code
+														";
+									$stmt = oci_parse($c, $query_country);
+									$country_code = session()->get('country_code');
+									ocibindbyname($stmt, ":country_code", $country_code);
+									ociexecute($stmt, OCI_DEFAULT);
+									$nrows = ocifetchstatement($stmt, $result_country,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+									
+									foreach($result_country as $one_country){
+										session()->put('country_code', $one_country['PAY_CODE']);
+										session()->put('country', $one_country['PAY_NOM']);
+										echo '<a class="#" data-toggle="dropdown" href="'.URL("/country").'?country_code='.$one_country['PAY_CODE'].'&country='.$one_country['PAY_NOM'].'">'.$one_country['PAY_NOM'].'<i class="fas fa-caret-down"></i></a>';	
+									}
+								@endphp	
+								{{-- <a class="#" data-toggle="dropdown" href="">{{session()->get('country_code')}} <i class="fas fa-caret-down"></i></a> --}}
+							@endif
+						</div>
+						<div class="dropdown choose-country" style="float:right;display:inline;">
+							@if (session()->get('position') == 'international')
+								@if (session()->get('oc') != "")
+									<a class="#" data-toggle="dropdown" href="">{{session()->get('oc')}} <i class="fas fa-caret-down"></i></a>
+								@else
+									<a class="#" data-toggle="dropdown" href="">SECTION <i class="fas fa-caret-down"></i></a>
+								@endif
+								<ul class="dropdown-menu" role="menu">
+									<li role="menuitem"><a href="{{URL('/oc')}}?oc=all">ALL</a></li>
+									<li role="menuitem"><a href="{{URL('/oc')}}?oc=OCB">OCB</a></li>
+									<li role="menuitem"><a href="{{URL('/oc')}}?oc=OCBA">OCBA</a></li>
+									<li role="menuitem"><a href="{{URL('/oc')}}?oc=OCA">OCA</a></li>
+									<li role="menuitem"><a href="{{URL('/oc')}}?oc=OCG">OCG</a></li>
+									<li role="menuitem"><a href="{{URL('/oc')}}?oc=OCP">OCP</a></li>								
+								</ul>
+							@else
+								<a class="#" data-toggle="dropdown" href="">{{session()->get('oc')}} <i class="fas fa-caret-down"></i></a>
+							@endif
+						</div>
+						<br><br>
 					
 						<label>Order status:</label>
 						<input type="checkbox" name="draft" id="draft" value="draft" <?php if(isset($_REQUEST['draft']))echo 'checked=""' ?>><span>Draft</span>
