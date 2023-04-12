@@ -123,6 +123,8 @@
 					'sqlfield'=>
 					"CASE
 					WHEN CCT_TYD_CODE = 'CS' THEN 'DRAFT'
+					WHEN CCT_TYD_CODE = 'CA' THEN 'DRAFT'
+					WHEN CCT_TYD_CODE = 'CT' THEN 'TECHNICAL'
 					WHEN CCT_TYD_CODE = 'CX' THEN 'CANCELLED'
 					WHEN CCT_TYD_CODE = 'CC' THEN CASE
 					WHEN PCL_PCT_NO IS NOT NULL AND DTR_NO IS NULL THEN 'RTS'
@@ -280,7 +282,7 @@
 				$query .= "
 				FROM XN_CMDE_CLI_TETE, XN_CMDE_CLI_LIGNE, MS_PACK_CLI_LIGNE, MS_PACK_CLI_TETE, MS_DOSSIER_TRANSP, XN_MODE_TRANSP, EXT_DOSSIER_TRANSP_RC, XN_CLI
 				WHERE CCT_NO = CCL_CCT_NO
-				AND MTR_CODE = DTR_MTR_CODE
+				AND MTR_CODE = CCT_MTR_CODE
 				AND CCL_CCT_NO=PCL_CCT_NO(+)
 				AND CCL_NO_LIGNE=PCL_CCL_NO_LIGNE(+)
 				AND PCT_NO(+) = PCL_PCT_NO
@@ -308,7 +310,9 @@
 				!isset($_REQUEST['onfreight']) && 
 				!isset($_REQUEST['delivered']) && 
 				!isset($_REQUEST['cancelled'])){
-					$query .= " AND CCT_TYD_CODE = 'CS' ";
+					$query .= " AND (CCT_TYD_CODE = 'CS'
+					OR (CCT_TYD_CODE = 'CT')
+					OR (CCT_TYD_CODE = 'CA')) ";
 				}
 				if(isset($_REQUEST['draft']) &&
 				isset($_REQUEST['confirmed']) && 
@@ -316,7 +320,9 @@
 				!isset($_REQUEST['onfreight']) && 
 				!isset($_REQUEST['delivered']) && 
 				!isset($_REQUEST['cancelled'])){
-					$query .= " AND PCL_PCT_NO IS NULL AND CCT_TYD_CODE <> 'CX'";
+					$query .= " AND PCL_PCT_NO IS NULL AND (CCT_TYD_CODE <> 'CX'
+					OR (CCT_TYD_CODE = 'CT')
+					OR (CCT_TYD_CODE = 'CA'))";
 				}
 				if(isset($_REQUEST['draft']) &&
 				isset($_REQUEST['confirmed']) && 
@@ -324,7 +330,9 @@
 				!isset($_REQUEST['onfreight']) && 
 				!isset($_REQUEST['delivered']) && 
 				!isset($_REQUEST['cancelled'])){
-					$query .= " AND DTR_NO IS NULL AND CCT_TYD_CODE <> 'CX'";
+					$query .= " AND DTR_NO IS NULL AND (CCT_TYD_CODE <> 'CX'
+					OR (CCT_TYD_CODE = 'CT')
+					OR (CCT_TYD_CODE = 'CA'))";
 				}
 				if(isset($_REQUEST['draft']) &&
 				isset($_REQUEST['confirmed']) && 
@@ -332,7 +340,9 @@
 				isset($_REQUEST['onfreight']) && 
 				!isset($_REQUEST['delivered']) &&
 				!isset($_REQUEST['cancelled'])){
-					$query .= " AND NOT DTR_INDEX(+) = 'Z' AND CCT_TYD_CODE <> 'CX'";
+					$query .= " AND NOT DTR_INDEX(+) = 'Z' AND (CCT_TYD_CODE <> 'CX'
+					OR (CCT_TYD_CODE = 'CT')
+					OR (CCT_TYD_CODE = 'CA'))";
 				}
 				if(isset($_REQUEST['draft']) &&
 				isset($_REQUEST['confirmed']) && 
@@ -340,7 +350,9 @@
 				isset($_REQUEST['onfreight']) && 
 				isset($_REQUEST['delivered']) &&
 				!isset($_REQUEST['cancelled'])){
-					$query .= " AND NOT CCT_TYD_CODE = 'CX' ";
+					$query .= " AND (CCT_TYD_CODE <> 'CX'
+					OR (CCT_TYD_CODE = 'CT')
+					OR (CCT_TYD_CODE = 'CA')) ";
 				}
 				//DRAFT OR
 				if(isset($_REQUEST['draft']) &&
@@ -350,7 +362,9 @@
 				!isset($_REQUEST['delivered']) &&
 				!isset($_REQUEST['cancelled'])){
 					$query .= " AND (CCT_TYD_CODE = 'CS'
-					OR (PCL_PCT_NO IS NOT NULL AND DTR_NO IS NULL)) ";
+					OR (PCL_PCT_NO IS NOT NULL AND DTR_NO IS NULL)
+					OR (CCT_TYD_CODE = 'CT')
+					OR (CCT_TYD_CODE = 'CA')) ";
 				}
 				if(isset($_REQUEST['draft']) &&
 				!isset($_REQUEST['confirmed']) && 
@@ -359,7 +373,9 @@
 				!isset($_REQUEST['delivered']) &&
 				!isset($_REQUEST['cancelled'])){
 					$query .= " AND (CCT_TYD_CODE = 'CS'
-					OR (DTR_NO IS NOT NULL AND DTR_INDEX <> 'Z')) ";
+					OR (DTR_NO IS NOT NULL AND DTR_INDEX <> 'Z')
+					OR (CCT_TYD_CODE = 'CT')
+					OR (CCT_TYD_CODE = 'CA')) ";
 				}
 				if(isset($_REQUEST['draft']) &&
 				!isset($_REQUEST['confirmed']) && 
@@ -368,7 +384,9 @@
 				isset($_REQUEST['delivered']) &&
 				!isset($_REQUEST['cancelled'])){
 					$query .= " AND (CCT_TYD_CODE = 'CS'
-					OR (DTRC_DT_RC IS NOT NULL OR (DTR_NO IS NOT NULL AND DTR_INDEX = 'Z'))) ";
+					OR (DTRC_DT_RC IS NOT NULL OR (DTR_NO IS NOT NULL AND DTR_INDEX = 'Z'))
+					OR (CCT_TYD_CODE = 'CT')
+					OR (CCT_TYD_CODE = 'CA')) ";
 				}
 				if(isset($_REQUEST['draft']) &&
 				!isset($_REQUEST['confirmed']) && 
@@ -377,7 +395,9 @@
 				!isset($_REQUEST['delivered']) &&
 				isset($_REQUEST['cancelled'])){
 					$query .= " AND (CCT_TYD_CODE = 'CS'
-					OR (CCT_TYD_CODE IS NOT NULL AND CCT_TYD_CODE = 'CX')) ";
+					OR (CCT_TYD_CODE = 'CX')
+					OR (CCT_TYD_CODE = 'CT')
+					OR (CCT_TYD_CODE = 'CA')) ";
 				}
 
 				//confirmed
@@ -611,6 +631,7 @@
 					CCL_PX_VTE_NET, CCT_DEV_CODE, MTR_LIB ";
 					
 				}
+
 
 
 
