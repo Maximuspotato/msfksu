@@ -40,6 +40,17 @@
 				);
 
 				$fields[]=array(
+					'sqlfield'=>'DTR_TRANSP_REF',				// champ SQL pur
+					'title'=>'ESC Freight no',					// Title for the column
+					
+					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'',
+					
+					'aliasname'=>'',					//alias
+					'sortsqlfield'=>'',					//sort	
+				);
+
+				$fields[]=array(
 					'sqlfield'=>'MTR_LIB',				// champ SQL pur
 					'title'=>'Mode',					// Title for the column
 					
