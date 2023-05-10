@@ -302,4 +302,7 @@ class PagesController extends Controller
     public function bt_trace(){
         return view('bt_trace')->with('active', 'extranet');
     }
+    public function documents(){
+        return view('documents')->with('active', 'extranet');
+    }
 }

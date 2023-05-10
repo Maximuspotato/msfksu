@@ -79,6 +79,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse24">
+                                    Search
+                                </a>
+                            </div>
+                            <div id="collapse24" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <p><a href="{{URL('/documents')}}">Documents</a></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
