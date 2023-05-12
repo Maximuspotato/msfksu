@@ -129,14 +129,25 @@
 				);
 
                 $fields[]=array(
-					'sqlfield'=>"CASE WHEN ART_CAA_CODE = 'RTR' THEN 'YES' END",				// champ SQL pur
-					'title'=>'Dangerous',					// Title for the column
+					'sqlfield'=>"CAA_LIB",				// champ SQL pur
+					'title'=>'Category',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
 					
 					'aliasname'=>'DGR',					//alias
 					'sortsqlfield'=>'DGR',					//sort	
+				);
+
+				$fields[]=array(
+					'sqlfield'=>'ART_ZZ_ON_LINE_OBS',				// champ SQL pur
+					'title'=>'Online order remarks',					// Title for the column
+					
+					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'',
+					
+					'aliasname'=>'',					//alias
+					'sortsqlfield'=>'',					//sort	
 				);
 
 				$c = db_connect();
@@ -148,10 +159,11 @@
 				}
 
 				$query .= "
-                FROM XN_ART, XN_TARIF_CLI
+                FROM XN_ART, XN_TARIF_CLI, XN_CAT_ART
                 WHERE ART_ZZ_ON_LINE_AFF_01 = 1
                 AND TAC_ART_CODE(+) = ART_CODE
-                AND TAC_NTC_CODE(+) = 'US' ";
+                AND TAC_NTC_CODE(+) = 'US'
+				AND CAA_CODE = ART_CAA_CODE ";
 
 
 				if (!isset($_REQUEST['orderby']) OR !isset($_REQUEST['order'])) {
