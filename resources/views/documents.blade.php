@@ -70,8 +70,8 @@
 				);
 
                 $fields[]=array(
-					'sqlfield'=>"CASE WHEN PCT_NO_DOSSIER IS NOT NULL THEN '<a target=\"_blank\" href=\"freight-view?cm=' || PCT_NO_DOSSIER || '\">' || PCT_NO_DOSSIER || '</a>
-					<a target=\"_blank\" href=\"http://10.210.168.40:9002/reports/rwservlet?report=trtr202r&P_DTR_NO=' || PCT_NO_DOSSIER || '&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&paramform=no&desformat=pdf\"> <img src=\"ext/images/pdf.png\"/> </a>' END",
+					'sqlfield'=>"CASE WHEN DTR_NO IS NOT NULL THEN '<a target=\"_blank\" href=\"freight-view?cm=' || DTR_NO || '\">' || DTR_NO || '</a>
+					<a target=\"_blank\" href=\"http://10.210.168.40:9002/reports/rwservlet?report=trtr202r&P_DTR_NO=' || DTR_NO || '&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&paramform=no&desformat=pdf\"> <img src=\"ext/images/pdf.png\"/> </a>' END",
 					'title'=>'Tr no',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
@@ -90,8 +90,9 @@
 				}
 
 				$query .= "
-                FROM XN_CMDE_CLI_TETE, MS_PACK_CLI_TETE, XN_CLI
+                FROM XN_CMDE_CLI_TETE, MS_PACK_CLI_TETE, XN_CLI, MS_DOSSIER_TRANSP
 				WHERE CCT_NO(+) = PCT_CCT_NO
+				AND DTR_NO = PCT_NO_DOSSIER(+)
 				AND CLI_CODE(+) = CCT_CLI_CODE_LIVRE ";
 
 				if(isset($_REQUEST['ref_no']) && trim($_REQUEST['ref_no']) != ""){
@@ -111,7 +112,7 @@
 				}
 
 				if(isset($_REQUEST['tr_no']) && trim($_REQUEST['tr_no']) != ""){
-					$query .= " AND PCT_NO_DOSSIER = :tr_no ";
+					$query .= " AND DTR_NO = :tr_no ";
 				}
 
 				if (session()->get('oc') != "") {
