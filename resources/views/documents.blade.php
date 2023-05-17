@@ -34,8 +34,8 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>"'<a target=\"_blank\" href=\"order-view?order_no=' || CCT_NO || '\">' || CCT_NO || '</a>
-					<a target=\"_blank\" href=\"http://10.210.168.40:9002/reports/rwservlet?report=trvc324r&P_CCT_NO_DEB=' || CCT_NO || '&P_CCT_NO_FIN= '|| CCT_NO || '&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&paramform=no&desformat=pdf\"> <img src=\"ext/images/pdf.png\"/> </a>'",
+					'sqlfield'=>"CASE WHEN CCT_NO IS NOT NULL THEN '<a target=\"_blank\" href=\"order-view?order_no=' || CCT_NO || '\">' || CCT_NO || '</a>
+					<a target=\"_blank\" href=\"http://10.210.168.40:9002/reports/rwservlet?report=trvc324r&P_CCT_NO_DEB=' || CCT_NO || '&P_CCT_NO_FIN= '|| CCT_NO || '&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&paramform=no&desformat=pdf\"> <img src=\"ext/images/pdf.png\"/> </a>' END",
 					'title'=>'KSU ref',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
@@ -46,8 +46,8 @@
 				);
 
                 $fields[]=array(
-					'sqlfield'=>"'<a target=\"_blank\" href=\"packing-view?pk=' || PCT_NO || '\">' || PCT_NO || '</a>
-					<a target=\"_blank\" href=\"http://10.210.168.40:9002/reports/rwservlet?report=trvl553r&P_PCT_NO_DEB=' || PCT_NO || '&P_PCT_NO_FIN= '|| PCT_NO || '&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&paramform=no&desformat=pdf\"> <img src=\"ext/images/pdf.png\"/> </a>'",
+					'sqlfield'=>"CASE WHEN PCT_NO IS NOT NULL THEN '<a target=\"_blank\" href=\"packing-view?pk=' || PCT_NO || '\">' || PCT_NO || '</a>
+					<a target=\"_blank\" href=\"http://10.210.168.40:9002/reports/rwservlet?report=trvl553r&P_PCT_NO_DEB=' || PCT_NO || '&P_PCT_NO_FIN= '|| PCT_NO || '&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&paramform=no&desformat=pdf\"> <img src=\"ext/images/pdf.png\"/> </a>' END",
 					'title'=>'packing',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
@@ -58,8 +58,8 @@
 				);
 
                 $fields[]=array(
-					'sqlfield'=>"' '|| PCT_NO_FACTURE ||'
-					<a target=\"_blank\" href=\"http://10.210.168.40:9002/reports/rwservlet?report=/u02/app/nodhos/msfsup/rdf/trvf531r&P_DEP_CODE=NBO&P_DEP_SOC_CODE=KSU&P_FCT_NO_DEB=' || PCT_NO_FACTURE || '&P_FCT_NO_FIN= '|| PCT_NO_FACTURE || '&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&paramform=no&desformat=pdf\"> <img src=\"ext/images/pdf.png\"/> </a>'",				// champ SQL pur
+					'sqlfield'=>"CASE WHEN PCT_NO_FACTURE IS NOT NULL THEN ' '|| PCT_NO_FACTURE ||'
+					<a target=\"_blank\" href=\"http://10.210.168.40:9002/reports/rwservlet?report=/u02/app/nodhos/msfsup/rdf/trvf531r&P_DEP_CODE=NBO&P_DEP_SOC_CODE=KSU&P_FCT_NO_DEB=' || PCT_NO_FACTURE || '&P_FCT_NO_FIN= '|| PCT_NO_FACTURE || '&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&paramform=no&desformat=pdf\"> <img src=\"ext/images/pdf.png\"/> </a>' END",				// champ SQL pur
 					'title'=>'Goods inv',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
@@ -70,8 +70,8 @@
 				);
 
                 $fields[]=array(
-					'sqlfield'=>"'<a target=\"_blank\" href=\"freight-view?cm=' || PCT_NO_DOSSIER || '\">' || PCT_NO_DOSSIER || '</a>
-					<a target=\"_blank\" href=\"http://10.210.168.40:9002/reports/rwservlet?report=trtr202r&P_DTR_NO=' || PCT_NO_DOSSIER || '&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&paramform=no&desformat=pdf\"> <img src=\"ext/images/pdf.png\"/> </a>'",
+					'sqlfield'=>"CASE WHEN PCT_NO_DOSSIER IS NOT NULL THEN '<a target=\"_blank\" href=\"freight-view?cm=' || PCT_NO_DOSSIER || '\">' || PCT_NO_DOSSIER || '</a>
+					<a target=\"_blank\" href=\"http://10.210.168.40:9002/reports/rwservlet?report=trtr202r&P_DTR_NO=' || PCT_NO_DOSSIER || '&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&paramform=no&desformat=pdf\"> <img src=\"ext/images/pdf.png\"/> </a>' END",
 					'title'=>'Tr no',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
@@ -91,8 +91,8 @@
 
 				$query .= "
                 FROM XN_CMDE_CLI_TETE, MS_PACK_CLI_TETE, XN_CLI
-				WHERE CCT_NO = PCT_CCT_NO(+)
-				AND CLI_CODE = CCT_CLI_CODE_LIVRE ";
+				WHERE CCT_NO(+) = PCT_CCT_NO
+				AND CLI_CODE(+) = CCT_CLI_CODE_LIVRE ";
 
 				if(isset($_REQUEST['ref_no']) && trim($_REQUEST['ref_no']) != ""){
 					$query .= " AND CCT_REF_CMDE_CLI1 LIKE '%' || :ref_no || '%' ";
@@ -123,7 +123,7 @@
 				}
 
 				if (!isset($_REQUEST['orderby']) OR !isset($_REQUEST['order'])) {
-					$_REQUEST['orderby'] = 'CCT_NO';
+					$_REQUEST['orderby'] = 'PCT_NO';
 					$_REQUEST['order']="DESC";
 				}
 
