@@ -224,19 +224,19 @@
 					'sortsqlfield'=>'COMM',					//sort	
 				);
 
-				if(!isset($_REQUEST['xls']) || $_REQUEST['xls'] <> 'yes'){
-					$fields[]=array(
-						'sqlfield'=>"'<img src=\"ext/images/add.png\" onclick=\"commForm(''' || DTR_NO || ''')\"/>
-						<img src=\"ext/images/edit.png\" onclick=\"fetchComms(''' || DTR_NO || ''')\"/>'",		// champ SQL pur
-						'title'=>'Add Comment',					// Title for the column
+				// if(!isset($_REQUEST['xls']) || $_REQUEST['xls'] <> 'yes'){
+				// 	$fields[]=array(
+				// 		'sqlfield'=>"'<img src=\"ext/images/add.png\" onclick=\"commForm(''' || DTR_NO || ''')\"/>
+				// 		<img src=\"ext/images/edit.png\" onclick=\"fetchComms(''' || DTR_NO || ''')\"/>'",		// champ SQL pur
+				// 		'title'=>'Add Comment',					// Title for the column
 						
-						'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-						'decimal'=>'',
+				// 		'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+				// 		'decimal'=>'',
 					
-						'aliasname'=>'COMMADD',					//alias
-						'sortsqlfield'=>'COMMADD',					//sort	
-					);
-				}
+				// 		'aliasname'=>'COMMADD',					//alias
+				// 		'sortsqlfield'=>'COMMADD',					//sort	
+				// 	);
+				// }
 
 				$c = db_connect();
 
