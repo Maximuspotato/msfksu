@@ -40,8 +40,8 @@
                     <h3>Address</h3>
                     <p class="contact-us-details">
                         MSF Kenya Supply Unit<br>
-                        Road C off enterprise Road<br>
-                        Sameer Industrial Park<br/>
+                        Memkam Complex, Unit 1<br>
+                        Road C off enterprise Road, Near Winners Chapel<br/>
                         P.O. Box 38897 – 00623<br/>
                         Nairobi, Kenya<br/>
                         Telephone +254 (0) 20 354 2419
