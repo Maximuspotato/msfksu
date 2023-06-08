@@ -160,7 +160,7 @@
 
 				$query .= "
                 FROM XN_ART, XN_TARIF_CLI, XN_CAT_ART
-                WHERE ART_ZZ_ON_LINE_AFF_01 = 1
+                WHERE ART_ZZ_ON_LINE_AFF_01 = '1'
                 AND TAC_ART_CODE(+) = ART_CODE
                 AND TAC_NTC_CODE(+) = 'US'
 				AND CAA_CODE = ART_CAA_CODE ";
