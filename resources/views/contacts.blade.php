@@ -21,7 +21,7 @@
                         
                     </div> --}}
                     <div id="map" >
-                        <iframe width="652" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=-1.3278%2C%2036.866&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"></iframe>
+                        <iframe width="652" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=-1.3234318%2C%2036.8509436&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"></iframe>
                     </div>
                     <!-- End Map -->
                 </div>
@@ -72,63 +72,70 @@
                         <p class="contact-us-details">
                             Customer Service<br>
                             <a href="mailto:MSFOCB-KSU-CustomerService@brussels.msf.org">MSFOCB-KSU-CustomerService@brussels.msf.org</a><br>
-                            {{-- Tel +254 (0) 794 655 262 --}}
+                            Tel +254 (0) 794 655 262
                         </p>
                     </div>
                     <div class="col-sm-12">
                         <p class="contact-us-details">
                             Transport Manager<br>
                             <a href="mailto:MSFOCB-KSU-TransportManager@brussels.msf.org">MSFOCB-KSU-TransportManager@brussels.msf.org</a><br>
-                            {{-- Tel +254 (0) 710 809 156 --}}
+                            Tel +254 (0) 710 809 156
                         </p>
                     </div>
                     <div class="col-sm-12">
                         <p class="contact-us-details">
                             General Manager<br>
                             <a href="mailto:antoine.segui@brussels.msf.org">Antoine.Segui@brussels.msf.org</a><br>
-                            {{-- Tel +254 (0) 710 809 156 --}}
+                            Tel +254 (0) 719 898 615
                         </p>
                     </div>
                     <div class="col-sm-12">
                         <p class="contact-us-details">
                             HR Manager<br>
                             <a href="mailto:phyllis.koech@brussels.msf.org">Phyllis.Koech@brussels.msf.org</a><br>
-                            {{-- Tel +254 (0) 710 809 156 --}}
+                            Tel +254 (0) 705 000 570
+                        </p>
+                    </div>
+                    <div class="col-sm-12">
+                        <p class="contact-us-details">
+                            Finance Coordinator<br>
+                            <a href="mailto:Gita.Aprillia@brussels.msf.org">Gita.Aprillia@brussels.msf.org</a><br>
+                            Tel +254 (0) 717 119 065
                         </p>
                     </div>
                     <div class="col-sm-12">
                         <p class="contact-us-details">
                             Supply Chain Manager<br>
                             <a href="mailto:Justine.Mecha@brussels.msf.org">Justine.Mecha@brussels.msf.org</a><br>
-                            {{-- Tel +254 (0) 710 809 156 --}}
+                            Tel +254 (0) 703 688 612
                         </p>
                     </div>
                     <div class="col-sm-12">
                         <p class="contact-us-details">
                             Responsible Pharmacist<br>
                             <a href="mailto:muthoni.mulinge@brussels.msf.org">Muthoni.Mulinge@brussels.msf.org</a><br>
-                            {{-- Tel +254 (0) 710 809 156 --}}
+                            Tel +254 (0) 700 700 562
                         </p>
                     </div>
                     <div class="col-sm-12">
                         <p class="contact-us-details">
                             Procurement Manager<br>
                             <a href="mailto:paul.banks@brussels.msf.org">Paul.Banks@brussels.msf.org</a><br>
-                            {{-- Tel +254 (0) 710 809 156 --}}
+                            Tel +254 (0) 740 753 376
                         </p>
                     </div>
                     <div class="col-sm-12">
                         <p class="contact-us-details">
                             Product Referent<br>
                             <a href="mailto:hayato.oguchi@brussels.msf.org">Hayato.Oguchi@brussels.msf.org</a><br>
-                            {{-- Tel +254 (0) 710 809 156 --}}
+                            Tel +254 (0) 724 253 024
                         </p>
                     </div>
                     <div class="col-sm-12">
                         <p class="contact-us-details">
                             Fuctional Analyst<br>
                             <a href="mailto:lewis.mwathe@brussels.msf.org">Lewis.Mwathe@brussels.msf.org</a><br>
-                            {{-- Tel +254 (0) 710 809 156 --}}
+                            Tel +254 (0) 759 014 775
                         </p>
                     </div>
                 @endif
