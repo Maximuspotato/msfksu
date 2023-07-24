@@ -129,7 +129,7 @@
 				);
 
                 $fields[]=array(
-					'sqlfield'=>"CAA_LIB",				// champ SQL pur
+					'sqlfield'=>"CASE WHEN CAA_CODE = '0' THEN '' ELSE CAA_LIB END",				// champ SQL pur
 					'title'=>'Category',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
