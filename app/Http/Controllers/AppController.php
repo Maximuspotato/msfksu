@@ -8,6 +8,7 @@ use Mail;
 use Illuminate\Http\Request;
 use App\Exports\KsuUfExport;
 use App\Exports\CatalogExport;
+use App\Exports\ufExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
 
@@ -94,6 +95,10 @@ class AppController extends Controller
     public function downloadCovid(){
         $file = "files/Kenya import and export update.docx";
         return response()->download(public_path($file));
+    }
+
+    public function ufexport(){
+        return Excel::download(new ufExport(), 'export.xlsx');
     }
 
     public function inv(Request $request){

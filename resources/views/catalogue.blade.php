@@ -14,6 +14,7 @@
 
 	<div class="section">
         <div class="container">
+			
 			@php
 				include_once(app_path() . '/outils/functions.php');
 
@@ -187,9 +188,9 @@
 						exit();
 					}
 				//}
-
+			Session::put('articles', $result);
 			@endphp
-
+			<a href="{{URL('/ufExport')}}" class="btn btn-secondary">Export Unifield</a>
 			<?php
 				//if (isset($_REQUEST['order_no'])) {
 					render_table($result, $fields);

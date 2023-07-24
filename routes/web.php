@@ -22,6 +22,7 @@ Route::get('/downloadTransport', 'AppController@downloadTransport');
 Route::get('/downloadCovidUpdate', 'AppController@downloadCovid');
 Route::get('/downloadCovidUpdate', 'AppController@downloadCovid');
 Route::get('/inv', 'AppController@inv');
+Route::get('/ufExport', 'AppController@ufexport')->middleware(['auth', 'verified']);
 
 //pages
 Route::get('/', 'PagesController@index');
