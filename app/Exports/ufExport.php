@@ -20,7 +20,7 @@ class ufExport implements FromCollection, WithHeadings
                 "product" => strip_tags($art['ART']),
                 "desc" => $art['ART_DES1'],
                 "suppier" => "KSU",
-                "oum" => 1,
+                "oum" => "PCE",
                 "min" => 1,
                 "price" => $art['PRICE'],
                 "soq" => 1,
