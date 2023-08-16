@@ -24,8 +24,8 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>'ART_SFA_CODE',				// champ SQL pur
-					'title'=>'Family',					// Title for the column
+					'sqlfield'=>'ART_ZZ_MSF_ID',				// champ SQL pur
+					'title'=>'MSF ID',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
@@ -120,7 +120,7 @@
 
                 $fields[]=array(
 					'sqlfield'=>'ART_COND_VTE',				// champ SQL pur
-					'title'=>'Sales pack',					// Title for the column
+					'title'=>'UoM',					// Title for the column
 					
 					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'0',

@@ -17,8 +17,8 @@
             <div class="row">
                 <div class="col-md-12 faq-wrapper">
                     <div class="panel-group" id="accordion2">
-                        <h3>Downloads <span class="pull-right" style="font-size:16px">Last Updated</span></h3>
-                        <div class="panel panel-default">
+                        {{-- <h3>Downloads <span class="pull-right" style="font-size:16px">Last Updated</span></h3> --}}
+                        {{-- <div class="panel panel-default">
                             <div class="panel-heading">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse21">
                                     Catalogue
@@ -51,13 +51,13 @@
                                     @endif
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse23">
                                     Regional transport rates
                                 </a>
-                                <span class="pull-right">24/02/2020</span>
+                                {{-- <span class="pull-right">24/02/2020</span> --}}
                             </div>
                             <div id="collapse23" class="accordion-body collapse">
                                 <div class="accordion-inner">

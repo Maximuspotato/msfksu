@@ -32,7 +32,8 @@
                                 <div class="service-wrapper">
                                     <img src="{{URL('/')}}/assets/img/service-icon/love.png" alt="Service 1">
                                     <h3>Up for donation</h3>
-                                    <a href="{{URL('/exportDonations')}}" class="btn">See more</a>
+                                    {{-- <a href="{{URL('/exportDonations')}}" class="btn">See more</a> --}}
+                                    <span style="color: #F05E38">Nothing up for donation</span>
                                     {{-- <h4 class="overlay" style="color:#F05E38"><b>COMING SOON!</b></h4> --}}
                                 </div>
                             </div>

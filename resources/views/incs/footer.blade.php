@@ -11,14 +11,14 @@
                                 <ul>
                                     <li><a href="https://www.msfsupply.be/" target="_blank">MSF Supply Brussels</a></li>
                                     <li><a href="https://www.msflogistique.org/" target="_blank">MSF Logistique Bordeaux</a></li>
-                                    <li><a href="https://apps.powerapps.com/play/c91839ea-eb18-4b86-9ef2-0d1bc568a0f1?tenantId=4d9dd1af-83ce-4e9b-b090-b0543ccc2b31" target="_blank">MSF APU Amsterdam Procurement Unit</a></li>
+                                    <li class="disabled"><a href="https://apps.powerapps.com/play/c91839ea-eb18-4b86-9ef2-0d1bc568a0f1?tenantId=4d9dd1af-83ce-4e9b-b090-b0543ccc2b31" target="_blank">MSF APU Amsterdam Procurement Unit</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li><a href="https://unicat.msf.org" target="_blank">MSF catalogue</a></li>
                         <li class="disabled"><a href=""  target="_blank">Executive Supply Chain Committee</a></li>
                         <li class=""><a href="https://www.msf.org/" target="_blank">MSF International</a></li>
-                        <li class=""><a href="https://ksu.msfsupply.be"  target="_blank">KSU Extranet</a></li>
+                        <li class=""><a href="{{URL('extra_net')}}"  target="_blank">KSU Extranet</a></li>
                         <li><a href="{{URL('/dwnlds?dwnld=gpc')}}">KSU's General Purchasing Conditions</a></li>
                     </ul>
                 </div>

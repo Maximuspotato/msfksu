@@ -8,8 +8,8 @@
             <div class="menuextras">
                 <div class="extras">
                     <ul>
-                        <li class="shopping-cart-items"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="22"></i> <a href="{{URL('/cart')}}"><b id="cart_count">{{Cart::getContent()->count()}}</b> <b>item(s)</b></a></li>
-                        <li>
+                        {{-- <li class="shopping-cart-items"><i><img src="{{URL('/')}}/assets/img/rfq.png" alt="" height="22"></i> <a href="{{URL('/cart')}}"><b id="cart_count">{{Cart::getContent()->count()}}</b> <b>item(s)</b></a></li> --}}
+                        {{-- <li>
                             <div class="dropdown choose-country">
                                 @if (session()->get('language') == "")
                                     <a class="#" data-toggle="dropdown" href=""><img src="{{URL('/')}}/assets/img/flags/gb.png" alt="English"> EN <span class="fas fa-caret-down"></span></a>
@@ -47,7 +47,7 @@
                                     <li role="menuitem"><a href="{{URL('/currency')}}?curr=chf">CHF</a></li>											
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
                         @if (Auth::guest())
                             <li><a href="{{URL('/login')}}">Login <i class="fas fa-user"></i></a></li>
                         @else
