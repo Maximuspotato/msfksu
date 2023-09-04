@@ -97,6 +97,11 @@ class AppController extends Controller
         return response()->download(public_path($file));
     }
 
+    public function downloadClaim(){
+        $file = "files/FORMAL CLAIM FORM Word.docx";
+        return response()->download(public_path($file));
+    }
+
     public function ufexport(){
         return Excel::download(new ufExport(), 'export.xlsx');
     }
