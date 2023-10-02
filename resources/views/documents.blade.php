@@ -81,6 +81,18 @@
 					'sortsqlfield'=>'CM',					//sort	
 				);
 
+				$fields[]=array(
+					'sqlfield'=>"CASE WHEN FCT_NO_FACTURE IS NOT NULL THEN ' '|| FCT_NO_FACTURE ||'
+					<a target=\"_blank\" href=\"http://10.210.168.40:9002/reports/rwservlet?report=/u02/app/nodhos/msfsup/rdf/trvf531r&P_DEP_CODE=NBO&P_DEP_SOC_CODE=KSU&P_FCT_NO_DEB=' || FCT_NO_FACTURE || '&P_FCT_NO_FIN= '|| FCT_NO_FACTURE || '&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&paramform=no&desformat=pdf\"> <img src=\"ext/images/pdf.png\"/ </a>' END",				// champ SQL pur
+					'title'=>'Transport inv',					// Title for the column
+					
+					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'',
+					
+					'aliasname'=>'TRINV',					//alias
+					'sortsqlfield'=>'TRINV',					//sort	
+				);
+
 				$c = db_connect();
 
 				$query = "SELECT ";
@@ -90,10 +102,11 @@
 				}
 
 				$query .= "
-                FROM XN_CMDE_CLI_TETE, MS_PACK_CLI_TETE, XN_CLI, MS_DOSSIER_TRANSP
+                FROM XN_CMDE_CLI_TETE, MS_PACK_CLI_TETE, XN_CLI, MS_DOSSIER_TRANSP, XN_FAC_CLI_TETE
 				WHERE CCT_NO = PCT_CCT_NO(+)
 				AND DTR_NO(+) = PCT_NO_DOSSIER
-				AND CLI_CODE(+) = CCT_CLI_CODE_LIVRE ";
+				AND CLI_CODE(+) = CCT_CLI_CODE_LIVRE
+				AND FCT_CCT_REF_CMDE_CLI1(+) = TO_CHAR(DTR_NO) ";
 
 				if(isset($_REQUEST['ref_no']) && trim($_REQUEST['ref_no']) != ""){
 					$query .= " AND CCT_REF_CMDE_CLI1 LIKE '%' || :ref_no || '%' ";
@@ -113,6 +126,10 @@
 
 				if(isset($_REQUEST['tr_no']) && trim($_REQUEST['tr_no']) != ""){
 					$query .= " AND DTR_NO = :tr_no ";
+				}
+
+				if(isset($_REQUEST['tr_inv']) && trim($_REQUEST['tr_inv']) != ""){
+					$query .= " AND FCT_NO_FACTURE = :tr_inv ";
 				}
 
 				if (session()->get('oc') != "") {
@@ -154,6 +171,10 @@
 					array_push($tab_filter,array('name'=>'tr_no','value'=>trim($_REQUEST['tr_no'])));
 				}
 
+				if(isset($_REQUEST['tr_inv']) && trim($_REQUEST['tr_inv']) != ""){
+					array_push($tab_filter,array('name'=>'tr_inv','value'=>trim($_REQUEST['tr_inv'])));
+				}
+
 				if (isset($_REQUEST['ref_no']) || isset($_REQUEST['order_no']) || isset($_REQUEST['pk_no']) || isset($_REQUEST['inv_no']) || isset($_REQUEST['tr_no'])) {
 					$result = execute_request($c,$query,$tab_filter);
 
@@ -182,6 +203,9 @@
 
 						<label>Tr no:</label>
 						<input type="text" name="tr_no" id="tr_no" value="<?php if (isset($_REQUEST['tr_no'])) echo $_REQUEST['tr_no'];?>"><br><br>
+
+						<label>Tr Invoice:</label>
+						<input type="text" name="tr_inv" id="tr_inv" value="<?php if (isset($_REQUEST['tr_inv'])) echo $_REQUEST['tr_inv'];?>"><br><br>
 					
 						<input type="submit" value="Go"/><br><br>
 
