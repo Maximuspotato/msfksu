@@ -91,8 +91,8 @@
 
 				$query .= "
                 FROM XN_CMDE_CLI_TETE, MS_PACK_CLI_TETE, XN_CLI, MS_DOSSIER_TRANSP
-				WHERE CCT_NO(+) = PCT_CCT_NO
-				AND DTR_NO = PCT_NO_DOSSIER(+)
+				WHERE CCT_NO = PCT_CCT_NO(+)
+				AND DTR_NO(+) = PCT_NO_DOSSIER
 				AND CLI_CODE(+) = CCT_CLI_CODE_LIVRE ";
 
 				if(isset($_REQUEST['ref_no']) && trim($_REQUEST['ref_no']) != ""){
