@@ -65,6 +65,7 @@ Route::get('/rts-value', 'PagesController@rts_value')->middleware(['auth', 'veri
 Route::get('/freight-reception', 'PagesController@freight_reception')->middleware(['auth', 'verified']);
 Route::get('/batch-traceability', 'PagesController@bt_trace')->middleware(['auth', 'verified']);
 Route::get('/documents', 'PagesController@documents')->middleware(['auth', 'verified']);
+Route::get('/fior-annex', 'PagesController@fior_annex')->middleware(['auth', 'verified']);
 //Route::get('/covid19', 'PagesController@covid')->middleware(['auth', 'verified']);
 
 Route::get('/language', 'SessionController@language');

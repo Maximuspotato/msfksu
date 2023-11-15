@@ -305,4 +305,7 @@ class PagesController extends Controller
     public function documents(){
         return view('documents')->with('active', 'extranet');
     }
+    public function fior_annex(){
+        return view('fior_annex')->with('active', 'extranet');
+    }
 }
