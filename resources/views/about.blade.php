@@ -259,8 +259,8 @@
 									<div class="card" style="width: 18rem; height: auto">
 										<img class="card-img-top" src="{{URL('/')}}/assets/img/Picture25.jpg" height="120" width="100%">
 										<div class="card-body">
-										  <h5 class="card-title">Stephen Kimani</h5>
-										  <p class="card-text">Cashier</p>
+										  <h5 class="card-title">Cashier</h5>
+										  <p class="card-text">Stephen Kimani</p>
 										</div>
 									</div>
 								</div>
