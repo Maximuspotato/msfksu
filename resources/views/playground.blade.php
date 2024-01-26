@@ -57,7 +57,7 @@
 					$rowCount++;
 				}
 				$writer = new Xlsx($objPHPExcel);
-				$fileName = "\ap.xls";
+				$fileName = "\ap.xlsx";
 				$uploc = public_path("powerbi").$fileName;
 				$writer->save($uploc);
 			}
@@ -104,7 +104,7 @@
 					$rowCount++;
 				}
 				$writer = new Xlsx($objPHPExcel);
-				$fileName = "\apHead.xls";
+				$fileName = "\apHead.xlsx";
 				$uploc = public_path("powerbi").$fileName;
 				echo $uploc;
 				$writer->save($uploc);
