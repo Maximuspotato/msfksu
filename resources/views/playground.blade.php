@@ -17,11 +17,9 @@
 			use PhpOffice\PhpSpreadsheet\Spreadsheet;
 			use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-			$c = ocilogon("MSF", "MSF", "10.210.168.40:1521/ORCL");
-			if ( ! $c ) {
-				echo `date`.": Unable to connect: " . var_dump( oci_error() )."\n";
-				die();
-			}
+			include_once(app_path() . '/outils/functions.php');
+
+			$c = db_connect();
 
 			$queryAp = " SELECT DFL_DFT_NO AP_NO, DFL_ART_CODE ARTICLE
 			FROM MS_DEVIS_FOUR_LIGNE, MS_DEVIS_FOUR_TETE
