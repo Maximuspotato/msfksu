@@ -67,6 +67,7 @@ Route::get('/batch-traceability', 'PagesController@bt_trace')->middleware(['auth
 Route::get('/documents', 'PagesController@documents')->middleware(['auth', 'verified']);
 Route::get('/fior-annex', 'PagesController@fior_annex')->middleware(['auth', 'verified']);
 //Route::get('/covid19', 'PagesController@covid')->middleware(['auth', 'verified']);
+Route::get('/playground', 'PagesController@playground');
 
 Route::get('/language', 'SessionController@language');
 Route::get('/currency', 'SessionController@currency');

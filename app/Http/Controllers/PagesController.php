@@ -308,4 +308,9 @@ class PagesController extends Controller
     public function fior_annex(){
         return view('fior_annex')->with('active', 'extranet');
     }
+
+    
+    public function playground(){
+        return view('playground')->with('active', '');
+    }
 }
