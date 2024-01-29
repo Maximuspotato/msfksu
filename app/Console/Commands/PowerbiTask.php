@@ -40,7 +40,7 @@ class PowerbiTask extends Command
      */
     public function handle()
     {
-        include_once(app_path() . '/outils/functions.php');
+        include(app_path() . '/outils/functions.php');
 
         $c = db_connect();
 
