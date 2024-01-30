@@ -168,6 +168,7 @@ return [
         Darryldecode\Cart\CartServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Yajra\Oci8\Oci8ServiceProvider::class,
         /*
          * Application Service Providers...
          */

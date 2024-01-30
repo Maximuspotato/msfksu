@@ -14,7 +14,7 @@
 
 	<div class="section">
         @php
-			phpinfo();
+			
 		@endphp
 	</div>
 
