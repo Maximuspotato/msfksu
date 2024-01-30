@@ -42,13 +42,13 @@ class PowerbiTask extends Command
     {
         $c = null;
         if (app()->environment('local')) {
-            $c = ocilogon("MSF", "MSF", "10.210.168.40:1521/ORCL");
+            $c = oci_connect("MSF", "MSF", "10.210.168.40:1521/ORCL");
             if ( ! $c ) {
                 echo "Unable to connect: " . var_dump( oci_error() );
                 die();
             }
         }else{
-            $c = ocilogon("MSF", "MSF", "127.0.0.1:1521/ORCL");
+            $c = oci_connect("MSF", "MSF", "127.0.0.1:1521/ORCL");
             if ( ! $c ) {
                 echo "Unable to connect: " . var_dump( oci_error() );
                 die();
