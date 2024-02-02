@@ -61,6 +61,8 @@
                     $fileName = "/ap.xlsx";
                     $uploc = public_path("powerbi").$fileName;
                     $writer->save($uploc);
+                    $objPHPExcel->disconnectWorksheets();
+                    unset($objPHPExcel);
                 }
             }
             Queue::push(ap());
@@ -112,6 +114,8 @@
                     $fileName = "/apHead.xlsx";
                     $uploc = public_path("powerbi").$fileName;
                     $writer->save($uploc);
+                    $objPHPExcel->disconnectWorksheets();.
+                    unset($objPHPExcel);
                 }
             }
             Queue::push(aphead());
@@ -152,6 +156,8 @@
                     $fileName = "/art.xlsx";
                     $uploc = public_path("powerbi").$fileName;
                     $writer->save($uploc);
+                    $objPHPExcel->disconnectWorksheets();
+                    unset($objPHPExcel);
                 }
             }
             Queue::push(art());
@@ -226,6 +232,8 @@
                     $fileName = "/po.xlsx";
                     $uploc = public_path("powerbi").$fileName;
                     $writer->save($uploc);
+                    $objPHPExcel->disconnectWorksheets();
+                    unset($objPHPExcel);
                 }
             }
             Queue::push(po());
