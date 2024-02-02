@@ -114,7 +114,7 @@
                     $fileName = "/apHead.xlsx";
                     $uploc = public_path("powerbi").$fileName;
                     $writer->save($uploc);
-                    $objPHPExcel->disconnectWorksheets();.
+                    $objPHPExcel->disconnectWorksheets();
                     unset($objPHPExcel);
                 }
             }
