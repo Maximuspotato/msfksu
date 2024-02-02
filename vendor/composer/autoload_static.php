@@ -202,8 +202,8 @@ class ComposerStaticInitec3f9ebd5c3a8c65d2039e4d6c93e9cd
         ),
         'Yajra\\' => 
         array (
-            0 => __DIR__ . '/..' . '/yajra/laravel-pdo-via-oci8/src',
-            1 => __DIR__ . '/..' . '/yajra/laravel-oci8/src',
+            0 => __DIR__ . '/..' . '/yajra/laravel-oci8/src',
+            1 => __DIR__ . '/..' . '/yajra/laravel-pdo-via-oci8/src',
         ),
         'XdgBaseDir\\' => 
         array (
