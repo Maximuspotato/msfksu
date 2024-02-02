@@ -155,6 +155,7 @@
                     $writer = new Xlsx($objPHPExcel);
                     $fileName = "/art.xlsx";
                     $uploc = public_path("powerbi").$fileName;
+                    $writer->save($uploc);
                     $objPHPExcel->disconnectWorksheets();
                     unset($writer, $objPHPExcel);
                 }
