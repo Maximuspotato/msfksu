@@ -237,6 +237,189 @@
                 }
             }
             Queue::push(po());
+
+            function op(){
+                $c = db_connect();
+                $queryOp = " SELECT CCT_NO OP_NO, CCT_DT_CMDE ORDER_DT, CCT_DT_VERSION END_VAL_OFF, CCT_DT_ED_PREP CUST_VAL_DT, CCT_DT_CONFIRME DT_CONF, FCT_DT INV_DT,
+                CLI_CODE DISPATCH_CODE, CCT_CHA_CODE PROJECT_CODE, MTR_LIB TRANS_MODE, PAY_NOM COUNTRY,
+                CASE
+                WHEN CCT_DT_VERSION IS NULL THEN 0
+                WHEN CCT_DT_VERSION IS NOT NULL THEN CASE
+                WHEN (CCT_DT_VERSION-14) - CCT_DT_CMDE < 0 THEN 0
+                ELSE (CCT_DT_VERSION-14) - CCT_DT_CMDE
+                END
+                END ORC_TIME,
+                CASE
+                WHEN (CCT_DT_VERSION IS NULL OR CCT_DT_ED_PREP IS NULL) THEN 0
+                WHEN (CCT_DT_VERSION IS NOT NULL AND CCT_DT_ED_PREP IS NOT NULL) THEN CASE
+                WHEN CCT_DT_ED_PREP - (CCT_DT_VERSION-14) < 0 THEN 0
+                ELSE CCT_DT_ED_PREP - (CCT_DT_VERSION-14)
+                END
+                END MISSION_TIME,
+                CASE
+                WHEN (CCT_DT_ED_PREP IS NULL OR CCT_DT_ED_PREP - CCT_DT_CMDE < 0) THEN 0
+                ELSE CCT_DT_ED_PREP - CCT_DT_CMDE
+                END CONFIRM_TIME,
+                CASE
+                WHEN FCT_DT IS NULL THEN 0 ELSE FCT_DT - CCT_DT_CMDE
+                END RTS_TIME
+                FROM XN_CMDE_CLI_TETE, XN_MODE_TRANSP, XN_CLI, XN_PAYS, XN_FAC_CLI_TETE
+                WHERE MTR_CODE = CCT_MTR_CODE
+                AND CLI_CODE = CCT_CLI_CODE_DISP
+                AND PAY_CODE = CLI_PAY_CODE
+                AND FCT_CCT_NO(+) = CCT_NO
+                AND CCT_TYD_CODE <> 'CX'
+                ORDER BY CCT_NO DESC ";
+                $stmtOp = oci_parse($c, $queryOp);
+                ociexecute($stmtOp, OCI_DEFAULT);
+                $nrowsOp = ocifetchstatement($stmtOp, $resultOp,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+
+                if ($nrowsOp > 0) {
+                    $objPHPExcel    =   new Spreadsheet();
+
+                    //$objPHPExcel->setActiveSheetIndex(0);
+                    //NAME WORKSHEET
+                    $objPHPExcel->getActiveSheet()->setTitle("Sheet");
+
+                    $objPHPExcel->getActiveSheet()
+                        ->getPageSetup()
+                        ->setOrientation(PageSetup::ORIENTATION_LANDSCAPE);
+
+                    $objPHPExcel->getActiveSheet()
+                        ->getPageSetup()
+                        ->setPaperSize(PageSetup::PAPERSIZE_A4);
+
+
+                    $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'OP_NO');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'ORDER_DT');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'END_VAL_OFF');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'CUST_VAL_DT');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'DT_CONF');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'INV_DT');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'DISPATCH_CODE');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('H1', 'PROJECT_CODE');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('I1', 'TRANS_MODE');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('J1', 'COUNTRY');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('K1', 'ORC_TIME');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('L1', 'MISSION_TIME');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('M1', 'CONFIRM_TIME');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('N1', 'RTS_TIME');
+
+                    $rowCount = 2;
+                    foreach($resultOp as $result){
+                        $objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, $result['OP_NO']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $result['ORDER_DT']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, $result['END_VAL_OFF']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, $result['CUST_VAL_DT']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount, $result['DT_CONF']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, $result['INV_DT']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('G'.$rowCount, $result['DISPATCH_CODE']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('H'.$rowCount, $result['PROJECT_CODE']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('I'.$rowCount, $result['TRANS_MODE']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('J'.$rowCount, $result['COUNTRY']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('K'.$rowCount, $result['ORC_TIME']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('L'.$rowCount, $result['MISSION_TIME']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('M'.$rowCount, $result['CONFIRM_TIME']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('N'.$rowCount, $result['RTS_TIME']);
+                        $rowCount++;
+                    }
+                    $writer = new Xlsx($objPHPExcel);
+                    $fileName = "/op.xlsx";
+                    $uploc = public_path("powerbi").$fileName;
+                    $writer->save($uploc);
+                    $objPHPExcel->disconnectWorksheets();
+                    unset($writer, $objPHPExcel);
+                }
+            }
+            Queue::push(op());
+
+            function tr(){
+                $c = db_connect();
+                $queryTr = " SELECT DTR_NO TR_NO, DTR_DT_CREAT_DOS DT_CREATE, DTR_ZZ_GO_AHEAD DT_GO, DTR_ZZ_DT_ETD DT_ETD, DTR_ZZ_DT_ETA DT_ETA, FCT_DT INV_DT,
+                DTR_CLI_CODE_DISP DISPATCH, MTR_LIB TRANS_MODE, PAY_NOM COUNTRY,
+                CASE
+                WHEN FCT_DT IS NULL THEN 0
+                ELSE FCT_DT - DTR_DT_CREAT_DOS
+                END CONSOLDATION_TIME,
+                CASE
+                WHEN DTR_ZZ_GO_AHEAD IS NULL THEN 0
+                ELSE DTR_ZZ_GO_AHEAD - DTR_DT_CREAT_DOS
+                END GO_TIME,
+                CASE
+                WHEN (DTR_ZZ_GO_AHEAD IS NULL OR DTR_ZZ_DT_ETD IS NULL) THEN 0
+                ELSE DTR_ZZ_DT_ETD - DTR_ZZ_GO_AHEAD
+                END DEPATURE_TIME,
+                CASE
+                WHEN (DTR_ZZ_DT_ETA IS NULL OR DTR_ZZ_DT_ETD IS NULL) THEN 0
+                ELSE DTR_ZZ_DT_ETA - DTR_ZZ_DT_ETD
+                END TR_TIME
+                FROM MS_DOSSIER_TRANSP, XN_MODE_TRANSP, XN_CLI, XN_PAYS, XN_FAC_CLI_TETE
+                WHERE MTR_CODE = DTR_MTR_CODE
+                AND CLI_CODE = DTR_CLI_CODE_DISP
+                AND PAY_CODE = CLI_PAY_CODE
+                AND DTR_INDEX <> 'S'
+                AND FCT_CCT_REF_CMDE_CLI1(+) = TO_CHAR(DTR_NO)
+                ORDER BY DTR_NO DESC ";
+                $stmtTr = oci_parse($c, $queryTr);
+                ociexecute($stmtTr, OCI_DEFAULT);
+                $nrowsTr = ocifetchstatement($stmtTr, $resultTr,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+
+                if ($nrowsTr > 0) {
+                    $objPHPExcel    =   new Spreadsheet();
+
+                    //$objPHPExcel->setActiveSheetIndex(0);
+                    //NAME WORKSHEET
+                    $objPHPExcel->getActiveSheet()->setTitle("Sheet");
+
+                    $objPHPExcel->getActiveSheet()
+                        ->getPageSetup()
+                        ->setOrientation(PageSetup::ORIENTATION_LANDSCAPE);
+
+                    $objPHPExcel->getActiveSheet()
+                        ->getPageSetup()
+                        ->setPaperSize(PageSetup::PAPERSIZE_A4);
+
+
+                    $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'TR_NO');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'DT_CREATE');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'DT_GO');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'DT_ETD');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'DT_ETA');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'INV_DT');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'DISPATCH');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('H1', 'TRANS_MODE');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('I1', 'COUNTRY');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('J1', 'CONSOLDATION_TIME');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('K1', 'GO_TIME');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('L1', 'DEPATURE_TIME');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('M1', 'TR_TIME');
+
+                    $rowCount = 2;
+                    foreach($resultTr as $result){
+                        $objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, $result['TR_NO']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $result['DT_CREATE']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, $result['DT_GO']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, $result['DT_ETD']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount, $result['DT_ETA']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, $result['INV_DT']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('G'.$rowCount, $result['DISPATCH']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('H'.$rowCount, $result['TRANS_MODE']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('I'.$rowCount, $result['COUNTRY']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('J'.$rowCount, $result['CONSOLDATION_TIME']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('K'.$rowCount, $result['GO_TIME']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('L'.$rowCount, $result['DEPATURE_TIME']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('M'.$rowCount, $result['TR_TIME']);
+                        $rowCount++;
+                    }
+                    $writer = new Xlsx($objPHPExcel);
+                    $fileName = "/tr.xlsx";
+                    $uploc = public_path("powerbi").$fileName;
+                    $writer->save($uploc);
+                    $objPHPExcel->disconnectWorksheets();
+                    unset($writer, $objPHPExcel);
+                }
+            }
+            Queue::push(tr());
 		@endphp
 	</div>
 
