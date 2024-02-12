@@ -99,7 +99,7 @@
                     <div class="col-sm-12">
                         <p class="contact-us-details">
                             Finance Coordinator<br>
-                            <a href="mailto:Gita.Aprillia@brussels.msf.org">Gita.Aprillia@brussels.msf.org</a><br>
+                            <a href="mailto:yannick.remans@brussels.msf.org">Yannick.Remans@brussels.msf.org</a><br>
                             Tel +254 (0) 717 119 065
                         </p>
                     </div>
@@ -127,8 +127,8 @@
                     <div class="col-sm-12">
                         <p class="contact-us-details">
                             Product Referent<br>
-                            <a href="mailto:hayato.oguchi@brussels.msf.org">Hayato.Oguchi@brussels.msf.org</a><br>
-                            Tel +254 (0) 724 253 024
+                            <a href="mailto:aluda.duncan@brussels.msf.org">Aluda.Duncan@brussels.msf.org</a><br>
+                            Tel +254 (0) 794 655 263
                         </p>
                     </div>
                     <div class="col-sm-12">
