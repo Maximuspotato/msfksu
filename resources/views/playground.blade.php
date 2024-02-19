@@ -420,6 +420,73 @@
                 }
             }
             Queue::push(tr());
+
+            function fin(){
+                $c = db_connect();
+                $queryFin = " SELECT 'MSFS', ROUND(CASE
+                WHEN TRUNC(FCT_DT,'MM') = TRUNC(SYSDATE,'MM') THEN (FCT_MT_BASE_REMISE / (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'EUR' AND ROWNUM = 1 AND DTX_DT_DEB = (SELECT MAX(DTX_DT_DEB) FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'EUR'))) * (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'USD' AND ROWNUM = 1 AND DTX_DT_DEB = (SELECT MAX(DTX_DT_DEB)  FROM XN_DEVISE_TAUX  WHERE DTX_DEV_CODE = 'USD'))
+                ELSE CASE
+                WHEN TRUNC(FCT_DT,'MM') < TRUNC(SYSDATE,'MM') THEN (FCT_MT_BASE_REMISE / (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'EUR' AND DTX_DT_DEB = FCT_DT)) * (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'USD' AND DTX_DT_DEB = FCT_DT)
+                END
+                END, 2) FCT_MT_BASE_REMISE, FCT_DT, PAY_NOM, CLI_SFC_CODE, FCT_DT - CCT_DT_CONFIRME
+                FROM XN_FAC_CLI_TETE_NBO, XN_PAYS, XN_CLI, XN_CMDE_CLI_TETE
+                WHERE FCT_DT > '31-DEC-22'
+                AND PAY_CODE = CLI_PAY_CODE
+                AND CLI_CODE = FCT_CLI_CODE_FAC
+                AND CCT_NO(+) = FCT_CCT_NO
+                UNION
+                SELECT 'MSFSK', FCT_MT_BASE_REMISE, FCT_DT, PAY_NOM, CLI_SFC_CODE, FCT_DT - CCT_DT_CONFIRME
+                FROM XN_FAC_CLI_TETE, XN_PAYS, XN_CLI, XN_CMDE_CLI_TETE
+                WHERE FCT_DT > '31-DEC-22'
+                AND PAY_CODE = CLI_PAY_CODE
+                AND CLI_CODE = FCT_CLI_CODE_FAC
+                AND CCT_NO(+) = FCT_CCT_NO ";
+                $stmtFin = oci_parse($c, $queryFin);
+                ociexecute($stmtFin, OCI_DEFAULT);
+                $nrowsFin = ocifetchstatement($stmtFin, $resultFin,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+
+                if ($nrowsFin > 0) {
+                    $objPHPExcel    =   new Spreadsheet();
+
+                    //$objPHPExcel->setActiveSheetIndex(0);
+                    //NAME WORKSHEET
+                    $objPHPExcel->getActiveSheet()->setTitle("Sheet");
+
+                    $objPHPExcel->getActiveSheet()
+                        ->getPageSetup()
+                        ->setOrientation(PageSetup::ORIENTATION_LANDSCAPE);
+
+                    $objPHPExcel->getActiveSheet()
+                        ->getPageSetup()
+                        ->setPaperSize(PageSetup::PAPERSIZE_A4);
+
+
+                    $objPHPExcel->getActiveSheet()->SetCellValue('A1', "'MSFS'");
+                    $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'FCT_MT_BASE_REMISE');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'FCT_DT');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'PAY_NOM');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'CLI_SFC_CODE');
+                    $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'FCT_DT-CCT_DT_CONFIRME');
+
+                    $rowCount = 2;
+                    foreach($resultFin as $result){
+                        $objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, $result["'MSFS'"]);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $result['FCT_MT_BASE_REMISE']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, $result['FCT_DT']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, $result['PAY_NOM']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount, $result['CLI_SFC_CODE']);
+                        $objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, $result['FCT_DT-CCT_DT_CONFIRME']);
+                        $rowCount++;
+                    }
+                    $writer = new Xlsx($objPHPExcel);
+                    $fileName = "/fin.xlsx";
+                    $uploc = public_path("powerbi").$fileName;
+                    $writer->save($uploc);
+                    $objPHPExcel->disconnectWorksheets();
+                    unset($writer, $objPHPExcel);
+                }
+            }
+            Queue::push(fin());
 		@endphp
 	</div>
 
