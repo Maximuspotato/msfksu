@@ -440,7 +440,9 @@
                 WHERE FCT_DT > '31-DEC-22'
                 AND PAY_CODE = CLI_PAY_CODE
                 AND CLI_CODE = FCT_CLI_CODE_FAC
-                AND CCT_NO(+) = FCT_CCT_NO ";
+                AND CCT_NO(+) = FCT_CCT_NO
+                AND CCT_NO <> 13524
+                AND FCT_DEV_CODE <> 'KES' ";
                 $stmtFin = oci_parse($c, $queryFin);
                 ociexecute($stmtFin, OCI_DEFAULT);
                 $nrowsFin = ocifetchstatement($stmtFin, $resultFin,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
