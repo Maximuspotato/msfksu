@@ -62,7 +62,7 @@
                 @if (AUTH::guest())
                     <div class="col-sm-12">
                         <p class="contact-us-details">
-                            KSU Support<br>
+                            MSF Supply Kenya Support<br>
                             <a href="mailto:MSFOCB-KSU-Support@brussels.msf.org">MSFOCB-KSU-Support@brussels.msf.org</a><br>
                             {{-- Tel +254 (0) 20 354 2419 --}}
                         </p>
@@ -142,7 +142,7 @@
                 </div>
                 <div class="col-sm-6">
                     <p class="contact-us-details">
-                        MSF Kenya Supply Unit<br>
+                        MSF Supply Kenya<br>
                         Memkam Complex, Unit 1<br>
                         Road C off enterprise Road, Near Winners Chapel<br/>
                         P.O. Box 38897 – 00623<br/>

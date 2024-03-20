@@ -24,7 +24,7 @@
                                         <img src="{{URL('/')}}/assets/img/fb_ops.png" alt="" height="80">
                                     </div>
                                     <div class="col-xs-10">
-                                        <h3 class="card-title">KSU Formal Claim form</h3>
+                                        <h3 class="card-title">MSF Supply Kenya Formal Claim form</h3>
                                         <p class="card-text" style="margin-bottom:0">This Formal Claim Form shall be considered a formal notice and an official request to investigate the cause of the damage</p>
                                     </div>
                                 </div>

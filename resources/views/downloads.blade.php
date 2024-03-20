@@ -79,9 +79,9 @@
                             <div id="collapse24" class="accordion-body collapse">
                                 <div class="accordion-inner">
                                     @if (AUTH::guest())
-                                        <p><a href="{{URL('/login')}}">Kenya Supply Unit-Terms-of-Conditions.pdf</a></p>
+                                        <p><a href="{{URL('/login')}}">MSF Supply Kenya-Terms-of-Conditions.pdf</a></p>
                                     @else
-                                        <p><a href="{{URL('/dwnlds?dwnld=tc')}}">Kenya Supply Unit-Terms-of-Conditions.pdf</a></p> 
+                                        <p><a href="{{URL('/dwnlds?dwnld=tc')}}">MSF Supply Kenya-Terms-of-Conditions.pdf</a></p> 
                                     @endif
                                 </div>
                             </div>

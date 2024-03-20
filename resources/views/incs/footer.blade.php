@@ -18,8 +18,8 @@
                         <li><a href="https://unicat.msf.org" target="_blank">MSF catalogue</a></li>
                         <li class="disabled"><a href=""  target="_blank">Executive Supply Chain Committee</a></li>
                         <li class=""><a href="https://www.msf.org/" target="_blank">MSF International</a></li>
-                        <li class=""><a href="{{URL('extra_net')}}"  target="_blank">KSU Extranet</a></li>
-                        <li><a href="{{URL('/dwnlds?dwnld=gpc')}}">KSU's General Purchasing Conditions</a></li>
+                        <li class=""><a href="{{URL('extra_net')}}"  target="_blank">MSF Supply Kenya Extranet</a></li>
+                        <li><a href="{{URL('/dwnlds?dwnld=gpc')}}">General Purchasing Conditions</a></li>
                     </ul>
                 </div>
 
@@ -39,7 +39,7 @@
                 <div class="col-footer col-md-3 ">
                     <h3>Address</h3>
                     <p class="contact-us-details">
-                        MSF Kenya Supply Unit<br>
+                        MSF Supply Kenya<br>
                         Memkam Complex, Unit 1<br>
                         Road C off enterprise Road, Near Winners Chapel<br/>
                         P.O. Box 38897 – 00623<br/>

@@ -6,7 +6,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<h1>Kenya Supply Unit</h1>
+						<h1>MSF Supply Kenya</h1>
 					</div>
 				</div>
 			</div>
@@ -35,8 +35,8 @@
 						<h3>About Us</h3>
 						<p>
 							Our ambition is value addition to local and regional clients in Africa and the MSF Supply Chain by focusing on the client needs, development of expertise through unlocking the value of supply chain and logistics.<br><br>
-							We operate in a manner that recognizes and adapts to the increasing complexity of client needs within a rapidly changing environment. KSU strives to make MSF humanitarian responses more efficient (to save costs) and more effective (to save time) through analyzing and optimizing supply chains to enhance procurement, transportation, warehousing and distribution of medical, non-medical and logistical commodities.<br><br>
-							KSU Supports the sustainable development of local labour markets in Kenya in a supply chain setup through the internship program which provides learning opportunities for students from higher learning institutions.<br><br>
+							We operate in a manner that recognizes and adapts to the increasing complexity of client needs within a rapidly changing environment. MSF Supply Kenya strives to make MSF humanitarian responses more efficient (to save costs) and more effective (to save time) through analyzing and optimizing supply chains to enhance procurement, transportation, warehousing and distribution of medical, non-medical and logistical commodities.<br><br>
+							MSF Supply Kenya Supports the sustainable development of local labour markets in Kenya in a supply chain setup through the internship program which provides learning opportunities for students from higher learning institutions.<br><br>
 							We foster collaboration and knowledge transfer through the detachment program with our clients across Africa and other parts of the world to improve the quality of humanitarian intervention within MSF operations.<br><br>
 						</p>
 						{{-- <h4 style="color:red"><b>MORE COMING SOON!</b></h4><br> --}}

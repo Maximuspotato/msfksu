@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-sm-8">
                             <h3>Standard List</h3>
-                            <p>In order to be proactive, we are updating continuously KSU Standard List. This list is dynamic and you can access on the website and in Unicat</p>
+                            <p>In order to be proactive, we are updating continuously MSF Supply Kenya Standard List. This list is dynamic and you can access on the website and in Unicat</p>
                             <p>You have a column with indication about pricing. Some items have a defined price (already negotiated with the supplier), some would hold only an indicative price (based on a purchase done in past 3 month) and some would have no price (meaning not purchased in past 3 months and no agreement with a supplier)</p>
                             <p>For the items not in the Standard List, we welcome your request and will work on it to provide you feedback about our capacity (specification of the products)</p>
                         </div>
@@ -76,7 +76,7 @@
                         <div class="col-sm-8">
                             <h3>Warehousing</h3>
                             <p>
-                                Reception, storage, dispatch of medical [i.e. Cold Chain, controlled, expires drugs], logistical supplies [e.g. dangers goods, electrical, mechanical] and consumables [e.g. stationary, cleaning]. KSU had 3 types of warehouse facilities in Nairobi: Transit Go Down [TGD], Export Processing Zone [EPZ] and an open warehouse
+                                Reception, storage, dispatch of medical [i.e. Cold Chain, controlled, expires drugs], logistical supplies [e.g. dangers goods, electrical, mechanical] and consumables [e.g. stationary, cleaning]. MSF Supply Kenya had 3 types of warehouse facilities in Nairobi: Transit Go Down [TGD], Export Processing Zone [EPZ] and an open warehouse
                             </p>
                         </div>
                     </div>
