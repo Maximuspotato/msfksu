@@ -262,6 +262,17 @@
 				);
 
 				$fields[]=array(
+					'sqlfield'=>'PCT_NO_DOSSIER',				// champ SQL pur
+					'title'=>'Freight no',					// Title for the column
+					
+					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'',
+					
+					'aliasname'=>'',					//alias
+					'sortsqlfield'=>'',					//sort	
+				);
+
+				$fields[]=array(
 					'sqlfield'=>'FCT_NO_FACTURE',				// champ SQL pur
 					'title'=>'Tr invoice',					// Title for the column
 					
@@ -292,6 +303,17 @@
 
 					'aliasname'=>'PK',					//alias
 					'sortsqlfield'=>'PK',					//sort	
+				);
+
+				$fields[]=array(
+					'sqlfield'=>'PCT_NO_FACTURE',				// champ SQL pur
+					'title'=>'Goods inv',					// Title for the column
+					
+					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'',
+					
+					'aliasname'=>'',					//alias
+					'sortsqlfield'=>'',					//sort	
 				);
 
 				$fields[]=array(
@@ -675,7 +697,7 @@
 
 				$query .= " GROUP BY CCT_NOM_DISP, CCT_REF_CMDE_CLI1, CCT_CHA_CODE, CCT_NO, CCL_ART_CODE, CCL_ART_VAR1, CCL_DES1, CCT_TYD_CODE, CCL_QTE_RESTE, CCL_COND_VTE, CCL_MT_HT_LIGNE, CCT_NOTRE_REF,
 				DTR_INDEX, PCL_QTE_LIV, CCT_DT_FERM, PCL_PCT_NO, DTR_NO, CCT_MTR_CODE, CCL_QTE_CMDE, CCL_PX_VTE_NET, CCT_DEV_CODE, MTR_LIB, DTRC_DT_RC, ART_FAA_CODE, ART_SFA_CODE, CCL_DES2, CCT_DT_CMDE, '60040', FCT_NO_FACTURE,
-				FCT_MT_BASE_REMISE, FCT_DT, PCT_NO_FACTURE, PCL_NO_SERIE_LOT, PCL_DT_PEREMPTION";
+				FCT_MT_BASE_REMISE, FCT_DT, PCT_NO_FACTURE, PCL_NO_SERIE_LOT, PCL_DT_PEREMPTION, PCT_NO_DOSSIER";
 
 				if (isset($_REQUEST['confirmed'])) {
 					$query .= " UNION
