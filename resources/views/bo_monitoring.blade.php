@@ -176,10 +176,7 @@
 					'sqlfield'=>
 					"CASE
 					WHEN CCT_TYD_CODE = 'CS' THEN NULL
-					WHEN CCT_TYD_CODE = 'CC' THEN CASE
-					WHEN PCL_PCT_NO IS NULL THEN CCL_PX_VTE_NET*CCL_QTE_CMDE
-					WHEN PCL_PCT_NO IS NOT NULL THEN CCL_PX_VTE_NET*PCL_QTE_LIV
-					END
+					WHEN CCT_TYD_CODE = 'CC' THEN CCL_MT_HT_LIGNE
 					END",		// champ SQL pur
 					'title'=>'Total price',					// Title for the column
 					
@@ -248,8 +245,8 @@
 				$fields[]=array(
 					'sqlfield'=>
 					"CASE
-					WHEN DTR_NO IS NOT NULL THEN 'MSFOCB-KSU-TransportManager@brussels.msf.org'
-					ELSE 'MSFOCB-KSU-CustomerService@brussels.msf.org'
+					WHEN DTR_NO IS NOT NULL THEN 'Mary.Karanja@brussels.msf.org'
+					ELSE 'David.Mutua@brussels.msf.org'
 					END",		// champ SQL pur
 					'title'=>'Contact',					// Title for the column
 					
@@ -582,13 +579,13 @@
 				}
 
 				$query .= " GROUP BY CCT_NOM_DISP, CCT_REF_CMDE_CLI1, CCT_CHA_CODE, CCT_NO, CCL_ART_CODE, CCL_DES1, CCT_TYD_CODE, CCL_QTE_RESTE,
-				DTR_INDEX, PCL_QTE_LIV, CCT_DT_FERM, PCL_PCT_NO, DTR_NO, CCT_MTR_CODE, CCL_QTE_CMDE, CCL_PX_VTE_NET, CCT_DEV_CODE, MTR_LIB, DTRC_DT_RC ";
+				DTR_INDEX, PCL_QTE_LIV, CCT_DT_FERM, PCL_PCT_NO, DTR_NO, CCT_MTR_CODE, CCL_QTE_CMDE, CCL_PX_VTE_NET, CCL_MT_HT_LIGNE, CCT_DEV_CODE, MTR_LIB, DTRC_DT_RC ";
 
 				if (isset($_REQUEST['confirmed'])) {
 					$query .= " UNION
 
 					SELECT ROW_NUMBER() OVER (ORDER BY CCT_NO DESC), CCT_NOM_DISP, CCT_REF_CMDE_CLI1, CCT_CHA_CODE, '<a href=\"http://10.210.168.40/reports/order_view.php?order_no=' || CCT_NO || '&Go=Go\">' || CCT_NO || '</a>',
-					CCL_ART_CODE, CCL_DES1, 'CONFIRMED', CCL_QTE_RESTE, CCL_PX_VTE_NET, (CCL_PX_VTE_NET*CCL_QTE_RESTE), CCT_DEV_CODE, CCT_DT_FERM,
+					CCL_ART_CODE, CCL_DES1, 'CONFIRMED', CCL_QTE_RESTE, CCL_PX_VTE_NET, CCL_MT_HT_LIGNE, CCT_DEV_CODE, CCT_DT_FERM,
 					NULL, NULL,
 					MTR_LIB,
 					'MSFOCB-KSU-CustomerService@brussels.msf.org', NULL
@@ -628,7 +625,7 @@
 
 					$query .= "
 					GROUP BY CCT_NOM_DISP, CCT_REF_CMDE_CLI1, CCT_CHA_CODE, CCT_NO, CCL_ART_CODE, CCL_DES1, CCT_DT_FERM, CCT_MTR_CODE, CCL_QTE_RESTE, 
-					CCL_PX_VTE_NET, CCT_DEV_CODE, MTR_LIB ";
+					CCL_PX_VTE_NET,CCL_MT_HT_LIGNE, CCT_DEV_CODE, MTR_LIB ";
 					
 				}
 
