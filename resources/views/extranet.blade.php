@@ -77,6 +77,7 @@
                                 <div class="accordion-inner">
                                     <p><a href="{{URL('/invoice')}}">Invoice pdf</a></p>
                                     <p><a href="{{URL('/fior-annex')}}">Fior Annex</a></p>
+                                    <p><a href="{{URL('/fior-annexv2')}}">Fior Annex V2</a></p>
                                 </div>
                             </div>
                         </div>

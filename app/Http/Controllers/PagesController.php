@@ -309,6 +309,10 @@ class PagesController extends Controller
         return view('fior_annex')->with('active', 'extranet');
     }
 
+    public function fior_annexv2(){
+        return view('fior_annexv2')->with('active', 'extranet');
+    }
+
     
     public function playground(){
         return view('playground')->with('active', '');

@@ -323,27 +323,27 @@
 					'sortsqlfield'=>'',					//sort	
 				);
 
-				$fields[]=array(
-					'sqlfield'=>'PCL_NO_SERIE_LOT',				// champ SQL pur
-					'title'=>'Batch no',					// Title for the column
+				// $fields[]=array(
+				// 	'sqlfield'=>'PCL_NO_SERIE_LOT',				// champ SQL pur
+				// 	'title'=>'Batch no',					// Title for the column
 					
-					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-					'decimal'=>'',
+				// 	'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+				// 	'decimal'=>'',
 					
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
-				);
+				// 	'aliasname'=>'',					//alias
+				// 	'sortsqlfield'=>'',					//sort	
+				// );
 
-				$fields[]=array(
-					'sqlfield'=>'PCL_DT_PEREMPTION',				// champ SQL pur
-					'title'=>'Expiry',					// Title for the column
+				// $fields[]=array(
+				// 	'sqlfield'=>'PCL_DT_PEREMPTION',				// champ SQL pur
+				// 	'title'=>'Expiry',					// Title for the column
 					
-					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-					'decimal'=>'',
+				// 	'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+				// 	'decimal'=>'',
 					
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
-				);
+				// 	'aliasname'=>'',					//alias
+				// 	'sortsqlfield'=>'',					//sort	
+				// );
 
 				$fields[]=array(
 					'sqlfield'=>
@@ -683,7 +683,7 @@
 
 				$query .= " GROUP BY CCT_NOM_DISP, CCT_NO, CCL_ART_CODE, CCL_ART_VAR1, CCL_DES1 ,CCL_DES2 ,CCT_DT_CMDE, CCL_QTE_CMDE, CCL_COND_VTE, CCL_PX_VTE_NET, 
 CCL_MT_HT_LIGNE, CCT_DEV_CODE, CCT_REF_CMDE_CLI1 ,CCT_CHA_CODE ,CCT_NOTRE_REF ,'60040', ART_FAA_CODE ,ART_SFA_CODE, PCT_NO_DOSSIER, PCT_NO, PCT_NO_FACTURE,
-FCT_MT_BASE_REMISE, FCT_NO_FACTURE, FCT_MT_BASE_REMISE, MTR_LIB, PCL_NO_SERIE_LOT ,PCL_DT_PEREMPTION, CCT_TYD_CODE, PCL_PCT_NO, DTR_NO, DTR_INDEX";
+FCT_MT_BASE_REMISE, FCT_NO_FACTURE, FCT_MT_BASE_REMISE, MTR_LIB, CCT_TYD_CODE, PCL_PCT_NO, DTR_NO, DTR_INDEX";
 
 				if (isset($_REQUEST['confirmed'])) {
 					$query .= " UNION
