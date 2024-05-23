@@ -77,6 +77,60 @@
 					'sortsqlfield'=>'',					//sort	
 				);
 
+				$fields[]=array(
+					'sqlfield'=>'CCL_PX_VTE_NET',				// champ SQL pur
+					'title'=>'Unit price',					// Title for the column
+					
+					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'2',
+					
+					'aliasname'=>'',					//alias
+					'sortsqlfield'=>'',					//sort	
+				);
+
+				$fields[]=array(
+					'sqlfield'=>'CCT_DEV_CODE',		// champ SQL pur
+					'title'=>'Currency',					// Title for the column
+					
+					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'',
+
+					'aliasname'=>'',					//alias
+					'sortsqlfield'=>'',					//sort	
+				);
+
+				$fields[]=array(
+					'sqlfield'=>"CASE
+					WHEN CCT_DEV_CODE = 'USD' THEN CCL_MT_HT_LIGNE
+					WHEN CCT_DEV_CODE = 'KES' THEN
+					CASE
+					WHEN TRUNC(CCT_DT_CMDE,'MM') = TRUNC(SYSDATE,'MM') THEN CCL_MT_HT_LIGNE * (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'USD' AND ROWNUM = 1 AND DTX_DT_DEB = (SELECT MAX(DTX_DT_DEB)  FROM XN_DEVISE_TAUX  WHERE DTX_DEV_CODE = 'USD'))
+					ELSE CASE
+					WHEN TRUNC(SYSDATE,'MM') > (SELECT DTX_DT_DEB FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'USD' AND DTX_DT_FIN IS NULL) THEN CCL_MT_HT_LIGNE * (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'USD' AND ROWNUM = 1 AND DTX_DT_DEB = (SELECT MAX(DTX_DT_DEB)  FROM XN_DEVISE_TAUX  WHERE DTX_DEV_CODE = 'USD'))
+					ELSE CCL_MT_HT_LIGNE * (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'USD' AND DTX_DT_DEB = TRUNC(CCT_DT_CMDE, 'MM') AND 
+					DTX_DT_FIN = LAST_DAY(CCT_DT_CMDE))
+					END
+					END
+					WHEN CCT_DEV_CODE = 'EUR' THEN
+					CASE
+					WHEN TRUNC(CCT_DT_CMDE,'MM') = TRUNC(SYSDATE,'MM') THEN (CCL_MT_HT_LIGNE / (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'EUR' AND ROWNUM = 1 AND DTX_DT_DEB = (SELECT MAX(DTX_DT_DEB) FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'EUR'))) * (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'USD' AND ROWNUM = 1 AND DTX_DT_DEB = (SELECT MAX(DTX_DT_DEB)  FROM XN_DEVISE_TAUX  WHERE DTX_DEV_CODE = 'USD'))
+					ELSE CASE
+					WHEN TRUNC(SYSDATE,'MM') > (SELECT DTX_DT_DEB FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'EUR' AND DTX_DT_FIN IS NULL) THEN (CCL_MT_HT_LIGNE / (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'EUR' AND ROWNUM = 1 AND DTX_DT_DEB = (SELECT MAX(DTX_DT_DEB) FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'EUR'))) * (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'USD' AND ROWNUM = 1 AND DTX_DT_DEB = (SELECT MAX(DTX_DT_DEB)  FROM XN_DEVISE_TAUX  WHERE DTX_DEV_CODE = 'USD'))
+					ELSE (CCL_MT_HT_LIGNE / (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'EUR' AND DTX_DT_DEB = TRUNC(CCT_DT_CMDE, 'MM') AND 
+					DTX_DT_FIN = LAST_DAY(CCT_DT_CMDE))) * (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'USD' AND DTX_DT_DEB = TRUNC(CCT_DT_CMDE, 'MM') AND 
+					DTX_DT_FIN = LAST_DAY(CCT_DT_CMDE))
+					END
+					END
+					END",				// champ SQL pur
+					'title'=>'Total price(USD)',					// Title for the column
+					
+					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'2',
+					
+					'aliasname'=>'TOTUSD',					//alias
+					'sortsqlfield'=>'TOTUSD',					//sort	
+				);
+
                 $fields[]=array(
 					'sqlfield'=>'CCL_QTE_LIV',				// champ SQL pur
 					'title'=>'Delivered qty',					// Title for the column
