@@ -310,7 +310,7 @@ class PagesController extends Controller
     }
 
     public function fior_annexv2(){
-        return view('fior_annexv2')->with('active', 'extranet');
+        return view('fior_annexV2')->with('active', 'extranet');
     }
 
     
