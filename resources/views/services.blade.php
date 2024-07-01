@@ -137,9 +137,9 @@
                             </p>
                             <p>
                                 @if (AUTH::guest())
-                                    Click <a href="{{URL('/login')}}">here</a> for an overview of the regional transport rates 
+                                    Click <a href="{{URL('/login')}}">here</a> for an overview of the regional transport rates and <a href="{{URL('/login')}}">here</a> to see the countries we ship to
                                 @else
-                                    Click <a href="{{URL('/downloadTransport')}}">here</a> for an overview of the regional transport rates 
+                                    Click <a href="{{URL('/downloadTransport')}}">here</a> for an overview of the regional transport rates and <a id="trButt">here</a> to see the countries we ship to
                                 @endif
                             </p>
                         </div>
@@ -159,6 +159,24 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="modal fade in" id="trModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Countries we ship to</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="basic-login">
+                    <img src="{{URL('/')}}/assets/img/countriestr.PNG" alt="">
+                </div>
+            </div>
+        </div>
         </div>
     </div>
 @endsection

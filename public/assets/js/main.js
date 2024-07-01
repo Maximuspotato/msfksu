@@ -121,6 +121,9 @@ $('#carting').on('submit', function(e){
 });
 
 $(document).ready(function () {
+    $('#trButt').click(function(){
+        $('#trModal').modal();
+    });
     //cookie for pop up login
     var popStatus =  readCookie('show');
     //console.log(popStatus);

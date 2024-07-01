@@ -317,6 +317,48 @@
 					render_table_xls($result, $fields, $generalparams);	
 					exit();
 				}
+
+				if(isset($_REQUEST['dtr_no'])){
+					$query2 = "SELECT * FROM EXT_DOSSIER_TRANSP_RC WHERE DTRC_DTR_NO = :dtr_no ";
+												
+					$stmt2 = oci_parse($c, $query2);
+					ocibindbyname($stmt2, ":dtr_no", $_REQUEST['dtr_no']);	
+					ociexecute($stmt2, OCI_DEFAULT);
+					$nrows2 = ocifetchstatement($stmt2, $result2,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+					
+					if($nrows2 > 0){
+						if ($_REQUEST['recieved'] != "") {
+							$query2 = "UPDATE EXT_DOSSIER_TRANSP_RC SET DTRC_DT_RC = :recieved WHERE DTRC_DTR_NO = :dtr_no ";
+							$stmt2 = oci_parse($c, $query2);
+							ocibindbyname($stmt2, ":dtr_no", $_REQUEST['dtr_no']);
+							$strToDate = strtotime($_REQUEST['recieved']);
+							$dt = date('d-M-y', $strToDate);
+							ocibindbyname($stmt2, ":recieved", $dt);	
+							
+							oci_execute($stmt2, OCI_DEFAULT);
+							oci_commit($c);
+						} else {
+							$query2 = "UPDATE EXT_DOSSIER_TRANSP_RC SET DTRC_DT_RC = NULL WHERE DTRC_DTR_NO = :dtr_no ";
+							$stmt2 = oci_parse($c, $query2);
+							ocibindbyname($stmt2, ":dtr_no", $_REQUEST['dtr_no']);
+							
+							oci_execute($stmt2, OCI_DEFAULT);
+							oci_commit($c);
+						}
+					}else{
+						$query2 = "INSERT INTO EXT_DOSSIER_TRANSP_RC (DTRC_DTR_NO, DTRC_DT_RC) VALUES (:dtr_no, :recieved) ";
+						$stmt2 = oci_parse($c, $query2);
+						ocibindbyname($stmt2, ":dtr_no", $_REQUEST['dtr_no']);
+						$strToDate = strtotime($_REQUEST['recieved']);
+						$dt = date('d-M-y', $strToDate);
+						ocibindbyname($stmt2, ":recieved", $dt);
+						
+						oci_execute($stmt2, OCI_DEFAULT);
+						oci_commit($c);
+					}
+					header("Location: tr-overview");
+					die();
+				}
 			@endphp
 			<div class="container" >
 				<form method="GET" id="grille-param" action="{{URL('/')}}/tr-overview" autocomplete="off">
@@ -353,14 +395,14 @@
 	
 				<input type="hidden" id="dtr_no" name="dtr_no" value="" required>
 	
-				<button type="submit" class="btn" onclick="save()" >Save</button>
+				<button type="submit" class="btn">Save</button>
 				<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
 			</form>
 		</div>
 	</div>
 	<div class="form-popup" id="commForm">
 		<div class="div_filter">
-			<form id="transForm" class="form-container">
+			<form id="transForm" class="form-container" action="{{url('/')}}/ext/utils/KSU_trans_ajax.php">
 				<h1 id="commHead"></h1>
 	
 				<textarea name="comm" placeholder="Add comment here..." required></textarea>
@@ -370,6 +412,7 @@
 	
 				<button type="submit" class="btn" onclick="save()" >Save</button>
 				<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+				<input type="submit" value="go">
 			</form>
 		</div>
 	</div>
@@ -386,24 +429,24 @@
 			document.getElementById("dtr_no").value = dtr_no;
 			//console.log("{!! app_path() !!}");
 		}
-		function commForm(dtr_no){
-			document.getElementById("commForm").style.display = "table";
-			document.getElementById("commHead").innerHTML = "File no. "+dtr_no;
-			document.getElementById("dtr_nos").value = dtr_no;
-			//console.log("{!! app_path() !!}");
-		}
-		function closeForm() {
-			document.getElementById("trForm").style.display = "none";
-			document.getElementById("commForm").style.display = "none";
-			var comClass = document.getElementsByClassName('com');
-			if (comClass != null) {
-				var length = comClass.length;
-				for(var i = 0; i < length; i++) {
-					comClass[0].remove();
-				}
-				document.getElementById("allComms").style.display = "none";
-			}
-		}
+		// function commForm(dtr_no){
+		// 	document.getElementById("commForm").style.display = "table";
+		// 	document.getElementById("commHead").innerHTML = "File no. "+dtr_no;
+		// 	document.getElementById("dtr_nos").value = dtr_no;
+		// 	//console.log("{!! app_path() !!}");
+		// }
+		// function closeForm() {
+		// 	document.getElementById("trForm").style.display = "none";
+		// 	document.getElementById("commForm").style.display = "none";
+		// 	var comClass = document.getElementsByClassName('com');
+		// 	if (comClass != null) {
+		// 		var length = comClass.length;
+		// 		for(var i = 0; i < length; i++) {
+		// 			comClass[0].remove();
+		// 		}
+		// 		document.getElementById("allComms").style.display = "none";
+		// 	}
+		// }
 	
 		// function closeForm() {
 		// 	document.getElementById("trForm").style.display = "none";
@@ -412,7 +455,7 @@
 	
 		function save(){
 			var http = new XMLHttpRequest();
-			http.open("POST", "{{url('/')}}/ext/utils/KSU_trans_ajax.php", true);
+			http.open("POST", "<?php echo '{{url(\'/\')}}/ext/utils/KSU_trans_ajax.php' ?>", true);
 			http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 			var params = "recieved="+document.getElementById("recieved").value+"&dtr_no="+document.getElementById("dtr_no").value;
 			http.send(params);
@@ -420,56 +463,56 @@
 			// 	alert(http.responseText);
 			// }
 		}
-		function delComm(comm2del){
-			var http = new XMLHttpRequest();
-			http.open("POST", "{{url('/')}}/ext/utils/KSU_trans_ajax.php", true);
-			http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			var params = "recieved="+document.getElementById("recieved").value+"&dtr_no="+document.getElementById("dtr_no").value;
-			http.send(params);
-			// http.onload = function() {
-			// 	alert(http.responseText);
-			// }
-		}
-		function fetchComms(dtr_no){
-			var http = new XMLHttpRequest();
-			http.open("POST", "{{url('/')}}/ext/utils/KSU_trans_ajax.php", true);
-			http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			var params = "dtr_no="+dtr_no+"&det=fetch";
-			http.send(params);
-			http.onload = function() {
-				if (http.responseText === "empty\t") {
-					alert("No comment available");
-				} else {
-					var comClass = document.getElementsByClassName('com');
-					if (comClass != null) {
-						var length = comClass.length;
-						for(var i = 0; i < length; i++) {
-							comClass[0].remove();
-						}
-						document.getElementById("allComms").style.display = "none";
-					}
-					var resp = JSON.parse(http.responseText);
-					document.getElementById("allComms").style.display = "table";
-					document.getElementById("allCommsHead").innerHTML = "File no. "+dtr_no;
-					var counter = 1;
-					resp.forEach(comm => {
-						//console.log(comm['DTC_COMM']);
-						const para = document.createElement("p");
-						para.setAttribute("class", "com");
-						para.setAttribute("style", "color: white");
-						para.innerHTML = counter+". "+comm['DTC_COMM'];
+		// function delComm(comm2del){
+		// 	var http = new XMLHttpRequest();
+		// 	http.open("POST", "{{url('/')}}/ext/utils/KSU_trans_ajax.php", true);
+		// 	http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		// 	var params = "recieved="+document.getElementById("recieved").value+"&dtr_no="+document.getElementById("dtr_no").value;
+		// 	http.send(params);
+		// 	// http.onload = function() {
+		// 	// 	alert(http.responseText);
+		// 	// }
+		// }
+		// function fetchComms(dtr_no){
+		// 	var http = new XMLHttpRequest();
+		// 	http.open("POST", "{{url('/')}}/ext/utils/KSU_trans_ajax.php", true);
+		// 	http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		// 	var params = "dtr_no="+dtr_no+"&det=fetch";
+		// 	http.send(params);
+		// 	http.onload = function() {
+		// 		if (http.responseText === "empty\t") {
+		// 			alert("No comment available");
+		// 		} else {
+		// 			var comClass = document.getElementsByClassName('com');
+		// 			if (comClass != null) {
+		// 				var length = comClass.length;
+		// 				for(var i = 0; i < length; i++) {
+		// 					comClass[0].remove();
+		// 				}
+		// 				document.getElementById("allComms").style.display = "none";
+		// 			}
+		// 			var resp = JSON.parse(http.responseText);
+		// 			document.getElementById("allComms").style.display = "table";
+		// 			document.getElementById("allCommsHead").innerHTML = "File no. "+dtr_no;
+		// 			var counter = 1;
+		// 			resp.forEach(comm => {
+		// 				//console.log(comm['DTC_COMM']);
+		// 				const para = document.createElement("p");
+		// 				para.setAttribute("class", "com");
+		// 				para.setAttribute("style", "color: white");
+		// 				para.innerHTML = counter+". "+comm['DTC_COMM'];
 
-						const pic = document.createElement("img");
-						pic.setAttribute("src", "ext/images/delete.gif");
-						//pic.setAttribute("onclick", "delComm("+comm['DTC_COMM']+")");
+		// 				const pic = document.createElement("img");
+		// 				pic.setAttribute("src", "ext/images/delete.gif");
+		// 				//pic.setAttribute("onclick", "delComm("+comm['DTC_COMM']+")");
 
-						document.getElementById("commsDiv").appendChild(para);
-						document.getElementById("commsDiv").appendChild(pic );
-						counter++;
-					});
-				}
-			}
-		}
+		// 				document.getElementById("commsDiv").appendChild(para);
+		// 				document.getElementById("commsDiv").appendChild(pic );
+		// 				counter++;
+		// 			});
+		// 		}
+		// 	}
+		// }
 	</script>
 @endsection
 

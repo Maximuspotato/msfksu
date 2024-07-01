@@ -7,7 +7,7 @@
     <script src="{{URL('/')}}/assets/js/jquery.sequence-min.js"></script>
     <script src="{{URL('/')}}/assets/js/jquery.bxslider.js"></script>
     <script src="{{URL('/')}}/assets/js/main-menu.js"></script>
-    <script src="{{URL('/')}}/assets/js/main.js"></script>
+    <script src="{{URL('/')}}/assets/js/main.js?random=<?php echo uniqid(); ?>"></script>
     <script src="{{URL('/')}}/assets/js/template.js"></script>
     {{-- <script src="{{URL('/')}}/assets/js/jquery-editable-select.js"></script> --}}
     <script src="{{URL('/')}}/assets/client/jquery.fine-uploader.js"></script>
