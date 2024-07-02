@@ -160,6 +160,9 @@
                 </div>
             </div>
         </div>
+        <div class="container">
+            <img src="{{URL('/')}}/assets/img/flow.png" alt="" width="100%">
+        </div>
     </div>
 
     <div class="modal fade in" id="trModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
