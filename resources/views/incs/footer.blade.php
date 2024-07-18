@@ -51,8 +51,8 @@
                 <div class="col-footer col-md-3 ">
                     <h3>Contacts</h3>
                     <p class="contact-us-details">
-                        @if (AUTH::guest()) KSU Support @else KSU Customer Service @endif <br>
-                        @if (AUTH::guest()) <a href="mailto:MSFOCB-KSU-Support@brussels.msf.org">MSFOCB-KSU-Support@brussels.msf.org</a> @else <a href="mailto:MSFOCB-KSU-CustomerService@brussels.msf.org">MSFOCB-KSU-CustomerService@brussels.msf.org</a> @endif<br>
+                        @if (AUTH::guest()) Support @else Customer Service @endif <br>
+                        @if (AUTH::guest()) <a href="mailto:Support.MSFSUPPLYKE@brussels.msf.org">Support.MSFSUPPLYKE@brussels.msf.org</a> @else <a href="mailto:CustomerService.MSFSUPPLYKE@brussels.msf.org">CustomerService.MSFSUPPLYKE@brussels.msf.org</a> @endif<br>
                         Telephone @if (AUTH::guest()) +254 (0) 20 354 2419 @else +254 (0) 794 655 262 @endif
                     </p>
                 </div>

@@ -63,7 +63,7 @@
                     <div class="col-sm-12">
                         <p class="contact-us-details">
                             MSF Supply Kenya Support<br>
-                            <a href="mailto:MSFOCB-KSU-Support@brussels.msf.org">MSFOCB-KSU-Support@brussels.msf.org</a><br>
+                            <a href="mailto:Support.MSFSUPPLYKE@brussels.msf.org">Support.MSFSUPPLYKE@brussels.msf.org</a><br>
                             {{-- Tel +254 (0) 20 354 2419 --}}
                         </p>
                     </div>
@@ -71,14 +71,14 @@
                     <div class="col-sm-12">
                         <p class="contact-us-details">
                             Customer Service<br>
-                            <a href="mailto:MSFOCB-KSU-CustomerService@brussels.msf.org">MSFOCB-KSU-CustomerService@brussels.msf.org</a><br>
+                            <a href="mailto:CustomerService.MSFSUPPLYKE@brussels.msf.org">CustomerService.MSFSUPPLYKE@brussels.msf.org</a><br>
                             Tel +254 (0) 794 655 262
                         </p>
                     </div>
                     <div class="col-sm-12">
                         <p class="contact-us-details">
                             Transport Manager<br>
-                            <a href="mailto:MSFOCB-KSU-TransportManager@brussels.msf.org">MSFOCB-KSU-TransportManager@brussels.msf.org</a><br>
+                            <a href="mailto:TransportManager.MSFSUPPLYKE@brussels.msf.org">TransportManager.MSFSUPPLYKE@brussels.msf.org</a><br>
                             Tel +254 (0) 710 809 156
                         </p>
                     </div>
