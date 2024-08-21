@@ -43,7 +43,7 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-@lang('Regards'),<br>MSF KSU
+@lang('Regards'),<br>MSF Supply Kenya
 @endif
 
 {{-- Subcopy --}}

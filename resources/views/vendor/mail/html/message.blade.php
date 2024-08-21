@@ -1,8 +1,8 @@
 @component('mail::layout')
     {{-- Header --}}
     @slot('header')
-        @component('mail::header', ['url' => 'msfksu.com'])
-            MSf KSU
+        @component('mail::header', ['url' => 'msfsupplykenya.org'])
+            MSF Supply Kenya
         @endcomponent
     @endslot
 
@@ -21,7 +21,7 @@
     {{-- Footer --}}
     @slot('footer')
         @component('mail::footer')
-            © {{ date('Y') }} MSf KSU. @lang('All rights reserved.')
+            © {{ date('Y') }} MSf Supply Kenya. @lang('All rights reserved.')
         @endcomponent
     @endslot
 @endcomponent

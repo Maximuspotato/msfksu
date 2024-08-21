@@ -27,7 +27,7 @@
                         </div>
                     @endif --}}
 
-                    {{ __("Your registration for KSU’s Web App is being verified. We will contact you within one working day.
+                    {{ __("Your registration to MSF Supply Kenya Web App is being verified. We will contact you within one working day.
                     If you encounter any problems please don’t hesitate to contact us through our contact page.
                     ") }}
                     {{-- {{ __('If you did not receive the email') }}, <a href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a>. --}}
