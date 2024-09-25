@@ -62,26 +62,26 @@
 					'sortsqlfield'=>'ORDER_NO',					//sort	
 				);
 
-				$fields[]=array(
-					'sqlfield'=>'ART_FAA_CODE',				// champ SQL pur
-					'title'=>'Group',					// Title for the column
+				// $fields[]=array(
+				// 	'sqlfield'=>'ART_FAA_CODE',				// champ SQL pur
+				// 	'title'=>'Group',					// Title for the column
 					
-					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-					'decimal'=>'',
+				// 	'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+				// 	'decimal'=>'',
 					
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
-				);
+				// 	'aliasname'=>'',					//alias
+				// 	'sortsqlfield'=>'',					//sort	
+				// );
 
 				$fields[]=array(
-					'sqlfield'=>'ART_SFA_CODE',				// champ SQL pur
+					'sqlfield'=>"ART_FAA_CODE || ART_SFA_CODE",				// champ SQL pur
 					'title'=>'Family',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
 					
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
+					'aliasname'=>'FAM',					//alias
+					'sortsqlfield'=>'FAM',					//sort	
 				);
 
 				$fields[]=array(
@@ -237,7 +237,7 @@
 
 				$fields[]=array(
 					'sqlfield'=>"'60040'",				// champ SQL pur
-					'title'=>'KSU ref',					// Title for the column
+					'title'=>'Accounting code',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
