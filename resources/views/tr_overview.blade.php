@@ -117,36 +117,29 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>"DTR_VAL_MARCHANDE",		// champ SQL pur
-					'title'=>'Goods Cost (Ksh)',					// Title for the column
+					'sqlfield'=>"DTR_VAL_MARCHANDE * (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'USD' AND DTX_DT_DEB = DTR_DT_CREAT_DOS)",		// champ SQL pur
+					'title'=>'Goods Cost (USD)',					// Title for the column
 					
 					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'2',
 
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	CCL_QTE_RESTE
+					'aliasname'=>'GDCST',					//alias
+					'sortsqlfield'=>'GDCST',					//sort	CCL_QTE_RESTE
 				);
 
 				$fields[]=array(
-					'sqlfield'=>"FCT_MT_BASE_REMISE",		// champ SQL pur
-					'title'=>'Transport and Customs cost',					// Title for the column
+					'sqlfield'=>"CASE
+WHEN FCT_DEV_CODE = 'USD' THEN FCT_MT_BASE_REMISE
+WHEN FCT_DEV_CODE = 'KES' THEN FCT_MT_BASE_REMISE * (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'USD' AND DTX_DT_DEB = FCT_DT)
+WHEN FCT_DEV_CODE = 'EUR' THEN (FCT_MT_BASE_REMISE / (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'EUR' AND DTX_DT_DEB = FCT_DT)) * (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'USD' AND DTX_DT_DEB = FCT_DT)
+END",		// champ SQL pur
+					'title'=>'Transport and Customs cost(USD)',					// Title for the column
 					
 					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'2',
 
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	CCL_QTE_RESTE
-				);
-
-				$fields[]=array(
-					'sqlfield'=>'FCT_DEV_CODE',		// champ SQL pur
-					'title'=>'Currency',					// Title for the column
-					
-					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-					'decimal'=>'',
-
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
+					'aliasname'=>'TRCST',					//alias
+					'sortsqlfield'=>'TRCST',					//sort	CCL_QTE_RESTE
 				);
 
 				$fields[]=array(
