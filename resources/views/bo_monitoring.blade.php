@@ -43,17 +43,6 @@
 				}
 
 				$fields[]=array(
-					'sqlfield'=>'ROW_NUMBER() OVER (ORDER BY CCT_NO DESC)',				// champ SQL pur
-					'title'=>'#',					// Title for the column
-					
-					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-					'decimal'=>'0',
-					
-					'aliasname'=>'INDEXNO',					//alias
-					'sortsqlfield'=>'',					//sort	
-				);
-
-				$fields[]=array(
 					'sqlfield'=>'CCT_NOM_DISP',				// champ SQL pur
 					'title'=>'Dispatch',					// Title for the column
 					
@@ -122,16 +111,12 @@
 				$fields[]=array(
 					'sqlfield'=>
 					"CASE
-					WHEN CCT_TYD_CODE = 'CS' THEN 'DRAFT'
-					WHEN CCT_TYD_CODE = 'CA' THEN 'DRAFT'
-					WHEN CCT_TYD_CODE = 'CT' THEN 'TECHNICAL'
+					WHEN CCT_TYD_CODE NOT IN ('CC', 'CX') THEN 'DRAFT'
+					WHEN CCT_TYD_CODE = 'CC' AND PCL_PCT_NO IS NULL THEN 'CONFIRMED'
+					WHEN CCT_TYD_CODE = 'CC' AND PCL_PCT_NO IS NOT NULL AND DTR_NO IS NOT NULL AND DTRC_DT_RC IS NULL THEN 'ON FREIGHT'
+					WHEN CCT_TYD_CODE = 'CC' AND PCL_PCT_NO IS NOT NULL AND DTR_NO IS NOT NULL AND DTRC_DT_RC IS NOT NULL THEN 'DELIVERED'
 					WHEN CCT_TYD_CODE = 'CX' THEN 'CANCELLED'
-					WHEN CCT_TYD_CODE = 'CC' THEN CASE
-					WHEN PCL_PCT_NO IS NOT NULL AND DTR_NO IS NULL THEN 'RTS'
-					WHEN DTR_NO IS NOT NULL AND DTR_INDEX <> 'Z' THEN 'ON FREIGHT'
-					WHEN DTR_NO IS NOT NULL AND DTR_INDEX = 'Z' THEN 'DELIVERED'
-					ELSE 'CONFIRMED'
-					END
+					WHEN CCT_TYD_CODE = 'CC' AND PCL_PCT_NO IS NOT NULL AND DTR_NO IS NULL THEN 'RTS'
 					END",		// champ SQL pur
 					'title'=>'Status',					// Title for the column
 					
@@ -143,27 +128,24 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>
-					"CASE
-					WHEN PCL_PCT_NO IS NULL THEN CCL_QTE_CMDE
-					WHEN PCL_PCT_NO IS NOT NULL THEN SUM(PCL_QTE_LIV)
-					END",		// champ SQL pur
+					'sqlfield'=>'CCL_QTE_CMDE',		// champ SQL pur
 					'title'=>'Order Qty',					// Title for the column
 					
 					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'0',
 
-					'aliasname'=>'ORDERQTY',					//alias
+					'aliasname'=>'',					//alias
 					'sortsqlfield'=>'',					//sort	
 				);
 
 				$fields[]=array(
 					'sqlfield'=>
 					"CASE
-					WHEN CCT_TYD_CODE = 'CS' THEN NULL
-					WHEN CCT_TYD_CODE = 'CC' THEN CCL_PX_VTE_NET
+					WHEN CCT_DEV_CODE = 'USD' THEN CCL_PX_VTE_NET
+					WHEN CCT_DEV_CODE = 'KES' THEN CCL_PX_VTE_NET * (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'USD' AND DTX_DT_DEB = CCT_DT_CMDE)
+					WHEN CCT_DEV_CODE = 'EUR' THEN (CCL_PX_VTE_NET / (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'EUR' AND DTX_DT_DEB = CCT_DT_CMDE)) * (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'USD' AND DTX_DT_DEB = CCT_DT_CMDE)
 					END",		// champ SQL pur
-					'title'=>'Unit price',					// Title for the column
+					'title'=>'Unit price(USD)',					// Title for the column
 					
 					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'0',
@@ -175,26 +157,16 @@
 				$fields[]=array(
 					'sqlfield'=>
 					"CASE
-					WHEN CCT_TYD_CODE = 'CS' THEN NULL
-					WHEN CCT_TYD_CODE = 'CC' THEN CCL_MT_HT_LIGNE
+					WHEN CCT_DEV_CODE = 'USD' THEN CCL_MT_HT_LIGNE
+					WHEN CCT_DEV_CODE = 'KES' THEN CCL_MT_HT_LIGNE * (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'USD' AND DTX_DT_DEB = CCT_DT_CMDE)
+					WHEN CCT_DEV_CODE = 'EUR' THEN (CCL_MT_HT_LIGNE / (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'EUR' AND DTX_DT_DEB = CCT_DT_CMDE)) * (SELECT DTX_TX_ACH FROM XN_DEVISE_TAUX WHERE DTX_DEV_CODE = 'USD' AND DTX_DT_DEB = CCT_DT_CMDE)
 					END",		// champ SQL pur
-					'title'=>'Total price',					// Title for the column
+					'title'=>'Total price(USD)',					// Title for the column
 					
 					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'0',
 
 					'aliasname'=>'TOTALPRICE',					//alias
-					'sortsqlfield'=>'',					//sort	
-				);
-
-				$fields[]=array(
-					'sqlfield'=>'CCT_DEV_CODE',		// champ SQL pur
-					'title'=>'Currency',					// Title for the column
-					
-					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-					'decimal'=>'',
-
-					'aliasname'=>'',					//alias
 					'sortsqlfield'=>'',					//sort	
 				);
 
@@ -278,12 +250,13 @@
 
 				$query .= "
 				FROM XN_CMDE_CLI_TETE, XN_CMDE_CLI_LIGNE, MS_PACK_CLI_LIGNE, MS_PACK_CLI_TETE, MS_DOSSIER_TRANSP, XN_MODE_TRANSP, EXT_DOSSIER_TRANSP_RC, XN_CLI
-				WHERE CCT_NO = CCL_CCT_NO
-				AND MTR_CODE = CCT_MTR_CODE
-				AND CCL_CCT_NO=PCL_CCT_NO(+)
-				AND CCL_NO_LIGNE=PCL_CCL_NO_LIGNE(+)
+				WHERE CCL_CCT_NO(+) = CCT_NO
+				AND PCL_CCT_NO(+) = CCL_CCT_NO
+				AND PCL_ART_CODE(+) = CCL_ART_CODE
+				AND PCL_CCL_NO_LIGNE(+) = CCL_NO_LIGNE
 				AND PCT_NO(+) = PCL_PCT_NO
 				AND DTR_NO(+) = PCT_NO_DOSSIER
+				AND MTR_CODE = CCT_MTR_CODE
 				AND DTR_NO= DTRC_DTR_NO(+)
 				AND CLI_CODE(+) = CCT_CLI_CODE_LIVRE ";
 
@@ -301,275 +274,6 @@
 					$query .= " AND CCT_DT_CREAT <= TO_DATE(:dateBefore,'DD/MM/YYYY')+1 ";
 				}
 
-				if(isset($_REQUEST['draft']) &&
-				!isset($_REQUEST['confirmed']) && 
-				!isset($_REQUEST['rts']) && 
-				!isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) && 
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND (CCT_TYD_CODE = 'CS'
-					OR (CCT_TYD_CODE = 'CT')
-					OR (CCT_TYD_CODE = 'CA')) ";
-				}
-				if(isset($_REQUEST['draft']) &&
-				isset($_REQUEST['confirmed']) && 
-				!isset($_REQUEST['rts']) && 
-				!isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) && 
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND PCL_PCT_NO IS NULL AND (CCT_TYD_CODE <> 'CX'
-					OR (CCT_TYD_CODE = 'CT')
-					OR (CCT_TYD_CODE = 'CA'))";
-				}
-				if(isset($_REQUEST['draft']) &&
-				isset($_REQUEST['confirmed']) && 
-				isset($_REQUEST['rts']) && 
-				!isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) && 
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND DTR_NO IS NULL AND (CCT_TYD_CODE <> 'CX'
-					OR (CCT_TYD_CODE = 'CT')
-					OR (CCT_TYD_CODE = 'CA'))";
-				}
-				if(isset($_REQUEST['draft']) &&
-				isset($_REQUEST['confirmed']) && 
-				isset($_REQUEST['rts']) && 
-				isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND NOT DTR_INDEX(+) = 'Z' AND (CCT_TYD_CODE <> 'CX'
-					OR (CCT_TYD_CODE = 'CT')
-					OR (CCT_TYD_CODE = 'CA'))";
-				}
-				if(isset($_REQUEST['draft']) &&
-				isset($_REQUEST['confirmed']) && 
-				isset($_REQUEST['rts']) && 
-				isset($_REQUEST['onfreight']) && 
-				isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND (CCT_TYD_CODE <> 'CX'
-					OR (CCT_TYD_CODE = 'CT')
-					OR (CCT_TYD_CODE = 'CA')) ";
-				}
-				//DRAFT OR
-				if(isset($_REQUEST['draft']) &&
-				!isset($_REQUEST['confirmed']) && 
-				isset($_REQUEST['rts']) && 
-				!isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND (CCT_TYD_CODE = 'CS'
-					OR (PCL_PCT_NO IS NOT NULL AND DTR_NO IS NULL)
-					OR (CCT_TYD_CODE = 'CT')
-					OR (CCT_TYD_CODE = 'CA')) ";
-				}
-				if(isset($_REQUEST['draft']) &&
-				!isset($_REQUEST['confirmed']) && 
-				!isset($_REQUEST['rts']) && 
-				isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND (CCT_TYD_CODE = 'CS'
-					OR (DTR_NO IS NOT NULL AND DTR_INDEX <> 'Z')
-					OR (CCT_TYD_CODE = 'CT')
-					OR (CCT_TYD_CODE = 'CA')) ";
-				}
-				if(isset($_REQUEST['draft']) &&
-				!isset($_REQUEST['confirmed']) && 
-				!isset($_REQUEST['rts']) && 
-				!isset($_REQUEST['onfreight']) && 
-				isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND (CCT_TYD_CODE = 'CS'
-					OR (DTRC_DT_RC IS NOT NULL OR (DTR_NO IS NOT NULL AND DTR_INDEX = 'Z'))
-					OR (CCT_TYD_CODE = 'CT')
-					OR (CCT_TYD_CODE = 'CA')) ";
-				}
-				if(isset($_REQUEST['draft']) &&
-				!isset($_REQUEST['confirmed']) && 
-				!isset($_REQUEST['rts']) && 
-				!isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) &&
-				isset($_REQUEST['cancelled'])){
-					$query .= " AND (CCT_TYD_CODE = 'CS'
-					OR (CCT_TYD_CODE = 'CX')
-					OR (CCT_TYD_CODE = 'CT')
-					OR (CCT_TYD_CODE = 'CA')) ";
-				}
-
-				//confirmed
-				if(!isset($_REQUEST['draft']) &&
-				isset($_REQUEST['confirmed']) && 
-				!isset($_REQUEST['rts']) && 
-				!isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND CCT_TYD_CODE = 'CC'
-					AND PCL_PCT_NO IS NULL ";
-				}
-				if(!isset($_REQUEST['draft']) &&
-				isset($_REQUEST['confirmed']) && 
-				isset($_REQUEST['rts']) && 
-				!isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND CCT_TYD_CODE = 'CC'
-					AND DTR_NO IS NULL ";
-				}
-				if(!isset($_REQUEST['draft']) &&
-				isset($_REQUEST['confirmed']) && 
-				isset($_REQUEST['rts']) && 
-				isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND CCT_TYD_CODE = 'CC'
-					AND NOT DTR_INDEX(+) = 'Z' ";
-				}
-				if(!isset($_REQUEST['draft']) &&
-				isset($_REQUEST['confirmed']) && 
-				isset($_REQUEST['rts']) && 
-				isset($_REQUEST['onfreight']) && 
-				isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND CCT_TYD_CODE = 'CC' ";
-				}
-				//CONFIRMED OR
-				if(!isset($_REQUEST['draft']) &&
-				isset($_REQUEST['confirmed']) && 
-				!isset($_REQUEST['rts']) && 
-				isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND (CCT_TYD_CODE = 'CC' AND PCL_PCT_NO IS NULL
-					OR (DTR_NO IS NOT NULL AND DTR_INDEX <> 'Z')) ";
-				}
-				if(!isset($_REQUEST['draft']) &&
-				isset($_REQUEST['confirmed']) && 
-				!isset($_REQUEST['rts']) && 
-				!isset($_REQUEST['onfreight']) && 
-				isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND (CCT_TYD_CODE = 'CC' AND PCL_PCT_NO IS NULL 
-					OR (DTRC_DT_RC IS NOT NULL OR (DTR_NO IS NOT NULL AND DTR_INDEX = 'Z'))) ";
-				}
-				if(!isset($_REQUEST['draft']) &&
-				isset($_REQUEST['confirmed']) && 
-				!isset($_REQUEST['rts']) && 
-				!isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) &&
-				isset($_REQUEST['cancelled'])){
-					$query .= " AND (CCT_TYD_CODE = 'CC'
-					OR (CCT_TYD_CODE IS NOT NULL AND CCT_TYD_CODE = 'CX')) 
-					AND PCL_PCT_NO IS NULL ";
-				}
-
-				//rts
-				if(!isset($_REQUEST['draft']) &&
-				!isset($_REQUEST['confirmed']) && 
-				isset($_REQUEST['rts']) && 
-				!isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND PCL_PCT_NO IS NOT NULL 
-					AND DTR_NO IS NULL ";
-				}
-				if(!isset($_REQUEST['draft']) &&
-				!isset($_REQUEST['confirmed']) && 
-				isset($_REQUEST['rts']) && 
-				isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND PCL_PCT_NO IS NOT NULL 
-					AND NOT DTR_INDEX(+) = 'Z' ";
-				}
-				if(!isset($_REQUEST['draft']) &&
-				!isset($_REQUEST['confirmed']) && 
-				isset($_REQUEST['rts']) && 
-				isset($_REQUEST['onfreight']) && 
-				isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND PCL_PCT_NO IS NOT NULL ";
-				}
-				//RTS OR
-				if(!isset($_REQUEST['draft']) &&
-				!isset($_REQUEST['confirmed']) && 
-				isset($_REQUEST['rts']) && 
-				!isset($_REQUEST['onfreight']) && 
-				isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND (PCL_PCT_NO IS NOT NULL AND DTR_NO IS NULL
-					OR (DTRC_DT_RC IS NOT NULL OR (DTR_NO IS NOT NULL AND DTR_INDEX = 'Z'))) ";
-				}
-				if(!isset($_REQUEST['draft']) &&
-				!isset($_REQUEST['confirmed']) && 
-				isset($_REQUEST['rts']) && 
-				!isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) &&
-				isset($_REQUEST['cancelled'])){
-					$query .= " AND (PCL_PCT_NO IS NOT NULL
-					OR (CCT_TYD_CODE IS NOT NULL AND CCT_TYD_CODE = 'CX')) 
-					AND DTR_NO IS NULL ";
-				}
-
-				//onfreight
-				if(!isset($_REQUEST['draft']) &&
-				!isset($_REQUEST['confirmed']) && 
-				!isset($_REQUEST['rts']) && 
-				isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND DTR_NO IS NOT NULL 
-					AND DTR_INDEX <> 'Z' ";
-				}
-				if(!isset($_REQUEST['draft']) &&
-				!isset($_REQUEST['confirmed']) && 
-				!isset($_REQUEST['rts']) && 
-				isset($_REQUEST['onfreight']) && 
-				isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND (DTR_NO IS NOT NULL OR (DTRC_DT_RC IS NOT NULL)) ";
-				}
-				//onfreight or
-				if(!isset($_REQUEST['draft']) &&
-				!isset($_REQUEST['confirmed']) && 
-				!isset($_REQUEST['rts']) && 
-				isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) &&
-				isset($_REQUEST['cancelled'])){
-					$query .= " AND (CCT_TYD_CODE IS NOT NULL AND CCT_TYD_CODE = 'CX'
-					OR (DTR_NO IS NOT NULL AND DTR_INDEX <> 'Z')) ";
-				}
-
-				//delivered
-				if(!isset($_REQUEST['draft']) &&
-				!isset($_REQUEST['confirmed']) && 
-				!isset($_REQUEST['rts']) && 
-				!isset($_REQUEST['onfreight']) && 
-				isset($_REQUEST['delivered']) &&
-				!isset($_REQUEST['cancelled'])){
-					$query .= " AND (DTR_NO IS NOT NULL AND DTR_INDEX = 'Z'
-					OR (DTRC_DT_RC IS NOT NULL)) ";
-				}
-				//delivered or
-				if(!isset($_REQUEST['draft']) &&
-				!isset($_REQUEST['confirmed']) && 
-				!isset($_REQUEST['rts']) && 
-				!isset($_REQUEST['onfreight']) && 
-				isset($_REQUEST['delivered']) &&
-				isset($_REQUEST['cancelled'])){
-					$query .= " AND (CCT_TYD_CODE IS NOT NULL AND CCT_TYD_CODE = 'CX'
-					OR (DTR_NO IS NOT NULL AND DTRC_DT_RC IS NOT NULL)) ";
-				}
-
-				if(!isset($_REQUEST['draft']) &&
-				!isset($_REQUEST['confirmed']) && 
-				!isset($_REQUEST['rts']) && 
-				!isset($_REQUEST['onfreight']) && 
-				!isset($_REQUEST['delivered']) && 
-				isset($_REQUEST['cancelled'])){
-					$query .= " AND CCT_TYD_CODE = 'CX' ";
-				}
-
 				if (session()->get('oc') != "") {
 					$query .= " AND CLI_SFC_CODE = '".session()->get('oc')."'";
 				}
@@ -578,63 +282,50 @@
 					$query .= " AND CLI_PAY_CODE = '".session()->get('country_code')."'";
 				}
 
-				$query .= " GROUP BY CCT_NOM_DISP, CCT_REF_CMDE_CLI1, CCT_CHA_CODE, CCT_NO, CCL_ART_CODE, CCL_DES1, CCT_TYD_CODE, CCL_QTE_RESTE,
-				DTR_INDEX, PCL_QTE_LIV, CCT_DT_FERM, PCL_PCT_NO, DTR_NO, CCT_MTR_CODE, CCL_QTE_CMDE, CCL_PX_VTE_NET, CCL_MT_HT_LIGNE, CCT_DEV_CODE, MTR_LIB, DTRC_DT_RC ";
+				if(isset($_REQUEST['draft']) ||
+				isset($_REQUEST['confirmed']) || 
+				isset($_REQUEST['rts']) ||
+				isset($_REQUEST['onfreight']) || 
+				isset($_REQUEST['delivered']) || 
+				isset($_REQUEST['cancelled'])){
+					$query .= " AND (CCT_DT_CMDE IS NULL ";
 
-				if (isset($_REQUEST['confirmed'])) {
-					$query .= " UNION
-
-					SELECT ROW_NUMBER() OVER (ORDER BY CCT_NO DESC), CCT_NOM_DISP, CCT_REF_CMDE_CLI1, CCT_CHA_CODE, '<a href=\"http://10.210.168.40/reports/order_view.php?order_no=' || CCT_NO || '&Go=Go\">' || CCT_NO || '</a>',
-					CCL_ART_CODE, CCL_DES1, 'CONFIRMED', CCL_QTE_RESTE, CCL_PX_VTE_NET, CCL_MT_HT_LIGNE, CCT_DEV_CODE, CCT_DT_FERM,
-					NULL, NULL,
-					MTR_LIB,
-					'MSFOCB-KSU-CustomerService@brussels.msf.org', NULL
-					FROM XN_CMDE_CLI_TETE,XN_CMDE_CLI_LIGNE,XN_MODE_TRANSP, MS_DOSSIER_TRANSP, XN_CLI
-					WHERE CCT_NO = CCL_CCT_NO
-					AND MTR_CODE = CCT_MTR_CODE
-					AND CCL_QTE_RESTE > 0
-					AND CCL_INDEX = '4'
-					AND CCT_TYD_CODE = 'CC'
-					AND CLI_CODE(+) = CCT_CLI_CODE_LIVRE ";
-					
-					if(isset($_REQUEST['procode']) && trim($_REQUEST['procode']) != ""){
-						$query .= " AND CCT_CHA_CODE = :procode ";
+					if(isset($_REQUEST['draft'])){
+						$query .= " OR (CCT_TYD_CODE NOT IN ('CC', 'CX')) ";
 					}
-					if(isset($_REQUEST['dispcode']) && trim($_REQUEST['dispcode']) != ""){
-						$query .= " AND CCT_NOM_DISP = :dispcode ";
+					if(isset($_REQUEST['confirmed'])){
+						$query .= " OR (CCT_TYD_CODE = 'CC' AND PCL_PCT_NO IS NULL) ";
 					}
-					if(isset($_REQUEST['dateAfter']) && trim($_REQUEST['dateAfter']) != ""){
-						$query .= " AND CCT_DT_CREAT >= TO_DATE(:dateAfter,'DD/MM/YYYY') ";
+					if(isset($_REQUEST['onfreight'])){
+						$query .= " OR (CCT_TYD_CODE = 'CC' AND PCL_PCT_NO IS NOT NULL AND DTR_NO IS NOT NULL AND DTRC_DT_RC IS NULL) ";
 					}
-					
-					if(isset($_REQUEST['dateBefore']) && trim($_REQUEST['dateBefore']) != ""){
-						$query .= " AND CCT_DT_CREAT <= TO_DATE(:dateBefore,'DD/MM/YYYY')+1 ";
+					if(isset($_REQUEST['delivered'])){
+						$query .= " OR (CCT_TYD_CODE = 'CC' AND PCL_PCT_NO IS NOT NULL AND DTR_NO IS NOT NULL AND DTRC_DT_RC IS NOT NULL) ";
 					}
-					if(isset($_REQUEST['confirmed']) && trim($_REQUEST['confirmed']) != ""){
-						$query .= " AND CCL_QTE_RESTE > 0
-						AND CCL_INDEX = '4'
-						";
+					if(isset($_REQUEST['cancelled'])){
+						$query .= " OR (CCT_TYD_CODE = 'CX') ";
 					}
-					if (session()->get('oc') != "") {
-						$query .= " AND CLI_SFC_CODE = '".session()->get('oc')."'";
+					if(isset($_REQUEST['rts'])){
+						$query .= " OR (CCT_TYD_CODE = 'CC' AND PCL_PCT_NO IS NOT NULL AND DTR_NO IS NULL) ";
 					}
-
-					if (session()->get('country') != "") {
-						$query .= " AND CLI_PAY_CODE = '".session()->get('country_code')."'";
-					}
-
-					$query .= "
-					GROUP BY CCT_NOM_DISP, CCT_REF_CMDE_CLI1, CCT_CHA_CODE, CCT_NO, CCL_ART_CODE, CCL_DES1, CCT_DT_FERM, CCT_MTR_CODE, CCL_QTE_RESTE, 
-					CCL_PX_VTE_NET,CCL_MT_HT_LIGNE, CCT_DEV_CODE, MTR_LIB ";
-					
 				}
 
+				if(isset($_REQUEST['draft']) ||
+				isset($_REQUEST['confirmed']) || 
+				isset($_REQUEST['rts']) ||
+				isset($_REQUEST['onfreight']) || 
+				isset($_REQUEST['delivered']) || 
+				isset($_REQUEST['cancelled'])){
+					$query .= " ) ";
+				}
 
+				$query .= " GROUP BY CCT_NOM_DISP, CCT_REF_CMDE_CLI1, CCT_CHA_CODE, CCT_NO, CCL_ART_CODE, CCL_DES1, CCL_QTE_CMDE, CCT_DEV_CODE, CCL_PX_VTE_NET, CCT_DT_CMDE,
+CCL_MT_HT_LIGNE, CCT_DT_FERM, PCL_PCT_NO, PCT_NO_DOSSIER, DTR_NO, MTR_LIB, DTRC_DT_RC, CCT_TYD_CODE, DTR_INDEX";
 
 
 				if (!isset($_REQUEST['orderby']) OR !isset($_REQUEST['order'])) {
-					$_REQUEST['orderby'] = 'INDEXNO';
-					$_REQUEST['order']="ASC";
+					$_REQUEST['orderby'] = 'CCT_DT_CMDE';
+					$_REQUEST['order']="DESC";
 				}
 
 				$query .= ' ORDER BY '.$_REQUEST['orderby'].' '.$_REQUEST['order'];
