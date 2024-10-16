@@ -203,14 +203,17 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>'CCT_REF_CMDE_CLI1',				// champ SQL pur
+					'sqlfield'=>"CASE
+					WHEN CCT_REF_CMDE_CLI1 IS NOT NULL THEN CCT_REF_CMDE_CLI1
+					ELSE 'N/A'
+					END",
 					'title'=>'Ref Order',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
 					
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
+					'aliasname'=>'RFO',					//alias
+					'sortsqlfield'=>'RFO',					//sort	
 				);
 
 				$fields[]=array(
@@ -226,7 +229,7 @@
 
 				$fields[]=array(
 					'sqlfield'=>'CCT_NOTRE_REF',				// champ SQL pur
-					'title'=>'KSU ref',					// Title for the column
+					'title'=>'Project ref',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
@@ -389,7 +392,8 @@
 				AND FCT_CCT_REF_CMDE_CLI1(+) = TO_CHAR(PCT_NO_DOSSIER)
 				AND MTR_CODE(+) = DTR_MTR_CODE
 				AND DTR_NO(+) = PCT_NO_DOSSIER
-				AND CLI_CODE(+) = CCT_CLI_CODE_LIVRE ";
+				AND CLI_CODE(+) = CCT_CLI_CODE_LIVRE
+				AND CCT_TYD_CODE <> 'CX' ";
 
 				if(isset($_REQUEST['procode']) && trim($_REQUEST['procode']) != ""){
 					$query .= " AND CCT_CHA_CODE = :procode ";
@@ -690,7 +694,10 @@ FCT_MT_BASE_REMISE, FCT_NO_FACTURE, FCT_MT_BASE_REMISE, MTR_LIB, CCT_TYD_CODE, P
 					$query .= " UNION
 
 					CCT_NOM_DISP, '<a href=\"http://10.210.168.40/reports/order_view.php?order_no=' || CCT_NO || '&Go=Go\">' || CCT_NO || '</a>',
-					ART_FAA_CODE, ART_SFA_CODE, CCL_ART_CODE, CCL_ART_VAR1, CCL_DES1, CCL_DES2, CCT_DT_CMDE, CCL_QTE_RESTE, CCL_COND_VTE, CCL_PX_VTE_NET, CCL_MT_HT_LIGNE, CCT_DEV_CODE, CCT_REF_CMDE_CLI1, CCT_CHA_CODE,
+					ART_FAA_CODE, ART_SFA_CODE, CCL_ART_CODE, CCL_ART_VAR1, CCL_DES1, CCL_DES2, CCT_DT_CMDE, CCL_QTE_RESTE, CCL_COND_VTE, CCL_PX_VTE_NET, CCL_MT_HT_LIGNE, CCT_DEV_CODE, CASE
+					WHEN CCT_REF_CMDE_CLI1 IS NOT NULL THEN CCT_REF_CMDE_CLI1
+					ELSE 'N/A'
+					END, CCT_CHA_CODE,
 					CCT_NOTRE_REF, '60040', FCT_NO_FACTURE, NULL, NULL, MTR_LIB, NULL, NULL, 'CONFIRMED'
 					FROM XN_CMDE_CLI_TETE,XN_CMDE_CLI_LIGNE,XN_MODE_TRANSP, MS_DOSSIER_TRANSP, XN_CLI, XN_FAC_CLI_TETE
 					WHERE CCT_NO = CCL_CCT_NO
@@ -765,7 +772,7 @@ FCT_MT_BASE_REMISE, FCT_NO_FACTURE, FCT_MT_BASE_REMISE, MTR_LIB, CCT_TYD_CODE, P
                 }
 			@endphp
 			<div class="container" id="grille-param">
-				<form method="GET" action="{{URL('/')}}/fior-annex" autocomplete="off">
+				<form method="GET" action="{{URL('/')}}/fior-annexv2" autocomplete="off">
 
 					<div class="div_filter">
 						<label>Date between:</label>
