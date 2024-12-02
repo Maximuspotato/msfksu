@@ -218,14 +218,14 @@
                         <a href="{{URL('/hr')}}">Careers</a>
                     </li>
 
-                    <li
+                    {{-- <li
                     @if ($active == "downloads")
                         class = "active"
                     @endif
                     class=""
                     >
                         <a href="{{URL('/downloads')}}">Downloads</a>
-                    </li>
+                    </li> --}}
                     @if (!Auth::guest())
                         <li
                         @if ($active == "extranet")

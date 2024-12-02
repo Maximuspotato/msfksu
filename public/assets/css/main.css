@@ -2778,7 +2778,7 @@ span.color-red {
 }
 
 .bg{
-  /* background-image: url(../img/homepage-slider/wh2.jpg); */
+  background-image: url(../img/homepage-slider/bg3.jpg) !important;
   width: 100%;
   max-width: 1920px;
   color: white;

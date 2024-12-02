@@ -1,12 +1,12 @@
 //slideshow
-var myIndex = 0;
-carousel();
-function carousel() {
-    myIndex++;
-    if (myIndex > 3) {myIndex = 1}
-    $('.bg').css('background-image', 'url(./assets/img/homepage-slider/bg'+myIndex+'.jpg)');
-    setTimeout(carousel, 3000); // Change image every 2 seconds
-}
+//var myIndex = 0;
+// carousel();
+// function carousel() {
+//     myIndex++;
+//     if (myIndex > 3) {myIndex = 1}
+//     $('.bg').css('background-image', 'url(./assets/img/homepage-slider/bg'+myIndex+'.jpg)');
+//     setTimeout(carousel, 3000); // Change image every 2 seconds
+// }
 
 //ajax send to rfq catalogue
 $('.carting').on('submit', function(e){
