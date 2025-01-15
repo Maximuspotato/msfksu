@@ -32,7 +32,6 @@
                         <li><a href="{{URL('/catalogue')}}">Catalogue</a></li>
                         <li><a href="{{URL('/contacts')}}">Contacts</a></li>
                         <li><a href="{{URL('/hr')}}">Careers</a></li>
-                        <li><a href="{{URL('/downloads')}}">Downloads</a></li>
                     </ul>
                 </div>
             
