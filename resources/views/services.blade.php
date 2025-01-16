@@ -76,7 +76,7 @@
                         <div class="col-sm-8">
                             <h3>Warehousing</h3>
                             <p>
-                                Reception, storage, dispatch of medical [i.e. Cold Chain, controlled, expires drugs], logistical supplies [e.g. dangers goods, electrical, mechanical] and consumables [e.g. stationary, cleaning]. MSF Supply Kenya had 3 types of warehouse facilities in Nairobi: Export Processing Zone [EPZ] and an open warehouse
+                                Reception, storage, dispatch of medical [i.e. Cold Chain, controlled, expires drugs], logistical supplies [e.g. dangers goods, electrical, mechanical] and consumables [e.g. stationary, cleaning]. MSF Supply Kenya had 2 types of warehouse facilities in Nairobi: Export Processing Zone [EPZ] and an open warehouse
                             </p>
                         </div>
                     </div>
@@ -160,9 +160,9 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        {{-- <div class="container">
             <img src="{{URL('/')}}/assets/img/flow.png" alt="" width="100%">
-        </div>
+        </div> --}}
     </div>
 
     <div class="modal fade in" id="trModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
