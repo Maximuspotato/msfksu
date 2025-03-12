@@ -10,6 +10,7 @@ use App\Unicode;
 use App\Popular;
 use App\UserSection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 // use Illuminate\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
 // use Illuminate\Pagination\LengthAwarePaginator;
@@ -311,6 +312,16 @@ class PagesController extends Controller
 
     public function fior_annexv2(){
         return view('fior_annexV2')->with('active', 'extranet');
+    }
+
+    public function wms(){
+        $allfiles = Storage::disk('public')->allFiles('uploads');
+        $filenameOnly = array();
+        foreach ($allfiles as $onefile) {
+            array_push($filenameOnly,substr($onefile,8));
+        }
+        //dd($filenameOnly);
+        return view('wms')->with(['active' => 'wms', 'filenames' => $filenameOnly]);
     }
 
     

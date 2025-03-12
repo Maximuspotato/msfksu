@@ -67,6 +67,7 @@ Route::get('/batch-traceability', 'PagesController@bt_trace')->middleware(['auth
 Route::get('/documents', 'PagesController@documents')->middleware(['auth', 'verified']);
 Route::get('/fior-annex', 'PagesController@fior_annex')->middleware(['auth', 'verified']);
 Route::get('/fior-annexv2', 'PagesController@fior_annexv2')->middleware(['auth', 'verified']);
+Route::get('/wms', 'PagesController@wms')->middleware(['auth', 'verified']);
 //Route::get('/covid19', 'PagesController@covid')->middleware(['auth', 'verified']);
 Route::get('/playground', 'PagesController@playground');
 
@@ -98,6 +99,10 @@ Route::post('/request-supply', 'EmailController@requestSupply')->middleware(['ve
 
 Route::post('/importDonations', 'DonationController@importDonations');
 Route::get('/exportDonations', 'DonationController@exportDonations');
+
+Route::get('/delfile', 'WmsController@delfile')->middleware(['auth', 'verified']);
+Route::get('/pickfile', 'WmsController@pickfile')->middleware(['auth', 'verified']);
+Route::post('/uploadPick', 'WmsController@uploadPick')->middleware(['auth', 'verified']);
 
 Auth::routes(['verify' => true]);
 

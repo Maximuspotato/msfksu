@@ -163,6 +163,18 @@
 		// });
     //});
 
+    function delfile(file, url) {
+        if (confirm("A you sure you want to delete the file "+file) == true) {
+            window.location.replace(url);
+        }
+    }
+
+    function pickfile(file, url) {
+        if (confirm("A you sure you want to pick the file "+file) == true) {
+            window.location.replace(url);
+        }
+    }
+
     var rss = [
         'all',
         'Afghanistan',

@@ -235,6 +235,16 @@
                         >
                             <a href="{{URL('/extra_net')}}">Extranet</a>
                         </li>
+                        @if (strtoupper(Auth::user()->email) == "WHSE.SUPERVISOR@BRUSSELS.MSF.ORG" || strtoupper(Auth::user()->email) == "WHSE.PICKER1@BRUSSELS.MSF.ORG" || strtoupper(Auth::user()->email) == "WHSE.PICKER2@BRUSSELS.MSF.ORG")
+                            <li
+                            @if ($active == "wms")
+                                class = "active"
+                            @endif
+                            class=""
+                            >
+                                <a href="{{URL('/wms')}}">WMS</a>
+                            </li>
+                        @endif
                     @endif
                 </ul>
             </nav>
