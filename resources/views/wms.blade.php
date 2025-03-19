@@ -43,12 +43,16 @@
                 </div>
             @endif
             @if (strtoupper(Auth::user()->email) == "WHSE.PICKER1@BRUSSELS.MSF.ORG" || strtoupper(Auth::user()->email) == "WHSE.PICKER2@BRUSSELS.MSF.ORG")
-            <h3>Files to pick</h3>
-                @foreach ($filenames as $filename)
-                    @if (explode("_", $filename)[0] == strtoupper($email))
-                        <a href="{{asset('storage/uploads/'.$filename.'')}}">{{$filename}}</a> <i class="fas fa-arrow-right" onclick="pickfile('{{$filename}}','{{URL('/pickfile?fl=')}}{{$filename}}');"></i><br>
-                    @endif
-                @endforeach
+                @if (!empty($filenames))
+                    <h3>Files to pick</h3>
+                    @foreach ($filenames as $filename)
+                        @if (explode("_", $filename)[0] == strtoupper($email))
+                            <a href="{{asset('storage/uploads/'.$filename.'')}}">{{$filename}}</a> 
+                            <i class="fas fa-arrow-right pickButt" onclick="pickfile('{{$filename}}','{{URL('/pickfile?fl=')}}{{$filename}}');"></i>
+                            <br>
+                        @endif
+                    @endforeach
+                @endif
             @endif
         </div>
     </div>

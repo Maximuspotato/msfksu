@@ -51,6 +51,6 @@ class WmsController extends Controller
         $spreadsheet = $reader->load($file_path);
         $worksheet = $spreadsheet->getActiveSheet();
         $rows = $worksheet->toArray();
-        dd($rows);
+        return view('picking')->with(['active' => 'wms', 'rows' => $rows, 'rowCount' => 0, 'colCount' => 0]);
     }
 }
