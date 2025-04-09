@@ -103,6 +103,7 @@ Route::get('/exportDonations', 'DonationController@exportDonations');
 Route::get('/delfile', 'WmsController@delfile')->middleware(['auth', 'verified']);
 Route::get('/pickfile', 'WmsController@pickfile')->middleware(['auth', 'verified']);
 Route::post('/uploadPick', 'WmsController@uploadPick')->middleware(['auth', 'verified']);
+Route::post('/updatePick', 'WmsController@updatePick')->middleware(['auth', 'verified']);
 
 Auth::routes(['verify' => true]);
 

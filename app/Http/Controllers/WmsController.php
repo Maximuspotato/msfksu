@@ -51,6 +51,31 @@ class WmsController extends Controller
         $spreadsheet = $reader->load($file_path);
         $worksheet = $spreadsheet->getActiveSheet();
         $rows = $worksheet->toArray();
-        return view('picking')->with(['active' => 'wms', 'rows' => $rows, 'rowCount' => 0, 'colCount' => 0]);
+        return view('picking')->with(['active' => 'wms', 'rows' => $rows, 'rowCount' => 1, 'header' => 0, 'filepath' => $file_path]);
+    }
+
+    public function updatePick(Request $request){
+        //dd($request->filepath);
+        $file_path = $request->filepath;
+        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        $reader->setReadDataOnly(true);
+        $spreadsheet = $reader->load($file_path);
+        $worksheet = $spreadsheet->getActiveSheet();
+        $rows = $worksheet->toArray();
+        $rowCount = $request->rowCount;
+        if ($request->pg == 'next') {
+            $rowCount += 1;
+        } else if($request->pg == 'back') {
+            $rowCount -= 1;
+        } else if($request->pg == 'confirm'){
+            $allfiles = Storage::disk('public')->allFiles('uploads');
+            $filenameOnly = array();
+            foreach ($allfiles as $onefile) {
+                array_push($filenameOnly,substr($onefile,8));
+            }
+            //dd($filenameOnly);
+            return view('wms')->with(['active' => 'wms', 'filenames' => $filenameOnly]);
+        }
+        return view('picking')->with(['active' => 'wms', 'rows' => $rows, 'rowCount' => $rowCount, 'header' => 0, 'filepath' => $file_path]);
     }
 }

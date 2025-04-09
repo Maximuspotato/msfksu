@@ -163,6 +163,23 @@
 		// });
     //});
 
+    var form = document.getElementById("formPick");
+
+    document.getElementById("buttNext").addEventListener("click", function () {
+        document.getElementById('pg').value = 'next'
+        form.submit();
+    });
+    document.getElementById("buttBack").addEventListener("click", function () {
+        console.log('back');
+        
+        document.getElementById('pg').value = 'back';
+        form.submit();
+    });
+    document.getElementById("buttConfirm").addEventListener("click", function () {
+        document.getElementById('pg').value = 'confirm';
+        form.submit();
+    });
+
     function delfile(file, url) {
         if (confirm("A you sure you want to delete the file "+file) == true) {
             window.location.replace(url);
