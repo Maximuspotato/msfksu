@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 //use Maatwebsite\Excel\Facades\Excel;
 //use PhpOffice\PhpSpreadsheet\IOFactory;
 
@@ -55,19 +56,54 @@ class WmsController extends Controller
     }
 
     public function updatePick(Request $request){
-        //dd($request->filepath);
+        //fetch excel data
         $file_path = $request->filepath;
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
         $reader->setReadDataOnly(true);
         $spreadsheet = $reader->load($file_path);
         $worksheet = $spreadsheet->getActiveSheet();
-        $rows = $worksheet->toArray();
         $rowCount = $request->rowCount;
         if ($request->pg == 'next') {
+            //update data
             $rowCount += 1;
+            $cellFrom = 'Q'.$rowCount;
+            $cellTo = 'R'.$rowCount;
+            $cellPlt = 'S'.$rowCount;
+            $cellLyr = 'T'.$rowCount;
+            $cellDims = 'U'.$rowCount;
+            $cellRmk = 'V'.$rowCount;
+            $worksheet->setCellValue($cellFrom,$request->from);
+            $worksheet->setCellValue($cellTo,$request->to);
+            $worksheet->setCellValue($cellPlt,$request->plt);
+            $worksheet->setCellValue($cellLyr,$request->lyr);
+            $worksheet->setCellValue($cellDims,$request->dims);
+            $worksheet->setCellValue($cellRmk,$request->rmk);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save($file_path);
         } else if($request->pg == 'back') {
             $rowCount -= 1;
         } else if($request->pg == 'confirm'){
+            $rowCount += 1;
+            $cellFrom = 'Q'.$rowCount;
+            $cellTo = 'R'.$rowCount;
+            $cellPlt = 'S'.$rowCount;
+            $cellLyr = 'T'.$rowCount;
+            $cellDims = 'U'.$rowCount;
+            $cellRmk = 'V'.$rowCount;
+            $worksheet->setCellValue($cellFrom,$request->from);
+            $worksheet->setCellValue($cellTo,$request->to);
+            $worksheet->setCellValue($cellPlt,$request->plt);
+            $worksheet->setCellValue($cellLyr,$request->lyr);
+            $worksheet->setCellValue($cellDims,$request->dims);
+            $worksheet->setCellValue($cellRmk,$request->rmk);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save($file_path);
+
+            $oldPath = $file_path;
+            $typePath = substr($oldPath, 0, -5);
+            $newPath = $typePath."_picked.xlsx";
+            File::move($oldPath,$newPath);
+
             $allfiles = Storage::disk('public')->allFiles('uploads');
             $filenameOnly = array();
             foreach ($allfiles as $onefile) {
@@ -76,6 +112,7 @@ class WmsController extends Controller
             //dd($filenameOnly);
             return view('wms')->with(['active' => 'wms', 'filenames' => $filenameOnly]);
         }
+        $rows = $worksheet->toArray();
         return view('picking')->with(['active' => 'wms', 'rows' => $rows, 'rowCount' => $rowCount, 'header' => 0, 'filepath' => $file_path]);
     }
 }

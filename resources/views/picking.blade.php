@@ -95,7 +95,7 @@
                                     </div>
                                     <div class="col-xs-6">
                                         <label for="rmk"><b>Remarks</b></label>
-                                        <input type="text" name="rmk" id="rmk" value="">
+                                        <input type="text" name="rmk" id="rmk" value="{{$rows[$rowCount][21]}}">
                                     </div>
 
                                     <input type="hidden" name="rowCount" value="{{$rowCount}}">
@@ -106,15 +106,15 @@
                         
                     </div>
                     <div class="modal-footer">
-                        @if ($rowCount > 1)
+                        {{-- @if ($rowCount > 1) --}}
                             <button type="button" id="buttBack" class="btn btn-primary">Back</button>
-                        @endif
-                        @if ($rowCount <= count($rows)-2)
+                        {{-- @endif --}}
+                        {{-- @if ($rowCount <= count($rows)-2) --}}
                             <button type="button" id="buttNext" class="btn btn-primary">Save changes</button>
-                        @endif
-                        @if ($rowCount == count($rows)-1)
+                        {{-- @endif --}}
+                        {{-- @if ($rowCount == count($rows)-1) --}}
                             <button type="button" id="buttConfirm" class="btn btn-primary">Confirm</button>
-                        @endif
+                        {{-- @endif --}}
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       <br><br>
                       <div class="progress">

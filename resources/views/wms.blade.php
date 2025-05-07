@@ -47,8 +47,11 @@
                     <h3>Files to pick</h3>
                     @foreach ($filenames as $filename)
                         @if (explode("_", $filename)[0] == strtoupper($email))
-                            <a href="{{asset('storage/uploads/'.$filename.'')}}">{{$filename}}</a> 
-                            <i class="fas fa-arrow-right pickButt" onclick="pickfile('{{$filename}}','{{URL('/pickfile?fl=')}}{{$filename}}');"></i>
+                            {{-- @if (!strpos($filename, '_picked')) --}}
+                                <a href="{{asset('storage/uploads/'.$filename.'')}}">{{$filename}}</a> 
+                                <i class="fas fa-arrow-right pickButt" onclick="pickfile('{{$filename}}','{{URL('/pickfile?fl=')}}{{$filename}}');"></i>
+                            {{-- @endif --}}
+                            
                             <br>
                         @endif
                     @endforeach
