@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Picking</h1>
+                    <h1 id="phead">Picking</h1>
                 </div>
             </div>
         </div>
@@ -72,16 +72,16 @@
                             @csrf
                             <div class="row">
                                     <div class="col-xs-6">
-                                        <label for="from"><b>{{$rows[$header][16]}}</b></label>
+                                        <label for="from"><b>From</b></label>
                                         <input type="number" name="from" id="from" value="{{$rows[$rowCount][16]}}">
                                     </div>
                                     <div class="col-xs-6">
-                                        <label for="to"><b>{{$rows[$header][17]}}</b></label>
+                                        <label for="to"><b>To</b></label>
                                         <input type="number" name="to" id="to" value="{{$rows[$rowCount][17]}}">
                                     </div>
                                 <br><br>
                                     <div class="col-xs-6">
-                                        <label for="plt"><b>{{$rows[$header][18]}}</b></label>
+                                        <label for="plt"><b>NoPallet</b></label>
                                         <input type="number" name="plt" id="plt" value="{{$rows[$rowCount][18]}}">
                                     </div>
                                     <div class="col-xs-6">
@@ -95,10 +95,15 @@
                                     </div>
                                     <div class="col-xs-6">
                                         <label for="rmk"><b>Remarks</b></label>
-                                        <input type="text" name="rmk" id="rmk" value="{{$rows[$rowCount][21]}}">
+                                        @if (!isset($rows[$rowCount][21]))
+                                            <input type="text" name="rmk" id="rmk" value="">
+                                        @else
+                                           <input type="text" name="rmk" id="rmk" value="{{$rows[$rowCount][21]}}"> 
+                                        @endif
                                     </div>
 
-                                    <input type="hidden" name="rowCount" value="{{$rowCount}}">
+                                    <input id="rc" type="hidden" name="rowCount" value="{{$rowCount}}">
+                                    <input id="count" type="hidden" name="count" value="{{$count}}">
                                     <input type="hidden" name="filepath" value="{{$filepath}}">
                                     <input type="hidden" id="pg" name="pg" value="">
                             </div>

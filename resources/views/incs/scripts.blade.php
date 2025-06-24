@@ -163,22 +163,63 @@
 		// });
     //});
 
-    var form = document.getElementById("formPick");
+    if (document.getElementById('phead').innerHTML == 'Picking') {
+        if (document.getElementById('rc').value == 1) {
+            document.getElementById("buttBack").style.display = 'none';
+        } else {
+            document.getElementById("buttBack").style.display = 'inline-block';
+        }
 
-    document.getElementById("buttNext").addEventListener("click", function () {
-        document.getElementById('pg').value = 'next'
-        form.submit();
-    });
-    document.getElementById("buttBack").addEventListener("click", function () {
-        console.log('back');
+        if (document.getElementById('rc').value == document.getElementById('count').value-1) {
+            document.getElementById("buttConfirm").style.display = 'inline-block';
+            document.getElementById("buttNext").style.display = 'none';
+        } else {
+            document.getElementById("buttConfirm").style.display = 'none';
+        }
+
+        var form = document.getElementById("formPick");
+
+        document.getElementById("buttNext").addEventListener("click", function () {
+            document.getElementById('pg').value = 'next'
+            form.submit();
+        });
+        document.getElementById("buttBack").addEventListener("click", function () {        
+            document.getElementById('pg').value = 'back';
+            form.submit();
+        });
+        document.getElementById("buttConfirm").addEventListener("click", function () {
+            document.getElementById('pg').value = 'confirm';
+            form.submit();
+        });
+    } else if(document.getElementById('phead').innerHTML == 'Packing') {
+        var form = document.getElementById("formPack");
+        document.getElementById("buttNextPack").addEventListener("click", function () {
+            document.getElementById('pg').value = 'next'
+            form.submit();
+        });
         
-        document.getElementById('pg').value = 'back';
-        form.submit();
-    });
-    document.getElementById("buttConfirm").addEventListener("click", function () {
-        document.getElementById('pg').value = 'confirm';
-        form.submit();
-    });
+        if (document.getElementById('rcp').value == 0) {
+            document.getElementById("buttBackPack").style.display = 'none';
+        } else {
+            document.getElementById("buttBackPack").style.display = 'inline-block';
+        }
+        document.getElementById("buttBackPack").addEventListener("click", function () {        
+            document.getElementById('pg').value = 'back';
+            form.submit();
+        });
+
+        if (document.getElementById('rcp').value == document.getElementById('count').value-1) {
+            document.getElementById("buttConfirmPack").style.display = 'inline-block';
+             document.getElementById("buttNextPack").style.display = 'none';
+        } else {
+            document.getElementById("buttConfirmPack").style.display = 'none';
+        }
+        document.getElementById("buttConfirmPack").addEventListener("click", function () {
+            document.getElementById('pg').value = 'confirm';
+            form.submit();
+        });
+    }
+
 
     function delfile(file, url) {
         if (confirm("A you sure you want to delete the file "+file) == true) {
@@ -186,8 +227,38 @@
         }
     }
 
+    function delPacker(pkno, url) {
+        if (confirm("A you sure you want to delete the file "+pkno) == true) {
+            window.location.replace(url);
+        }
+    }
+
     function pickfile(file, url) {
         if (confirm("A you sure you want to pick the file "+file) == true) {
+            window.location.replace(url);
+        }
+    }
+
+    function confPack(file) {        
+        if (confirm("A you sure you want to pack the file "+file+" selecting "+document.getElementById('packer').value) == true) {
+            document.getElementById("choosePacker").submit();
+        }
+    }
+
+    function packing(file, url) {
+        if (confirm("A you sure you want to pack the file "+file) == true) {
+            window.location.replace(url);
+        }
+    }
+
+    function intPack(file, url) {
+        if (confirm("A you sure you want to intgrate this file "+file) == true) {
+            window.location.replace(url);
+        }
+    }
+
+    function intpkg(file, url) {
+        if (confirm("A you sure you want to intgrate this file "+file) == true) {
             window.location.replace(url);
         }
     }

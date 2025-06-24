@@ -104,6 +104,12 @@ Route::get('/delfile', 'WmsController@delfile')->middleware(['auth', 'verified']
 Route::get('/pickfile', 'WmsController@pickfile')->middleware(['auth', 'verified']);
 Route::post('/uploadPick', 'WmsController@uploadPick')->middleware(['auth', 'verified']);
 Route::post('/updatePick', 'WmsController@updatePick')->middleware(['auth', 'verified']);
+Route::post('/choosePacker', 'WmsController@choosePacker')->middleware(['auth', 'verified']);
+Route::get('/delPacker', 'WmsController@delPacker')->middleware(['auth', 'verified']);
+Route::get('/packing', 'WmsController@packing')->middleware(['auth', 'verified']);
+Route::post('/updatePack', 'WmsController@updatePack')->middleware(['auth', 'verified']);
+Route::get('/intPack', 'WmsController@intPack')->middleware(['auth', 'verified']);
+Route::get('/intpkg', 'WmsController@intpkg')->middleware(['auth', 'verified']);
 
 Auth::routes(['verify' => true]);
 

@@ -315,13 +315,29 @@ class PagesController extends Controller
     }
 
     public function wms(){
+        include_once(app_path() . '/outils/functions.php');
+        $c = db_connect_msfs();
+        $query = " SELECT PCT_NO FROM MS_PACK_CLI_TETE WHERE PCT_DEP_CODE_CMDE = 'NBO' AND PCT_INDEX <> 'Z' ";
+        $stmt = oci_parse($c, $query);
+        ociexecute($stmt, OCI_DEFAULT);
+        ocifetchstatement($stmt, $query_results,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+
+        $queryPacker = " SELECT EAP_PKNO, EAP_PACKER, EAP_PACKED FROM EXT_AUTO_PACK ";
+        $stmtPacker = oci_parse($c, $queryPacker);
+        ociexecute($stmtPacker, OCI_DEFAULT);
+        ocifetchstatement($stmtPacker, $queryPackers,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+
         $allfiles = Storage::disk('public')->allFiles('uploads');
         $filenameOnly = array();
         foreach ($allfiles as $onefile) {
             array_push($filenameOnly,substr($onefile,8));
         }
         //dd($filenameOnly);
-        return view('wms')->with(['active' => 'wms', 'filenames' => $filenameOnly]);
+        return view('wms')->with([
+            'active' => 'wms',
+            'filenames' => $filenameOnly,
+            'query_results' => $query_results,
+            'queryPackers' => $queryPackers]);
     }
 
     
