@@ -92,6 +92,9 @@
                                     @if ($queryPacker['EAP_PACKED'] != NULL)
                                         (PACKED) <i class="fas fa-download" onclick="intPack('{{$queryPacker['EAP_PKNO']}}','{{URL('/intPack?pkno=')}}{{$queryPacker['EAP_PKNO']}}')"></i>
                                     @endif
+                                    @if ($queryPacker['EAP_INT'] != NULL)
+                                        (INTEGRATED)
+                                    @endif
                                     <i class="fas fa-trash" onclick="delPacker('{{$queryPacker['EAP_PKNO']}}','{{URL('/delPacker?pkno=')}}{{$queryPacker['EAP_PKNO']}}')"></i>
                                 </li>
                             </ul>

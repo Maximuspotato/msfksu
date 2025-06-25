@@ -322,7 +322,7 @@ class PagesController extends Controller
         ociexecute($stmt, OCI_DEFAULT);
         ocifetchstatement($stmt, $query_results,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
 
-        $queryPacker = " SELECT EAP_PKNO, EAP_PACKER, EAP_PACKED FROM EXT_AUTO_PACK ";
+        $queryPacker = " SELECT EAP_PKNO, EAP_PACKER, EAP_PACKED, EAP_INT FROM EXT_AUTO_PACK ";
         $stmtPacker = oci_parse($c, $queryPacker);
         ociexecute($stmtPacker, OCI_DEFAULT);
         ocifetchstatement($stmtPacker, $queryPackers,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);

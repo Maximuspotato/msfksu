@@ -22,7 +22,7 @@
                     </div>
                     <div class="modal-body">
                         @foreach ($filenames as $filename)
-                            <a href="{{asset('storage/uploads/'.$filename.'')}}">{{$filename}}</a> <i class="fas fa-download" onclick="intpkg('{{$filename}}','{{URL('/intpkg?fl=')}}{{$filename}}');"></i><br>
+                            <a href="{{asset('storage/uploads/'.$filename.'')}}">{{$filename}}</a> <i class="fas fa-download" onclick="intpkg('{{$filename}}','{{URL('/intpkg?fl=')}}{{$filename}}&pctno={{$pctno}}');"></i><br>
                         @endforeach
                     </div>
                     <div class="modal-footer">

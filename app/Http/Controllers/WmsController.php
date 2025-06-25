@@ -111,7 +111,7 @@ class WmsController extends Controller
             foreach ($allfiles as $onefile) {
                 array_push($filenameOnly,substr($onefile,8));
             }
-            $queryPacker = " SELECT EAP_PKNO, EAP_PACKER, EAP_PACKED FROM EXT_AUTO_PACK ";
+            $queryPacker = " SELECT EAP_PKNO, EAP_PACKER, EAP_PACKED, EAP_INT FROM EXT_AUTO_PACK ";
             $stmtPacker = oci_parse($c, $queryPacker);
             ociexecute($stmtPacker, OCI_DEFAULT);
             ocifetchstatement($stmtPacker, $queryPackers,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
@@ -246,7 +246,7 @@ class WmsController extends Controller
         ociexecute($stmt, OCI_DEFAULT);
         ocifetchstatement($stmt, $query_results,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
 
-        $queryPacker = " SELECT EAP_PKNO, EAP_PACKER, EAP_PACKED FROM EXT_AUTO_PACK ";
+        $queryPacker = " SELECT EAP_PKNO, EAP_PACKER, EAP_PACKED, EAP_INT FROM EXT_AUTO_PACK ";
         $stmtPacker = oci_parse($c, $queryPacker);
         ociexecute($stmtPacker, OCI_DEFAULT);
         ocifetchstatement($stmtPacker, $queryPackers,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
@@ -290,26 +290,61 @@ class WmsController extends Controller
             }
 
             return view('integratepk')->with(['active' => 'wms', 'pctno' => $pctno, 'filenames' => $filenameOnly]);
-            // $queryCon = " INSERT INTO MS_PACK_CLI_COLIS (PCC_PCT_NO, PCC_PCT_DEP_SOC_CODE, PCC_PCT_DEP_CODE, PCC_NO_GROUPAGE, PCC_NO_COLIS_FIN, PCC_PDS, PCC_VOL, PCC_LONG,
-            // PCC_LARG, PCC_HAUT, PCC_NO_REGROUPEMENT) VALUES(:PCC_PCT_NO, :PCC_PCT_DEP_SOC_CODE, :PCC_PCT_DEP_CODE, :PCC_NO_GROUPAGE, :PCC_NO_COLIS_FIN, :PCC_PDS, :PCC_VOL, 
-            // :PCC_LONG, :PCC_LARG, :PCC_HAUT, :PCC_NO_REGROUPEMENT) ";
-            // $stmtCon = oci_parse($c, $queryCon);
-            // ocibindbyname($stmtCon, ":pkno", $pkno);
-            // oci_execute($stmtCon, OCI_DEFAULT);
-            // oci_commit($c);
         }
         
 
     }
 
     public function intpkg (Request $request){
-         $file_path = public_path('storage/uploads/'.$request->fl);
+        include_once(app_path() . '/outils/functions.php');
+        $c = db_connect_msfs();
+
+        $file_path = public_path('storage/uploads/'.$request->fl);
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
         $reader->setReadDataOnly(true);
         $spreadsheet = $reader->load($file_path);
         $worksheet = $spreadsheet->getActiveSheet();
         $rows = $worksheet->toArray();
+        //dd($weight);
 
-        dd($rows);
+        $i = 0;
+        foreach ($rows as $row) {
+            if ($i > 0) {
+                $pctno = $request->pctno;
+
+                $dims = str_replace(' ', '', $row[20]);
+                $exdims = explode('/', $dims);
+                $weight = $exdims[1];
+
+                $exparas = explode('-', $exdims[0]);
+                $vol = $exparas[0]*$exparas[1]*$exparas[2];
+
+                $queryCon = " INSERT INTO MS_PACK_CLI_COLIS (PCC_PCT_NO, PCC_PCT_DEP_SOC_CODE, PCC_PCT_DEP_CODE, PCC_NO_GROUPAGE, PCC_NO_COLIS_FIN, PCC_PDS, PCC_VOL, PCC_LONG,
+                PCC_LARG, PCC_HAUT, PCC_NO_REGROUPEMENT, PCC_NO_SSCC) VALUES(:PCC_PCT_NO, 'TSF', 'NBO', :PCC_NO_GROUPAGE, :PCC_NO_COLIS_FIN, :PCC_PDS, :PCC_VOL, 
+                :PCC_LONG, :PCC_LARG, :PCC_HAUT, :PCC_NO_REGROUPEMENT, :PCC_NO_SSCC) ";
+                $stmtCon = oci_parse($c, $queryCon);
+                ocibindbyname($stmtCon, ":PCC_PCT_NO", $pctno);
+                ocibindbyname($stmtCon, ":PCC_NO_GROUPAGE", $row[16]);
+                ocibindbyname($stmtCon, ":PCC_NO_COLIS_FIN", $row[17]);
+                ocibindbyname($stmtCon, ":PCC_PDS", $weight);
+                ocibindbyname($stmtCon, ":PCC_VOL", $vol);
+                ocibindbyname($stmtCon, ":PCC_LONG",  $exparas[0]);
+                ocibindbyname($stmtCon, ":PCC_LARG", $exparas[1]);
+                ocibindbyname($stmtCon, ":PCC_HAUT", $exparas[2]);
+                ocibindbyname($stmtCon, ":PCC_NO_REGROUPEMENT", $row[16]);
+                ocibindbyname($stmtCon, ":PCC_NO_SSCC", $row[19]);
+                oci_execute($stmtCon, OCI_DEFAULT);
+                oci_commit($c);
+            }
+            $i++;
+        }
+        $pctno = $request->pctno;
+        $queryCons = " UPDATE EXT_AUTO_PACK SET EAP_INT = 'YES' WHERE EAP_PKNO = :pkno ";
+		$stmtCons = oci_parse($c, $queryCons);
+		ocibindbyname($stmtCons, ":pkno", $pctno);
+		oci_execute($stmtCons, OCI_DEFAULT);
+		oci_commit($c);
+
+        return back()->with('success', 'File integrated successfully');
     }
 }
