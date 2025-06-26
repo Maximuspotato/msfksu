@@ -235,7 +235,15 @@
                         >
                             <a href="{{URL('/extra_net')}}">Extranet</a>
                         </li>
-                        @if (strtoupper(Auth::user()->email) == "WHSE.SUPERVISOR@BRUSSELS.MSF.ORG" || strtoupper(Auth::user()->email) == "WHSE.PICKER1@BRUSSELS.MSF.ORG" || strtoupper(Auth::user()->email) == "WHSE.PICKER2@BRUSSELS.MSF.ORG")
+                        @if (strtoupper(Auth::user()->email) == "WHSE.SUPERVISOR@BRUSSELS.MSF.ORG"
+                        || strtoupper(Auth::user()->email) == "WHSE.PICKER1@BRUSSELS.MSF.ORG"
+                        || strtoupper(Auth::user()->email) == "WHSE.PICKER2@BRUSSELS.MSF.ORG"
+                        || strtoupper(Auth::user()->email) == "PATRICK.KAMAU@BRUSSELS.MSF.ORG"
+                        || strtoupper(Auth::user()->email) == "JACOB.NJAGI@BRUSSELS.MSF.ORG"
+                        || strtoupper(Auth::user()->email) == "ISAAC.OCHIENG@BRUSSELS.MSF.ORG"
+                        || strtoupper(Auth::user()->email) == "WILSON.NJERU@BRUSSELS.MSF.ORG"
+                        || strtoupper(Auth::user()->email) == "ZAKAYO.KARANU@BRUSSELS.MSF.ORG"
+                        || strtoupper(Auth::user()->email) == "TERESIAH.MUCHIRI@BRUSSELS.MSF.ORG")
                             <li
                             @if ($active == "wms")
                                 class = "active"

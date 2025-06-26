@@ -21,7 +21,9 @@
             @endphp
             <h2>Welcome {{$email}}</h2>
             
-            @if (strtoupper(Auth::user()->email) == "WHSE.SUPERVISOR@BRUSSELS.MSF.ORG")
+            @if (strtoupper(Auth::user()->email) == "WHSE.SUPERVISOR@BRUSSELS.MSF.ORG"
+            ||strtoupper(Auth::user()->email) == "PATRICK.KAMAU@BRUSSELS.MSF.ORG"
+            ||strtoupper(Auth::user()->email) == "JACOB.NJAGI@BRUSSELS.MSF.ORG")
                 <div class="row">
                     <div class="col-sm-6">
                         <h3>Upload file for picking</h3>
@@ -29,6 +31,10 @@
                             @csrf
                             <input type="file" name="file" required><br>
                             <select name="picker" id="picker" required>
+                                <option value="ISAAC OCHIENG">ISAAC OCHIENG</option>
+                                <option value="TERESIAH MUCHIRI">TERESIAH MUCHIRI</option>
+                                <option value="WILSON NJERU">WILSON NJERU</option>
+                                <option value="ZAKAYO KARANU">ZAKAYO KARANU</option>
                                 <option value="WHSE PICKER1">WHSE PICKER1</option>
                                 <option value="WHSE PICKER2">WHSE PICKER2</option>
                             </select><br><br>
@@ -56,6 +62,10 @@
                                                 <form id="choosePacker" action="{{URL('/choosePacker')}}" method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     <select name="packer" id="packer" required>
+                                                        <option value="ISAAC OCHIENG">ISAAC OCHIENG</option>
+                                                        <option value="TERESIAH MUCHIRI">TERESIAH MUCHIRI</option>
+                                                        <option value="WILSON NJERU">WILSON NJERU</option>
+                                                        <option value="ZAKAYO KARANU">ZAKAYO KARANU</option>
                                                         <option value="WHSE PICKER1">WHSE PICKER1</option>
                                                         <option value="WHSE PICKER2">WHSE PICKER2</option>
                                                     </select><br><br>
@@ -72,6 +82,10 @@
                                             <form id="choosePacker" action="{{URL('/choosePacker')}}" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 <select name="packer" id="packer" required>
+                                                    <option value="ISAAC OCHIENG">ISAAC OCHIENG</option>
+                                                    <option value="TERESIAH MUCHIRI">TERESIAH MUCHIRI</option>
+                                                    <option value="WILSON NJERU">WILSON NJERU</option>
+                                                    <option value="ZAKAYO KARANU">ZAKAYO KARANU</option>
                                                     <option value="WHSE PICKER1">WHSE PICKER1</option>
                                                     <option value="WHSE PICKER2">WHSE PICKER2</option>
                                                 </select><br><br>
@@ -102,7 +116,12 @@
                     </div>
                 </div>
             @endif
-            @if (strtoupper(Auth::user()->email) == "WHSE.PICKER1@BRUSSELS.MSF.ORG" || strtoupper(Auth::user()->email) == "WHSE.PICKER2@BRUSSELS.MSF.ORG")
+            @if (strtoupper(Auth::user()->email) == "WHSE.PICKER1@BRUSSELS.MSF.ORG"
+            || strtoupper(Auth::user()->email) == "WHSE.PICKER2@BRUSSELS.MSF.ORG"
+            || strtoupper(Auth::user()->email) == "ISAAC.OCHIENG@BRUSSELS.MSF.ORG"
+            || strtoupper(Auth::user()->email) == "WILSON.NJERU@BRUSSELS.MSF.ORG"
+            || strtoupper(Auth::user()->email) == "ZAKAYO.KARANU@BRUSSELS.MSF.ORG"
+            || strtoupper(Auth::user()->email) == "TERESIAH.MUCHIRI@BRUSSELS.MSF.ORG")
                 <div class="row">
                     <div class="col-sm-6">
                         @if (!empty($filenames))
@@ -124,11 +143,13 @@
                         {{-- @isset($queryPackers) --}}
                             @foreach ($queryPackers as $queryPacker)
                                 @if ($queryPacker['EAP_PACKER'] == strtoupper($email))
-                                    <ul>
-                                        <li>{{$queryPacker['EAP_PKNO']}}
-                                            <i class="fas fa-arrow-right" onclick="packing('{{$queryPacker['EAP_PKNO']}}','{{URL('/packing?pkno=')}}{{$queryPacker['EAP_PKNO']}}')"></i>
-                                        </li>
-                                    </ul>
+                                    @if ($queryPacker['EAP_PACKED'] == NULL)
+                                        <ul>
+                                            <li>{{$queryPacker['EAP_PKNO']}}
+                                                <i class="fas fa-arrow-right" onclick="packing('{{$queryPacker['EAP_PKNO']}}','{{URL('/packing?pkno=')}}{{$queryPacker['EAP_PKNO']}}')"></i>
+                                            </li>
+                                        </ul>
+                                    @endif
                                 @endif
                             @endforeach
                         {{-- @endisset --}}
