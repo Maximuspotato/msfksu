@@ -84,7 +84,7 @@ class WmsController extends Controller
             $rowCount -= 1;
         } else if($request->pg == 'confirm'){
             include_once(app_path() . '/outils/functions.php');
-            $c = db_connect_msfs();
+            $c = db_connect();
             $rowCount += 1;
             $cellFrom = 'Q'.$rowCount;
             $cellTo = 'R'.$rowCount;
@@ -111,7 +111,7 @@ class WmsController extends Controller
             foreach ($allfiles as $onefile) {
                 array_push($filenameOnly,substr($onefile,8));
             }
-            $queryPacker = " SELECT EAP_PKNO, EAP_PACKER, EAP_PACKED, EAP_INT FROM EXT_AUTO_PACK ";
+            $queryPacker = " SELECT EAP_PKNO, EAP_PACKER, EAP_PACKED, EAP_INT FROM EXT_AUTO_PACK@msfss ";
             $stmtPacker = oci_parse($c, $queryPacker);
             ociexecute($stmtPacker, OCI_DEFAULT);
             ocifetchstatement($stmtPacker, $queryPackers,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
@@ -124,8 +124,8 @@ class WmsController extends Controller
 
     public function choosePacker(Request $request){
         include_once(app_path() . '/outils/functions.php');
-        $c = db_connect_msfs();
-        $query = "INSERT INTO EXT_AUTO_PACK (EAP_PKNO, EAP_PACKER)
+        $c = db_connect();
+        $query = "INSERT INTO EXT_AUTO_PACK@msfss (EAP_PKNO, EAP_PACKER)
 		VALUES (:pk_no, :packer) ";
 		$stmt = oci_parse($c, $query);
         $pk_no = $request->pk_no;
@@ -140,15 +140,15 @@ class WmsController extends Controller
 
     public function delPacker(Request $request){
         include_once(app_path() . '/outils/functions.php');
-        $c = db_connect_msfs();
-        $query = " DELETE FROM EXT_AUTO_PACK WHERE EAP_PKNO = :pkno ";
+        $c = db_connect();
+        $query = " DELETE FROM EXT_AUTO_PACK@msfss WHERE EAP_PKNO = :pkno ";
 		$stmt = oci_parse($c, $query);
         $pkno = $request->pkno;
 		ocibindbyname($stmt, ":pkno", $pkno);
 		oci_execute($stmt, OCI_DEFAULT);
 		oci_commit($c);
 
-        $queryLigne = " DELETE FROM EXT_AUTO_PACKER_LIGNE WHERE APL_PK = :pkno ";
+        $queryLigne = " DELETE FROM EXT_AUTO_PACKER_LIGNE@msfss WHERE APL_PK = :pkno ";
 		$stmtLigne = oci_parse($c, $queryLigne);
 		ocibindbyname($stmtLigne, ":pkno", $pkno);
 		oci_execute($stmtLigne, OCI_DEFAULT);
@@ -160,9 +160,9 @@ class WmsController extends Controller
     public function packing(Request $request){
         $rowCount = 0;
         include_once(app_path() . '/outils/functions.php');
-        $c = db_connect_msfs();
+        $c = db_connect();
         $query = " SELECT PCL_PCT_NO, PCL_ART_CODE, PCL_DES1, PCL_QTE_LIV, PCL_NO_SERIE_LOT, PCL_DT_PEREMPTION, PCC_NO_GROUPAGE, PCC_NO_COLIS_FIN
-        FROM MS_PACK_CLI_LIGNE, MS_PACK_CLI_COLIS
+        FROM MS_PACK_CLI_LIGNE@msfss, MS_PACK_CLI_COLIS@msfss
         WHERE PCL_PCT_NO = :pkno
         AND PCC_PCT_NO = PCL_PCT_NO
         AND PCL_NO_COLIS = PCC_NO_REGROUPEMENT ";
@@ -173,7 +173,7 @@ class WmsController extends Controller
 		ocifetchstatement($stmt, $query_results,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
 
         $queryPack = " SELECT APL_ROW, APL_PK, APL_RMK
-        FROM EXT_AUTO_PACKER_LIGNE
+        FROM EXT_AUTO_PACKER_LIGNE@msfss
         WHERE APL_PK = :pkno
         AND APL_ROW = :rowCount ";
 		$stmtPack = oci_parse($c, $queryPack);
@@ -187,8 +187,8 @@ class WmsController extends Controller
 
     public function updatePack (Request $request){
         include_once(app_path() . '/outils/functions.php');
-        $c = db_connect_msfs();
-        $queryRmk = " MERGE INTO EXT_AUTO_PACKER_LIGNE TRGT
+        $c = db_connect();
+        $queryRmk = " MERGE INTO EXT_AUTO_PACKER_LIGNE@msfss TRGT
         USING (SELECT :APL_ROW APL_ROW, :APL_PK APL_PK, :APL_RMK APL_RMK FROM DUAL) SRC
         ON (TRGT.APL_ROW = SRC.APL_ROW AND TRGT.APL_PK = SRC.APL_PK)
         WHEN MATCHED THEN
@@ -214,7 +214,7 @@ class WmsController extends Controller
         }
         
         $query = " SELECT PCL_PCT_NO, PCL_ART_CODE, PCL_DES1, PCL_QTE_LIV, PCL_NO_SERIE_LOT, PCL_DT_PEREMPTION, PCC_NO_GROUPAGE, PCC_NO_COLIS_FIN
-        FROM MS_PACK_CLI_LIGNE, MS_PACK_CLI_COLIS
+        FROM MS_PACK_CLI_LIGNE@msfss, MS_PACK_CLI_COLIS@msfss
         WHERE PCL_PCT_NO = :pkno
         AND PCC_PCT_NO = PCL_PCT_NO
         AND PCL_NO_COLIS = PCC_NO_REGROUPEMENT ";
@@ -225,7 +225,7 @@ class WmsController extends Controller
 		ocifetchstatement($stmt, $query_results,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
 
         $queryPack = " SELECT APL_ROW, APL_PK, APL_RMK
-        FROM EXT_AUTO_PACKER_LIGNE
+        FROM EXT_AUTO_PACKER_LIGNE@msfss
         WHERE APL_PK = :pkno
         AND APL_ROW = :rowCount ";
 		$stmtPack = oci_parse($c, $queryPack);
@@ -235,18 +235,18 @@ class WmsController extends Controller
 		ocifetchstatement($stmtPack, $query_packs,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
 
         if ($request->pg == 'confirm') {
-            $queryCon = " UPDATE EXT_AUTO_PACK SET EAP_PACKED = 'YES' WHERE EAP_PKNO = :pkno ";
+            $queryCon = " UPDATE EXT_AUTO_PACK@msfss SET EAP_PACKED = 'YES' WHERE EAP_PKNO = :pkno ";
 		$stmtCon = oci_parse($c, $queryCon);
 		ocibindbyname($stmtCon, ":pkno", $pkno);
 		oci_execute($stmtCon, OCI_DEFAULT);
 		oci_commit($c);
 
-            $query = " SELECT PCT_NO FROM MS_PACK_CLI_TETE WHERE PCT_DEP_CODE_CMDE = 'NBO' AND PCT_INDEX <> 'Z' ";
+            $query = " SELECT PCT_NO FROM MS_PACK_CLI_TETE@msfss WHERE PCT_DEP_CODE_CMDE = 'NBO' AND PCT_INDEX <> 'Z' ";
         $stmt = oci_parse($c, $query);
         ociexecute($stmt, OCI_DEFAULT);
         ocifetchstatement($stmt, $query_results,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
 
-        $queryPacker = " SELECT EAP_PKNO, EAP_PACKER, EAP_PACKED, EAP_INT FROM EXT_AUTO_PACK ";
+        $queryPacker = " SELECT EAP_PKNO, EAP_PACKER, EAP_PACKED, EAP_INT FROM EXT_AUTO_PACK@msfss ";
         $stmtPacker = oci_parse($c, $queryPacker);
         ociexecute($stmtPacker, OCI_DEFAULT);
         ocifetchstatement($stmtPacker, $queryPackers,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
@@ -271,9 +271,9 @@ class WmsController extends Controller
 
     public function intPack (Request $request){
         include_once(app_path() . '/outils/functions.php');
-        $c = db_connect_msfs();
+        $c = db_connect();
 
-        $query = " SELECT PCC_PCT_NO FROM MS_PACK_CLI_COLIS WHERE PCC_PCT_NO = :pctno ";
+        $query = " SELECT PCC_PCT_NO FROM MS_PACK_CLI_COLIS@msfss WHERE PCC_PCT_NO = :pctno ";
         $stmt = oci_parse($c, $query);
         $pctno = $request->pkno;
         ocibindbyname($stmt, ":pctno", $pctno);
@@ -297,7 +297,7 @@ class WmsController extends Controller
 
     public function intpkg (Request $request){
         include_once(app_path() . '/outils/functions.php');
-        $c = db_connect_msfs();
+        $c = db_connect();
 
         $file_path = public_path('storage/uploads/'.$request->fl);
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
@@ -319,7 +319,7 @@ class WmsController extends Controller
                 $exparas = explode('-', $exdims[0]);
                 $vol = $exparas[0]*$exparas[1]*$exparas[2];
 
-                $queryCon = " INSERT INTO MS_PACK_CLI_COLIS (PCC_PCT_NO, PCC_PCT_DEP_SOC_CODE, PCC_PCT_DEP_CODE, PCC_NO_GROUPAGE, PCC_NO_COLIS_FIN, PCC_PDS, PCC_VOL, PCC_LONG,
+                $queryCon = " INSERT INTO MS_PACK_CLI_COLIS@msfss (PCC_PCT_NO, PCC_PCT_DEP_SOC_CODE, PCC_PCT_DEP_CODE, PCC_NO_GROUPAGE, PCC_NO_COLIS_FIN, PCC_PDS, PCC_VOL, PCC_LONG,
                 PCC_LARG, PCC_HAUT, PCC_NO_REGROUPEMENT, PCC_NO_SSCC) VALUES(:PCC_PCT_NO, 'TSF', 'NBO', :PCC_NO_GROUPAGE, :PCC_NO_COLIS_FIN, :PCC_PDS, :PCC_VOL, 
                 :PCC_LONG, :PCC_LARG, :PCC_HAUT, :PCC_NO_REGROUPEMENT, :PCC_NO_SSCC) ";
                 $stmtCon = oci_parse($c, $queryCon);
@@ -339,7 +339,7 @@ class WmsController extends Controller
             $i++;
         }
         $pctno = $request->pctno;
-        $queryCons = " UPDATE EXT_AUTO_PACK SET EAP_INT = 'YES' WHERE EAP_PKNO = :pkno ";
+        $queryCons = " UPDATE EXT_AUTO_PACK@msfss SET EAP_INT = 'YES' WHERE EAP_PKNO = :pkno ";
 		$stmtCons = oci_parse($c, $queryCons);
 		ocibindbyname($stmtCons, ":pkno", $pctno);
 		oci_execute($stmtCons, OCI_DEFAULT);

@@ -316,13 +316,13 @@ class PagesController extends Controller
 
     public function wms(){
         include_once(app_path() . '/outils/functions.php');
-        $c = db_connect_msfs();
-        $query = " SELECT PCT_NO FROM MS_PACK_CLI_TETE WHERE PCT_DEP_CODE_CMDE = 'NBO' AND PCT_INDEX <> 'Z' ";
+        $c = db_connect();
+        $query = " SELECT PCT_NO FROM MS_PACK_CLI_TETE@msfss WHERE PCT_DEP_CODE_CMDE = 'NBO' AND PCT_INDEX <> 'Z' ";
         $stmt = oci_parse($c, $query);
         ociexecute($stmt, OCI_DEFAULT);
         ocifetchstatement($stmt, $query_results,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
 
-        $queryPacker = " SELECT EAP_PKNO, EAP_PACKER, EAP_PACKED, EAP_INT FROM EXT_AUTO_PACK ";
+        $queryPacker = " SELECT EAP_PKNO, EAP_PACKER, EAP_PACKED, EAP_INT FROM EXT_AUTO_PACK@msfss ";
         $stmtPacker = oci_parse($c, $queryPacker);
         ociexecute($stmtPacker, OCI_DEFAULT);
         ocifetchstatement($stmtPacker, $queryPackers,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
