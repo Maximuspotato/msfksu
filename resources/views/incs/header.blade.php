@@ -149,7 +149,7 @@
                     </ul>
                 </div>
             </div>
-            <nav id="mainmenu" class="mainmenu">
+            <nav id="mainmenu" class="mainmenu navbar-expand-lg">
                 <div class="logo-wrapper">
                     <a href="{{URL('/')}}"><img src="{{URL('/')}}/assets/img/logo.png" alt="logo Doctors Without Borders" style="border-radius: 8%" height="75"></a>
                 </div>

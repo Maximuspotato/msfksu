@@ -23,21 +23,21 @@
                         @endphp
                         <div class="row">
                             @for ($i = 0; $i < 3; $i++)
-                                <div class="col-xs-4">
+                                <div class="col-xs-6">
                                     <p><b>{{$rows[$header][$i]}}</b>:{{$rows[$rowCount][$i]}}</p>
                                 </div>
                             @endfor
                         </div>
                         <div class="row">
                             @for ($i = 3; $i < 6; $i++)
-                                <div class="col-xs-4">
+                                <div class="col-xs-6">
                                     <p><b>{{$rows[$header][$i]}}</b>:{{$rows[$rowCount][$i]}}</p>
                                 </div>
                             @endfor
                         </div>
                         <div class="row">
                             @for ($i = 6; $i < 9; $i++)
-                                <div class="col-xs-4">
+                                <div class="col-xs-6">
                                     <p><b>{{$rows[$header][$i]}}</b>:{{$rows[$rowCount][$i]}}</p>
                                 </div>
                             @endfor
@@ -73,32 +73,32 @@
                             <div class="row">
                                     <div class="col-xs-6">
                                         <label for="from"><b>From</b></label>
-                                        <input type="number" name="from" id="from" value="{{$rows[$rowCount][16]}}">
+                                        <input style="width: -webkit-fill-available;" type="number" name="from" id="from" value="{{$rows[$rowCount][16]}}">
                                     </div>
                                     <div class="col-xs-6">
                                         <label for="to"><b>To</b></label>
-                                        <input type="number" name="to" id="to" value="{{$rows[$rowCount][17]}}">
+                                        <input style="width: -webkit-fill-available;" type="number" name="to" id="to" value="{{$rows[$rowCount][17]}}">
                                     </div>
                                 <br><br>
                                     <div class="col-xs-6">
                                         <label for="plt"><b>NoPallet</b></label>
-                                        <input type="number" name="plt" id="plt" value="{{$rows[$rowCount][18]}}">
+                                        <input style="width: -webkit-fill-available;" type="number" name="plt" id="plt" value="{{$rows[$rowCount][18]}}">
                                     </div>
                                     <div class="col-xs-6">
                                         <label for="lyr"><b>{{$rows[$header][19]}}</b></label>
-                                        <input type="text" name="lyr" id="lyr" value="{{$rows[$rowCount][19]}}">
+                                        <input style="width: -webkit-fill-available;" type="text" name="lyr" id="lyr" value="{{$rows[$rowCount][19]}}">
                                     </div>
                                 <br><br>
                                     <div class="col-xs-6">
                                         <label for="dims"><b>{{$rows[$header][20]}}</b></label>
-                                        <input type="text" name="dims" id="dims" value="{{$rows[$rowCount][20]}}">
+                                        <input style="width: -webkit-fill-available;" type="text" name="dims" id="dims" value="{{$rows[$rowCount][20]}}">
                                     </div>
                                     <div class="col-xs-6">
                                         <label for="rmk"><b>Remarks</b></label>
                                         @if (!isset($rows[$rowCount][21]))
-                                            <input type="text" name="rmk" id="rmk" value="">
+                                            <input style="width: -webkit-fill-available;" type="text" name="rmk" id="rmk" value="">
                                         @else
-                                           <input type="text" name="rmk" id="rmk" value="{{$rows[$rowCount][21]}}"> 
+                                           <input style="width: -webkit-fill-available;" type="text" name="rmk" id="rmk" value="{{$rows[$rowCount][21]}}"> 
                                         @endif
                                     </div>
 

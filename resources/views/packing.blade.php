@@ -25,10 +25,10 @@
                             $count = count($rows);
                         @endphp
                         <div class="row">
-                            <div class="col-xs-4">
+                            <div class="col-xs-5">
                                 <p><b>Item</b>: {{$rows[$rowCount]['PCL_ART_CODE']}}</p>
                             </div>
-                            <div class="col-xs-8">
+                            <div class="col-xs-7">
                                 <p><b>Description</b>: {{$rows[$rowCount]['PCL_DES1']}}</p>
                             </div>
                         </div>
