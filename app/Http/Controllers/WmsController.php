@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PackerEmail;
+use App\Mail\PickerEmail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 //use Maatwebsite\Excel\Facades\Excel;
@@ -29,6 +32,9 @@ class WmsController extends Controller
             if (Storage::exists($filename.'_'.time().'.'.$extension)) {
                 return back()->with('failed', 'File already exists');
             }else{
+                $emailname = str_replace(" ",".",$pickername);
+                $email = $emailname.'@BRUSSELS.MSF.ORG';
+                Mail::to($email)->send(new PickerEmail(['name' => $pickername]));
                 // Store the file in the 'uploads' directory on the 'public' disk
                 $filePath = $request->file('file')->storeAs('uploads',$pickername.'_'.$filename.'_'.time().'.'.$extension, 'public');
                 // Return success response
@@ -134,6 +140,10 @@ class WmsController extends Controller
 		ocibindbyname($stmt, ":packer", $packer);
 		oci_execute($stmt, OCI_DEFAULT);
 		oci_commit($c);
+
+        $emailname = str_replace(" ",".",$packer);
+        $email = $emailname.'@BRUSSELS.MSF.ORG';
+        Mail::to($email)->send(new PackerEmail(['name' => $packer]));
 
         return back();
     }
@@ -366,20 +376,26 @@ class WmsController extends Controller
                     $liv;
                     $tarif;
                     $rem;
-                    if ($nrows ) {
-                        $rev = 0;
+                    if ($nrows == 0 ) {
+                        $rev = 1;
                         $vte = 0;
                         $liv = 0;
                         $tarif = 0;
                         $rem = 0;
-                    }else{
+                    }
+                    else{
                         $rev = $query_ops[0]['CCL_PX_REVIENT'];
                         $vte = $query_ops[0]['CCL_PX_VTE_NET'];
                         $liv = $query_ops[0]['CCL_QTE_LIV'];
                         $tarif = $query_ops[0]['CCL_PX_TARIF'];
                         $rem = $query_ops[0]['CCL_PX_REMISE'];
                     }
-
+                    $zero = 0;
+                    $one = 1;
+                    $pk = 'PK';
+                    $n = 'N';
+                    $four = 4;
+                    $x = 'X';
                     $queryCon = " INSERT INTO MS_PACK_CLI_LIGNE@msfss (PCL_DEP_SOC_CODE,	PCL_DEP_CODE,	
                     PCL_PCT_NO,	PCL_NO_LIGNE,	PCL_NO_ORDRE,	PCL_ART_CODE,	PCL_TX_COM2,	
                     PCL_MAJ_STK,	PCL_DECOMPOSE,	PCL_TYD_CODE,	PCL_FLA_MT,	PCL_MT_HT_LIGNE,	
@@ -403,42 +419,85 @@ class WmsController extends Controller
                     ocibindbyname($stmtCon, ":PCL_NO_LIGNE", $query_rcs[0]['BFL_NO_LIGNE']);
                     ocibindbyname($stmtCon, ":PCL_NO_ORDRE", $query_rcs[0]['BFL_NO_ORDRE']);
                     ocibindbyname($stmtCon, ":PCL_ART_CODE",  $query_sems[0]['SEM_ART_CODE']);
-                    ocibindbyname($stmtCon, ":PCL_TX_COM2", 0);
+                    ocibindbyname($stmtCon, ":PCL_TX_COM2", $zero);
                     ocibindbyname($stmtCon, ":PCL_MAJ_STK", $query_rcs[0]['BFL_MAJ_STK']);
                     ocibindbyname($stmtCon, ":PCL_DECOMPOSE", $query_rcs[0]['BFL_DECOMPOSE']);
-                    ocibindbyname($stmtCon, ":PCL_TYD_CODE", 'PK');
-                    ocibindbyname($stmtCon, ":PCL_FLA_MT", 0);
+                    ocibindbyname($stmtCon, ":PCL_TYD_CODE", $pk);
+                    ocibindbyname($stmtCon, ":PCL_FLA_MT", $zero);
                     ocibindbyname($stmtCon, ":PCL_MT_HT_LIGNE", $query_rcs[0]['BFL_MT_HT_LIGNE']);
                     ocibindbyname($stmtCon, ":PCL_MT_EHF", $query_rcs[0]['BFL_MT_HT']);
                     ocibindbyname($stmtCon, ":PCL_TVA_CODE", $query_rcs[0]['BFL_TVA_CODE']);
                     ocibindbyname($stmtCon, ":PCL_LONG", $query_rcs[0]['BFL_LONG']);
-                    ocibindbyname($stmtCon, ":PCL_PX_ACH_BASE",  0);
+                    ocibindbyname($stmtCon, ":PCL_PX_ACH_BASE",  $zero);
                     ocibindbyname($stmtCon, ":PCL_PX_NET_ON", $query_rcs[0]['BFL_PX_NET_ON']);
                     ocibindbyname($stmtCon, ":PCL_PX_REVIENT", $rev);
                     ocibindbyname($stmtCon, ":PCL_PX_VTE", $vte);
                     ocibindbyname($stmtCon, ":PCL_QTE_LIV", $liv);
                     ocibindbyname($stmtCon, ":PCL_QTE_A_LIV", $liv);
                     ocibindbyname($stmtCon, ":PCL_LARG", $query_rcs[0]['BFL_LARG']);
-                    ocibindbyname($stmtCon, ":PCL_INDEX", 4);
+                    ocibindbyname($stmtCon, ":PCL_INDEX", $four);
                     ocibindbyname($stmtCon, ":PCL_ETAT_PART", $query_rcs[0]['BFL_ETAT_PART']);
                     ocibindbyname($stmtCon, ":PCL_DES1", $query_rcs[0]['BFL_DES1']);
-                    ocibindbyname($stmtCon, ":PCL_CODE_ED_COM",  'X');
+                    ocibindbyname($stmtCon, ":PCL_CODE_ED_COM",  $x);
                     ocibindbyname($stmtCon, ":PCL_TX_REM4", $query_rcs[0]['BFL_TX_REM_LIG4']);
-                    ocibindbyname($stmtCon, ":PCL_TX_COM", 0);
+                    ocibindbyname($stmtCon, ":PCL_TX_COM", $zero);
                     ocibindbyname($stmtCon, ":PCL_TX_REM3", $query_rcs[0]['BFL_TX_REM_LIG3']);
                     ocibindbyname($stmtCon, ":PCL_TX_REM2", $query_rcs[0]['BFL_TX_REM_LIG2']);
                     ocibindbyname($stmtCon, ":PCL_TX_REM1", $query_rcs[0]['BFL_TX_REM_LIG1']);
-                    ocibindbyname($stmtCon, ":PCL_TX_DEV_ACH", 1);
+                    ocibindbyname($stmtCon, ":PCL_TX_DEV_ACH", $one);
                     ocibindbyname($stmtCon, ":PCL_SURF", $query_rcs[0]['BFL_SURF']);
                     ocibindbyname($stmtCon, ":PCL_PX_TARIF", $tarif);
                     ocibindbyname($stmtCon, ":PCL_PX_REMISE", $rem);
-                    ocibindbyname($stmtCon, ":PCL_PX_ACH_NEGO",  0);
-                    ocibindbyname($stmtCon, ":PCL_PROMO", $query_rcs[0]['BFL_PROMO']);
-                    ocibindbyname($stmtCon, ":PCL_PRET", 'N');
-                    ocibindbyname($stmtCon, ":PCL_NO_POSTE", 1);
-                    ocibindbyname($stmtCon, ":PCL_FLA_QTE", 0);
+                    ocibindbyname($stmtCon, ":PCL_PX_ACH_NEGO",  $zero);
+                    ocibindbyname($stmtCon, ":PCL_PROMO", $zero);
+                    ocibindbyname($stmtCon, ":PCL_PRET", $n);
+                    ocibindbyname($stmtCon, ":PCL_NO_POSTE", $one);
+                    ocibindbyname($stmtCon, ":PCL_FLA_QTE", $zero);
                     ocibindbyname($stmtCon, ":PCL_SERIE_LOT", $query_rcs[0]['BFL_SERIE_LOT']);
                     ocibindbyname($stmtCon, ":PCL_COND_VTE", $query_rcs[0]['BFL_COND_ACHAT']);
+                    $paras = [$query_sems[0]['SEM_BFT_DEP_SOC_CODE'],
+$query_sems[0]['SEM_BFT_DEP_CODE'],
+$pctno,
+$query_rcs[0]['BFL_NO_LIGNE'],
+$query_rcs[0]['BFL_NO_ORDRE'],
+$query_sems[0]['SEM_ART_CODE'],
+$zero,
+$query_rcs[0]['BFL_MAJ_STK'],
+$query_rcs[0]['BFL_DECOMPOSE'],
+$pk,
+$zero,
+$query_rcs[0]['BFL_MT_HT_LIGNE'],
+$query_rcs[0]['BFL_MT_HT'],
+$query_rcs[0]['BFL_TVA_CODE'],
+$query_rcs[0]['BFL_LONG'],
+$zero,
+$query_rcs[0]['BFL_PX_NET_ON'],
+$rev,
+$vte,
+$liv,
+$liv,
+$query_rcs[0]['BFL_LARG'],
+$four,
+$query_rcs[0]['BFL_ETAT_PART'],
+$query_rcs[0]['BFL_DES1'],
+$x,
+$query_rcs[0]['BFL_TX_REM_LIG4'],
+$zero,
+$query_rcs[0]['BFL_TX_REM_LIG3'],
+$query_rcs[0]['BFL_TX_REM_LIG2'],
+$query_rcs[0]['BFL_TX_REM_LIG1'],
+$one,
+$query_rcs[0]['BFL_SURF'],
+$tarif,
+$rem,
+$zero,
+$zero,
+$n,
+$one,
+$zero,
+$query_rcs[0]['BFL_SERIE_LOT'],
+$query_rcs[0]['BFL_COND_ACHAT']];
+dd("PCL_PX_REVIENT: " . var_export($rev, true));
                     oci_execute($stmtCon, OCI_DEFAULT);
                     //oci_commit($c);
                 }
