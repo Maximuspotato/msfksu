@@ -29,14 +29,14 @@ class WmsController extends Controller
 
             $pickername = $request->picker;
 
-            if (Storage::exists($filename.'_'.time().'.'.$extension)) {
+            if (Storage::exists($filename.'.'.$extension)) {
                 return back()->with('failed', 'File already exists');
             }else{
                 $emailname = str_replace(" ",".",$pickername);
                 $email = $emailname.'@BRUSSELS.MSF.ORG';
                 Mail::to($email)->send(new PickerEmail(['name' => $pickername]));
                 // Store the file in the 'uploads' directory on the 'public' disk
-                $filePath = $request->file('file')->storeAs('uploads',$pickername.'_'.$filename.'_'.time().'.'.$extension, 'public');
+                $filePath = $request->file('file')->storeAs('uploads',$pickername.'_'.$filename.'.'.$extension, 'public');
                 // Return success response
                 return back()->with('success', 'File uploaded successfully')->with('file', $filePath);
             }
@@ -305,6 +305,83 @@ class WmsController extends Controller
 
     }
 
+    public function updpick(Request $request){
+        include_once(app_path() . '/outils/functions.php');
+        $c = db_connect();
+
+        $file_path = public_path('storage/uploads/'.$request->fl);
+        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        $reader->setReadDataOnly(true);
+        $spreadsheet = $reader->load($file_path);
+        $worksheet = $spreadsheet->getActiveSheet();
+        $rows = $worksheet->toArray();
+
+        $querySeq = "SELECT XNSEQ_BCE.NEXTVAL SEQ FROM DUAL@msfst ";
+        $stmtSeq = oci_parse($c, $querySeq);
+        ociexecute($stmtSeq, OCI_DEFAULT);
+        ocifetchstatement($stmtSeq, $query_seqs,"0","-1",OCI_FETCHSTATEMENT_BY_ROW); 
+        //dd($query_seqs[0]['SEQ']); 
+        
+        $i = 0;
+        foreach ($rows as $row) {
+            if ($i > 0) {
+                $querySem = "SELECT SEM_BFT_NO_BL, SEM_ART_CODE,SEM_NO_SEQ FROM XN_STOCK_EMPLAC@msfst WHERE SEM_NO_SEQ = :seq AND SEM_QTE_STK > 0 ";
+                $stmtSem = oci_parse($c, $querySem);
+                //dd($row[1]);
+                ocibindbyname($stmtSem, ":seq", $row[1]);
+                ociexecute($stmtSem, OCI_DEFAULT);
+                ocifetchstatement($stmtSem, $query_sems,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+
+                if ($query_sems) {
+                    //dd($query_sems);
+                    $queryRc = "SELECT BFL_COND_ACHAT
+                    FROM XN_BL_FOUR_LIGNE@msfst WHERE BFL_BFT_NO_BL = :rc AND BFL_ART_CODE = :bfl_art ";
+                    $stmtRc = oci_parse($c, $queryRc);
+                    ocibindbyname($stmtRc, ":rc", $query_sems[0]['SEM_BFT_NO_BL']);
+                    ocibindbyname($stmtRc, ":bfl_art", $query_sems[0]['SEM_ART_CODE']);
+                    ociexecute($stmtRc, OCI_DEFAULT);
+                    ocifetchstatement($stmtRc, $query_rcs,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+                    //dd($query_rcs[0]['BFL_COND_ACHAT']);
+
+                    $queryLine = "SELECT BCL_NO_LIGNE
+                    FROM XN_BL_CLI_LIGNE@msfst WHERE BCL_BCT_NO = :pick AND BCL_ART_CODE = :art ";
+                    $stmtLine = oci_parse($c, $queryLine);
+                    $pickno = (string)$request->pickno;
+                    ocibindbyname($stmtLine, ":pick", $pickno);
+                    ocibindbyname($stmtLine, ":art", $row[2]);
+                    ociexecute($stmtLine, OCI_DEFAULT);
+                    ocifetchstatement($stmtLine, $query_lines,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+                    //dd($query_lines[0]['BCL_NO_LIGNE']);
+
+                    $queryCon = " INSERT INTO XN_BL_CLI_EMPLAC (BCE_QTE, BCE_QTE_PACK, BCE_COND,
+                    BCE_SEM_NO_REEL, BCE_BCL_NO, BCE_BCL_DEP_SOC_CODE, BCE_BCL_DEP_CODE, BCE_BCL_NO_LIGNE, BCE_INDEX) 
+                    VALUES(:BCE_QTE, :BCE_QTE_PACK, :BCE_COND,:BCE_SEM_NO_REEL, :BCE_BCL_NO,
+                    :BCE_BCL_DEP_SOC_CODE, :BCE_BCL_DEP_CODE, :BCE_BCL_NO_LIGNE, 'Z') ";
+                    $stmtCon = oci_parse($c, $queryCon);
+                    $tsf = 'TSF';
+                    $bru = 'BRU';
+                    ocibindbyname($stmtCon, ":BCE_QTE", $row[8], -1, SQLT_INT);
+                    ocibindbyname($stmtCon, ":BCE_QTE_PACK", $row[8], -1, SQLT_INT);
+                    ocibindbyname($stmtCon, ":BCE_COND", $query_rcs[0]['BFL_COND_ACHAT'], -1, SQLT_CHR);
+                    ocibindbyname($stmtCon, ":BCE_SEM_NO_REEL", $query_sems[0]['SEM_NO_SEQ'], -1, SQLT_INT);
+                    ocibindbyname($stmtCon, ":BCE_BCL_NO", $pickno, -1, SQLT_CHR);
+                    ocibindbyname($stmtCon, ":BCE_BCL_DEP_SOC_CODE", $tsf, -1, SQLT_CHR);
+                    ocibindbyname($stmtCon, ":BCE_BCL_DEP_CODE", $bru, -1, SQLT_CHR);
+                    ocibindbyname($stmtCon, ":BCE_BCL_NO_LIGNE", $query_lines[0]['BCL_NO_LIGNE'], -1, SQLT_INT);
+                    if (!oci_execute($stmtCon, OCI_NO_AUTO_COMMIT)) {
+                        $e = oci_error($stmtInsert);
+                        dd("Insert failed: " . $e['message']);
+                        oci_rollback($c);
+                        exit;
+                    }
+                    //oci_commit($c);
+                }
+            }
+            $i++;
+            
+        }
+    }
+
     public function intpkg (Request $request){
         include_once(app_path() . '/outils/functions.php');
         $c = db_connect();
@@ -344,163 +421,163 @@ class WmsController extends Controller
                 ocibindbyname($stmtCon, ":PCC_NO_REGROUPEMENT", $row[16]);
                 ocibindbyname($stmtCon, ":PCC_NO_SSCC", $row[19]);
                 oci_execute($stmtCon, OCI_DEFAULT);
-                //oci_commit($c);
+                oci_commit($c);
 
-                $querySem = "SELECT SEM_NO_SEQ, SEM_BFT_NO_BL, SEM_BFT_DEP_SOC_CODE, SEM_BFT_DEP_CODE,
-                SEM_ART_CODE FROM XN_STOCK_EMPLAC@msfss WHERE SEM_NO_SEQ = :seq ";
-                $stmtSem = oci_parse($c, $querySem);
-                ocibindbyname($stmtSem, ":seq", $row[1]);
-                ociexecute($stmtSem, OCI_DEFAULT);
-                ocifetchstatement($stmtSem, $query_sems,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
-                if($query_sems[0]['SEM_NO_SEQ'] != ''){
-                    $queryRc = "SELECT BFL_NO_LIGNE, BFL_NO_ORDRE, BFL_MAJ_STK, BFL_DECOMPOSE, BFL_MT_HT_LIGNE,
-                    BFL_MT_HT, BFL_TVA_CODE, BFL_LONG, BFL_PX_NET_ON, BFL_LARG, BFL_ETAT_PART, BFL_DES1, BFL_TX_REM_LIG4,
-                    BFL_TX_REM_LIG3, BFL_TX_REM_LIG2, BFL_TX_REM_LIG1, BFL_SURF, BFL_PROMO, BFL_SERIE_LOT, BFL_COND_ACHAT
-                    FROM XN_BL_FOUR_LIGNE@msfss WHERE BFL_BFT_NO_BL = :rc AND BFL_ART_CODE = :bfl_art ";
-                    $stmtRc = oci_parse($c, $queryRc);
-                    ocibindbyname($stmtRc, ":rc", $query_sems[0]['SEM_BFT_NO_BL']);
-                    ocibindbyname($stmtRc, ":bfl_art", $query_sems[0]['SEM_ART_CODE']);
-                    ociexecute($stmtRc, OCI_DEFAULT);
-                    ocifetchstatement($stmtRc, $query_rcs,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+//                 $querySem = "SELECT SEM_NO_SEQ, SEM_BFT_NO_BL, SEM_BFT_DEP_SOC_CODE, SEM_BFT_DEP_CODE,
+//                 SEM_ART_CODE FROM XN_STOCK_EMPLAC@msfss WHERE SEM_NO_SEQ = :seq ";
+//                 $stmtSem = oci_parse($c, $querySem);
+//                 ocibindbyname($stmtSem, ":seq", $row[1]);
+//                 ociexecute($stmtSem, OCI_DEFAULT);
+//                 ocifetchstatement($stmtSem, $query_sems,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+//                 if($query_sems[0]['SEM_NO_SEQ'] != ''){
+//                     $queryRc = "SELECT BFL_NO_LIGNE, BFL_NO_ORDRE, BFL_MAJ_STK, BFL_DECOMPOSE, BFL_MT_HT_LIGNE,
+//                     BFL_MT_HT, BFL_TVA_CODE, BFL_LONG, BFL_PX_NET_ON, BFL_LARG, BFL_ETAT_PART, BFL_DES1, BFL_TX_REM_LIG4,
+//                     BFL_TX_REM_LIG3, BFL_TX_REM_LIG2, BFL_TX_REM_LIG1, BFL_SURF, BFL_PROMO, BFL_SERIE_LOT, BFL_COND_ACHAT
+//                     FROM XN_BL_FOUR_LIGNE@msfss WHERE BFL_BFT_NO_BL = :rc AND BFL_ART_CODE = :bfl_art ";
+//                     $stmtRc = oci_parse($c, $queryRc);
+//                     ocibindbyname($stmtRc, ":rc", $query_sems[0]['SEM_BFT_NO_BL']);
+//                     ocibindbyname($stmtRc, ":bfl_art", $query_sems[0]['SEM_ART_CODE']);
+//                     ociexecute($stmtRc, OCI_DEFAULT);
+//                     ocifetchstatement($stmtRc, $query_rcs,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
 
-                    $queryOp = "SELECT CCL_PX_REVIENT, CCL_PX_VTE_NET, CCL_QTE_LIV,	CCL_QTE_LIV, CCL_PX_TARIF, CCL_PX_REMISE
-                    FROM XN_CMDE_CLI_LIGNE@msfss WHERE CCL_CCT_NO = :op AND CCL_ART_CODE = :ccl_art ";
-                    $stmtOp = oci_parse($c, $queryOp);
-                    $op = substr($pctno, 0, -4);
-                    ocibindbyname($stmtOp, ":op", $op);
-                    ocibindbyname($stmtOp, ":ccl_art", $query_sems[0]['SEM_ART_CODE']);
-                    ociexecute($stmtOp, OCI_DEFAULT);
-                    $nrows = ocifetchstatement($stmtOp, $query_ops,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
-                    $rev;
-                    $vte;
-                    $liv;
-                    $tarif;
-                    $rem;
-                    if ($nrows == 0 ) {
-                        $rev = 1;
-                        $vte = 0;
-                        $liv = 0;
-                        $tarif = 0;
-                        $rem = 0;
-                    }
-                    else{
-                        $rev = $query_ops[0]['CCL_PX_REVIENT'];
-                        $vte = $query_ops[0]['CCL_PX_VTE_NET'];
-                        $liv = $query_ops[0]['CCL_QTE_LIV'];
-                        $tarif = $query_ops[0]['CCL_PX_TARIF'];
-                        $rem = $query_ops[0]['CCL_PX_REMISE'];
-                    }
-                    $zero = 0;
-                    $one = 1;
-                    $pk = 'PK';
-                    $n = 'N';
-                    $four = 4;
-                    $x = 'X';
-                    $queryCon = " INSERT INTO MS_PACK_CLI_LIGNE@msfss (PCL_DEP_SOC_CODE,	PCL_DEP_CODE,	
-                    PCL_PCT_NO,	PCL_NO_LIGNE,	PCL_NO_ORDRE,	PCL_ART_CODE,	PCL_TX_COM2,	
-                    PCL_MAJ_STK,	PCL_DECOMPOSE,	PCL_TYD_CODE,	PCL_FLA_MT,	PCL_MT_HT_LIGNE,	
-                    PCL_MT_EHF,	PCL_TVA_CODE,	PCL_LONG,	PCL_PX_ACH_BASE,	PCL_PX_NET_ON,	PCL_PX_REVIENT,
-                    PCL_PX_VTE,	PCL_QTE_LIV,	PCL_QTE_A_LIV,	PCL_LARG,	PCL_INDEX,	PCL_ETAT_PART,	
-                    PCL_DES1,	PCL_CODE_ED_COM,	PCL_TX_REM4,	PCL_TX_COM,	PCL_TX_REM3,	PCL_TX_REM2,
-                    PCL_TX_REM1,	PCL_TX_DEV_ACH,	PCL_SURF,	PCL_PX_TARIF,	PCL_PX_REMISE,	PCL_PX_ACH_NEGO,
-                    PCL_PROMO,	PCL_PRET,	PCL_NO_POSTE,	PCL_FLA_QTE,	PCL_SERIE_LOT,	PCL_COND_VTE) 
-                    VALUES(:PCL_DEP_SOC_CODE,	:PCL_DEP_CODE,	:PCL_PCT_NO,	:PCL_NO_LIGNE,	:PCL_NO_ORDRE,
-                    :PCL_ART_CODE,	:PCL_TX_COM2,	:PCL_MAJ_STK,	:PCL_DECOMPOSE,	:PCL_TYD_CODE,	:PCL_FLA_MT,
-                    :PCL_MT_HT_LIGNE,	:PCL_MT_EHF,	:PCL_TVA_CODE,	:PCL_LONG,	:PCL_PX_ACH_BASE,
-                    :PCL_PX_NET_ON,	:PCL_PX_REVIENT,	:PCL_PX_VTE,	:PCL_QTE_LIV,	:PCL_QTE_A_LIV,	
-                    :PCL_LARG,	:PCL_INDEX,	:PCL_ETAT_PART,	:PCL_DES1,	:PCL_CODE_ED_COM,	:PCL_TX_REM4,	
-                    :PCL_TX_COM,	:PCL_TX_REM3,	:PCL_TX_REM2,	:PCL_TX_REM1,	:PCL_TX_DEV_ACH,
-                    :PCL_SURF,	:PCL_PX_TARIF,	:PCL_PX_REMISE,	:PCL_PX_ACH_NEGO,	:PCL_PROMO,	:PCL_PRET,	
-                    :PCL_NO_POSTE,	:PCL_FLA_QTE,	:PCL_SERIE_LOT,	:PCL_COND_VTE) ";
-                    $stmtCon = oci_parse($c, $queryCon);
-                    ocibindbyname($stmtCon, ":PCL_DEP_SOC_CODE", $query_sems[0]['SEM_BFT_DEP_SOC_CODE']);
-                    ocibindbyname($stmtCon, ":PCL_DEP_CODE", $query_sems[0]['SEM_BFT_DEP_CODE']);
-                    ocibindbyname($stmtCon, ":PCL_PCT_NO", $pctno);
-                    ocibindbyname($stmtCon, ":PCL_NO_LIGNE", $query_rcs[0]['BFL_NO_LIGNE']);
-                    ocibindbyname($stmtCon, ":PCL_NO_ORDRE", $query_rcs[0]['BFL_NO_ORDRE']);
-                    ocibindbyname($stmtCon, ":PCL_ART_CODE",  $query_sems[0]['SEM_ART_CODE']);
-                    ocibindbyname($stmtCon, ":PCL_TX_COM2", $zero);
-                    ocibindbyname($stmtCon, ":PCL_MAJ_STK", $query_rcs[0]['BFL_MAJ_STK']);
-                    ocibindbyname($stmtCon, ":PCL_DECOMPOSE", $query_rcs[0]['BFL_DECOMPOSE']);
-                    ocibindbyname($stmtCon, ":PCL_TYD_CODE", $pk);
-                    ocibindbyname($stmtCon, ":PCL_FLA_MT", $zero);
-                    ocibindbyname($stmtCon, ":PCL_MT_HT_LIGNE", $query_rcs[0]['BFL_MT_HT_LIGNE']);
-                    ocibindbyname($stmtCon, ":PCL_MT_EHF", $query_rcs[0]['BFL_MT_HT']);
-                    ocibindbyname($stmtCon, ":PCL_TVA_CODE", $query_rcs[0]['BFL_TVA_CODE']);
-                    ocibindbyname($stmtCon, ":PCL_LONG", $query_rcs[0]['BFL_LONG']);
-                    ocibindbyname($stmtCon, ":PCL_PX_ACH_BASE",  $zero);
-                    ocibindbyname($stmtCon, ":PCL_PX_NET_ON", $query_rcs[0]['BFL_PX_NET_ON']);
-                    ocibindbyname($stmtCon, ":PCL_PX_REVIENT", $rev);
-                    ocibindbyname($stmtCon, ":PCL_PX_VTE", $vte);
-                    ocibindbyname($stmtCon, ":PCL_QTE_LIV", $liv);
-                    ocibindbyname($stmtCon, ":PCL_QTE_A_LIV", $liv);
-                    ocibindbyname($stmtCon, ":PCL_LARG", $query_rcs[0]['BFL_LARG']);
-                    ocibindbyname($stmtCon, ":PCL_INDEX", $four);
-                    ocibindbyname($stmtCon, ":PCL_ETAT_PART", $query_rcs[0]['BFL_ETAT_PART']);
-                    ocibindbyname($stmtCon, ":PCL_DES1", $query_rcs[0]['BFL_DES1']);
-                    ocibindbyname($stmtCon, ":PCL_CODE_ED_COM",  $x);
-                    ocibindbyname($stmtCon, ":PCL_TX_REM4", $query_rcs[0]['BFL_TX_REM_LIG4']);
-                    ocibindbyname($stmtCon, ":PCL_TX_COM", $zero);
-                    ocibindbyname($stmtCon, ":PCL_TX_REM3", $query_rcs[0]['BFL_TX_REM_LIG3']);
-                    ocibindbyname($stmtCon, ":PCL_TX_REM2", $query_rcs[0]['BFL_TX_REM_LIG2']);
-                    ocibindbyname($stmtCon, ":PCL_TX_REM1", $query_rcs[0]['BFL_TX_REM_LIG1']);
-                    ocibindbyname($stmtCon, ":PCL_TX_DEV_ACH", $one);
-                    ocibindbyname($stmtCon, ":PCL_SURF", $query_rcs[0]['BFL_SURF']);
-                    ocibindbyname($stmtCon, ":PCL_PX_TARIF", $tarif);
-                    ocibindbyname($stmtCon, ":PCL_PX_REMISE", $rem);
-                    ocibindbyname($stmtCon, ":PCL_PX_ACH_NEGO",  $zero);
-                    ocibindbyname($stmtCon, ":PCL_PROMO", $zero);
-                    ocibindbyname($stmtCon, ":PCL_PRET", $n);
-                    ocibindbyname($stmtCon, ":PCL_NO_POSTE", $one);
-                    ocibindbyname($stmtCon, ":PCL_FLA_QTE", $zero);
-                    ocibindbyname($stmtCon, ":PCL_SERIE_LOT", $query_rcs[0]['BFL_SERIE_LOT']);
-                    ocibindbyname($stmtCon, ":PCL_COND_VTE", $query_rcs[0]['BFL_COND_ACHAT']);
-                    $paras = [$query_sems[0]['SEM_BFT_DEP_SOC_CODE'],
-$query_sems[0]['SEM_BFT_DEP_CODE'],
-$pctno,
-$query_rcs[0]['BFL_NO_LIGNE'],
-$query_rcs[0]['BFL_NO_ORDRE'],
-$query_sems[0]['SEM_ART_CODE'],
-$zero,
-$query_rcs[0]['BFL_MAJ_STK'],
-$query_rcs[0]['BFL_DECOMPOSE'],
-$pk,
-$zero,
-$query_rcs[0]['BFL_MT_HT_LIGNE'],
-$query_rcs[0]['BFL_MT_HT'],
-$query_rcs[0]['BFL_TVA_CODE'],
-$query_rcs[0]['BFL_LONG'],
-$zero,
-$query_rcs[0]['BFL_PX_NET_ON'],
-$rev,
-$vte,
-$liv,
-$liv,
-$query_rcs[0]['BFL_LARG'],
-$four,
-$query_rcs[0]['BFL_ETAT_PART'],
-$query_rcs[0]['BFL_DES1'],
-$x,
-$query_rcs[0]['BFL_TX_REM_LIG4'],
-$zero,
-$query_rcs[0]['BFL_TX_REM_LIG3'],
-$query_rcs[0]['BFL_TX_REM_LIG2'],
-$query_rcs[0]['BFL_TX_REM_LIG1'],
-$one,
-$query_rcs[0]['BFL_SURF'],
-$tarif,
-$rem,
-$zero,
-$zero,
-$n,
-$one,
-$zero,
-$query_rcs[0]['BFL_SERIE_LOT'],
-$query_rcs[0]['BFL_COND_ACHAT']];
-dd("PCL_PX_REVIENT: " . var_export($rev, true));
-                    oci_execute($stmtCon, OCI_DEFAULT);
-                    //oci_commit($c);
-                }
+//                     $queryOp = "SELECT CCL_PX_REVIENT, CCL_PX_VTE_NET, CCL_QTE_LIV,	CCL_QTE_LIV, CCL_PX_TARIF, CCL_PX_REMISE
+//                     FROM XN_CMDE_CLI_LIGNE@msfss WHERE CCL_CCT_NO = :op AND CCL_ART_CODE = :ccl_art ";
+//                     $stmtOp = oci_parse($c, $queryOp);
+//                     $op = substr($pctno, 0, -4);
+//                     ocibindbyname($stmtOp, ":op", $op);
+//                     ocibindbyname($stmtOp, ":ccl_art", $query_sems[0]['SEM_ART_CODE']);
+//                     ociexecute($stmtOp, OCI_DEFAULT);
+//                     $nrows = ocifetchstatement($stmtOp, $query_ops,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+//                     $rev;
+//                     $vte;
+//                     $liv;
+//                     $tarif;
+//                     $rem;
+//                     if ($nrows == 0 ) {
+//                         $rev = 1;
+//                         $vte = 0;
+//                         $liv = 0;
+//                         $tarif = 0;
+//                         $rem = 0;
+//                     }
+//                     else{
+//                         $rev = $query_ops[0]['CCL_PX_REVIENT'];
+//                         $vte = $query_ops[0]['CCL_PX_VTE_NET'];
+//                         $liv = $query_ops[0]['CCL_QTE_LIV'];
+//                         $tarif = $query_ops[0]['CCL_PX_TARIF'];
+//                         $rem = $query_ops[0]['CCL_PX_REMISE'];
+//                     }
+//                     $zero = 0;
+//                     $one = 1;
+//                     $pk = 'PK';
+//                     $n = 'N';
+//                     $four = 4;
+//                     $x = 'X';
+//                     $queryCon = " INSERT INTO MS_PACK_CLI_LIGNE@msfss (PCL_DEP_SOC_CODE,	PCL_DEP_CODE,	
+//                     PCL_PCT_NO,	PCL_NO_LIGNE,	PCL_NO_ORDRE,	PCL_ART_CODE,	PCL_TX_COM2,	
+//                     PCL_MAJ_STK,	PCL_DECOMPOSE,	PCL_TYD_CODE,	PCL_FLA_MT,	PCL_MT_HT_LIGNE,	
+//                     PCL_MT_EHF,	PCL_TVA_CODE,	PCL_LONG,	PCL_PX_ACH_BASE,	PCL_PX_NET_ON,	PCL_PX_REVIENT,
+//                     PCL_PX_VTE,	PCL_QTE_LIV,	PCL_QTE_A_LIV,	PCL_LARG,	PCL_INDEX,	PCL_ETAT_PART,	
+//                     PCL_DES1,	PCL_CODE_ED_COM,	PCL_TX_REM4,	PCL_TX_COM,	PCL_TX_REM3,	PCL_TX_REM2,
+//                     PCL_TX_REM1,	PCL_TX_DEV_ACH,	PCL_SURF,	PCL_PX_TARIF,	PCL_PX_REMISE,	PCL_PX_ACH_NEGO,
+//                     PCL_PROMO,	PCL_PRET,	PCL_NO_POSTE,	PCL_FLA_QTE,	PCL_SERIE_LOT,	PCL_COND_VTE) 
+//                     VALUES(:PCL_DEP_SOC_CODE,	:PCL_DEP_CODE,	:PCL_PCT_NO,	:PCL_NO_LIGNE,	:PCL_NO_ORDRE,
+//                     :PCL_ART_CODE,	:PCL_TX_COM2,	:PCL_MAJ_STK,	:PCL_DECOMPOSE,	:PCL_TYD_CODE,	:PCL_FLA_MT,
+//                     :PCL_MT_HT_LIGNE,	:PCL_MT_EHF,	:PCL_TVA_CODE,	:PCL_LONG,	:PCL_PX_ACH_BASE,
+//                     :PCL_PX_NET_ON,	:PCL_PX_REVIENT,	:PCL_PX_VTE,	:PCL_QTE_LIV,	:PCL_QTE_A_LIV,	
+//                     :PCL_LARG,	:PCL_INDEX,	:PCL_ETAT_PART,	:PCL_DES1,	:PCL_CODE_ED_COM,	:PCL_TX_REM4,	
+//                     :PCL_TX_COM,	:PCL_TX_REM3,	:PCL_TX_REM2,	:PCL_TX_REM1,	:PCL_TX_DEV_ACH,
+//                     :PCL_SURF,	:PCL_PX_TARIF,	:PCL_PX_REMISE,	:PCL_PX_ACH_NEGO,	:PCL_PROMO,	:PCL_PRET,	
+//                     :PCL_NO_POSTE,	:PCL_FLA_QTE,	:PCL_SERIE_LOT,	:PCL_COND_VTE) ";
+//                     $stmtCon = oci_parse($c, $queryCon);
+//                     ocibindbyname($stmtCon, ":PCL_DEP_SOC_CODE", $query_sems[0]['SEM_BFT_DEP_SOC_CODE']);
+//                     ocibindbyname($stmtCon, ":PCL_DEP_CODE", $query_sems[0]['SEM_BFT_DEP_CODE']);
+//                     ocibindbyname($stmtCon, ":PCL_PCT_NO", $pctno);
+//                     ocibindbyname($stmtCon, ":PCL_NO_LIGNE", $query_rcs[0]['BFL_NO_LIGNE']);
+//                     ocibindbyname($stmtCon, ":PCL_NO_ORDRE", $query_rcs[0]['BFL_NO_ORDRE']);
+//                     ocibindbyname($stmtCon, ":PCL_ART_CODE",  $query_sems[0]['SEM_ART_CODE']);
+//                     ocibindbyname($stmtCon, ":PCL_TX_COM2", $zero);
+//                     ocibindbyname($stmtCon, ":PCL_MAJ_STK", $query_rcs[0]['BFL_MAJ_STK']);
+//                     ocibindbyname($stmtCon, ":PCL_DECOMPOSE", $query_rcs[0]['BFL_DECOMPOSE']);
+//                     ocibindbyname($stmtCon, ":PCL_TYD_CODE", $pk);
+//                     ocibindbyname($stmtCon, ":PCL_FLA_MT", $zero);
+//                     ocibindbyname($stmtCon, ":PCL_MT_HT_LIGNE", $query_rcs[0]['BFL_MT_HT_LIGNE']);
+//                     ocibindbyname($stmtCon, ":PCL_MT_EHF", $query_rcs[0]['BFL_MT_HT']);
+//                     ocibindbyname($stmtCon, ":PCL_TVA_CODE", $query_rcs[0]['BFL_TVA_CODE']);
+//                     ocibindbyname($stmtCon, ":PCL_LONG", $query_rcs[0]['BFL_LONG']);
+//                     ocibindbyname($stmtCon, ":PCL_PX_ACH_BASE",  $zero);
+//                     ocibindbyname($stmtCon, ":PCL_PX_NET_ON", $query_rcs[0]['BFL_PX_NET_ON']);
+//                     ocibindbyname($stmtCon, ":PCL_PX_REVIENT", $rev);
+//                     ocibindbyname($stmtCon, ":PCL_PX_VTE", $vte);
+//                     ocibindbyname($stmtCon, ":PCL_QTE_LIV", $liv);
+//                     ocibindbyname($stmtCon, ":PCL_QTE_A_LIV", $liv);
+//                     ocibindbyname($stmtCon, ":PCL_LARG", $query_rcs[0]['BFL_LARG']);
+//                     ocibindbyname($stmtCon, ":PCL_INDEX", $four);
+//                     ocibindbyname($stmtCon, ":PCL_ETAT_PART", $query_rcs[0]['BFL_ETAT_PART']);
+//                     ocibindbyname($stmtCon, ":PCL_DES1", $query_rcs[0]['BFL_DES1']);
+//                     ocibindbyname($stmtCon, ":PCL_CODE_ED_COM",  $x);
+//                     ocibindbyname($stmtCon, ":PCL_TX_REM4", $query_rcs[0]['BFL_TX_REM_LIG4']);
+//                     ocibindbyname($stmtCon, ":PCL_TX_COM", $zero);
+//                     ocibindbyname($stmtCon, ":PCL_TX_REM3", $query_rcs[0]['BFL_TX_REM_LIG3']);
+//                     ocibindbyname($stmtCon, ":PCL_TX_REM2", $query_rcs[0]['BFL_TX_REM_LIG2']);
+//                     ocibindbyname($stmtCon, ":PCL_TX_REM1", $query_rcs[0]['BFL_TX_REM_LIG1']);
+//                     ocibindbyname($stmtCon, ":PCL_TX_DEV_ACH", $one);
+//                     ocibindbyname($stmtCon, ":PCL_SURF", $query_rcs[0]['BFL_SURF']);
+//                     ocibindbyname($stmtCon, ":PCL_PX_TARIF", $tarif);
+//                     ocibindbyname($stmtCon, ":PCL_PX_REMISE", $rem);
+//                     ocibindbyname($stmtCon, ":PCL_PX_ACH_NEGO",  $zero);
+//                     ocibindbyname($stmtCon, ":PCL_PROMO", $zero);
+//                     ocibindbyname($stmtCon, ":PCL_PRET", $n);
+//                     ocibindbyname($stmtCon, ":PCL_NO_POSTE", $one);
+//                     ocibindbyname($stmtCon, ":PCL_FLA_QTE", $zero);
+//                     ocibindbyname($stmtCon, ":PCL_SERIE_LOT", $query_rcs[0]['BFL_SERIE_LOT']);
+//                     ocibindbyname($stmtCon, ":PCL_COND_VTE", $query_rcs[0]['BFL_COND_ACHAT']);
+//                     $paras = [$query_sems[0]['SEM_BFT_DEP_SOC_CODE'],
+// $query_sems[0]['SEM_BFT_DEP_CODE'],
+// $pctno,
+// $query_rcs[0]['BFL_NO_LIGNE'],
+// $query_rcs[0]['BFL_NO_ORDRE'],
+// $query_sems[0]['SEM_ART_CODE'],
+// $zero,
+// $query_rcs[0]['BFL_MAJ_STK'],
+// $query_rcs[0]['BFL_DECOMPOSE'],
+// $pk,
+// $zero,
+// $query_rcs[0]['BFL_MT_HT_LIGNE'],
+// $query_rcs[0]['BFL_MT_HT'],
+// $query_rcs[0]['BFL_TVA_CODE'],
+// $query_rcs[0]['BFL_LONG'],
+// $zero,
+// $query_rcs[0]['BFL_PX_NET_ON'],
+// $rev,
+// $vte,
+// $liv,
+// $liv,
+// $query_rcs[0]['BFL_LARG'],
+// $four,
+// $query_rcs[0]['BFL_ETAT_PART'],
+// $query_rcs[0]['BFL_DES1'],
+// $x,
+// $query_rcs[0]['BFL_TX_REM_LIG4'],
+// $zero,
+// $query_rcs[0]['BFL_TX_REM_LIG3'],
+// $query_rcs[0]['BFL_TX_REM_LIG2'],
+// $query_rcs[0]['BFL_TX_REM_LIG1'],
+// $one,
+// $query_rcs[0]['BFL_SURF'],
+// $tarif,
+// $rem,
+// $zero,
+// $zero,
+// $n,
+// $one,
+// $zero,
+// $query_rcs[0]['BFL_SERIE_LOT'],
+// $query_rcs[0]['BFL_COND_ACHAT']];
+// dd("PCL_PX_REVIENT: " . var_export($rev, true));
+//                     oci_execute($stmtCon, OCI_DEFAULT);
+//                     //oci_commit($c);
+//                 }
 
             }
             $i++;

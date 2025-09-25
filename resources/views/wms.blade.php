@@ -44,7 +44,17 @@
                     <div class="col-sm-6">
                         <h3>Overview files for picking</h3>
                         @foreach ($filenames as $filename)
-                            <a href="{{asset('storage/uploads/'.$filename.'')}}">{{$filename}}</a> <i class="fas fa-trash" onclick="delfile('{{$filename}}','{{URL('/delfile?fl=')}}{{$filename}}');"></i><br>
+                            <a href="{{asset('storage/uploads/'.$filename.'')}}">{{$filename}}</a>
+                            @if (strpos($filename, '_picked'))
+                                @php
+                                    $exp = explode('_',$filename);
+                                    $picking = $exp[1];
+                                @endphp
+                                {{-- <i class="fas fa-download" onclick="updpick('{{$picking}}','{{URL('/updpick?pickno=')}}{{$picking}}&fl={{$filename}}')"></i> --}}
+                            @else
+                                <i class="fas fa-trash" onclick="delfile('{{$filename}}','{{URL('/delfile?fl=')}}{{$filename}}');"></i>
+                            @endif
+                            <br>
                         @endforeach
                     </div>
                 </div>
@@ -104,7 +114,7 @@
                             <ul>
                                 <li>{{$queryPacker['EAP_PKNO']}} ({{$queryPacker['EAP_PACKER']}})
                                     @if ($queryPacker['EAP_PACKED'] != NULL)
-                                        (PACKED) <i class="fas fa-download" onclick="intPack('{{$queryPacker['EAP_PKNO']}}','{{URL('/intPack?pkno=')}}{{$queryPacker['EAP_PKNO']}}')"></i>
+                                        {{-- (PACKED) <i class="fas fa-download" onclick="intPack('{{$queryPacker['EAP_PKNO']}}','{{URL('/intPack?pkno=')}}{{$queryPacker['EAP_PKNO']}}')"></i> --}}
                                     @endif
                                     @if ($queryPacker['EAP_INT'] != NULL)
                                         (INTEGRATED)

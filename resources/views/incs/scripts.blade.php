@@ -263,6 +263,12 @@
         }
     }
 
+    function updpick(file, url) {
+         if (confirm("A you sure you want to intgrate this file "+file) == true) {
+            window.location.replace(url);
+        }
+    }
+
     var rss = [
         'all',
         'Afghanistan',

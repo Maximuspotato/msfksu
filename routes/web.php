@@ -110,6 +110,7 @@ Route::get('/packing', 'WmsController@packing')->middleware(['auth', 'verified']
 Route::post('/updatePack', 'WmsController@updatePack')->middleware(['auth', 'verified']);
 Route::get('/intPack', 'WmsController@intPack')->middleware(['auth', 'verified']);
 Route::get('/intpkg', 'WmsController@intpkg')->middleware(['auth', 'verified']);
+Route::get('/updpick', 'WmsController@updpick')->middleware(['auth', 'verified']);
 
 Auth::routes(['verify' => true]);
 
