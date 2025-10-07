@@ -87,6 +87,17 @@
 				);
 
 				$fields[]=array(
+					'sqlfield'=>"'<a target=\"_blank\" href=\"http://10.210.168.40:9002/reports/rwservlet?report=/u02/app/nodhos/msfsup/rdf/trvf531r&P_DEP_CODE=NBO&P_DEP_SOC_CODE=KSU&P_FCT_NO_DEB='|| FCT_NO_FACTURE ||'&P_FCT_NO_FIN=' || FCT_NO_FACTURE || '&userid=msf/msf@nodhos&destype=cache&server=rep_nodhosksu&paramform=no&desformat=pdf\">'|| FCT_NO_FACTURE ||'</a>'",				// champ SQL pur
+					'title'=>'Inv no',					// Title for the column
+					
+					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+					'decimal'=>'',
+					
+					'aliasname'=>'INVNO',					//alias
+					'sortsqlfield'=>'INVNO',					//sort	
+				);
+
+				$fields[]=array(
 					'sqlfield'=>'CCL_ART_CODE',				// champ SQL pur
 					'title'=>'Articles',					// Title for the column
 					
@@ -249,7 +260,7 @@
 				}
 
 				$query .= "
-				FROM XN_CMDE_CLI_TETE, XN_CMDE_CLI_LIGNE, MS_PACK_CLI_LIGNE, MS_PACK_CLI_TETE, MS_DOSSIER_TRANSP, XN_MODE_TRANSP, EXT_DOSSIER_TRANSP_RC, XN_CLI
+				FROM XN_CMDE_CLI_TETE, XN_CMDE_CLI_LIGNE, MS_PACK_CLI_LIGNE, MS_PACK_CLI_TETE, MS_DOSSIER_TRANSP, XN_MODE_TRANSP, EXT_DOSSIER_TRANSP_RC, XN_CLI, XN_FAC_CLI_TETE
 				WHERE CCL_CCT_NO(+) = CCT_NO
 				AND PCL_CCT_NO(+) = CCL_CCT_NO
 				AND PCL_ART_CODE(+) = CCL_ART_CODE
@@ -258,7 +269,8 @@
 				AND DTR_NO(+) = PCT_NO_DOSSIER
 				AND MTR_CODE = CCT_MTR_CODE
 				AND DTR_NO= DTRC_DTR_NO(+)
-				AND CLI_CODE(+) = CCT_CLI_CODE_LIVRE ";
+				AND CLI_CODE(+) = CCT_CLI_CODE_LIVRE
+				AND FCT_PCT_NO(+) = PCT_NO ";
 
 				if(isset($_REQUEST['procode']) && trim($_REQUEST['procode']) != ""){
 					$query .= " AND CCT_CHA_CODE = :procode ";
@@ -320,7 +332,7 @@
 				}
 
 				$query .= " GROUP BY CCT_NOM_DISP, CCT_REF_CMDE_CLI1, CCT_CHA_CODE, CCT_NO, CCL_ART_CODE, CCL_DES1, CCL_QTE_CMDE, CCT_DEV_CODE, CCL_PX_VTE_NET, CCT_DT_CMDE,
-CCL_MT_HT_LIGNE, CCT_DT_FERM, PCL_PCT_NO, PCT_NO_DOSSIER, DTR_NO, MTR_LIB, DTRC_DT_RC, CCT_TYD_CODE, DTR_INDEX";
+CCL_MT_HT_LIGNE, CCT_DT_FERM, PCL_PCT_NO, PCT_NO_DOSSIER, DTR_NO, MTR_LIB, DTRC_DT_RC, CCT_TYD_CODE, DTR_INDEX, FCT_NO_FACTURE";
 
 
 				if (!isset($_REQUEST['orderby']) OR !isset($_REQUEST['order'])) {
