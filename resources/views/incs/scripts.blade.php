@@ -191,6 +191,11 @@
             document.getElementById('pg').value = 'confirm';
             form.submit();
         });
+        document.getElementById("goButt").addEventListener("click", function () {        
+            document.getElementById('pg').value = 'jump';
+            document.getElementById('jmp').value = document.getElementById('jpt').value;
+            form.submit();
+        });
     } else if(document.getElementById('phead').innerHTML == 'Packing') {
         var form = document.getElementById("formPack");
         document.getElementById("buttNextPack").addEventListener("click", function () {
@@ -216,6 +221,11 @@
         }
         document.getElementById("buttConfirmPack").addEventListener("click", function () {
             document.getElementById('pg').value = 'confirm';
+            form.submit();
+        });
+        document.getElementById("goButtPack").addEventListener("click", function () {        
+            document.getElementById('pg').value = 'jump';
+            document.getElementById('jmp').value = document.getElementById('jpt').value;
             form.submit();
         });
     }

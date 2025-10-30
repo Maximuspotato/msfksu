@@ -72,38 +72,36 @@ class WmsController extends Controller
         if ($request->pg == 'next') {
             //update data
             $rowCount += 1;
-            $cellFrom = 'Q'.$rowCount;
-            $cellTo = 'R'.$rowCount;
-            $cellPlt = 'S'.$rowCount;
-            $cellLyr = 'T'.$rowCount;
-            $cellDims = 'U'.$rowCount;
-            $cellRmk = 'V'.$rowCount;
+            $cellFrom = 'M'.$rowCount;
+            $cellTo = 'N'.$rowCount;
+            $cellPlt = 'O'.$rowCount;
+            $cellRmk = 'P'.$rowCount;
+            $cellWeight = 'K'.$rowCount;
             $worksheet->setCellValue($cellFrom,$request->from);
             $worksheet->setCellValue($cellTo,$request->to);
             $worksheet->setCellValue($cellPlt,$request->plt);
-            $worksheet->setCellValue($cellLyr,$request->lyr);
-            $worksheet->setCellValue($cellDims,$request->dims);
             $worksheet->setCellValue($cellRmk,$request->rmk);
+            $worksheet->setCellValue($cellWeight,$request->wgt);
             $writer = new Xlsx($spreadsheet);
             $writer->save($file_path);
         } else if($request->pg == 'back') {
             $rowCount -= 1;
-        } else if($request->pg == 'confirm'){
+        } else if($request->pg == 'jump') {
+            $rowCount = $request->jmp;
+        }else if($request->pg == 'confirm'){
             include_once(app_path() . '/outils/functions.php');
             $c = db_connect();
             $rowCount += 1;
-            $cellFrom = 'Q'.$rowCount;
-            $cellTo = 'R'.$rowCount;
-            $cellPlt = 'S'.$rowCount;
-            $cellLyr = 'T'.$rowCount;
-            $cellDims = 'U'.$rowCount;
-            $cellRmk = 'V'.$rowCount;
+           $cellFrom = 'M'.$rowCount;
+            $cellTo = 'N'.$rowCount;
+            $cellPlt = 'O'.$rowCount;
+            $cellRmk = 'P'.$rowCount;
+            $cellWeight = 'K'.$rowCount;
             $worksheet->setCellValue($cellFrom,$request->from);
             $worksheet->setCellValue($cellTo,$request->to);
             $worksheet->setCellValue($cellPlt,$request->plt);
-            $worksheet->setCellValue($cellLyr,$request->lyr);
-            $worksheet->setCellValue($cellDims,$request->dims);
             $worksheet->setCellValue($cellRmk,$request->rmk);
+            $worksheet->setCellValue($cellWeight,$request->wgt);
             $writer = new Xlsx($spreadsheet);
             $writer->save($file_path);
 
@@ -219,8 +217,10 @@ class WmsController extends Controller
 
         if ($request->pg == 'next') {
             $rowCount++;
-        } else {
+        } else if ($request->pg == 'back') {
             $rowCount--;
+        } else if ($request->pg == 'jump') {
+            $rowCount = $request->jmp-1;
         }
         
         $query = " SELECT PCL_PCT_NO, PCL_ART_CODE, PCL_DES1, PCL_QTE_LIV, PCL_NO_SERIE_LOT, PCL_DT_PEREMPTION, PCC_NO_GROUPAGE, PCC_NO_COLIS_FIN

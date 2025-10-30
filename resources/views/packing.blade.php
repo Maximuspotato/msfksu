@@ -17,8 +17,8 @@
             <div class="modal" tabindex="-1" role="dialog" style="display: block; position:relative;">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
-                    <div class="modal-header">
-                        {{$rows[$rowCount]['PCL_PCT_NO']}}
+                    <div class="modal-header text-center">
+                        <h1>{{$rows[$rowCount]['PCL_PCT_NO']}}</h1>
                     </div>
                     <div class="modal-body">
                         @php
@@ -60,6 +60,7 @@
                                     <input id="pkno" type="hidden" name="pkno" value="{{$rows[$rowCount]['PCL_PCT_NO']}}">
                                     <input id="count" type="hidden" name="count" value="{{$count}}">
                                     <input type="hidden" id="pg" name="pg" value="">
+                                    <input type="hidden" id="jmp" name="jmp" value="jmp">
                                 </form>
                             </div>
                         </div>
@@ -84,6 +85,9 @@
                         {{($rowCount+1)}}/{{count($rows)}}
                         <div class="progress-bar" role="progressbar" style="width: {{$perc}}%" aria-valuenow="{{$perc}}" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
+                      <label for="jpt"><b>Jump to</b></label>
+                        <input style="width: 10%" type="number" name="jpt" id="jpt" value="">
+                        <button id="goButtPack">go</button>
                     </div>
                   </div>
                 </div>
