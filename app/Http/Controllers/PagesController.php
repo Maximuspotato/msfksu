@@ -317,7 +317,7 @@ class PagesController extends Controller
     public function wms(){
         include_once(app_path() . '/outils/functions.php');
         $c = db_connect();
-        $query = " SELECT PCT_NO FROM MS_PACK_CLI_TETE@msfss WHERE PCT_DEP_CODE_CMDE = 'NBO' AND PCT_INDEX <> 'Z' ";
+        $query = " SELECT PCT_NO FROM MS_PACK_CLI_TETE@msfss WHERE PCT_DEP_CODE_CMDE = 'NBO' AND PCT_INDEX <> 'Z' ORDER BY PCT_NO DESC ";
         $stmt = oci_parse($c, $query);
         ociexecute($stmt, OCI_DEFAULT);
         ocifetchstatement($stmt, $query_results,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);

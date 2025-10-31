@@ -63,7 +63,32 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <h3><u>Overview files for packing</u></h3>
-                        @foreach ($query_results as $query_result)
+                        <form id="choosePacker" action="{{URL('/choosePacker')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <select name="choosePCT" id="choosePCT">
+                                 @foreach ($query_results as $query_result)
+                                    @if (count($queryPackers) != 0)
+                                        @foreach ($queryPackers as $queryPacker)
+                                            @if ($query_result['PCT_NO'] != $queryPacker['EAP_PKNO'])
+                                               <option value="{{$query_result['PCT_NO']}}">{{$query_result['PCT_NO']}}</option>
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        <option value="{{$query_result['PCT_NO']}}">{{$query_result['PCT_NO']}}</option>
+                                    @endif
+                                 @endforeach
+                            </select>
+                            <select name="packer" id="packer" required>
+                                <option value="ISAAC OCHIENG">ISAAC OCHIENG</option>
+                                <option value="TERESIAH MUCHIRI">TERESIAH MUCHIRI</option>
+                                <option value="WILSON NJERU">WILSON NJERU</option>
+                                <option value="ZAKAYO KARANU">ZAKAYO KARANU</option>
+                                <option value="WHSE PICKER1">WHSE PICKER1</option>
+                                <option value="WHSE PICKER2">WHSE PICKER2</option>
+                            </select>
+                        </form>
+                        <i class="fas fa-file" onclick="confPack()"></i>
+                        {{-- @foreach ($query_results as $query_result)
                             @if (count($queryPackers) != 0)
                                 @foreach ($queryPackers as $queryPacker)
                                     @if ($query_result['PCT_NO'] != $queryPacker['EAP_PKNO'])
@@ -105,8 +130,7 @@
                                         </li>
                                     </ul>
                             @endif
-                            
-                        @endforeach
+                        @endforeach --}}
                     </div>
                     <div class="col-sm-6">
                         <h3><u>Overview files being packed</u></h3>

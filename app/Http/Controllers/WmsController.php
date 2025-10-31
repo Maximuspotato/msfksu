@@ -132,7 +132,7 @@ class WmsController extends Controller
         $query = "INSERT INTO EXT_AUTO_PACK@msfss (EAP_PKNO, EAP_PACKER)
 		VALUES (:pk_no, :packer) ";
 		$stmt = oci_parse($c, $query);
-        $pk_no = $request->pk_no;
+        $pk_no = $request->choosePCT;
         $packer = $request->packer;
 		ocibindbyname($stmt, ":pk_no", $pk_no);
 		ocibindbyname($stmt, ":packer", $packer);

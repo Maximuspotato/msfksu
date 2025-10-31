@@ -250,7 +250,7 @@
     }
 
     function confPack(file) {        
-        if (confirm("A you sure you want to pack the file "+file+" selecting "+document.getElementById('packer').value) == true) {
+        if (confirm("A you sure you want to pack the file "+document.getElementById('choosePCT').value+" selecting "+document.getElementById('packer').value) == true) {
             document.getElementById("choosePacker").submit();
         }
     }
