@@ -173,7 +173,8 @@ class WmsController extends Controller
         FROM MS_PACK_CLI_LIGNE@msfss, MS_PACK_CLI_COLIS@msfss
         WHERE PCL_PCT_NO = :pkno
         AND PCC_PCT_NO = PCL_PCT_NO
-        AND PCL_NO_COLIS = PCC_NO_REGROUPEMENT ";
+        AND PCL_NO_COLIS = PCC_NO_REGROUPEMENT
+        ORDER BY PCC_NO_GROUPAGE DESC ";
 		$stmt = oci_parse($c, $query);
         $pkno = $request->pkno;
 		ocibindbyname($stmt, ":pkno", $pkno);
