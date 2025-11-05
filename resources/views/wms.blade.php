@@ -45,15 +45,15 @@
                         <h3>Overview files for picking</h3>
                         @foreach ($filenames as $filename)
                             <a href="{{asset('storage/uploads/'.$filename.'')}}">{{$filename}}</a>
-                            @if (strpos($filename, '_picked'))
+                            {{-- @if (strpos($filename, '_picked')) --}}
                                 @php
                                     $exp = explode('_',$filename);
                                     $picking = $exp[1];
                                 @endphp
                                 {{-- <i class="fas fa-download" onclick="updpick('{{$picking}}','{{URL('/updpick?pickno=')}}{{$picking}}&fl={{$filename}}')"></i> --}}
-                            @else
+                            {{-- @else --}}
                                 <i class="fas fa-trash" onclick="delfile('{{$filename}}','{{URL('/delfile?fl=')}}{{$filename}}');"></i>
-                            @endif
+                            {{-- @endif --}}
                             <br>
                         @endforeach
                     </div>
@@ -139,6 +139,7 @@
                                 <li>{{$queryPacker['EAP_PKNO']}} ({{$queryPacker['EAP_PACKER']}})
                                     @if ($queryPacker['EAP_PACKED'] != NULL)
                                         {{-- (PACKED) <i class="fas fa-download" onclick="intPack('{{$queryPacker['EAP_PKNO']}}','{{URL('/intPack?pkno=')}}{{$queryPacker['EAP_PKNO']}}')"></i> --}}
+                                        (PACKED)
                                     @endif
                                     @if ($queryPacker['EAP_INT'] != NULL)
                                         (INTEGRATED)
