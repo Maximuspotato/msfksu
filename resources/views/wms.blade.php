@@ -67,16 +67,15 @@
                             @csrf
                             <select name="choosePCT" id="choosePCT">
                                  @foreach ($query_results as $query_result)
-                                    @if (count($queryPackers) != 0)
-                                        @foreach ($queryPackers as $queryPacker)
-                                            @if ($query_result['PCT_NO'] != $queryPacker['EAP_PKNO'])
-                                               <option value="{{$query_result['PCT_NO']}}">{{$query_result['PCT_NO']}}</option>
-                                            @endif
-                                        @endforeach
-                                    @else
-                                        <option value="{{$query_result['PCT_NO']}}">{{$query_result['PCT_NO']}}</option>
+                                    @php
+                                        // Check if this PCT_NO exists in the queryPackers list
+                                        $exists = collect($queryPackers)->contains('EAP_PKNO', $query_result['PCT_NO']);
+                                    @endphp
+
+                                    @if (!$exists)
+                                        <option value="{{ $query_result['PCT_NO'] }}">{{ $query_result['PCT_NO'] }}</option>
                                     @endif
-                                 @endforeach
+                                @endforeach
                             </select>
                             <select name="packer" id="packer" required>
                                 <option value="ISAAC OCHIENG">ISAAC OCHIENG</option>
