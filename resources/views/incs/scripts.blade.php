@@ -279,6 +279,10 @@
         }
     }
 
+    function wmsrep(url) {
+        window.location.replace(url);
+    }
+
     var rss = [
         'all',
         'Afghanistan',

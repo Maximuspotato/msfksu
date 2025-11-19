@@ -37,6 +37,18 @@ class WmsController extends Controller
                 Mail::to($email)->send(new PickerEmail(['name' => $pickername]));
                 // Store the file in the 'uploads' directory on the 'public' disk
                 $filePath = $request->file('file')->storeAs('uploads',$pickername.'_'.$filename.'.'.$extension, 'public');
+
+                include_once(app_path() . '/outils/functions.php');
+                $c = db_connect();
+                $query = "INSERT INTO EXT_PICK_DETAILS@msfss (EPD_PICK, EPD_PICKER)
+                VALUES (:pickno, :picker) ";
+                $stmt = oci_parse($c, $query);
+                // $pick = $request->choosePCT;
+                // $picker = $request->packer;
+                ocibindbyname($stmt, ":pickno", $filename);
+                ocibindbyname($stmt, ":picker", $pickername);
+                oci_execute($stmt, OCI_DEFAULT);
+                oci_commit($c);
                 // Return success response
                 return back()->with('success', 'File uploaded successfully')->with('file', $filePath);
             }
@@ -46,19 +58,37 @@ class WmsController extends Controller
     }
 
     public function delfile(Request $request){
+        $pickno = $request->fl;
+        $pickno = strstr($pickno, "_", false);
+        $pickno = strstr($pickno, ".", true);
+        $pickno = substr($pickno, 1);
+        $pickno = substr($pickno, 0, strpos($pickno, "_"));
         $file_path = public_path('storage/uploads/'.$request->fl);
         File::delete($file_path);
+        include_once(app_path() . '/outils/functions.php');
+        $c = db_connect();
+        $query = " DELETE FROM EXT_PICK_DETAILS@msfss WHERE EPD_PICK = :pickno ";
+		$stmt = oci_parse($c, $query);
+        //$pkno = $request->pkno;
+		ocibindbyname($stmt, ":pickno", $pickno);
+		oci_execute($stmt, OCI_DEFAULT);
+		oci_commit($c);
+
         return back()->with('success', 'File deleted successfully');
     }
 
     public function pickfile(Request $request){
+        $pickno = $request->fl;
+        $pickno = strstr($pickno, "_", false);
+        $pickno = strstr($pickno, ".", true);
+        $pickno = substr($pickno, 1);
         $file_path = public_path('storage/uploads/'.$request->fl);
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
         $reader->setReadDataOnly(true);
         $spreadsheet = $reader->load($file_path);
         $worksheet = $spreadsheet->getActiveSheet();
         $rows = $worksheet->toArray();
-        return view('picking')->with(['active' => 'wms', 'rows' => $rows, 'rowCount' => 1, 'header' => 0, 'filepath' => $file_path]);
+        return view('picking')->with(['active' => 'wms', 'rows' => $rows, 'rowCount' => 1, 'header' => 0, 'filepath' => $file_path, 'pickno' => $pickno]);
     }
 
     public function updatePick(Request $request){
@@ -115,6 +145,13 @@ class WmsController extends Controller
             foreach ($allfiles as $onefile) {
                 array_push($filenameOnly,substr($onefile,8));
             }
+            $queryCon = " UPDATE EXT_PICK_DETAILS@msfss SET EPD_PICKED = 'YES', EPD_DATE = SYSDATE WHERE EPD_PICK = :pickno ";
+            $stmtCon = oci_parse($c, $queryCon);
+            $pno = $request->pickno;
+            ocibindbyname($stmtCon, ":pickno", $pno);
+            oci_execute($stmtCon, OCI_DEFAULT);
+            oci_commit($c);
+
             $queryPacker = " SELECT EAP_PKNO, EAP_PACKER, EAP_PACKED, EAP_INT FROM EXT_AUTO_PACK@msfss ";
             $stmtPacker = oci_parse($c, $queryPacker);
             ociexecute($stmtPacker, OCI_DEFAULT);
@@ -123,7 +160,7 @@ class WmsController extends Controller
             return view('wms')->with(['active' => 'wms', 'filenames' => $filenameOnly, 'queryPackers' => $queryPackers]);
         }
         $rows = $worksheet->toArray();
-        return view('picking')->with(['active' => 'wms', 'rows' => $rows, 'rowCount' => $rowCount, 'header' => 0, 'filepath' => $file_path]);
+        return view('picking')->with(['active' => 'wms', 'rows' => $rows, 'rowCount' => $rowCount, 'header' => 0, 'filepath' => $file_path, 'pickno' => $request->pickno]);
     }
 
     public function choosePacker(Request $request){
@@ -246,7 +283,7 @@ class WmsController extends Controller
 		ocifetchstatement($stmtPack, $query_packs,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
 
         if ($request->pg == 'confirm') {
-            $queryCon = " UPDATE EXT_AUTO_PACK@msfss SET EAP_PACKED = 'YES' WHERE EAP_PKNO = :pkno ";
+            $queryCon = " UPDATE EXT_AUTO_PACK@msfss SET EAP_PACKED = 'YES', EAP_DATE = SYSDATE WHERE EAP_PKNO = :pkno ";
 		$stmtCon = oci_parse($c, $queryCon);
 		ocibindbyname($stmtCon, ":pkno", $pkno);
 		oci_execute($stmtCon, OCI_DEFAULT);

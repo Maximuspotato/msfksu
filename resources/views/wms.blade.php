@@ -19,7 +19,7 @@
                 $fullname = str_replace("."," ",$fullemail);
                 $email = substr($fullname, 0, strpos($fullname, "@"));
             @endphp
-            <h2>Welcome {{$email}}</h2>
+            <h2>Welcome {{$email}} <i class="fas fa-eye" onclick="wmsrep('{{URL('/wmsrep')}}');"></i></h2>
             
             @if (strtoupper(Auth::user()->email) == "WHSE.SUPERVISOR@BRUSSELS.MSF.ORG"
             ||strtoupper(Auth::user()->email) == "PATRICK.KAMAU@BRUSSELS.MSF.ORG"

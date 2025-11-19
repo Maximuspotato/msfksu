@@ -313,6 +313,9 @@ class PagesController extends Controller
     public function fior_annexv2(){
         return view('fior_annexV2')->with('active', 'extranet');
     }
+    public function wmsrep(){
+        return view('wmsrep')->with('active', 'wms');
+    }
 
     public function wms(){
         include_once(app_path() . '/outils/functions.php');

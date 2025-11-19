@@ -152,6 +152,7 @@
                                     <input id="rc" type="hidden" name="rowCount" value="{{$rowCount}}">
                                     <input id="count" type="hidden" name="count" value="{{$count}}">
                                     <input type="hidden" name="filepath" value="{{$filepath}}">
+                                    <input type="hidden" name="pickno" value="{{$pickno}}">
                                     <input type="hidden" id="pg" name="pg" value="">
                                     <input type="hidden" id="jmp" name="jmp" value="jmp">
                             </div>
