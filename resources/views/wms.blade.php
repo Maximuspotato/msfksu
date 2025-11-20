@@ -54,7 +54,6 @@
                                 @endphp
                                 <i class="fas fa-trash" onclick="delfile('{{$filename}}','{{URL('/delfile?fl=')}}{{$filename}}');"></i>
                             @endif
-                            <br>
                         @endforeach
                     </div>
                 </div>
