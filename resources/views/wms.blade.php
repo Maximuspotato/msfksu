@@ -53,6 +53,7 @@
                                     $picking = $exp[1];
                                 @endphp
                                 <i class="fas fa-trash" onclick="delfile('{{$filename}}','{{URL('/delfile?fl=')}}{{$filename}}');"></i>
+                                <br>
                             @endif
                         @endforeach
                     </div>
