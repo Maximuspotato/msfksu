@@ -44,16 +44,16 @@
                     <div class="col-sm-6">
                         <h3>Overview files for picking</h3>
                         @foreach ($filenames as $filename)
-                            <a href="{{asset('storage/uploads/'.$filename.'')}}">{{$filename}}</a>
-                            {{-- @if (strpos($filename, '_picked')) --}}
-                                @php
+                            @if (strpos($filename, '_picked'))
+                                {{-- <i class="fas fa-download" onclick="updpick('{{$picking}}','{{URL('/updpick?pickno=')}}{{$picking}}&fl={{$filename}}')"></i> --}}
+                            @else
+                                <a href="{{asset('storage/uploads/'.$filename.'')}}">{{$filename}}</a>
+                                 @php
                                     $exp = explode('_',$filename);
                                     $picking = $exp[1];
                                 @endphp
-                                {{-- <i class="fas fa-download" onclick="updpick('{{$picking}}','{{URL('/updpick?pickno=')}}{{$picking}}&fl={{$filename}}')"></i> --}}
-                            {{-- @else --}}
                                 <i class="fas fa-trash" onclick="delfile('{{$filename}}','{{URL('/delfile?fl=')}}{{$filename}}');"></i>
-                            {{-- @endif --}}
+                            @endif
                             <br>
                         @endforeach
                     </div>
@@ -135,16 +135,16 @@
                         <h3><u>Overview files being packed</u></h3>
                         @foreach ($queryPackers as $queryPacker)
                             <ul>
-                                <li>{{$queryPacker['EAP_PKNO']}} ({{$queryPacker['EAP_PACKER']}})
-                                    @if ($queryPacker['EAP_PACKED'] != NULL)
-                                        {{-- (PACKED) <i class="fas fa-download" onclick="intPack('{{$queryPacker['EAP_PKNO']}}','{{URL('/intPack?pkno=')}}{{$queryPacker['EAP_PKNO']}}')"></i> --}}
-                                        (PACKED)
+                                
+                                    @if ($queryPacker['EAP_PACKED'] == NULL)
+                                        <li>{{$queryPacker['EAP_PKNO']}} ({{$queryPacker['EAP_PACKER']}})
+                                            <i class="fas fa-trash" onclick="delPacker('{{$queryPacker['EAP_PKNO']}}','{{URL('/delPacker?pkno=')}}{{$queryPacker['EAP_PKNO']}}')"></i>
+                                            </li>
                                     @endif
-                                    @if ($queryPacker['EAP_INT'] != NULL)
+                                    {{-- @if ($queryPacker['EAP_INT'] != NULL)
                                         (INTEGRATED)
-                                    @endif
-                                    <i class="fas fa-trash" onclick="delPacker('{{$queryPacker['EAP_PKNO']}}','{{URL('/delPacker?pkno=')}}{{$queryPacker['EAP_PKNO']}}')"></i>
-                                </li>
+                                    @endif --}}
+                                    
                             </ul>
                         @endforeach
                     </div>

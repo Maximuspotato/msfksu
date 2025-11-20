@@ -62,7 +62,6 @@ class WmsController extends Controller
         $pickno = strstr($pickno, "_", false);
         $pickno = strstr($pickno, ".", true);
         $pickno = substr($pickno, 1);
-        $pickno = substr($pickno, 0, strpos($pickno, "_"));
         $file_path = public_path('storage/uploads/'.$request->fl);
         File::delete($file_path);
         include_once(app_path() . '/outils/functions.php');

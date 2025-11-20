@@ -23,14 +23,18 @@
 				);
 
 				$fields[]=array(
-					'sqlfield'=>'EPD_PICK',				// champ SQL pur
+					'sqlfield'=>"
+					CASE
+					WHEN EPD_PICKED = 'YES' THEN '<a target=\"_blank\" href=\"storage/uploads/' || EPD_PICKER || '_' || EPD_PICK || '_picked.xlsx' || '\">' || EPD_PICK || '</a>'
+					ELSE '<a target=\"_blank\" href=\"storage/uploads/' || EPD_PICKER || '_' || EPD_PICK || '.xlsx' || '\">' || EPD_PICK || '</a>'
+					END",
 					'title'=>'Picking no',					// Title for the column
 					
 					'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
 					'decimal'=>'',
 					
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
+					'aliasname'=>'PIKIN',					//alias
+					'sortsqlfield'=>'PIKIN',					//sort	
 				);
 
 				$fields[]=array(
@@ -120,8 +124,7 @@
 
 				$query .= "
                 FROM EXT_PICK_DETAILS@msfss, EXT_AUTO_PACK@msfss
-					WHERE EPD_PICKED = 'YES'
-					AND SUBSTR(EAP_PKNO(+), 1, LENGTH(EAP_PKNO(+)) - 2) = EPD_PICK ";
+				WHERE SUBSTR(EAP_PKNO(+), 1, LENGTH(EAP_PKNO(+)) - 2) = EPD_PICK ";
 
 
 				if (!isset($_REQUEST['orderby']) OR !isset($_REQUEST['order'])) {
