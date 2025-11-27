@@ -34,7 +34,7 @@ class WmsController extends Controller
             }else{
                 $emailname = str_replace(" ",".",$pickername);
                 $email = $emailname.'@BRUSSELS.MSF.ORG';
-                Mail::to($email)->send(new PickerEmail(['name' => $pickername]));
+                //Mail::to($email)->send(new PickerEmail(['name' => $pickername]));
                 // Store the file in the 'uploads' directory on the 'public' disk
                 $filePath = $request->file('file')->storeAs('uploads',$pickername.'_'.$filename.'.'.$extension, 'public');
 
@@ -177,7 +177,7 @@ class WmsController extends Controller
 
         $emailname = str_replace(" ",".",$packer);
         $email = $emailname.'@BRUSSELS.MSF.ORG';
-        Mail::to($email)->send(new PackerEmail(['name' => $packer]));
+        //Mail::to($email)->send(new PackerEmail(['name' => $packer]));
 
         return back();
     }
@@ -210,7 +210,7 @@ class WmsController extends Controller
         WHERE PCL_PCT_NO = :pkno
         AND PCC_PCT_NO = PCL_PCT_NO
         AND PCL_NO_COLIS = PCC_NO_REGROUPEMENT
-        ORDER BY PCC_NO_GROUPAGE DESC ";
+        ORDER BY PCC_NO_GROUPAGE ASC ";
 		$stmt = oci_parse($c, $query);
         $pkno = $request->pkno;
 		ocibindbyname($stmt, ":pkno", $pkno);
@@ -264,7 +264,8 @@ class WmsController extends Controller
         FROM MS_PACK_CLI_LIGNE@msfss, MS_PACK_CLI_COLIS@msfss
         WHERE PCL_PCT_NO = :pkno
         AND PCC_PCT_NO = PCL_PCT_NO
-        AND PCL_NO_COLIS = PCC_NO_REGROUPEMENT ";
+        AND PCL_NO_COLIS = PCC_NO_REGROUPEMENT
+        ORDER BY PCC_NO_GROUPAGE ASC ";
 		$stmt = oci_parse($c, $query);
         $pkno = $request->pkno;
 		ocibindbyname($stmt, ":pkno", $pkno);
