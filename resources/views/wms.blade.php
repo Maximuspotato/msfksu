@@ -23,7 +23,8 @@
             
             @if (strtoupper(Auth::user()->email) == "WHSE.SUPERVISOR@BRUSSELS.MSF.ORG"
             ||strtoupper(Auth::user()->email) == "PATRICK.KAMAU@BRUSSELS.MSF.ORG"
-            ||strtoupper(Auth::user()->email) == "JACOB.NJAGI@BRUSSELS.MSF.ORG")
+            ||strtoupper(Auth::user()->email) == "JACOB.NJAGI@BRUSSELS.MSF.ORG"
+            ||strtoupper(Auth::user()->email) == "IT.TEST@BRUSSELS.MSF.ORG")
                 <div class="row">
                     <div class="col-sm-6">
                         <h3>Upload file for picking</h3>
