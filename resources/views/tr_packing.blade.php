@@ -187,7 +187,8 @@
 						
 						echo '<br>';
 						echo '<label>Total Invoice: </label>';
-						$query_amt = " SELECT SUM(FCT_MT_BASE_REMISE) AMT, FCT_DEV_CODE CURR FROM XN_FAC_CLI_TETE WHERE FCT_CCT_REF_CMDE_CLI1 = :cm GROUP BY FCT_DEV_CODE ";
+						$query_amt = " SELECT SUM(FCT_MT_BASE_REMISE) AMT, FCT_DEV_CODE CURR FROM XN_FAC_CLI_TETE
+						WHERE FCT_CCT_REF_CMDE_CLI1 = :cm AND FCT_DEV_CODE = 'USD' GROUP BY FCT_DEV_CODE ";
 						$stmt = oci_parse($c, $query_amt);
 						ocibindbyname($stmt, ":cm", $_REQUEST['cm']);
 						ociexecute($stmt, OCI_DEFAULT);
