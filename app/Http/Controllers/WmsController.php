@@ -284,33 +284,40 @@ class WmsController extends Controller
 
         if ($request->pg == 'confirm') {
             $queryCon = " UPDATE EXT_AUTO_PACK@msfss SET EAP_PACKED = 'YES', EAP_DATE = SYSDATE WHERE EAP_PKNO = :pkno ";
-		$stmtCon = oci_parse($c, $queryCon);
-		ocibindbyname($stmtCon, ":pkno", $pkno);
-		oci_execute($stmtCon, OCI_DEFAULT);
-		oci_commit($c);
+            $stmtCon = oci_parse($c, $queryCon);
+            ocibindbyname($stmtCon, ":pkno", $pkno);
+            oci_execute($stmtCon, OCI_DEFAULT);
+            oci_commit($c);
 
-            $query = " SELECT PCT_NO FROM MS_PACK_CLI_TETE@msfss WHERE PCT_DEP_CODE_CMDE = 'NBO' AND PCT_INDEX <> 'Z' ";
-        $stmt = oci_parse($c, $query);
-        ociexecute($stmt, OCI_DEFAULT);
-        ocifetchstatement($stmt, $query_results,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+                $query = " SELECT PCT_NO FROM MS_PACK_CLI_TETE@msfss WHERE PCT_DEP_CODE_CMDE = 'NBO' AND PCT_INDEX <> 'Z' ";
+            $stmt = oci_parse($c, $query);
+            ociexecute($stmt, OCI_DEFAULT);
+            ocifetchstatement($stmt, $query_results,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
 
-        $queryPacker = " SELECT EAP_PKNO, EAP_PACKER, EAP_PACKED, EAP_INT FROM EXT_AUTO_PACK@msfss ";
-        $stmtPacker = oci_parse($c, $queryPacker);
-        ociexecute($stmtPacker, OCI_DEFAULT);
-        ocifetchstatement($stmtPacker, $queryPackers,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
+            $queryPacker = " SELECT EAP_PKNO, EAP_PACKER, EAP_PACKED, EAP_INT FROM EXT_AUTO_PACK@msfss ";
+            $stmtPacker = oci_parse($c, $queryPacker);
+            ociexecute($stmtPacker, OCI_DEFAULT);
+            ocifetchstatement($stmtPacker, $queryPackers,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
 
-        $allfiles = Storage::disk('public')->allFiles('uploads');
-        $filenameOnly = array();
-        foreach ($allfiles as $onefile) {
-            array_push($filenameOnly,substr($onefile,8));
+            $allfiles = Storage::disk('public')->allFiles('uploads');
+            $filenameOnly = array();
+            foreach ($allfiles as $onefile) {
+                array_push($filenameOnly,substr($onefile,8));
+            }
+            //dd($filenameOnly);
+            return view('wms')->with([
+                'active' => 'wms',
+                'filenames' => $filenameOnly,
+                'query_results' => $query_results,
+                'queryPackers' => $queryPackers]);
+
+            $url = 'http://10.210.168.40/reports/pk_pc_v2.php?searchType=pk&search='.$pkno.'&al=&rc=&lv=&st=';
+            //dd($url);
+
+            return view('open_new_tab', ['url' => $url]);
         }
-        //dd($filenameOnly);
-        return view('wms')->with([
-            'active' => 'wms',
-            'filenames' => $filenameOnly,
-            'query_results' => $query_results,
-            'queryPackers' => $queryPackers]);
-        }
+
+        //echo "<script>window.open('".$url."', '_blank')</script>";
 
         return view('packing')->with(['active' => 'wms', 'rows' => $query_results, 'rmks' => $query_packs, 'rowCount' => $rowCount]);
 

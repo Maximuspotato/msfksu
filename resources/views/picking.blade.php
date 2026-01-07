@@ -23,7 +23,7 @@
                         @endphp
                         <div class="row text-center">
                             <div class="col-xs-12">
-                                <h1>{{$rows[$rowCount][1]}}</h1>
+                                <h1>{{$pickno}}</h1>
                             </div>
                         </div>
                         <div class="row">
