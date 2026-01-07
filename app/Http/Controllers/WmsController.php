@@ -111,6 +111,14 @@ class WmsController extends Controller
             $worksheet->setCellValue($cellPlt,$request->plt);
             $worksheet->setCellValue($cellRmk,$request->rmk);
             $worksheet->setCellValue($cellWeight,$request->wgt);
+
+            if (!empty($request->to)) {
+                $nrow = $rowCount+1;
+                $ncellFrom = 'M'.$nrow;
+                $worksheet->setCellValue($ncellFrom,$request->to+1);
+            }
+            
+
             $writer = new Xlsx($spreadsheet);
             $writer->save($file_path);
         } else if($request->pg == 'back') {

@@ -39,7 +39,7 @@
                                 <p><b>{{$rows[$header][4]}}</b>:{{$rows[$rowCount][4]}}</p>
                             </div>
                             <div class="col-xs-6">
-                                <p><b>{{$rows[$header][5]}}</b>:{{$rows[$rowCount][5]}}</p>
+                                <p><b>{{$rows[$header][5]}}</b>:{{ \Carbon\Carbon::createFromDate(1899, 12, 30)->addDays($rows[$rowCount][5])->format('d-m-Y') }}</p>
                             </div>
                         </div>
                         <div class="row">
