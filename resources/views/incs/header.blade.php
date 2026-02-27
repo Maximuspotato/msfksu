@@ -243,7 +243,9 @@
                         || strtoupper(Auth::user()->email) == "ISAAC.OCHIENG@BRUSSELS.MSF.ORG"
                         || strtoupper(Auth::user()->email) == "WILSON.NJERU@BRUSSELS.MSF.ORG"
                         || strtoupper(Auth::user()->email) == "ZAKAYO.KARANU@BRUSSELS.MSF.ORG"
-                        || strtoupper(Auth::user()->email) == "TERESIAH.MUCHIRI@BRUSSELS.MSF.ORG")
+                        || strtoupper(Auth::user()->email) == "TERESIAH.MUCHIRI@BRUSSELS.MSF.ORG"
+                        ||strtoupper(Auth::user()->email) == "WHSE.SUPERVISORBKP@BRUSSELS.MSF.ORG"
+                        ||strtoupper(Auth::user()->email) == "JUSTINE.MECHA@BRUSSELS.MSF.ORG")
                             <li
                             @if ($active == "wms")
                                 class = "active"
