@@ -26,7 +26,8 @@
             ||strtoupper(Auth::user()->email) == "JACOB.NJAGI@BRUSSELS.MSF.ORG"
             ||strtoupper(Auth::user()->email) == "IT.TEST@BRUSSELS.MSF.ORG"
             ||strtoupper(Auth::user()->email) == "WHSE.SUPERVISORBKP@BRUSSELS.MSF.ORG"
-            ||strtoupper(Auth::user()->email) == "JUSTINE.MECHA@BRUSSELS.MSF.ORG")
+            ||strtoupper(Auth::user()->email) == "JUSTINE.MECHA@BRUSSELS.MSF.ORG"
+            ||strtoupper(Auth::user()->email) == "MSFOCB-KSU-IT@BRUSSELS.MSF.ORG")
                 <div class="row">
                     <div class="col-sm-6">
                         <h3>Upload file for picking</h3>
