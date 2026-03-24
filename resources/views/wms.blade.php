@@ -35,7 +35,7 @@
                             @csrf
                             <input type="file" name="file" required><br>
                             <select name="picker" id="picker" required>
-                                <option value="ISAAC OCHIENG">ISAAC OCHIENG</option>
+                                <option value="JULIAS ANDERA">JULIAS ANDERA</option>
                                 <option value="TERESIAH MUCHIRI">TERESIAH MUCHIRI</option>
                                 <option value="WILSON NJERU">WILSON NJERU</option>
                                 <option value="ZAKAYO KARANU">ZAKAYO KARANU</option>
@@ -82,7 +82,7 @@
                                 @endforeach
                             </select>
                             <select name="packer" id="packer" required>
-                                <option value="ISAAC OCHIENG">ISAAC OCHIENG</option>
+                                <option value="JULIAS ANDERA">JULIAS ANDERA</option>
                                 <option value="TERESIAH MUCHIRI">TERESIAH MUCHIRI</option>
                                 <option value="WILSON NJERU">WILSON NJERU</option>
                                 <option value="ZAKAYO KARANU">ZAKAYO KARANU</option>
@@ -100,7 +100,7 @@
                                                 <form id="choosePacker" action="{{URL('/choosePacker')}}" method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     <select name="packer" id="packer" required>
-                                                        <option value="ISAAC OCHIENG">ISAAC OCHIENG</option>
+                                                        <option value="JULIAS ANDERA">JULIAS ANDERA</option>
                                                         <option value="TERESIAH MUCHIRI">TERESIAH MUCHIRI</option>
                                                         <option value="WILSON NJERU">WILSON NJERU</option>
                                                         <option value="ZAKAYO KARANU">ZAKAYO KARANU</option>
@@ -120,7 +120,7 @@
                                             <form id="choosePacker" action="{{URL('/choosePacker')}}" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 <select name="packer" id="packer" required>
-                                                    <option value="ISAAC OCHIENG">ISAAC OCHIENG</option>
+                                                    <option value="JULIAS ANDERA">JULIAS ANDERA</option>
                                                     <option value="TERESIAH MUCHIRI">TERESIAH MUCHIRI</option>
                                                     <option value="WILSON NJERU">WILSON NJERU</option>
                                                     <option value="ZAKAYO KARANU">ZAKAYO KARANU</option>
