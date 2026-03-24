@@ -156,7 +156,7 @@
             @endif
             @if (strtoupper(Auth::user()->email) == "WHSE.PICKER1@BRUSSELS.MSF.ORG"
             || strtoupper(Auth::user()->email) == "WHSE.PICKER2@BRUSSELS.MSF.ORG"
-            || strtoupper(Auth::user()->email) == "ISAAC.OCHIENG@BRUSSELS.MSF.ORG"
+            || strtoupper(Auth::user()->email) == "JULIAS.ANDERA@BRUSSELS.MSF.ORG"
             || strtoupper(Auth::user()->email) == "WILSON.NJERU@BRUSSELS.MSF.ORG"
             || strtoupper(Auth::user()->email) == "ZAKAYO.KARANU@BRUSSELS.MSF.ORG"
             || strtoupper(Auth::user()->email) == "TERESIAH.MUCHIRI@BRUSSELS.MSF.ORG")
