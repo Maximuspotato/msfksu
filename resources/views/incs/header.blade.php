@@ -235,6 +235,7 @@
                         >
                             <a href="{{URL('/extra_net')}}">Extranet</a>
                         </li>
+                        @if(config('app.wms_enabled'))
                         @if (strtoupper(Auth::user()->email) == "WHSE.SUPERVISOR@BRUSSELS.MSF.ORG"
                         || strtoupper(Auth::user()->email) == "WHSE.PICKER1@BRUSSELS.MSF.ORG"
                         || strtoupper(Auth::user()->email) == "WHSE.PICKER2@BRUSSELS.MSF.ORG"
@@ -255,6 +256,7 @@
                             >
                                 <a href="{{URL('/wms')}}">WMS</a>
                             </li>
+                        @endif
                         @endif
                     @endif
                 </ul>

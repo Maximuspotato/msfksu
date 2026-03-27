@@ -56,6 +56,8 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'wms_enabled' => env('WMS_FEATURE_ENABLED', false),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

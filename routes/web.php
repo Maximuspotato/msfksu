@@ -68,7 +68,9 @@ Route::get('/batch-traceability', 'PagesController@bt_trace')->middleware(['auth
 Route::get('/documents', 'PagesController@documents')->middleware(['auth', 'verified']);
 Route::get('/fior-annex', 'PagesController@fior_annex')->middleware(['auth', 'verified']);
 Route::get('/fior-annexv2', 'PagesController@fior_annexv2')->middleware(['auth', 'verified']);
+if (config('app.wms_enabled')) {
 Route::get('/wms', 'PagesController@wms')->middleware(['auth', 'verified']);
+}
 Route::get('/wmsrep', 'PagesController@wmsrep')->middleware(['auth', 'verified']);
 //Route::get('/covid19', 'PagesController@covid')->middleware(['auth', 'verified']);
 Route::get('/playground', 'PagesController@playground');
