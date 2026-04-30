@@ -40,7 +40,11 @@
                                 <p><b>{{$rows[$header][4]}}</b>:{{$rows[$rowCount][4]}}</p>
                             </div>
                             <div class="col-xs-6">
-                                <p><b>{{$rows[$header][5]}}</b>:{{ \Carbon\Carbon::createFromDate(1899, 12, 30)->addDays($rows[$rowCount][5])->format('d-m-Y') }}</p>
+                                <p><b>{{$rows[$header][5]}}</b>:
+                                    @if (!empty(trim($rows[$rowCount][5])))
+                                        {{ is_numeric(trim($rows[$rowCount][5])) ? \Carbon\Carbon::createFromDate(1899, 12, 30)->addDays(trim($rows[$rowCount][5]))->format('d-m-Y') : \Carbon\Carbon::parse(str_replace('/', '-', trim($rows[$rowCount][5])))->format('d-m-Y') }}
+                                    @endif
+                                    </p>
                             </div>
                         </div>
                         <div class="row">
