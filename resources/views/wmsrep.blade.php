@@ -126,6 +126,10 @@
                 FROM EXT_PICK_DETAILS@msfss, EXT_AUTO_PACK@msfss
 				WHERE SUBSTR(EAP_PKNO(+), 1, LENGTH(EAP_PKNO(+)) - 2) = EPD_PICK ";
 
+				if (!isset($_REQUEST['status'])) {
+					$query .=" AND (EPD_PICKED IS NULL OR (EAP_PACKED IS NULL)) ";
+				}
+
 
 				if (!isset($_REQUEST['orderby']) OR !isset($_REQUEST['order'])) {
 					$_REQUEST['orderby'] = 'EPD_PICK';
@@ -150,6 +154,16 @@
 				//}
 
 			@endphp
+
+			<form method="GET" action="{{ url()->current() }}" autocomplete="off">
+				<div class="div_filter">
+					<label for="status">Closed:</label>
+					<input type="checkbox" name="status" id="status" {{ request()->has('status') ? 'checked' : '' }}>
+					<br><br>
+
+					<input type="submit" value="Go"/>
+				</div>
+			</form>
 			<?php
 				//if (isset($_REQUEST['order_no'])) {
 					render_table($result, $fields);
