@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Mail\PackerEmail;
 use App\Mail\PickerEmail;
 use Illuminate\Http\Request;
@@ -164,7 +165,9 @@ class WmsController extends Controller
             ociexecute($stmtPacker, OCI_DEFAULT);
             ocifetchstatement($stmtPacker, $queryPackers,"0","-1",OCI_FETCHSTATEMENT_BY_ROW);
             //dd($filenameOnly);
-            return view('wms')->with(['active' => 'wms', 'filenames' => $filenameOnly, 'queryPackers' => $queryPackers]);
+            $allUsers = User::whereNotNull('roles')->get();
+
+            return view('wms')->with(['active' => 'wms', 'filenames' => $filenameOnly, 'queryPackers' => $queryPackers, 'allUsers' => $allUsers]);
         }
         $rows = $worksheet->toArray();
         return view('picking')->with(['active' => 'wms', 'rows' => $rows, 'rowCount' => $rowCount, 'header' => 0, 'filepath' => $file_path, 'pickno' => $request->pickno]);
@@ -312,12 +315,14 @@ class WmsController extends Controller
             foreach ($allfiles as $onefile) {
                 array_push($filenameOnly,substr($onefile,8));
             }
+            $allUsers = User::whereNotNull('roles')->get();
             //dd($filenameOnly);
             return view('wms')->with([
                 'active' => 'wms',
                 'filenames' => $filenameOnly,
                 'query_results' => $query_results,
-                'queryPackers' => $queryPackers]);
+                'queryPackers' => $queryPackers,
+                'allUsers' => $allUsers]);
 
             $url = 'http://10.210.168.40/reports/pk_pc_v2.php?searchType=pk&search='.$pkno.'&al=&rc=&lv=&st=';
             //dd($url);
@@ -644,4 +649,13 @@ class WmsController extends Controller
 
         return back()->with('success', 'File integrated successfully');
     }
+
+    public function updateRole(Request $request)
+   {
+       $user = User::findOrFail($request->user_id);
+       $user->roles = $request->new_role;
+       $user->save();
+       
+       return redirect()->back()->with('success', 'User role updated successfully');
+   }
 }

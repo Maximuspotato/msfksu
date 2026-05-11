@@ -318,6 +318,8 @@ class PagesController extends Controller
     }
 
     public function wms(){
+        $allUsers = User::whereNotNull('roles')->get();
+
         include_once(app_path() . '/outils/functions.php');
         $c = db_connect();
         $query = " SELECT PCT_NO FROM MS_PACK_CLI_TETE@msfss WHERE PCT_DEP_CODE_CMDE = 'NBO' AND PCT_INDEX <> 'Z' ORDER BY PCT_NO DESC ";
@@ -340,7 +342,8 @@ class PagesController extends Controller
             'active' => 'wms',
             'filenames' => $filenameOnly,
             'query_results' => $query_results,
-            'queryPackers' => $queryPackers]);
+            'queryPackers' => $queryPackers,
+            'allUsers' => $allUsers]);
     }
 
     

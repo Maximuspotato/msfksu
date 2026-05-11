@@ -21,13 +21,8 @@
             @endphp
             <h2>Welcome {{$email}} <i class="fas fa-eye" onclick="wmsrep('{{URL('/wmsrep')}}');"></i></h2>
             
-            @if (strtoupper(Auth::user()->email) == "WHSE.SUPERVISOR@BRUSSELS.MSF.ORG"
-            ||strtoupper(Auth::user()->email) == "PATRICK.KAMAU@BRUSSELS.MSF.ORG"
-            ||strtoupper(Auth::user()->email) == "JACOB.NJAGI@BRUSSELS.MSF.ORG"
-            ||strtoupper(Auth::user()->email) == "IT.TEST@BRUSSELS.MSF.ORG"
-            ||strtoupper(Auth::user()->email) == "WHSE.SUPERVISORBKP@BRUSSELS.MSF.ORG"
-            ||strtoupper(Auth::user()->email) == "JUSTINE.MECHA@BRUSSELS.MSF.ORG"
-            ||strtoupper(Auth::user()->email) == "MSFOCB-KSU-IT@BRUSSELS.MSF.ORG")
+            @if (Auth::user()->roles == "MNG"
+            ||Auth::user()->roles == "SPV")
                 <div class="row">
                     <div class="col-sm-6">
                         <h3>Upload file for picking</h3>
@@ -154,12 +149,7 @@
                     </div>
                 </div>
             @endif
-            @if (strtoupper(Auth::user()->email) == "WHSE.PICKER1@BRUSSELS.MSF.ORG"
-            || strtoupper(Auth::user()->email) == "WHSE.PICKER2@BRUSSELS.MSF.ORG"
-            || strtoupper(Auth::user()->email) == "JULIAS.ANDERA@BRUSSELS.MSF.ORG"
-            || strtoupper(Auth::user()->email) == "WILSON.NJERU@BRUSSELS.MSF.ORG"
-            || strtoupper(Auth::user()->email) == "ZAKAYO.KARANU@BRUSSELS.MSF.ORG"
-            || strtoupper(Auth::user()->email) == "TERESIAH.MUCHIRI@BRUSSELS.MSF.ORG")
+            @if (Auth::user()->roles == "PCK")
                 <div class="row">
                     <div class="col-sm-6">
                         @if (!empty($filenames))
@@ -193,8 +183,52 @@
                         {{-- @endisset --}}
                     </div>
                 </div>
-                
-
+            @endif
+            @if (Auth::user()->roles == "MNG")
+                <hr>
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <h3><u>User Management</u></h3>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>User Email</th>
+                                    <th>Current Role</th>
+                                    <th>Update Role</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @isset($allUsers)
+                                    @foreach ($allUsers as $user)
+                                        <tr>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->roles }}</td>
+                                            <td>
+                                                <form action="{{ URL('/updateRole') }}" method="POST" id="form-role-{{ $user->id }}" style="display: flex; align-items: center; margin: 0;">
+                                                    @csrf
+                                                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                                    <!-- Update options to match your actual roles -->
+                                                    <select name="new_role" required style="margin-right: 15px; padding: 5px;">
+                                                        <option value="MNG" {{ $user->roles == 'MNG' ? 'selected' : '' }}>Manager (MNG)</option>
+                                                        <option value="SPV" {{ $user->roles == 'SPV' ? 'selected' : '' }}>Supervisor (SPV)</option>
+                                                        <option value="PCK" {{ $user->roles == 'PCK' ? 'selected' : '' }}>Picker (PCK)</option>
+                                                    </select>
+                                                    
+                                                    <!-- Icon submits the specific form based on user ID -->
+                                                    <i class="fas fa-save" title="Update Role" style="cursor: pointer; font-size: 1.2em;" onclick="document.getElementById('form-role-{{ $user->id }}').submit();"></i>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="3">No users found. Ensure $allUsers is passed from the controller.</td>
+                                    </tr>
+                                @endisset
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             @endif
         </div>
     </div>
