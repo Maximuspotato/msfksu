@@ -80,54 +80,54 @@
                     );
                 }
 
-                if (!Auth::guest()) {
-                    $fields[]=array(
-                        'sqlfield'=>"CASE
-                        WHEN TAC_PX_ACTUEL IS NOT NULL THEN 'ACTUAL'
-                        ELSE 'INDICATIVE/NONE'
-                        END",				// champ SQL pur
-                        'title'=>'Pricing',					// Title for the column
+                // if (!Auth::guest()) {
+                //     $fields[]=array(
+                //         'sqlfield'=>"CASE
+                //         WHEN TAC_PX_ACTUEL IS NOT NULL THEN 'ACTUAL'
+                //         ELSE 'INDICATIVE/NONE'
+                //         END",				// champ SQL pur
+                //         'title'=>'Pricing',					// Title for the column
                         
-                        'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-                        'decimal'=>'',
+                //         'format'=>'text',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+                //         'decimal'=>'',
                         
-                        'aliasname'=>'PRICING',					//alias
-                        'sortsqlfield'=>'PRICING',					//sort	
-                    );
-                }
+                //         'aliasname'=>'PRICING',					//alias
+                //         'sortsqlfield'=>'PRICING',					//sort	
+                //     );
+                // }
 
-                $fields[]=array(
-					'sqlfield'=>'ART_PDS',				// champ SQL pur
-					'title'=>'Weight(kd)',					// Title for the column
+                // $fields[]=array(
+				// 	'sqlfield'=>'ART_PDS',				// champ SQL pur
+				// 	'title'=>'Weight(kd)',					// Title for the column
 					
-					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-					'decimal'=>'1',
+				// 	'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+				// 	'decimal'=>'1',
 					
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
-				);
+				// 	'aliasname'=>'',					//alias
+				// 	'sortsqlfield'=>'',					//sort	
+				// );
 
-                $fields[]=array(
-					'sqlfield'=>'ART_VOL',
-					'title'=>'Volume(dm3)',					// Title for the column
+                // $fields[]=array(
+				// 	'sqlfield'=>'ART_VOL',
+				// 	'title'=>'Volume(dm3)',					// Title for the column
 					
-					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-					'decimal'=>'1',
+				// 	'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+				// 	'decimal'=>'1',
 					
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
-				);
+				// 	'aliasname'=>'',					//alias
+				// 	'sortsqlfield'=>'',					//sort	
+				// );
 
-                $fields[]=array(
-					'sqlfield'=>'ART_COND_VTE',				// champ SQL pur
-					'title'=>'UoM',					// Title for the column
+                // $fields[]=array(
+				// 	'sqlfield'=>'ART_COND_VTE',				// champ SQL pur
+				// 	'title'=>'UoM',					// Title for the column
 					
-					'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
-					'decimal'=>'0',
+				// 	'format'=>'number',					// text = default, number = format XX.XXX,XX, date DD/MM/YYYY or string(force a number to be a string -> for excel)
+				// 	'decimal'=>'0',
 					
-					'aliasname'=>'',					//alias
-					'sortsqlfield'=>'',					//sort	
-				);
+				// 	'aliasname'=>'',					//alias
+				// 	'sortsqlfield'=>'',					//sort	
+				// );
 
                 $fields[]=array(
 					'sqlfield'=>"CASE WHEN CAA_CODE = '0' THEN '' ELSE CAA_LIB END",				// champ SQL pur
