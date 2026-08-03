@@ -169,7 +169,7 @@
                         </li>
                     @endif
 
-                    <li
+                    {{-- <li
                     @if ($active == "about")
                         class = "active"
                     @endif
@@ -216,7 +216,7 @@
                     class=""
                     >
                         <a href="{{URL('/hr')}}">Careers</a>
-                    </li>
+                    </li> --}}
 
                     {{-- <li
                     @if ($active == "downloads")

@@ -17,7 +17,8 @@
                             </div> --}}
                             <div class="col-md-12 col-sm-12">
                                 <h2>Welcome to MSF Supply Kenya</h2>
-                                <h3 style="width: 75%">MSF Supply Kenya is the East African supply centre for Médecins Sans Frontières. Our MISSION is to provide high quality products and services that meet the needs of MSF, through the provision of regional supply activities (transit, regional & international procurement, stock pre-positioning)</h3>
+                                <h3 style="width: 75%">For more information about us, please visit <a href="https://msfintl.sharepoint.com/sites/grp-ocbksu-connect/MSF-Supply-Kenya/SitePages/Home.aspx">here</a></h3>
+                                <h3 style="width: 75%">To access our Extranet, please visit <a href="{{URL('/extra_net')}}">here</a></h3>
                             </div>
                             
                             <div class="col-md-12 col-sm-12">

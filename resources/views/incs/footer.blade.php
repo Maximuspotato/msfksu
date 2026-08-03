@@ -27,11 +27,11 @@
                     <h3>Navigate</h3>
                     <ul class="no-list-style footer-navigate-section">
                         <li><a href="{{URL('/')}}">Home</a></li>
-                        <li><a href="{{URL('/about')}}">About</a></li>
+                        {{-- <li><a href="{{URL('/about')}}">About</a></li>
                         <li><a href="{{URL('/services')}}">Services</a></li>
                         <li><a href="{{URL('/catalogue')}}">Catalogue</a></li>
                         <li><a href="{{URL('/contacts')}}">Contacts</a></li>
-                        <li><a href="{{URL('/hr')}}">Careers</a></li>
+                        <li><a href="{{URL('/hr')}}">Careers</a></li> --}}
                     </ul>
                 </div>
             
