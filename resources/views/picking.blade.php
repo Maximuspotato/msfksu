@@ -111,15 +111,19 @@
                         <form id="formPick" action="{{URL('/updatePick')}}" method="post">
                             @csrf
                             <div class="row">
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-3">
                                         <label for="from"><b>From</b></label>
                                         <input style="width: -webkit-fill-available;" type="number" name="from" id="from" value="{{$rows[$rowCount][12]}}">
                                     </div>
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-3">
                                         <label for="to"><b>To</b></label>
                                         <input style="width: -webkit-fill-available;" type="number" name="to" id="to" value="{{$rows[$rowCount][13]}}">
                                     </div>
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-3">
+                                        <label for="tot"><b>Total</b></label>
+                                        <input style="width: -webkit-fill-available;" type="number" id="tot" readonly placeholder="0">
+                                    </div>
+                                    <div class="col-xs-3">
                                         <label for="plt"><b>NoPallet</b></label>
                                         <input style="width: -webkit-fill-available;" type="number" name="plt" id="plt" value="{{$rows[$rowCount][14]}}">
                                     </div>

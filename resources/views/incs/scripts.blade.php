@@ -162,6 +162,33 @@
 		// 	FeedUrl: 'https://www.msf.org/rss/all', MaxCount: 3, ShowDesc: true, ShowPubDate: false, DescCharacterLimit: 100
 		// });
     //});
+    document.addEventListener('DOMContentLoaded', function() {
+        const fromInput = document.getElementById('from');
+        const toInput = document.getElementById('to');
+        const totInput = document.getElementById('tot');
+
+        // Function to calculate and update the difference
+        function calculateDifference() {
+            const fromValue = parseFloat(fromInput.value);
+            const toValue = parseFloat(toInput.value);
+
+            // Check if both fields are filled and contain valid numbers
+            if (!isNaN(fromValue) && !isNaN(toValue)) {
+                // Calculates To - From. If you want an absolute positive difference, use Math.abs(toValue - fromValue)
+                totInput.value = (toValue - fromValue)+1;
+            } else {
+                // Clear the difference field if one or both inputs are empty
+                totInput.value = '';
+            }
+        }
+
+        // Listen for user typing or changing the numbers
+        fromInput.addEventListener('input', calculateDifference);
+        toInput.addEventListener('input', calculateDifference);
+
+        // Run once on page load to populate the difference if Blade already filled in 'From' and 'To'
+        calculateDifference();
+    });
 
     if (document.getElementById('phead').innerHTML == 'Picking') {
         if (document.getElementById('rc').value == 1) {
