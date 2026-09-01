@@ -42,8 +42,8 @@
                             <div id="collapse21" class="accordion-body collapse">
                                 <div class="accordion-inner">
                                     <p><a href="{{URL('/bo-monitoring')}}">Backorder Monitoring</a></p>
-                                    <p><a href="{{URL('/order-confirmation')}}">Order Confirmation</a></p>
-                                    <p><a href="{{URL('/order-view')}}">Order View</a></p>
+                                    {{-- <p><a href="{{URL('/order-confirmation')}}">Order Confirmation</a></p>
+                                    <p><a href="{{URL('/order-view')}}">Order View</a></p> --}}
                                 </div>
                             </div>
                         </div>
@@ -58,12 +58,12 @@
                                     <p><a href="{{URL('/tr-overview')}}">Transport Overview</a></p>
                                     <p><a href="{{URL('/pk-overview')}}">Packing Overview</a></p>
                                     <p><a href="{{URL('/tr-packing')}}">Transport Cost Per Packing</a></p>
-                                    <p><a href="{{URL('/packing-view')}}">Packing View</a></p>
+                                    {{-- <p><a href="{{URL('/packing-view')}}">Packing View</a></p>
                                     <p><a href="{{URL('/freight-view')}}">Freight View</a></p>
                                     <p><a href="{{URL('/dnno-view')}}">Dn no view</a></p>
                                     <p><a href="{{URL('/awb-view')}}">AWB view</a></p>
                                     <p><a href="{{URL('/cmr-view')}}">CMR view</a></p>
-                                    <p><a href="{{URL('/freight-reception')}}">Freight reception</a></p>
+                                    <p><a href="{{URL('/freight-reception')}}">Freight reception</a></p> --}}
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                             </div>
                             <div id="collapse23" class="accordion-body collapse">
                                 <div class="accordion-inner">
-                                    <p><a href="{{URL('/invoice')}}">Invoice pdf</a></p>
+                                    {{-- <p><a href="{{URL('/invoice')}}">Invoice pdf</a></p> --}}
                                     {{-- <p><a href="{{URL('/fior-annex')}}">Fior Annex</a></p> --}}
                                     <p><a href="{{URL('/fior-annexv2')}}">Fior Annex</a></p>
                                 </div>
