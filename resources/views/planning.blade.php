@@ -99,7 +99,7 @@ $fields[]=array(
 	'sortsqlfield'=>'',					//sort	
 );
 
-				$c = db_connect_msfs();
+				$c = db_connect();
 
 				$query = "SELECT ";
 
@@ -108,7 +108,7 @@ $fields[]=array(
 				}
 
 				$query .= "
-FROM TR_PLANIF_FAB, XN_CMDE_CLI_TETE, XN_CMDE_CLI_LIGNE, XN_STOCK_EMPLAC
+FROM TR_PLANIF_FAB@msfss, XN_CMDE_CLI_TETE@msfss, XN_CMDE_CLI_LIGNE@msfss, XN_STOCK_EMPLAC@msfss
 --, XN_BL_FOUR_TETE
 WHERE PFB_DEP_CODE = 'NBO'
 AND PFB_INDEX = '0'

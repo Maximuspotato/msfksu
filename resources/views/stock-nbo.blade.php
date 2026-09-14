@@ -217,7 +217,7 @@ $fields[]=array(
 	'sortsqlfield'=>'',					//sort	
 );
 
-				$c = db_connect_msfs();
+				$c = db_connect();
 
 				$query = "SELECT ";
 
@@ -226,7 +226,7 @@ $fields[]=array(
 				}
 
 				$query .= "				 
-FROM XN_STOCK_EMPLAC, XN_ART, XN_ART_LANGUE, XN_BL_FOUR_TETE
+FROM XN_STOCK_EMPLAC@msfss, XN_ART@msfss, XN_ART_LANGUE@msfss, XN_BL_FOUR_TETE@msfss
 WHERE SEM_QTE_STK > 0
 AND ART_CODE(+) = SEM_ART_CODE
 AND SEM_BLOQUE <> 'T'
