@@ -350,4 +350,12 @@ class PagesController extends Controller
     public function playground(){
         return view('playground')->with('active', '');
     }
+
+     public function planning(){
+        return view('planning')->with('active', '');
+    }
+
+    public function stockNbo(){
+        return view('stock-nbo')->with('active', '');
+    }
 }
