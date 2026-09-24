@@ -351,31 +351,4 @@ class PagesController extends Controller
     public function playground(){
         return view('playground')->with('active', '');
     }
-
-     public function planning(){
-        $path = public_path('files/Planning.csv');    
-        if (!file_exists($path)) {        abort(404);    }    
-        return Response::make(file_get_contents($path), 200, [ 
-            'Content-Type' => 'text/plain; charset=UTF-8',
-            'Access-Control-Allow-Origin' => '*',
-        ]);
-    }
-
-    public function stockNbo(){
-        $path = public_path('files/Stock.csv');    
-        if (!file_exists($path)) {        abort(404);    }    
-        return Response::make(file_get_contents($path), 200, [ 
-            'Content-Type' => 'text/plain; charset=UTF-8',
-            'Access-Control-Allow-Origin' => '*',
-        ]);
-    }
-
-    public function productParams(){
-        $path = public_path('files/Product.csv');    
-        if (!file_exists($path)) {        abort(404);    }    
-        return Response::make(file_get_contents($path), 200, [ 
-            'Content-Type' => 'text/plain; charset=UTF-8',
-            'Access-Control-Allow-Origin' => '*',
-        ]);
-    }
 }

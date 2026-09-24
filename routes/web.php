@@ -120,9 +120,3 @@ Route::post('/updateRole', 'WmsController@updateRole')->middleware(['auth', 'ver
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'PagesController@index')->name('home');
-
-Route::get('/planning', 'PagesController@planning');
-
-Route::get('/stock-nbo', 'PagesController@stockNbo');
-
-Route::get('/product-params', 'PagesController@productParams');
