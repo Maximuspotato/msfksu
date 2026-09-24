@@ -10,6 +10,7 @@ use App\Unicode;
 use App\Popular;
 use App\UserSection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 // use Illuminate\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
@@ -352,10 +353,29 @@ class PagesController extends Controller
     }
 
      public function planning(){
-        return view('planning')->with('active', '');
+        $path = public_path('files/Planning.csv');    
+        if (!file_exists($path)) {        abort(404);    }    
+        return Response::make(file_get_contents($path), 200, [ 
+            'Content-Type' => 'text/plain; charset=UTF-8',
+            'Access-Control-Allow-Origin' => '*',
+        ]);
     }
 
     public function stockNbo(){
-        return view('stock-nbo')->with('active', '');
+        $path = public_path('files/Stock.csv');    
+        if (!file_exists($path)) {        abort(404);    }    
+        return Response::make(file_get_contents($path), 200, [ 
+            'Content-Type' => 'text/plain; charset=UTF-8',
+            'Access-Control-Allow-Origin' => '*',
+        ]);
+    }
+
+    public function productParams(){
+        $path = public_path('files/Product.csv');    
+        if (!file_exists($path)) {        abort(404);    }    
+        return Response::make(file_get_contents($path), 200, [ 
+            'Content-Type' => 'text/plain; charset=UTF-8',
+            'Access-Control-Allow-Origin' => '*',
+        ]);
     }
 }
