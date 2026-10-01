@@ -19,7 +19,10 @@
                 $fullname = str_replace("."," ",$fullemail);
                 $email = substr($fullname, 0, strpos($fullname, "@"));
             @endphp
-            <h2>Welcome {{$email}} <i class="fas fa-eye" onclick="wmsrep('{{URL('/wmsrep')}}');"></i></h2>
+            <h2>Welcome {{$email}} <i class="fas fa-eye" onclick="wmsrep('{{URL('/wmsrep')}}');"></i>
+                <a href="{{URL('/export-data')}}">
+                    <i class="fas fa-upload"></i>
+                </a></h2>
             
             @if (Auth::user()->roles == "MNG"
             ||Auth::user()->roles == "SPV")

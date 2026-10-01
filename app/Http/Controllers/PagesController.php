@@ -351,4 +351,9 @@ class PagesController extends Controller
     public function playground(){
         return view('playground')->with('active', '');
     }
+
+    public function exportPage()
+    {
+        return view('export-page');
+    }
 }

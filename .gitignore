@@ -3,6 +3,9 @@
 /public/storage
 /app/outils/functions.php
 /storage/*.key
+/public/files/Product.xlsx
+/public/files/Stock.xlsx
+/public/files/Planning.xlsx
 .env
 .phpunit.result.cache
 Homestead.json

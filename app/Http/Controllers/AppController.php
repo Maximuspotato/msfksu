@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use App\Exports\KsuUfExport;
 use App\Exports\CatalogExport;
 use App\Exports\ufExport;
+use App\Exports\ProductExport;
+use App\Exports\StockExport;
+use App\Exports\PlanningExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
 
@@ -114,5 +117,14 @@ class AppController extends Controller
 
         include_once(app_path() . '/outils/sendreport.php');
         return back();
+    }
+
+    public function exportManual()
+    {
+        Excel::store(new ProductExport, 'Product.xlsx', 'public_files');
+        Excel::store(new StockExport, 'Stock.xlsx', 'public_files');
+        Excel::store(new PlanningExport, 'Planning.xlsx', 'public_files');
+        
+        return "Export successful. Product.xlsx, Stock.xlsx, and Planning.xlsx have been uploaded";
     }
 }

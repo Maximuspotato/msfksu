@@ -25,7 +25,7 @@ Route::get('/downloadClaim', 'AppController@downloadClaim');
 Route::get('/inv', 'AppController@inv');
 Route::get('/ufExport', 'AppController@ufexport')->middleware(['auth', 'verified']);
 Route::get('/searchPick', 'AppController@searchPick')->middleware(['auth', 'verified']);
-
+Route::get('/export-data', 'AppController@exportManual');
 //pages
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
@@ -74,6 +74,8 @@ Route::get('/wms', 'PagesController@wms')->middleware(['auth', 'verified']);
 Route::get('/wmsrep', 'PagesController@wmsrep')->middleware(['auth', 'verified']);
 //Route::get('/covid19', 'PagesController@covid')->middleware(['auth', 'verified']);
 Route::get('/playground', 'PagesController@playground');
+Route::get('/fior-annex', 'PagesController@fior_annex')->middleware(['auth', 'verified']);
+Route::get('/export-page', 'PagesController@exportPage')->middleware(['auth', 'verified']);
 
 Route::get('/language', 'SessionController@language');
 Route::get('/currency', 'SessionController@currency');
