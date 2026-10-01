@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /app/outils/functions.php
+/app/Traits/ConnectsToOracle.php
 /storage/*.key
 /public/files/Product.xlsx
 /public/files/Stock.xlsx
