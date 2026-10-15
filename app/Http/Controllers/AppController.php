@@ -14,6 +14,7 @@ use App\Exports\StockExport;
 use App\Exports\PlanningExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class AppController extends Controller
 {
@@ -121,10 +122,20 @@ class AppController extends Controller
 
     public function exportManual()
     {
-        Excel::store(new ProductExport, 'Product.xlsx', 'public_files');
-        Excel::store(new StockExport, 'Stock.xlsx', 'public_files');
-        Excel::store(new PlanningExport, 'Planning.xlsx', 'public_files');
-        
-        return "Export successful. Product.xlsx, Stock.xlsx, and Planning.xlsx have been uploaded";
+        $disk = 'public_files';
+    $files = ['Product.xlsx', 'Stock.xlsx', 'Planning.xlsx'];
+
+    // Explicitly delete existing files to remove file locks
+    foreach ($files as $file) {
+        if (Storage::disk($disk)->exists($file)) {
+            Storage::disk($disk)->delete($file);
+        }
+    }
+
+    Excel::store(new ProductExport, 'Product.xlsx', $disk);
+    Excel::store(new StockExport, 'Stock.xlsx', $disk);
+    Excel::store(new PlanningExport, 'Planning.xlsx', $disk);
+
+    return "Export successful. Product.xlsx, Stock.xlsx, and Planning.xlsx have been uploaded"; 
     }
 }
