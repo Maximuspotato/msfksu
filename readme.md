@@ -21,6 +21,17 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## Warehouse Picking
+
+The authenticated warehouse-picking page is available at `/warehouse-picking`. It generates a picking workbook from these local files in `public/files/`:
+
+- `Planning.xlsx`
+- `Product.xlsx`
+- `Stock.xlsx`
+- `Automatic.xlsx` (the output workbook template)
+
+The `phpoffice/phpspreadsheet` dependency is already included. Keep the four files up to date; files under `public/` can also be downloaded directly by anyone who knows their URLs.
+
 ## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.

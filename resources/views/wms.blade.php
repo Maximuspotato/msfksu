@@ -23,6 +23,7 @@
                 <a href="{{URL('/export-data')}}">
                     <i class="fas fa-upload"></i>
                 </a></h2>
+            <p><a href="{{ URL('/wms-pick-report') }}">Picking details report</a></p>
             
             @if (Auth::user()->roles == "MNG"
             ||Auth::user()->roles == "SPV")

@@ -245,6 +245,12 @@
                             >
                                 <a href="{{URL('/wms')}}">WMS</a>
                             </li>
+                            <li>
+                                <a href="{{ route('warehouse-picking') }}">Warehouse picking</a>
+                            </li>
+                            <li>
+                                <a href="{{ URL('/wms-pick-report') }}">Picking details report</a>
+                            </li>
                         @endif
                         @endif
                     @endif

@@ -72,6 +72,9 @@ if (config('app.wms_enabled')) {
 Route::get('/wms', 'PagesController@wms')->middleware(['auth', 'verified']);
 }
 Route::get('/wmsrep', 'PagesController@wmsrep')->middleware(['auth', 'verified']);
+Route::get('/wms-pick-report', 'WmsPickReportController@index')->middleware(['auth', 'verified']);
+Route::get('/warehouse-picking', 'WarehousePickingController@index')->middleware(['auth', 'verified'])->name('warehouse-picking');
+Route::post('/warehouse-picking', 'WarehousePickingController@generate')->middleware(['auth', 'verified'])->name('warehouse-picking.generate');
 //Route::get('/covid19', 'PagesController@covid')->middleware(['auth', 'verified']);
 Route::get('/playground', 'PagesController@playground');
 Route::get('/fior-annex', 'PagesController@fior_annex')->middleware(['auth', 'verified']);
